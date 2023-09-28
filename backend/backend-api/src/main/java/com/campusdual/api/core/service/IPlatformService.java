@@ -8,5 +8,4 @@ import java.util.Map;
 
 public interface IPlatformService {
     EntityResult platformQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException;
-
 }
