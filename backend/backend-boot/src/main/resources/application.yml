@@ -63,7 +63,7 @@ server:
 spring:
    datasource:
       driver-class-name: org.postgresql.Driver
-      jdbc-url: jdbc:postgresql:45.84.210.174:65432/2023_BFS_2_G5
+      jdbc-url: jdbc:postgresql://45.84.210.174:65432/2023_BFS_2_G5
       username: 2023_BFS_2_G5
       password: b2f34VKzTvt2
       initial-size: 10
