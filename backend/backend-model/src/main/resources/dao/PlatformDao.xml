@@ -12,4 +12,5 @@
         <Column>NAME</Column>
     </UpdateKeys>
     <GeneratedKey>NAME</GeneratedKey>
+
 </JdbcEntitySetup>
