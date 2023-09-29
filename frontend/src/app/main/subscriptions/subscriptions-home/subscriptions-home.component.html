@@ -3,13 +3,13 @@
     attr="subscriptionsTable"
     service="subscriptions"
     entity="subscription"
-    keys="ID_SUBS"
-    columns="ID_SUBS;PRICE;FREQUENCY;ACTIVE;START_DATE;END_DATE;PLATFORM;USER"
-    visible-columns="PLATFORM;PRICE;START_DATE"
+    keys="SUBS_ID"
+    columns="SUBS_ID;SUBS_PRICE;SUBS_FREQUENCY;SUBS_ACTIVE;SUBS_START_DATE;SUBS_END_DATE;PLATF_ID;USER_"
+    visible-columns="SUBS_PRICE;SUBS_START_DATE;PLATF_ID"
     query-rows="20"
   >
     <o-table-column
-      attr="START_DATE"
+      attr="SUBS_START_DATE"
       title="STARTDATE"
       type="date"
       format="LL"

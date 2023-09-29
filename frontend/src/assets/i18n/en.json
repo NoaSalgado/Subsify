@@ -20,7 +20,7 @@
   "FOOTER_CREATED_BY": "Created by Imatia Innovation",
   "FOOTER_RIGHTS": "All rights reserved",
   "SUBSCRIPTIONS": "Subscriptions",
-  "PLATFORM": "Platform",
-  "PRICE": "Price",
-  "STARTDATE": "Start Date"
+  "PLATF_ID": "Platform Id",
+  "SUBS_PRICE": "Price",
+  "SUBS_START_DATE": "Start Date"
 }
