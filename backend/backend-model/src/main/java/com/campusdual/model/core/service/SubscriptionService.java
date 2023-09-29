@@ -7,8 +7,11 @@ import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +27,11 @@ public class SubscriptionService implements ISubscriptionService {
 
     @Override
     public EntityResult subscriptionQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
-        return this.daoHelper.query(this.subscriptionDao, keysValues, attributes);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Map<String, Object> newKeyValues = new HashMap<>(keysValues);
+        newKeyValues.put("USER_",username);
+        return this.daoHelper.query(this.subscriptionDao, newKeyValues, attributes);
     }
 
     @Override
