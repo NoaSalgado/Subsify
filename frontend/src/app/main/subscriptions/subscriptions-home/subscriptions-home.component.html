@@ -1,0 +1,18 @@
+<div fxFill fxLayout="column" fxLayoutAlign="start">
+  <o-table
+    attr="subscriptionsTable"
+    service="subscriptions"
+    entity="subscription"
+    keys="ID_SUBS"
+    columns="ID_SUBS;PRICE;FREQUENCY;ACTIVE;START_DATE;END_DATE;PLATFORM;USER"
+    visible-columns="PLATFORM;PRICE;START_DATE"
+    query-rows="20"
+  >
+    <o-table-column
+      attr="START_DATE"
+      title="STARTDATE"
+      type="date"
+      format="LL"
+    ></o-table-column>
+  </o-table>
+</div>
