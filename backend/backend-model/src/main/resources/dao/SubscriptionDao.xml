@@ -10,4 +10,23 @@
         <Column>ID_SUBS</Column>
     </UpdateKeys>
     <GeneratedKey>ID_SUBS</GeneratedKey>
+
+    <Queries>
+        <Query id="default">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="PLATF_ID" prefix="P"/>
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                     SELECT
+                      #COLUMNS#
+                     FROM
+                      PUBLIC.SUBSCRIPTION S
+                     INNER JOIN PUBLIC.PLATFORM P ON
+                      S.PLATF_ID = P.PLATF_ID
+                      #WHERE#
+                   ]]>
+            </Sentence>
+        </Query>
+    </Queries>
 </JdbcEntitySetup>
