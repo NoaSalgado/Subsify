@@ -8,6 +8,10 @@
     visible-columns="SUBS_PRICE;RENOVATION_DATE;PLATF_NAME"
     query-rows="20"
   >
+  <o-table-column attr="SUBS_PRICE" title="SUBS_PRICE" type="currency" thousand-separator="." decimal-separator="," currency-symbol="€"
+      currency-symbol-position="right">
+    </o-table-column>
+
     <o-table-column
       attr="SUBS_START_DATE"
       title="STARTDATE"
@@ -23,5 +27,11 @@
       class="o-table-column-centered"
     >
     </o-table-column-calculated>
+
+    <o-table-columns-grouping>
+      <o-table-columns-grouping-column attr="SUBS_PRICE" aggregate="sum"> </o-table-columns-grouping-column>
+    </o-table-columns-grouping>
+    <o-table-column-aggregate attr="SUBS_PRICE" title="(Total)"></o-table-column-aggregate>
+
   </o-table>
 </div>
