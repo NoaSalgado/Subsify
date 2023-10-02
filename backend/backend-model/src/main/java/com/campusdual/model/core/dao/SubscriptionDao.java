@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 public class SubscriptionDao extends OntimizeJdbcDaoSupport {
     public static final String ATTR_SUBS_ID = "SUBS_ID";
     public static final String ATTR_SUBS_PRICE = "SUBS_PRICE";
-    public static final String ATTR_SUBS_FREQUENCY = "SUBS_FREQUENCY";
+    public static final String ATTR_SUBS_FREQUENCY = "FR_ID";
     public static final String ATTR_SUBS_ACTIVE = "SUBS_ACTIVE";
     public static final String ATTR_SUBS_START_DATE = "SUBS_START_DATE";
     public static final String ATTR_SUBS_END_DATE = "SUBS_END_DATE";
