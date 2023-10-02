@@ -27,26 +27,30 @@
       </o-row>
       <o-row>
         <o-combo
-          attr="PLATF_NAME"
+          required= "yes"
+          label = "PLATF_NAME"
+          attr="PLATF_ID"
           oLocker
           read-only="no"
           service="platforms"
           entity="platform"
           columns="PLATF_ID;PLATF_NAME"
-          value-column="PLATF_NAME"
+          value-column="PLATF_ID"
           keys="PLATF_ID"
           visible-columns="PLATF_NAME"
           width="33%"
         >
         </o-combo>
         <o-combo
-          attr="FR_NAME"
+          required= "yes"
+          label = "FR_NAME"
+          attr="FR_ID"
           oLocker
           read-only="no"
           service="frequencies"
           entity="frequency"
           columns="FR_ID;FR_NAME;FR_VALUE"
-          value-column="FR_NAME"
+          value-column="FR_ID"
           keys="FR_ID"
           visible-columns="FR_NAME"
           width="33%"
