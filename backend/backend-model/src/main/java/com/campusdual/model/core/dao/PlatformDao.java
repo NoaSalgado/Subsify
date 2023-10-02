@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 public class PlatformDao extends OntimizeJdbcDaoSupport {
 
     public static final String ATTR_PLATF_ID = "PLATF_ID";
-    public static final String ATTR_NAME = "PLATF_NAME";
+    public static final String ATTR_PLATF_NAME = "PLATF_NAME";
 }
