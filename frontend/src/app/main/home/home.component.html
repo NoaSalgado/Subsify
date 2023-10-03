@@ -1,5 +1,94 @@
-<div fxLayout="row" layout-padding fxLayoutAlign="center center">
-  <p>
-    Ontimize web seed application home component
-  </p>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grafico de Gasto Mensual</title>
+    <style>
+
+        #grafico-container {
+            width: 500px;
+            height: 300px;
+        }
+        
+    
+        .barra {
+            fill: steelblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gráfico de Gasto Mensual</h1>
+    <div id="grafico-container"></div>
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+    <script>
+        
+        var datos = [
+            { mes: "Enero", gasto1: 100, gasto2: 50 },
+            { mes: "Febrero", gasto1: 150, gasto2: 75 },
+            { mes: "Marzo", gasto1: 80, gasto2: 10 },
+            { mes: "Abril", gasto1: 80, gasto2: 80 },
+            { mes: "Mayo", gasto1: 80, gasto2: 60 },
+            { mes: "Junio", gasto1: 80, gasto2: 100 },
+            { mes: "Julio", gasto1: 80, gasto2: 12 },
+            { mes: "Agosto", gasto1: 80, gasto2: 20 },
+            { mes: "Sept.", gasto1: 80, gasto2: 140 },
+            { mes: "Oct.", gasto1: 80, gasto2: 120 },
+            { mes: "Nov.", gasto1: 80, gasto2: 180 },
+            { mes: "Dic.", gasto1: 80, gasto2: 60 },
+            
+        ];
+
+
+        var ancho = 500;
+        var alto = 300;
+        var margen = { superior: 30, derecho: 30, inferior: 30, izquierdo: 40 };
+
+
+        var anchoGrafico = ancho - margen.izquierdo - margen.derecho;
+        var altoGrafico = alto - margen.superior - margen.inferior;
+
+
+        var contenedor = d3.select("#grafico-container");
+
+       
+        var svg = contenedor.append("svg")
+            .attr("width", ancho)
+            .attr("height", alto);
+
+        var grafico = svg.append("g")
+            .attr("transform", "translate(" + margen.izquierdo + "," + margen.superior + ")");
+
+    
+        var escalaX = d3.scaleBand()
+            .domain(datos.map(function(d) { return d.mes; }))
+            .range([0, anchoGrafico])
+            .padding(0.1);
+
+      
+        var escalaY = d3.scaleLinear()
+            .domain([0, d3.max(datos, function(d) { return d.gasto1 + d.gasto2; })])
+            .range([altoGrafico, 0]);
+
+
+        grafico.append("g")
+            .attr("class", "eje-x")
+            .attr("transform", "translate(0," + altoGrafico + ")")
+            .call(d3.axisBottom(escalaX));
+
+        grafico.append("g")
+            .attr("class", "eje-y")
+            .call(d3.axisLeft(escalaY));
+
+        var barras = grafico.selectAll(".barra")
+            .data(datos)
+            .enter().append("rect")
+            .attr("class", "barra")
+            .attr("x", function(d) { return escalaX(d.mes); })
+            .attr("y", function(d) { return escalaY(d.gasto1 + d.gasto2); })
+            .attr("width", escalaX.bandwidth())
+            .attr("height", function(d) { return altoGrafico - escalaY(d.gasto1 + d.gasto2); })
+            .attr("fill", "steelblue"); 
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<o-form service="subscriptions" entity="subscription" keys="SUBS_ID" header-actions="R;U;D" show-header-navigation="no" keys-sql-types="INTEGER">
+    <o-column title="{{ 'SUBSCRIPTION_INFORMATION' | oTranslate }}">
+        <o-row>
+            <o-integer-input class="input-padding" attr="SUBS_ID"  enabled="no" fxFlex="15"
+                required="yes">
+            </o-integer-input>
+
+            <o-text-input attr="PLATF_NAME" fxFlex="85" required="yes"></o-text-input>
+        </o-row>
+        <o-row>
+            <o-date-input attr="SUBS_START_DATE" class="input-padding" fxFlex="15"></o-date-input>
+            <o-date-input attr="SUBS_END_DATE" class="input-padding" fxFlex="15"></o-date-input>
+            <!-- <o-text-input attr="FR_NAME" fxFlex="70"></o-text-input> --><!--Esto debería ser un combo-->
+            <o-real-input attr="SUBS_PRICE" fxFlex="70"></o-real-input>
+        </o-row>
+    </o-column>
+</o-form>
