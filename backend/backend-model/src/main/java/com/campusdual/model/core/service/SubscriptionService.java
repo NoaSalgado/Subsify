@@ -36,30 +36,7 @@ public class SubscriptionService implements ISubscriptionService {
         String username = authentication.getName();
         Map<String, Object> newKeyValues = new HashMap<>(keysValues);
         newKeyValues.put("USER_",username);
-        EntityResult subscriptionER= this.daoHelper.query(this.subscriptionDao, newKeyValues, attributes);
-
-       int logER= subscriptionER.calculateRecordNumber();
-        Map< String,Object>  subsRegistry =new HashMap<>();
-
-        for(int i=0;i<logER;i++){
-            subsRegistry=subscriptionER.getRecordValues(i);
-            Date endDate=(Date)subsRegistry.get(SubscriptionDao.ATTR_SUBS_END_DATE);
-           LocalDate endDateLD = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-           Map<String,Object> attrs=new HashMap<>();
-           attrs.put(SubscriptionDao.ATTR_SUBS_ACTIVE,false);
-           Map<String,Object> keys=new HashMap<>();
-           keys.put(SubscriptionDao.ID,subsRegistry.get(SubscriptionDao.ID));
-           if(endDateLD.isBefore(LocalDate.now())){
-               this.subscriptionUpdate(attrs,keys);
-
-
-           }
-
-
-       }
-
-
-        return subscriptionER;
+        return this.daoHelper.query(this.subscriptionDao, newKeyValues, attributes);
     }
 
     @Override
