@@ -4,10 +4,10 @@
                  xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
                  catalog="" table="SUBSCRIPTION" datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
     <DeleteKeys>
-        <Column>subs_id</Column>
+        <Column>SUBS_ID</Column>
     </DeleteKeys>
     <UpdateKeys>
-        <Column>subs_id</Column>
+        <Column>SUBS_ID</Column>
     </UpdateKeys>
     <GeneratedKey>subs_id</GeneratedKey>
 
@@ -15,6 +15,7 @@
         <Query id="default">
             <AmbiguousColumns>
                 <AmbiguousColumn name="PLATF_ID" prefix="P"/>
+                <AmbiguousColumn name="FR_ID" prefix="F"/>
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
@@ -24,6 +25,8 @@
                       PUBLIC.SUBSCRIPTION S
                      INNER JOIN PUBLIC.PLATFORM P ON
                       S.PLATF_ID = P.PLATF_ID
+                     INNER JOIN PUBLIC.FREQUENCY F ON
+                      S.FR_ID = F.FR_ID
                       #WHERE#
                    ]]>
             </Sentence>
