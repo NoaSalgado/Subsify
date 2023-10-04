@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @ConfigurationFile(configurationFile = "dao/FrequencyDao.xml", configurationFilePlaceholder = "dao/placeholders.properties")
 public class FrequencyDao extends OntimizeJdbcDaoSupport {
 
-    public static final String ATTR_FR_ID = "FR_ID";
-    public static final String ATTR_FR_NAME = "FR_NAME";
-    public static final String ATTR_FR_VALUE = "FR_VALUE";
+    public static final String ID = "FR_ID";
+    public static final String NAME = "FR_NAME";
+    public static final String VALUE = "FR_VALUE";
 }
