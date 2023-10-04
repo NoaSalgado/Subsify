@@ -5,7 +5,7 @@
     entity="subscription"
     keys="SUBS_ID"
     columns="SUBS_ID;SUBS_PRICE;FR_ID;SUBS_ACTIVE;SUBS_START_DATE;SUBS_END_DATE;PLATF_NAME;PLATF_ID;USER_"
-    visible-columns="SUBS_PRICE;RENOVATION_DATE;PLATF_NAME"
+    visible-columns="SUBS_PRICE;SUBS_END_DATE;PLATF_NAME"
     query-rows="20"
   >
     <o-table-column
@@ -25,15 +25,14 @@
       type="date"
       format="LL"
     ></o-table-column>
-    <o-table-column-calculated
-      attr="RENOVATION_DATE"
+    <o-table-column
+      attr="SUBS_END_DATE"
       title="RENOVATION_DATE"
-      [operation-function]="renovationDate"
       type="date"
       format="LL"
       class="o-table-column-centered"
     >
-    </o-table-column-calculated>
+    </o-table-column>
 
     <o-table-columns-grouping>
       <o-table-columns-grouping-column attr="SUBS_PRICE" aggregate="sum">

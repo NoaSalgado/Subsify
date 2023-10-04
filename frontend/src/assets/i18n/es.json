@@ -23,5 +23,6 @@
   "PLATF_ID": "Id plataforma",
   "PLATF_NAME": "Platforma",
   "SUBS_PRICE": "Precio",
-  "SUBS_START_DATE": "Fecha de inicio"
+  "SUBS_START_DATE": "Fecha de inicio",
+  "RENOVATION_DATE": "Próxima Renovación"
 }
