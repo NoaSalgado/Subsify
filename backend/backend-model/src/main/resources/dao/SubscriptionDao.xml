@@ -19,15 +19,20 @@
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
-                     SELECT
-                      #COLUMNS#
-                     FROM
-                      PUBLIC.SUBSCRIPTION S
-                     INNER JOIN PUBLIC.PLATFORM P ON
-                      S.PLATF_ID = P.PLATF_ID
-                     INNER JOIN PUBLIC.FREQUENCY F ON
-                      S.FR_ID = F.FR_ID
-                      #WHERE#
+     					  WITH active_subscriptions AS (
+    SELECT
+       #COLUMNS#
+    FROM
+        "subscription" S
+    #WHERE#
+
+)
+SELECT #COLUMNS#
+FROM active_subscriptions S
+INNER JOIN PUBLIC.PLATFORM P ON
+  S.PLATF_ID = P.PLATF_ID
+ INNER JOIN PUBLIC.FREQUENCY F ON
+  S.FR_ID = F.FR_ID
                    ]]>
             </Sentence>
         </Query>

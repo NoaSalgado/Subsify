@@ -37,6 +37,7 @@ public class ScheduledTask {
                     SubscriptionDao.ACTIVE,
                     SubscriptionDao.END_DATE,
                     SubscriptionDao.START_DATE,
+                    SubscriptionDao.ACTIVE,
                     SubscriptionDao.PLATF_ID,
                     SubscriptionDao.FREQUENCY,
                     SubscriptionDao.USER);
@@ -53,7 +54,6 @@ public class ScheduledTask {
                 Map<String,Object> subsRegistry =  subscriptionsToUpdate.getRecordValues(i);
 
                 Map<String,Object> attrs=new HashMap<>();
-                attrs.put(SubscriptionDao.ACTIVE,false);
                 attrs.put(SubscriptionDao.ID,subsRegistry.get(SubscriptionDao.ID));
                 attrs.put(SubscriptionDao.PRICE,subsRegistry.get(SubscriptionDao.PRICE));
                 attrs.put(SubscriptionDao.PLATF_ID,subsRegistry.get(SubscriptionDao.PLATF_ID));
@@ -64,17 +64,12 @@ public class ScheduledTask {
                 Map<String,Object> keys=new HashMap<>();
                 keys.put(SubscriptionDao.ID,subsRegistry.get(SubscriptionDao.ID));
 
-                subscriptionService.subscriptionUpdate(attrs, keys);
-
                 attrs.remove(SubscriptionDao.START_DATE);
 
                 Date oldEndDate = (Date) subsRegistry.get(SubscriptionDao.END_DATE);
                 attrs.put(SubscriptionDao.START_DATE, oldEndDate);
 
-                attrs.remove(SubscriptionDao.ACTIVE);
-                attrs.put(SubscriptionDao.ACTIVE,true);
-
-                subscriptionService.subscriptionInsertAll(attrs);
+                //subscriptionService.subscriptionInsertAll(attrs);
             }
         } catch (Exception e) {
             e.printStackTrace();
