@@ -19,20 +19,50 @@
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
-     					  WITH active_subscriptions AS (
-    SELECT
-       #COLUMNS#
-    FROM
-        "subscription" S
-    #WHERE#
+                      /*Obtiene las subscripciones activas hasta el dia de hoy*/
+                    WITH ACTIVE_SUBSCRIPTIONS AS (
+                    SELECT
+                        S.SUBS_ID, S.PLATF_ID, S.FR_ID, S.SUBS_END_DATE, S.SUBS_START_DATE, S.SUBS_PRICE,
+                        S.SUBS_AUTORENEWAL, S.USER_
+                    FROM
+                        subscription S
+                    WHERE  (S.SUBS_END_DATE >= CURRENT_DATE
+                    AND S.SUBS_START_DATE < CURRENT_DATE)
+                )
+                SELECT *
+                FROM ACTIVE_SUBSCRIPTIONS ACS
+                INNER JOIN PUBLIC.PLATFORM P ON
+                  ACS.PLATF_ID = P.PLATF_ID
+                 INNER JOIN PUBLIC.FREQUENCY F ON
+                  ACS.FR_ID = F.FR_ID
+                  #WHERE#
+                   ]]>
+            </Sentence>
+        </Query>
 
-)
-SELECT #COLUMNS#
-FROM active_subscriptions S
-INNER JOIN PUBLIC.PLATFORM P ON
-  S.PLATF_ID = P.PLATF_ID
- INNER JOIN PUBLIC.FREQUENCY F ON
-  S.FR_ID = F.FR_ID
+        <Query id="updateSubs">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="PLATF_ID" prefix="P"/>
+                <AmbiguousColumn name="FR_ID" prefix="F"/>
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                     /*actualiza subscripciones activas*/
+                    WITH ACTIVE_SUBSCRIPTIONS AS (
+                    SELECT
+                        S.SUBS_ID, S.PLATF_ID, S.FR_ID, S.SUBS_END_DATE, S.SUBS_START_DATE, S.SUBS_PRICE,
+                        S.SUBS_AUTORENEWAL, S.USER_,
+                        (S.SUBS_END_DATE = CURRENT_DATE) AS ACTIVE
+                    FROM
+                        subscription S
+                        )
+                    SELECT *
+                    FROM ACTIVE_SUBSCRIPTIONS ACS
+                    INNER JOIN PUBLIC.PLATFORM P ON
+                      ACS.PLATF_ID = P.PLATF_ID
+                     INNER JOIN PUBLIC.FREQUENCY F ON
+                      ACS.FR_ID = F.FR_ID
+                     WHERE  ACTIVE  AND  (SUBS_AUTORENEWAL = TRUE )
                    ]]>
             </Sentence>
         </Query>

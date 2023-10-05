@@ -36,15 +36,17 @@ public class SubscriptionService implements ISubscriptionService {
         Map<String, Object> newKeyValues = new HashMap<>(keysValues);
         String username = authentication.getName();
         newKeyValues.put("USER_",username);
-
-        newKeyValues.put("SUBS_ACTIVE", true);
-
         return this.daoHelper.query(this.subscriptionDao, newKeyValues, attributes);
     }
 
     @Override
     public EntityResult subscriptionQueryAll(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
         return this.daoHelper.query(this.subscriptionDao, keysValues, attributes);
+    }
+
+    @Override
+    public EntityResult subscriptionQueryUpdate(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
+        return this.daoHelper.query(this.subscriptionDao, keysValues, attributes, SubscriptionDao.QUERY_UPDATE);
     }
 
     private int getFreq(Map<String, Object> attributes){
@@ -58,13 +60,18 @@ public class SubscriptionService implements ISubscriptionService {
     public EntityResult subscriptionInsertAll(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
         int freqVal = getFreq(attributes);
 
-        java.sql.Date date = (java.sql.Date) attributes.get(SubscriptionDao.START_DATE);
-        LocalDate dateLD = date.toLocalDate();
+        //java.sql.Date date = (java.sql.Date) attributes.get(SubscriptionDao.START_DATE);
+        //LocalDate dateLD = date.toLocalDate();
+
+        LocalDate dateLD = (LocalDate) attributes.get(SubscriptionDao.START_DATE);
 
         LocalDate end_date = dateLD.plusMonths(freqVal);
 
         Map<String, Object> newKeyValues = new HashMap<>(attributes);
         newKeyValues.put(SubscriptionDao.END_DATE, end_date);
+
+        newKeyValues.replace(SubscriptionDao.ACTIVE, true);
+
         return this.daoHelper.insert(this.subscriptionDao, newKeyValues);
     }
 

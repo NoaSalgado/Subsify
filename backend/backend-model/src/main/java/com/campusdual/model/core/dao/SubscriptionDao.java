@@ -17,4 +17,5 @@ public class SubscriptionDao extends OntimizeJdbcDaoSupport {
     public static final String END_DATE = "SUBS_END_DATE";
     public static final String PLATF_ID = "PLATF_ID";
     public static final String USER = "USER_";
+    public static final String QUERY_UPDATE = "updateSubs";
 }

@@ -19,6 +19,8 @@ public class ScheduledTask {
     @Autowired
     SubscriptionService subscriptionService;
 
+
+    /*
     private SQLStatementBuilder.BasicExpression filterByActiveAndDate(String endDate, String active) {
         SQLStatementBuilder.BasicField endDateField = new SQLStatementBuilder.BasicField(endDate);
         SQLStatementBuilder.BasicExpression dateBE = new SQLStatementBuilder.BasicExpression(endDateField, SQLStatementBuilder.BasicOperator.LESS_OP, LocalDate.now());
@@ -27,7 +29,7 @@ public class ScheduledTask {
         SQLStatementBuilder.BasicExpression activeBE = new SQLStatementBuilder.BasicExpression(activeField, SQLStatementBuilder.BasicOperator.EQUAL_OP, true);
 
         return new SQLStatementBuilder.BasicExpression(dateBE, SQLStatementBuilder.BasicOperator.AND_OP, activeBE);
-    }
+    }*/
 
     @Scheduled(fixedRate=5000)
     public void scheduleTask(){
@@ -43,10 +45,10 @@ public class ScheduledTask {
                     SubscriptionDao.USER);
 
             Map<String, Object> key = new HashMap<String, Object>();
-            key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
-                    filterByActiveAndDate(SubscriptionDao.END_DATE, SubscriptionDao.ACTIVE));
+           //key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
+              //      filterByActiveAndDate(SubscriptionDao.END_DATE, SubscriptionDao.ACTIVE));
 
-            EntityResult subscriptionsToUpdate = subscriptionService.subscriptionQueryAll(key, columns);
+            EntityResult subscriptionsToUpdate = subscriptionService.subscriptionQueryUpdate(key, columns);
 
             int logER= subscriptionsToUpdate.calculateRecordNumber();
 
@@ -64,12 +66,20 @@ public class ScheduledTask {
                 Map<String,Object> keys=new HashMap<>();
                 keys.put(SubscriptionDao.ID,subsRegistry.get(SubscriptionDao.ID));
 
+                //update previous subscription
+                attrs.put(SubscriptionDao.ACTIVE,false);
+                subscriptionService.subscriptionUpdate(attrs, keys);
+
+                //insert new subscription
                 attrs.remove(SubscriptionDao.START_DATE);
 
-                Date oldEndDate = (Date) subsRegistry.get(SubscriptionDao.END_DATE);
-                attrs.put(SubscriptionDao.START_DATE, oldEndDate);
+                java.sql.Date oldEndDate = (java.sql.Date) subsRegistry.get(SubscriptionDao.END_DATE);
+                LocalDate dateLD = oldEndDate.toLocalDate();
+                LocalDate newDateLD = dateLD.plusDays(1);
 
-                //subscriptionService.subscriptionInsertAll(attrs);
+                attrs.put(SubscriptionDao.START_DATE, newDateLD);
+
+                subscriptionService.subscriptionInsertAll(attrs);
             }
         } catch (Exception e) {
             e.printStackTrace();
