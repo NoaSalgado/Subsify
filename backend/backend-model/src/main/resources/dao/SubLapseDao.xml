@@ -12,5 +12,22 @@
         <Column>SUB_LAPSE_ID</Column>
     </UpdateKeys>
     <GeneratedKey>sub_lapse_id</GeneratedKey>
+    <Queries>
+        <Query id="query_active">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="subs_id" prefix="sl"/>
+                <AmbiguousColumn name="platf_id" prefix="p"/>
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                 select #COLUMNS# from sub_lapse sl inner join subscription s
+                    on sl.subs_id = s.subs_id
+                    inner join platform p
+                    on s.platf_id = p.platf_id
+                    where sub_lapse_start <= current_date and sub_lapse_end >= current_date
+   ]]>
+            </Sentence>
+        </Query>
+    </Queries>
 
 </JdbcEntitySetup>

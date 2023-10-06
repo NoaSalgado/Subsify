@@ -1,16 +1,16 @@
 <div fxFill fxLayout="column" fxLayoutAlign="start">
   <o-table
     attr="subscriptionsTable"
-    service="subscriptions"
-    entity="subscription"
-    keys="SUBS_ID"
-    columns="SUBS_ID;SUBS_PRICE;FR_ID;SUBS_ACTIVE;SUBS_START_DATE;SUBS_END_DATE;PLATF_NAME;PLATF_ID;USER_"
-    visible-columns="SUBS_PRICE;SUBS_END_DATE;PLATF_NAME"
+    service="subLapses"
+    entity="subLapse"
+    keys="SUB_LAPSE_ID"
+    columns="SUB_LAPSE_ID;SUB_LAPSE_PRICE;FR_ID;SUB_LAPSE_START;SUB_LAPSE_END;PLATF_NAME;PLATF_ID;USER_"
+    visible-columns="PLATF_NAME;SUB_LAPSE_PRICE;SUB_LAPSE_END"
     query-rows="20"
   >
     <o-table-column
-      attr="SUBS_PRICE"
-      title="SUBS_PRICE"
+      attr="SUB_LAPSE_PRICE"
+      title="SUB_LAPSE_PRICE"
       type="currency"
       thousand-separator="."
       decimal-separator=","
@@ -20,13 +20,13 @@
     </o-table-column>
 
     <o-table-column
-      attr="SUBS_START_DATE"
+      attr="SUB_LAPSE_START"
       title="START_DATE"
       type="date"
       format="LL"
     ></o-table-column>
     <o-table-column
-      attr="SUBS_END_DATE"
+      attr="SUB_LAPSE_END"
       title="RENOVATION_DATE"
       type="date"
       format="LL"
@@ -35,11 +35,11 @@
     </o-table-column>
 
     <o-table-columns-grouping>
-      <o-table-columns-grouping-column attr="SUBS_PRICE" aggregate="sum">
+      <o-table-columns-grouping-column attr="SUB_LAPSE_PRICE" aggregate="sum">
       </o-table-columns-grouping-column>
     </o-table-columns-grouping>
     <o-table-column-aggregate
-      attr="SUBS_PRICE"
+      attr="SUB_LAPSE_PRICE"
       title="(Total)"
     ></o-table-column-aggregate>
 

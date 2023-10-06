@@ -33,7 +33,7 @@ public class SubLapseService implements ISubLapseService {
     private DefaultOntimizeDaoHelper daoHelper;
     @Override
     public EntityResult subLapseQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
-        return null;
+        return this.daoHelper.query(this.subLapseDao, keysValues, attributes, SubLapseDao.ACTIVE_QUERY);
     }
 
     private int getFreq(Map<String, Object> attributes){
