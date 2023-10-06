@@ -33,7 +33,9 @@ public class ScheduledTask {
 
     @Scheduled(fixedRate=5000)
     public void scheduleTask(){
+
         try {
+
             List<String> columns = Arrays.asList(SubscriptionDao.ID,
                     SubscriptionDao.PRICE,
                     SubscriptionDao.ACTIVE,
@@ -86,5 +88,7 @@ public class ScheduledTask {
             EntityResult res = new EntityResultMapImpl();
             res.setCode(EntityResult.OPERATION_WRONG);
         }
+
+
     }
 }
