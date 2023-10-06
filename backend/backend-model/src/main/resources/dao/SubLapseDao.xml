@@ -20,11 +20,16 @@
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
-                 select #COLUMNS# from sub_lapse sl inner join subscription s
-                    on sl.subs_id = s.subs_id
-                    inner join platform p
-                    on s.platf_id = p.platf_id
-                    where sub_lapse_start <= current_date and sub_lapse_end >= current_date
+                with slf as (
+                select *
+                from sub_lapse sl
+                where sub_lapse_start <= current_date and sub_lapse_end >= current_date
+                )
+                select *
+                from slf
+                inner join subscription s on slf.subs_id = s.subs_id
+                inner join platform p on s.platf_id = p.platf_id
+                #WHERE#;
                  ]]>
             </Sentence>
         </Query>

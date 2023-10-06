@@ -14,6 +14,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 @Service
@@ -46,12 +47,11 @@ public class ScheduledTask {
                     SubLapseDao.PRICE,
                     SubscriptionDao.FREQUENCY);
 
-            Map<String, Object> key = new HashMap<String, Object>();
-            EntityResult subscriptionsToUpdate = subLapseService.subLapseQueryRenewal(null, columns);
+            EntityResult subscriptionsToUpdate = subLapseService.subLapseQueryRenewal(new HashMap<>(), columns);
 
-            int logER= subscriptionsToUpdate.calculateRecordNumber();
+            int erSize = subscriptionsToUpdate.calculateRecordNumber();
 
-            for(int i=0;i<logER;i++){
+            for(int i=0;i<erSize;i++){
 
                 Map<String,Object> subsRegistry =  subscriptionsToUpdate.getRecordValues(i);
 
@@ -63,10 +63,12 @@ public class ScheduledTask {
                 java.sql.Date oldEndDate = (java.sql.Date) subsRegistry.get(SubLapseDao.END);
                 LocalDate dateLD = oldEndDate.toLocalDate();
                 LocalDate newDateLD = dateLD.plusDays(1);
+                //pasar a date
 
-                attrs.put(SubLapseDao.START, newDateLD);
+                Date newDate = Date.from((newDateLD.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                attrs.put(SubLapseDao.START, newDate);
 
-                subLapseService.subLapseInsertRenew(attrs);
+                subLapseService.subLapseInsert(attrs);
             }
         } catch (Exception e) {
             e.printStackTrace();

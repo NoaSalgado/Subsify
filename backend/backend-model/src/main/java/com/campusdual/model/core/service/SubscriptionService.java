@@ -26,7 +26,7 @@ public class SubscriptionService implements ISubscriptionService {
     private FrequencyService frequencyService;
 
     @Autowired
-    private SubLapseService SubsLapseService;
+    private SubLapseService subsLapseService;
 
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
@@ -71,7 +71,7 @@ public class SubscriptionService implements ISubscriptionService {
         attrSubLapseInsert.put(SubLapseDao.SUBS_ID, insertSubsER.get(SubLapseDao.SUBS_ID));
         attrSubLapseInsert.put(SubLapseDao.START, attributes.get(SubLapseDao.START));
         attrSubLapseInsert.put(SubscriptionDao.FREQUENCY, attributes.get(SubscriptionDao.FREQUENCY));
-        EntityResult insertSubLapseER = SubsLapseService.subLapseInsert(attrSubLapseInsert);
+        EntityResult insertSubLapseER = this.subsLapseService.subLapseInsert(attrSubLapseInsert);
 
         return insertSubsER;
     }

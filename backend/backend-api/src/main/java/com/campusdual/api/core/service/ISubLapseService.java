@@ -12,5 +12,4 @@ public interface ISubLapseService {
     EntityResult subLapseUpdate(Map<String, Object> attributes, Map<String, Object> KeyValues) throws OntimizeJEERuntimeException;
     EntityResult subLapseDelete(Map<String, Object> keyValues) throws OntimizeJEERuntimeException;
     EntityResult subLapseQueryRenewal(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException;
-    EntityResult subLapseInsertRenew(Map<String, Object> attributes) throws OntimizeJEERuntimeException;
 }

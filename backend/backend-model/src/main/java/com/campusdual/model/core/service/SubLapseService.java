@@ -70,19 +70,6 @@ public class SubLapseService implements ISubLapseService {
     }
 
     @Override
-    public EntityResult subLapseInsertRenew(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
-        Map<String, Object> newKeyValues = new HashMap<>(attributes);
-
-        int freqVal = getFreq(attributes);
-
-        LocalDate dateLD = (LocalDate) attributes.get(SubLapseDao.START);
-        LocalDate end_date = dateLD.plusMonths(freqVal);
-
-        newKeyValues.put(SubLapseDao.END, end_date);
-        return this.daoHelper.insert(this.subLapseDao, newKeyValues);
-    }
-
-    @Override
     public EntityResult subLapseUpdate(Map<String, Object> attributes, Map<String, Object> KeyValues) throws OntimizeJEERuntimeException {
         return null;
     }
