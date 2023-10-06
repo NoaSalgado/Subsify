@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.*;
 
-@Service
+/*@Service
 public class ScheduledTask {
 
     @Autowired
     SubscriptionService subscriptionService;
 
 
-    /*
+    *//*
     private SQLStatementBuilder.BasicExpression filterByActiveAndDate(String endDate, String active) {
         SQLStatementBuilder.BasicField endDateField = new SQLStatementBuilder.BasicField(endDate);
         SQLStatementBuilder.BasicExpression dateBE = new SQLStatementBuilder.BasicExpression(endDateField, SQLStatementBuilder.BasicOperator.LESS_OP, LocalDate.now());
@@ -29,7 +29,7 @@ public class ScheduledTask {
         SQLStatementBuilder.BasicExpression activeBE = new SQLStatementBuilder.BasicExpression(activeField, SQLStatementBuilder.BasicOperator.EQUAL_OP, true);
 
         return new SQLStatementBuilder.BasicExpression(dateBE, SQLStatementBuilder.BasicOperator.AND_OP, activeBE);
-    }*/
+    }*//*
 
     @Scheduled(fixedRate=5000)
     public void scheduleTask(){
@@ -91,4 +91,4 @@ public class ScheduledTask {
 
 
     }
-}
+}*/

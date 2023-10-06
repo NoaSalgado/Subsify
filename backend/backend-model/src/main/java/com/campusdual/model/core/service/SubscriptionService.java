@@ -12,8 +12,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.*;
 
 @Lazy
@@ -44,11 +42,6 @@ public class SubscriptionService implements ISubscriptionService {
         return this.daoHelper.query(this.subscriptionDao, keysValues, attributes);
     }
 
-    @Override
-    public EntityResult subscriptionQueryUpdate(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
-        return this.daoHelper.query(this.subscriptionDao, keysValues, attributes, SubscriptionDao.QUERY_UPDATE);
-    }
-
     private int getFreq(Map<String, Object> attributes){
         Map<String, Object> freqQuery = new HashMap<>();
         freqQuery.put(FrequencyDao.ID, attributes.get(FrequencyDao.ID));
@@ -56,40 +49,13 @@ public class SubscriptionService implements ISubscriptionService {
         Map<String, Integer> freqMap = freqER.getRecordValues(0);
         return freqMap.get(FrequencyDao.VALUE);
     }
-    @Override
-    public EntityResult subscriptionInsertAll(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
-        int freqVal = getFreq(attributes);
-
-        //java.sql.Date date = (java.sql.Date) attributes.get(SubscriptionDao.START_DATE);
-        //LocalDate dateLD = date.toLocalDate();
-
-        LocalDate dateLD = (LocalDate) attributes.get(SubscriptionDao.START_DATE);
-
-        LocalDate end_date = dateLD.plusMonths(freqVal);
-
-        Map<String, Object> newKeyValues = new HashMap<>(attributes);
-        newKeyValues.put(SubscriptionDao.END_DATE, end_date);
-
-        newKeyValues.replace(SubscriptionDao.ACTIVE, true);
-
-        return this.daoHelper.insert(this.subscriptionDao, newKeyValues);
-    }
 
     @Override
     public EntityResult subscriptionInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         Map<String, Object> newKeyValues = new HashMap<>(attributes);
         newKeyValues.put("USER_",username);
-
-        int freqVal = getFreq(attributes);
-
-        Date date = (Date) attributes.get(SubscriptionDao.START_DATE);
-        LocalDate dateLD = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-        LocalDate end_date = dateLD.plusMonths(freqVal);
-        newKeyValues.put(SubscriptionDao.END_DATE, end_date);
         return this.daoHelper.insert(this.subscriptionDao, newKeyValues);
     }
 
