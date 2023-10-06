@@ -6,11 +6,11 @@
         catalog="" schema="${mainschema}" table="SUB_LAPSE"
         datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
     <DeleteKeys>
-        <Column>NAME</Column>
+        <Column>SUB_LAPSE_ID</Column>
     </DeleteKeys>
     <UpdateKeys>
-        <Column>NAME</Column>
+        <Column>SUB_LAPSE_ID</Column>
     </UpdateKeys>
-    <GeneratedKey>NAME</GeneratedKey>
+    <GeneratedKey>sub_lapse_id</GeneratedKey>
 
 </JdbcEntitySetup>

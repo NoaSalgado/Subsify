@@ -2,6 +2,7 @@ package com.campusdual.model.core.service;
 
 import com.campusdual.api.core.service.ISubscriptionService;
 import com.campusdual.model.core.dao.FrequencyDao;
+import com.campusdual.model.core.dao.SubLapseDao;
 import com.campusdual.model.core.dao.SubscriptionDao;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
@@ -23,6 +24,9 @@ public class SubscriptionService implements ISubscriptionService {
 
     @Autowired
     private FrequencyService frequencyService;
+
+    @Autowired
+    private SubLapseService SubsLapseService;
 
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
@@ -54,9 +58,22 @@ public class SubscriptionService implements ISubscriptionService {
     public EntityResult subscriptionInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        Map<String, Object> newKeyValues = new HashMap<>(attributes);
-        newKeyValues.put("USER_",username);
-        return this.daoHelper.insert(this.subscriptionDao, newKeyValues);
+
+        Map<String, Object> attrSubsInsert = new HashMap<>();
+        attrSubsInsert.put(SubscriptionDao.PLATF_ID, attributes.get(SubscriptionDao.PLATF_ID));
+        attrSubsInsert.put(SubscriptionDao.FREQUENCY, attributes.get(SubscriptionDao.FREQUENCY));
+        attrSubsInsert.put(SubscriptionDao.USER, username);
+
+        EntityResult insertSubsER =  this.daoHelper.insert(this.subscriptionDao, attrSubsInsert);
+
+        Map<String, Object> attrSubLapseInsert = new HashMap<>();
+        attrSubLapseInsert.put(SubLapseDao.PRICE, attributes.get(SubLapseDao.PRICE));
+        attrSubLapseInsert.put(SubLapseDao.SUBS_ID, insertSubsER.get(SubLapseDao.SUBS_ID));
+        attrSubLapseInsert.put(SubLapseDao.START, attributes.get(SubLapseDao.START));
+        attrSubLapseInsert.put(SubscriptionDao.FREQUENCY, attributes.get(SubscriptionDao.FREQUENCY));
+        EntityResult insertSubLapseER = SubsLapseService.subLapseInsert(attrSubLapseInsert);
+
+        return insertSubsER;
     }
 
     @Override
