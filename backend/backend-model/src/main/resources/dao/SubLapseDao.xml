@@ -25,7 +25,29 @@
                     inner join platform p
                     on s.platf_id = p.platf_id
                     where sub_lapse_start <= current_date and sub_lapse_end >= current_date
-   ]]>
+                 ]]>
+            </Sentence>
+        </Query>
+
+        <Query id="query_renewal">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="subs_id" prefix="sl"/>
+                <AmbiguousColumn name="platf_id" prefix="p"/>
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                with last_s as(
+                    select subs_id, max(sub_lapse_id) max_id
+                    from sub_lapse s
+                    group by subs_id
+                )
+                select #COLUMNS# from last_s
+                inner join sub_lapse sl
+                on last_s.max_id = sl.sub_lapse_id
+                inner join subscription s
+                on last_s.subs_id = s.subs_id
+                where sl.sub_lapse_end <= current_date and s.subs_autorenewal = true;
+                 ]]>
             </Sentence>
         </Query>
     </Queries>

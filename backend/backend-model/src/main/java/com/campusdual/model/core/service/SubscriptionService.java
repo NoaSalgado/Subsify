@@ -37,7 +37,7 @@ public class SubscriptionService implements ISubscriptionService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> newKeyValues = new HashMap<>(keysValues);
         String username = authentication.getName();
-        newKeyValues.put("USER_",username);
+        newKeyValues.put(SubscriptionDao.USER,username);
         return this.daoHelper.query(this.subscriptionDao, newKeyValues, attributes);
     }
 

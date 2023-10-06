@@ -8,6 +8,7 @@ import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,7 +34,17 @@ public class SubLapseService implements ISubLapseService {
     private DefaultOntimizeDaoHelper daoHelper;
     @Override
     public EntityResult subLapseQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
-        return this.daoHelper.query(this.subLapseDao, keysValues, attributes, SubLapseDao.ACTIVE_QUERY);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> newKeyValues = new HashMap<>(keysValues);
+        String username = authentication.getName();
+        newKeyValues.put(SubscriptionDao.USER,username);
+
+        return this.daoHelper.query(this.subLapseDao, newKeyValues, attributes, SubLapseDao.ACTIVE_QUERY);
+    }
+
+    @Override
+    public EntityResult subLapseQueryRenewal(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
+        return this.daoHelper.query(this.subLapseDao, keysValues, attributes, SubLapseDao.RENEWAL_QUERY);
     }
 
     private int getFreq(Map<String, Object> attributes){
@@ -54,6 +65,19 @@ public class SubLapseService implements ISubLapseService {
         LocalDate dateLD = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         LocalDate end_date = dateLD.plusMonths(freqVal);
+        newKeyValues.put(SubLapseDao.END, end_date);
+        return this.daoHelper.insert(this.subLapseDao, newKeyValues);
+    }
+
+    @Override
+    public EntityResult subLapseInsertRenew(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
+        Map<String, Object> newKeyValues = new HashMap<>(attributes);
+
+        int freqVal = getFreq(attributes);
+
+        LocalDate dateLD = (LocalDate) attributes.get(SubLapseDao.START);
+        LocalDate end_date = dateLD.plusMonths(freqVal);
+
         newKeyValues.put(SubLapseDao.END, end_date);
         return this.daoHelper.insert(this.subLapseDao, newKeyValues);
     }
