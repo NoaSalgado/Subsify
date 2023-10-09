@@ -25,7 +25,7 @@
                 from sub_lapse sl
                 where sub_lapse_start <= current_date and sub_lapse_end >= current_date
                 )
-                select *
+                select #COLUMNS#
                 from slf
                 inner join subscription s on slf.subs_id = s.subs_id
                 inner join platform p on s.platf_id = p.platf_id
