@@ -14,9 +14,9 @@ const routes: Routes = [
     component: SubscriptionsNewComponent,
   },
   {
-    path: ":SUBS_ID",
+    path: ":SUB_LAPSE_ID",
     component: SubscriptionsDetailsComponent,
-  }
+  },
 ];
 
 @NgModule({

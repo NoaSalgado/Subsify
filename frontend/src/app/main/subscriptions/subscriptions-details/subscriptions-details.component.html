@@ -1,17 +1,66 @@
-<o-form service="subscriptions" entity="subscription" keys="SUBS_ID" header-actions="R;U;D" show-header-navigation="no" keys-sql-types="INTEGER">
-    <o-column title="{{ 'SUBSCRIPTION_INFORMATION' | oTranslate }}">
-        <o-row>
-            <o-integer-input class="input-padding" attr="SUBS_ID"  enabled="no" fxFlex="15"
-                required="yes">
-            </o-integer-input>
+<o-form
+  service="subLapses"
+  entity="subLapse"
+  keys="SUB_LAPSE_ID;SUBS_ID"
+  header-actions="R;U;D"
+  show-header-navigation="no"
+  keys-sql-types="INTEGER"
+>
+  <o-column title="{{ 'SUBSCRIPTION_INFORMATION' | oTranslate }}">
+    <o-row>
+      <o-integer-input
+        class="input-padding"
+        attr="SUBS_ID"
+        enabled="no"
+        fxFlex="15"
+        required="yes"
+      >
+      </o-integer-input>
+      <o-integer-input
+        class="input-padding"
+        attr="SUB_LAPSE_ID"
+        enabled="no"
+        fxFlex="15"
+        required="yes"
+      >
+      </o-integer-input>
 
-            <o-text-input attr="PLATF_NAME" fxFlex="85" required="yes"></o-text-input>
-        </o-row>
-        <o-row>
-            <o-date-input attr="SUBS_START_DATE" class="input-padding" fxFlex="15"></o-date-input>
-            <o-date-input attr="SUBS_END_DATE" class="input-padding" fxFlex="15"></o-date-input>
-            <!-- <o-text-input attr="FR_NAME" fxFlex="70"></o-text-input> --><!--Esto debería ser un combo-->
-            <o-real-input attr="SUBS_PRICE" fxFlex="70"></o-real-input>
-        </o-row>
-    </o-column>
+      <o-text-input attr="PLATF_NAME" fxFlex="85" required="yes"></o-text-input>
+    </o-row>
+    <o-row>
+      <o-date-input
+        attr="SUB_LAPSE_START"
+        class="input-padding"
+        fxFlex="15"
+      ></o-date-input>
+      <o-date-input
+        attr="SUB_LAPSE_END"
+        class="input-padding"
+        fxFlex="15"
+      ></o-date-input>
+      <o-combo
+        required="yes"
+        label="FREQUENCY"
+        attr="FR_NAME"
+        oLocker
+        read-only="no"
+        service="subLapses"
+        entity="subLapse"
+        columns="FR_ID;FR_NAME;FR_VALUE"
+        value-column="FR_NAME"
+        keys="FR_ID"
+        visible-columns="FR_NAME"
+        width="33%"
+      >
+      </o-combo>
+      <o-real-input attr="SUB_LAPSE_PRICE" fxFlex="70"></o-real-input>
+      <o-checkbox
+        attr="SUBS_AUTORENEWAL"
+        label="Renovar"
+        [data]="true"
+        read-only="no"
+        required="yes"
+      ></o-checkbox>
+    </o-row>
+  </o-column>
 </o-form>
