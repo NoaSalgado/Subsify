@@ -5,20 +5,9 @@
     entity="subLapse"
     keys="SUB_LAPSE_ID"
     columns="SUB_LAPSE_ID;SUB_LAPSE_PRICE;FR_ID;SUB_LAPSE_START;SUB_LAPSE_END;PLATF_NAME;PLATF_ID;USER_"
-    visible-columns="PLATF_NAME;SUB_LAPSE_PRICE;SUB_LAPSE_END"
+    visible-columns="PLATF_NAME;SUB_LAPSE_END;SUB_LAPSE_PRICE"
     query-rows="20"
   >
-    <o-table-column
-      attr="SUB_LAPSE_PRICE"
-      title="SUB_LAPSE_PRICE"
-      type="currency"
-      thousand-separator="."
-      decimal-separator=","
-      currency-symbol="€"
-      currency-symbol-position="right"
-    >
-    </o-table-column>
-
     <o-table-column
       attr="SUB_LAPSE_START"
       title="START_DATE"
@@ -34,6 +23,16 @@
     >
     </o-table-column>
 
+    <o-table-column
+      attr="SUB_LAPSE_PRICE"
+      title="SUB_LAPSE_PRICE"
+      type="currency"
+      thousand-separator="."
+      decimal-separator=","
+      currency-symbol="€"
+      currency-symbol-position="right"
+    >
+    </o-table-column>
     <o-table-columns-grouping>
       <o-table-columns-grouping-column attr="SUB_LAPSE_PRICE" aggregate="sum">
       </o-table-columns-grouping-column>
@@ -42,7 +41,5 @@
       attr="SUB_LAPSE_PRICE"
       title="(Total)"
     ></o-table-column-aggregate>
-
-    <o-combo> </o-combo>
   </o-table>
 </div>
