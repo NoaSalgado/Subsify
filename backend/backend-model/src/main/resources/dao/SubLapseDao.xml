@@ -15,8 +15,9 @@
     <Queries>
         <Query id="query_active">
             <AmbiguousColumns>
-                <AmbiguousColumn name="subs_id" prefix="sl"/>
+                <AmbiguousColumn name="subs_id" prefix="s"/>
                 <AmbiguousColumn name="platf_id" prefix="p"/>
+                <AmbiguousColumn name="fr_id" prefix="f"/>
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
@@ -25,10 +26,11 @@
                 from sub_lapse sl
                 where sub_lapse_start <= current_date and sub_lapse_end >= current_date
                 )
-                select *
+                select #COLUMNS#
                 from slf
                 inner join subscription s on slf.subs_id = s.subs_id
                 inner join platform p on s.platf_id = p.platf_id
+                inner join frequency f on s.fr_id = f.fr_id
                 #WHERE#;
                  ]]>
             </Sentence>

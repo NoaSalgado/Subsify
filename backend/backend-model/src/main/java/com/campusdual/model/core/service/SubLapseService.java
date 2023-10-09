@@ -29,6 +29,8 @@ public class SubLapseService implements ISubLapseService {
 
     @Autowired
     private FrequencyService frequencyService;
+    @Autowired
+    private SubscriptionService subscriptionService;
 
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
@@ -70,8 +72,11 @@ public class SubLapseService implements ISubLapseService {
     }
 
     @Override
-    public EntityResult subLapseUpdate(Map<String, Object> attributes, Map<String, Object> KeyValues) throws OntimizeJEERuntimeException {
-        return null;
+    public EntityResult subLapseUpdate(Map<String, Object> attributes, Map<String, Object> keyValues) throws OntimizeJEERuntimeException {
+        if(attributes.containsKey(SubscriptionDao.ACTIVE)){
+            return subscriptionService.subscriptionUpdate(attributes,keyValues );
+        }
+        return this.daoHelper.update(this.subLapseDao, attributes, keyValues);
     }
 
     @Override
