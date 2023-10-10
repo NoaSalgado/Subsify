@@ -5,7 +5,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
   {
     id: "subscriptions",
     name: "SUBSCRIPTIONS",
-    icon: "people",
+    icon: "subscriptions",
     route: "/main/subscriptions",
   },
   {
