@@ -1,7 +1,5 @@
 <div class="full-page">
   <div class="login-outer-container">
-    <div class="login-bg-container"></div>
-
     <div class="wrapp-login">
       <div
         fxFill
@@ -9,6 +7,18 @@
         fxLayoutAlign="center center"
         class="login-inner-container"
       >
+        <o-image
+          class="logo"
+          attr="image"
+          data="assets/images/subsify_Logo.png"
+          auto-fit="false"
+          enabled="true"
+          read-only="true"
+          show-controls="no"
+          width="40%"
+          height="40%"
+        ></o-image>
+
         <form [formGroup]="loginForm" (ngSubmit)="login()">
           <div class="login-title-container" fxLayout="column">
             <p class="session-expired text" *ngIf="sessionExpired">
@@ -63,25 +73,8 @@
           </button>
           <div layout-padding></div>
           <div layout-padding></div>
-          <div fxLayout="column" fxLayoutAlign="center center" layout-padding>
-            <span class="login_info"
-              >{{ "EXAMPLE_LOGIN_INFO" | oTranslate }}:</span
-            >
-            <span class="dark_text">{{ "USERNAME" | oTranslate }} : demo</span>
-            <span class="dark_text"
-              >{{ "PASSWORD" | oTranslate }} : demouser</span
-            >
-          </div>
         </form>
       </div>
-    </div>
-  </div>
-
-  <div id="footer" class="footer-container">
-    <div fxLayout="row" fxLayoutAlign="end center">
-      <span>{{ "FOOTER_CREATED_BY" | oTranslate }}</span>
-      <span> &copy; 2021 </span>
-      <span>{{ "FOOTER_RIGHTS" | oTranslate }}</span>
     </div>
   </div>
 </div>
