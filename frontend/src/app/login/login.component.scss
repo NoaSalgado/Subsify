@@ -22,13 +22,14 @@
     overflow: auto;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("^assets/images/login_bg.png");
+    background-image: url("^assets/images/bg-image.png");
 
     .wrapp-login {
       width: 640px;
       min-height: 100%;
 
       .login-inner-container {
+        background-color: #dbf0fe;
         width: 100%;
         form {
           padding: 2rem;
@@ -61,8 +62,10 @@
           font-size: 14px;
         }
 
-        .title_text {
+        .title_text,
+        .mat-checkbox-label {
           font-weight: 600;
+          color: #065471;
         }
 
         .text {

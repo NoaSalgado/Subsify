@@ -1,0 +1,4 @@
+.mat-stroked-button:nth-of-type(2),
+.mat-stroked-button:nth-of-type(3) {
+  display: none;
+}

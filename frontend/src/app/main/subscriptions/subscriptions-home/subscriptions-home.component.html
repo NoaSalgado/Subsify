@@ -1,6 +1,8 @@
 <div fxFill fxLayout="column" fxLayoutAlign="start">
   <o-table
     attr="subscriptionsTable"
+    delete-button="no"
+    refresh-button="no"
     service="subLapses"
     entity="subLapse"
     keys="SUB_LAPSE_ID"
@@ -18,7 +20,6 @@
       currency-symbol-position="right"
     >
     </o-table-column>
-    
 
     <o-table-column
       attr="SUB_LAPSE_START"
@@ -35,10 +36,16 @@
     >
     </o-table-column>
 
-    <o-table-column-calculated attr="MONTHLY_PRICE" title="MONTHLY_PRICE" [operation-function]="getMonthlyPrice"
-      type="currency" decimal-separator="." class="o-table-column-centered">
+    <o-table-column-calculated
+      attr="MONTHLY_PRICE"
+      title="MONTHLY_PRICE"
+      [operation-function]="getMonthlyPrice"
+      type="currency"
+      decimal-separator="."
+      class="o-table-column-centered"
+    >
     </o-table-column-calculated>
-    
+
     <o-table-columns-grouping>
       <o-table-columns-grouping-column attr="MONTHLY_PRICE" aggregate="sum">
       </o-table-columns-grouping-column>
