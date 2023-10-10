@@ -11,7 +11,7 @@
 
   .login-outer-container {
     width: 100%;
-    height: auto;
+    height: 100vh;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -26,7 +26,8 @@
 
     .wrapp-login {
       width: 640px;
-      min-height: 100%;
+      height: 100vh;
+      overflow: hidden;
 
       .login-inner-container {
         background-color: #dbf0fe;
