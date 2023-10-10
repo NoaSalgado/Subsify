@@ -6,31 +6,14 @@
   show-header-navigation="no"
 >
   <o-row>
-    <o-column title-label="CUSTOMER_PERSONAL_INFORMATION" fxFlex>
-      <o-row>
-        <o-text-input
-          class="input-padding"
-          attr="SUB_LAPSE_PRICE"
-          fxFlex="40"
-          required="yes"
-        ></o-text-input>
-        <o-date-input
-          attr="SUB_LAPSE_START"
-          label="Date"
-          read-only="no"
-          format="LL"
-          required="yes"
-          min="01/01/1980"
-          max="01/01/2020"
-          text-input-enabled="no"
-        ></o-date-input>
-      </o-row>
-      <o-row>
+    <o-column title="{{ 'NEW_SUBSCRIPTION' | oTranslate }}" fxFlex>
+      <o-row fxFlex="100">
         <o-combo
-          required= "yes"
-          label = "PLATF_NAME"
+          required="yes"
+          label="PLATF_NAME"
           attr="PLATF_ID"
           oLocker
+          layout-padding
           read-only="no"
           service="platforms"
           entity="platform"
@@ -38,14 +21,37 @@
           value-column="PLATF_ID"
           keys="PLATF_ID"
           visible-columns="PLATF_NAME"
-          width="33%"
+          fxFlex="33"
+          null-selection="no"
         >
         </o-combo>
+        <o-text-input
+          class="input-padding"
+          attr="SUB_LAPSE_PRICE"
+          fxFlex="33"
+          layout-padding
+          required="yes"
+        ></o-text-input>
+      </o-row>
+      <o-row fxFlex="100">
+        <o-date-input
+          attr="SUB_LAPSE_START"
+          label="SUBS_START_DATE"
+          read-only="no"
+          format="LL"
+          required="yes"
+          layout-padding
+          min="01/01/1980"
+          max="01/01/2020"
+          text-input-enabled="no"
+          fxFlex="33"
+        ></o-date-input>
         <o-combo
-          required= "yes"
-          label = "FR_NAME"
+          required="yes"
+          label="FR_NAME"
           attr="FR_ID"
           oLocker
+          layout-padding
           read-only="no"
           service="frequencies"
           entity="frequency"
@@ -53,7 +59,8 @@
           value-column="FR_ID"
           keys="FR_ID"
           visible-columns="FR_NAME"
-          width="33%"
+          fxFlex="33"
+          null-selection="no"
         >
         </o-combo>
       </o-row>

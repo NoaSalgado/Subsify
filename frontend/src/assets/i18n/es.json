@@ -25,5 +25,10 @@
   "SUB_LAPSE_PRICE": "Precio",
   "SUBS_START_DATE": "Fecha de inicio",
   "RENOVATION_DATE": "Próxima Renovación",
-  "MONTHLY_PRICE": "Precio Mensual"
+  "MONTHLY_PRICE": "Precio Mensual",
+  "FR_NAME": "Frecuencia",
+  "SUBSCRIPTION_INFORMATION": "Detalle Subscripción",
+  "SUB_START": "Inicio Subscripción",
+  "SUB_END": "Próxima Renovación",
+  "NEW_SUBSCRIPTION": "Nueva Suscripción"
 }

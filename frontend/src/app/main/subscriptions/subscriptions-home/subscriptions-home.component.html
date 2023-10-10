@@ -34,11 +34,11 @@
       class="o-table-column-centered"
     >
     </o-table-column>
-    
+
     <o-table-column-calculated attr="MONTHLY_PRICE" title="MONTHLY_PRICE" [operation-function]="getMonthlyPrice"
       type="currency" decimal-separator="." class="o-table-column-centered">
     </o-table-column-calculated>
-
+    
     <o-table-columns-grouping>
       <o-table-columns-grouping-column attr="MONTHLY_PRICE" aggregate="sum">
       </o-table-columns-grouping-column>
@@ -48,7 +48,5 @@
       attr="MONTHLY_PRICE"
       title="(Total)"
     ></o-table-column-aggregate>
-
-    <o-combo> </o-combo>
   </o-table>
 </div>
