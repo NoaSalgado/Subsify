@@ -1,0 +1,95 @@
+@import "node_modules/ontimize-web-ngx-theming/ontimize-theme.scss";
+@import "node_modules/@angular/material/theming";
+@include mat-core();
+
+/* Color definitions */
+$mat-custom-primary: (
+  50: #dbf0fe,
+  /*Active links and ok button hover background*/ 100: #b9d7e4,
+  200: #98b9ca,
+  300: #749db1,
+  400: #54879d,
+  /*Menu background*/ 500: #3d738b,
+  600: #32647a,
+  700: #235164,
+  800: #163e4f,
+  900: #032a38,
+  A100: #054855,
+  A200: #165b69,
+  A400: #266f7f,
+  A700: #327e90,
+
+  contrast: (
+    50: #98b9ca,
+    100: #98b9ca,
+    200: #98b9ca,
+    300: #98b9ca,
+    400: #98b9ca,
+    /*Menu links color*/ 500: #98b9ca,
+    600: #98b9ca,
+    700: #98b9ca,
+    800: #98b9ca,
+    900: #98b9ca,
+    A100: #98b9ca,
+    A200: #98b9ca,
+    A400: #98b9ca,
+    A700: #dbf0fe,
+  ),
+);
+
+$mat-custom-accent: (
+  50: #000000,
+  /*Buttons background on hover*/ 100: #054855,
+  200: #fff4a3,
+  300: #ffef7f,
+  400: #ffea63,
+  /*Button text color*/ 500: #054855,
+  600: #ffd84c,
+  700: #ffc145,
+  /*Button text color on hover*/ 800: #fbaa3e,
+  /*Links text color on hover*/ 900: #032a38,
+  A100: #032a38,
+  A200: #032a38,
+  A400: #032a38,
+  A700: #032a38,
+  contrast: (
+    50: #032a38,
+    100: #032a38,
+    200: #032a38,
+    300: #032a38,
+    400: #032a38,
+    500: #032a38,
+    600: #032a38,
+    700: #032a38,
+    800: #032a38,
+    900: #032a38,
+    A100: #032a38,
+    A200: #032a38,
+    A400: #032a38,
+    A700: #032a38,
+  ),
+);
+
+/* Dark theme */
+/*$theme: o-mat-dark-theme($primary, $accent, $warn);*/
+// Define a theme.
+$primary: mat-palette($mat-custom-primary);
+$accent: mat-palette($mat-custom-accent);
+$background-color: #98b9ca;
+
+/* Light theme */
+$theme: o-mat-light-theme($primary, $accent);
+$background: map-get($theme, background);
+$background: map_merge(
+  $background,
+  (
+    background: $background-color,
+  )
+);
+
+$theme: map_merge(
+  $theme,
+  (
+    background: $background,
+  )
+);
