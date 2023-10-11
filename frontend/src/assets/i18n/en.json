@@ -30,5 +30,6 @@
   "SUBSCRIPTION_INFORMATION": "Subscription Detail",
   "SUB_START": "Subscription Start",
   "SUB_END": "Next Renewal",
-  "NEW_SUBSCRIPTION": "New Subscription"
+  "NEW_SUBSCRIPTION": "New Subscription",
+  "RENEW": "Renew"
 }
