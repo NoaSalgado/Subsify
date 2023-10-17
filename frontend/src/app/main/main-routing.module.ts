@@ -23,6 +23,13 @@ export const routes: Routes = [
             (m) => m.SubscriptionsModule
           ),
       },
+      {
+        path: "categories",
+        loadChildren: () =>
+          import("./categories/categories.module").then(
+            (m) => m.CategoriesModule
+          ),
+      },
     ],
   },
 ];
