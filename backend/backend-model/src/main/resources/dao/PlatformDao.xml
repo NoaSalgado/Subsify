@@ -6,12 +6,12 @@
         catalog="" schema="${mainschema}" table="PLATFORM"
         datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
     <DeleteKeys>
-        <Column>NAME</Column>
+        <Column>PLATF_ID</Column>
     </DeleteKeys>
     <UpdateKeys>
-        <Column>NAME</Column>
+        <Column>PLATF_ID</Column>
     </UpdateKeys>
-    <GeneratedKey>NAME</GeneratedKey>
+    <GeneratedKey>platf_id</GeneratedKey>
     <Queries>
         <Query id="query_default">
             <AmbiguousColumns>
