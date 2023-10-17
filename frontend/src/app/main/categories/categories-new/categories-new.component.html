@@ -1,3 +1,21 @@
-<p>
-  categories-new works!
-</p>
+<o-form
+  service="categories"
+  entity="category"
+  keys="CAT_ID"
+  header-actions="R;I;U;D"
+  show-header-navigation="no"
+>
+  <o-row>
+    <o-column title="{{ 'NEW_CATEGORY' | oTranslate }}" fxFlex>
+      <o-row fxFlex="100">
+        <o-text-input
+          attr="CAT_NAME"
+          fxFlex="33"
+          layout-padding
+          required="yes"  
+      ></o-text-input>   
+      </o-row>
+    </o-column>
+  </o-row>
+</o-form>
+

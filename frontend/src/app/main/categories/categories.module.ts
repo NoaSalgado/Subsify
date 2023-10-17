@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CategoriesNewComponent } from './categories-new/categories-new.component';
 import { CategoriesRoutingModule } from './categories-routing.module';
 import { OntimizeWebModule } from 'ontimize-web-ngx';
+import { CategoriesDetailsComponent } from './categories-details/categories-details.component';
 
 @NgModule({
   imports: [
@@ -11,6 +12,6 @@ import { OntimizeWebModule } from 'ontimize-web-ngx';
     OntimizeWebModule,
     CategoriesRoutingModule
   ],
-  declarations: [CategoriesHomeComponent, CategoriesNewComponent]
+  declarations: [CategoriesHomeComponent, CategoriesNewComponent, CategoriesDetailsComponent]
 })
 export class CategoriesModule { }

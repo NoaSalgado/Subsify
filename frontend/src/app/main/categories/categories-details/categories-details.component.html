@@ -1,0 +1,30 @@
+<o-form
+  service="categories"
+  entity="category"
+  keys="CAT_ID"
+  header-actions="U"
+  show-header-navigation="no"
+  keys-sql-types="INTEGER"
+>
+  <o-column title="{{ 'CATEGORIES_INFORMATION' | oTranslate }}">
+    <o-row fxFlex="100">
+      <o-text-input
+        attr="CAT_NAME"
+        layout-padding
+        fxFlex="33"
+        read-only="yes"
+      ></o-text-input>
+    </o-row>
+    <o-row>
+      
+      <o-checkbox
+        attr="CAT_ACTIVE"
+        label="RENEW"
+        [data]="true"
+        read-only="no"
+        required="yes"
+        layout-padding
+      ></o-checkbox>
+    </o-row>
+  </o-column>
+</o-form>
