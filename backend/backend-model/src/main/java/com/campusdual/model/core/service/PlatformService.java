@@ -24,7 +24,7 @@ public class PlatformService implements IPlatformService {
 
     @Override
     public EntityResult platformQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
-        return this.daoHelper.query(this.platformDao, keysValues, attributes);
+        return this.daoHelper.query(this.platformDao, keysValues, attributes, PlatformDao.DEFAULT_QUERY);
     }
 
     @Override

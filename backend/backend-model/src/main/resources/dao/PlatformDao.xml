@@ -12,5 +12,21 @@
         <Column>NAME</Column>
     </UpdateKeys>
     <GeneratedKey>NAME</GeneratedKey>
+    <Queries>
+        <Query id="query_default">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="cat_id" prefix="c"/>
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                select #COLUMNS#
+                from platform p
+                inner join category c
+                on p.cat_id = c.cat_id
+                #WHERE#;
+                 ]]>
+            </Sentence>
+        </Query>
+    </Queries>
 
 </JdbcEntitySetup>

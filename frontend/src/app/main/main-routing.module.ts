@@ -30,6 +30,13 @@ export const routes: Routes = [
             (m) => m.CategoriesModule
           ),
       },
+      {
+        path: "platforms",
+        loadChildren: () =>
+          import("./platforms/platforms.module").then(
+            (m) => m.PlatformsModule
+          ),
+      },
     ],
   },
 ];

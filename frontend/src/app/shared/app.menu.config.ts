@@ -21,4 +21,10 @@ export const MENU_CONFIG: MenuRootItem[] = [
     icon: "power_settings_new",
     confirm: "yes",
   },
+  {
+    id: "platforms",
+    name: "PLATFORMS",
+    icon: "power_settings_new",
+    route: "/main/platforms",
+  },
 ];
