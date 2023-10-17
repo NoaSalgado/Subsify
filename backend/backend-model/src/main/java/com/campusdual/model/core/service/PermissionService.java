@@ -41,7 +41,7 @@ public class PermissionService implements IPermissionService {
 
     public PermissionService (){
         try {
-            ADMIN_PERMISSION = readFromInputStream("candidate_permissions.json");
+            ADMIN_PERMISSION = readFromInputStream("admin_permissions.json");
             USER_PERMISSION = readFromInputStream("user_permissions.json");
         } catch (IOException e) {
             throw new RuntimeException(e);
