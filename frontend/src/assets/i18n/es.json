@@ -21,7 +21,7 @@
   "FOOTER_RIGHTS": "Todos los derechos reservados",
   "SUBSCRIPTIONS": "Subscripciones",
   "PLATF_ID": "Id plataforma",
-  "PLATF_NAME": "Platforma",
+  "PLATF_NAME": "Plataforma",
   "SUB_LAPSE_PRICE": "Precio",
   "SUBS_START_DATE": "Fecha de inicio",
   "RENOVATION_DATE": "Próxima Renovación",
@@ -31,5 +31,12 @@
   "SUB_START": "Inicio Subscripción",
   "SUB_END": "Próxima Renovación",
   "NEW_SUBSCRIPTION": "Nueva Suscripción",
-  "RENEW": "Renovar"
+  "RENEW": "Renovar",
+  "CATEGORIES_INFORMATION": "Detalle Categorías",
+  "CATEGORIES": "Categorías",
+  "ACTIVE": "Activo",
+  "NEW_CATEGORY": "Nueva Categoría",
+  "CAT_ID":"Id Categoría ",
+  "CAT_NAME":"Categoría",
+  "CAT_ACTIVE":"Activo"
 }

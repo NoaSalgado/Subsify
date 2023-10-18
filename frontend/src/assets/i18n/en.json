@@ -31,5 +31,12 @@
   "SUB_START": "Subscription Start",
   "SUB_END": "Next Renewal",
   "NEW_SUBSCRIPTION": "New Subscription",
-  "RENEW": "Renew"
+  "RENEW": "Renew",
+  "CATEGORIES_INFORMATION": "Categories Detail",
+  "CATEGORIES": "Categories",
+  "ACTIVE": "Active",
+  "NEW_CATEGORY": "New Category",
+  "CAT_ID":"Categories Id",
+  "CAT_NAME":"Category",
+  "CAT_ACTIVE":"Active"
 }
