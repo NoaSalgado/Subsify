@@ -13,15 +13,4 @@
         <Column>CAT_ID</Column>
     </UpdateKeys>
     <GeneratedKey>cat_id</GeneratedKey>
-    <Queries>
-        <Query id="query_active">
-            <Sentence>
-                <![CDATA[
-                #COLUMNS#
-                from category
-                #WHERE#
-                ]]>
-            </Sentence>
-        </Query>
-    </Queries>
 </JdbcEntitySetup>

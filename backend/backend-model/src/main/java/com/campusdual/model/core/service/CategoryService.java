@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,8 +36,9 @@ public class CategoryService implements ICategoryService {
     @Override
     @Secured({ PermissionsProviderSecured.SECURED })
     public EntityResult categoryActiveQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
-        keysValues.put(CategoryDao.ACTIVE, "true");
-        return this.daoHelper.query(this.categoryDao, keysValues, attributes, CategoryDao.ACTIVE_QUERY);
+        Map<String, Object> newKeysValues = new HashMap<>();
+        newKeysValues.put(CategoryDao.ACTIVE, true);
+        return this.categoryQuery(newKeysValues, attributes);
     }
 
     @Override
