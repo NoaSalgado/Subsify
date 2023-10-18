@@ -1,8 +1,30 @@
 <div fxFill fxLayout="column" fxLayoutAlign="start">
-    <o-table attr="platformTable" service="platforms" entity="platform" keys="PLATF_ID" 
-      columns="PLATF_NAME;CAT_NAME"
-      visible-columns="PLATF_NAME;CAT_NAME" query-rows="20">
-      <o-table-column attr="PLATF_NAME" title="PLATF_NAME"></o-table-column>
-      <o-table-column attr="CAT_NAME" title="CAT_NAME"></o-table-column>
+    <o-table 
+      attr="platformTable" 
+      service="platforms" 
+      entity="platform" 
+      delete-button="no"
+      refresh-button="no"
+      keys="PLATF_ID" 
+      columns="PLATF_NAME;CAT_NAME;PLATF_ACTIVE"
+      visible-columns="PLATF_NAME;CAT_NAME;PLATF_ACTIVE" 
+      query-rows="20">
+      <o-table-column 
+        attr="PLATF_NAME" 
+        title="PLATF_NAME">
+      </o-table-column>
+      <o-table-column 
+        attr="CAT_NAME" 
+        title="CAT_NAME">
+      </o-table-column>
+      <o-table-column
+        attr="PLATF_ACTIVE"
+        title="ACTIVE"
+        type="boolean"
+        true-value-type="string" 
+        true-value="YES"
+        false-value-type="string"
+        false-value="NO">
+      </o-table-column>
     </o-table>
 </div>
