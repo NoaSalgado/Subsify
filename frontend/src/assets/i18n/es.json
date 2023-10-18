@@ -38,5 +38,8 @@
   "NEW_CATEGORY": "Nueva Categoría",
   "CAT_ID":"Id Categoría ",
   "CAT_NAME":"Categoría",
-  "CAT_ACTIVE":"Activo"
+  "CAT_ACTIVE":"Activo",
+  "PLATFORMS": "Plataformas",
+  "PLATFORMS_INFORMATION": "Detalle Plataformas",
+  "NEW_PLATFORM": "Nueva Plataforma"
 }

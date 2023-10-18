@@ -11,8 +11,14 @@ export const MENU_CONFIG: MenuRootItem[] = [
   {
     id: "categories",
     name: "CATEGORIES",
-    icon: "subscriptions",
+    icon: "category",
     route: "/main/categories",
+  },
+  {
+    id: "platforms",
+    name: "PLATFORMS",
+    icon: "stream",
+    route: "/main/platforms",
   },
   {
     id: "logout",
@@ -20,11 +26,5 @@ export const MENU_CONFIG: MenuRootItem[] = [
     route: "/login",
     icon: "power_settings_new",
     confirm: "yes",
-  },
-  {
-    id: "platforms",
-    name: "PLATFORMS",
-    icon: "power_settings_new",
-    route: "/main/platforms",
   },
 ];
