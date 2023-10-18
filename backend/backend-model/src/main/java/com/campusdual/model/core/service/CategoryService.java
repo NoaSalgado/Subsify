@@ -3,6 +3,7 @@ package com.campusdual.model.core.service;
 
 import com.campusdual.api.core.service.ICategoryService;
 import com.campusdual.model.core.dao.CategoryDao;
+import com.campusdual.model.core.dao.SubLapseDao;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.common.security.PermissionsProviderSecured;
@@ -29,6 +30,13 @@ public class CategoryService implements ICategoryService {
     @Secured({ PermissionsProviderSecured.SECURED })
     public EntityResult categoryQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
         return this.daoHelper.query(this.categoryDao, keysValues, attributes);
+    }
+
+    @Override
+    @Secured({ PermissionsProviderSecured.SECURED })
+    public EntityResult categoryActiveQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
+        keysValues.put(CategoryDao.ACTIVE, "true");
+        return this.daoHelper.query(this.categoryDao, keysValues, attributes, CategoryDao.ACTIVE_QUERY);
     }
 
     @Override

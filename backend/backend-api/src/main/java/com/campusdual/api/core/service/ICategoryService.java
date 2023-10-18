@@ -12,5 +12,6 @@ public interface ICategoryService {
         EntityResult categoryInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException;
         EntityResult categoryUpdate(Map<String, Object> attributes, Map<String, Object> KeyValues) throws OntimizeJEERuntimeException;
         EntityResult categoryDelete(Map<String, Object> keyValues) throws OntimizeJEERuntimeException;
+        EntityResult categoryActiveQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException;
     }
 
