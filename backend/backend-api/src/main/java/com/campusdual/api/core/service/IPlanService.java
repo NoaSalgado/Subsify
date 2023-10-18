@@ -12,4 +12,5 @@ public interface IPlanService {
     EntityResult planInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException;
     EntityResult planUpdate(Map<String, Object> attributes, Map<String, Object> KeyValues) throws OntimizeJEERuntimeException;
     EntityResult planDelete(Map<String, Object> keyValues) throws OntimizeJEERuntimeException;
+    EntityResult planByPlatformQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException;
 }

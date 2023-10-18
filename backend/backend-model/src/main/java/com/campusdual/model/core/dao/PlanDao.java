@@ -15,6 +15,5 @@ public class PlanDao extends OntimizeJdbcDaoSupport {
     public static final String NAME = "PLAN_NAME";
     public static final String PLATF_ID = "PLATF_ID";
     public static final String FR_ID = "FR_ID";
-
-
+    public static final String QUERY_PLAN_BY_PLATFORM = "query_plan_by_platform";
 }

@@ -31,6 +31,11 @@ public class PlanService implements IPlanService {
     }
 
     @Override
+    public EntityResult planByPlatformQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
+        return this.daoHelper.query(this.planDao, keysValues, attributes, PlanDao.QUERY_PLAN_BY_PLATFORM);
+    }
+
+    @Override
     public EntityResult planInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
         return this.daoHelper.insert(this.planDao, attributes);
     }

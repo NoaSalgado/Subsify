@@ -13,4 +13,21 @@
         <Column>PLAN_ID</Column>
     </UpdateKeys>
     <GeneratedKey>plan_id</GeneratedKey>
+    <Queries>
+        <Query id="query_plan_by_platform">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="plan_id" prefix="p"/>
+                <AmbiguousColumn name="platf_id" prefix="plat"/>
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                SELECT #COLUMNS#
+                from plan p
+                inner join plan_price pp on p.plan_id = pp.plan_id
+                inner join platform plat on plat.platf_id = p.platf_id
+                #WHERE#;
+                 ]]>
+            </Sentence>
+        </Query>
+    </Queries>
 </JdbcEntitySetup>

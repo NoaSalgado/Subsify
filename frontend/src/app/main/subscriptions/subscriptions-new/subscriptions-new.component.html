@@ -9,9 +9,11 @@
     <o-column title="{{ 'NEW_SUBSCRIPTION' | oTranslate }}" fxFlex>
       <o-row fxFlex="100">
         <o-combo
+          #comboPlatform          
+          attr="comboPlatform"
+          query-method="query"
           required="yes"
           label="PLATF_NAME"
-          attr="PLATF_ID"
           oLocker
           layout-padding
           read-only="no"
@@ -25,6 +27,28 @@
           null-selection="no"
         >
         </o-combo>
+        <o-combo
+          #comboPlan
+          attr="comboPlan"
+          required="yes"
+          query-method="query" 
+          label="PLAN_NAME"
+          oLocker
+          layout-padding
+          read-only="no"
+          service="plan"
+          entity="planByPlatform"
+          columns="PLAN_ID;PLAN_NAME"
+          value-column="PLAN_ID"
+          keys="PLAN_ID"
+          visible-columns="PLAN_NAME"
+          fxFlex="33"
+          null-selection="no"
+          [query-on-event]="comboPlatform.onValueChange"
+          parent-keys="PLATF_ID:comboPlatform[PLATF_ID]"
+          >
+        </o-combo>
+
         <o-text-input
           attr="SUB_LAPSE_PRICE"
           fxFlex="33"
