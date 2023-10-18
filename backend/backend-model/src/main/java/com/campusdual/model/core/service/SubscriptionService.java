@@ -56,6 +56,7 @@ public class SubscriptionService implements ISubscriptionService {
 
     @Override
     public EntityResult subscriptionInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
+        /*TODO
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
@@ -72,8 +73,8 @@ public class SubscriptionService implements ISubscriptionService {
         attrSubLapseInsert.put(SubLapseDao.START, attributes.get(SubLapseDao.START));
         attrSubLapseInsert.put(SubscriptionDao.FREQUENCY, attributes.get(SubscriptionDao.FREQUENCY));
         EntityResult insertSubLapseER = this.subsLapseService.subLapseInsert(attrSubLapseInsert);
-
-        return insertSubsER;
+        */
+        return null;
     }
 
     @Override
