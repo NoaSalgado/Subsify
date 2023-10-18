@@ -11,10 +11,12 @@ import org.springframework.stereotype.Repository;
 
 public class PlanPriceDao extends OntimizeJdbcDaoSupport {
 
-    public static final String VALUE = "PLAN_PRICE_VALUE";
+
     public static final String ID = "PLAN_PRICE_ID";
+    public static final String VALUE = "PLAN_PRICE_VALUE";
     public static final String START = "PLAN_PRICE_START";
     public static final String END = "PLAN_PRICE_END";
+    public static final String PLAN_ID="PLAN_ID";
 
 
 }
