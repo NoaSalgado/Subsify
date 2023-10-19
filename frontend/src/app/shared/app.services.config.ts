@@ -11,7 +11,10 @@ export const SERVICE_CONFIG: Object = {
   frequencies: {
     path: "/frequencies",
   },
-  categories:{
+  categories: {
     path: "/categories",
+  },
+  plans: {
+    path: "/plans",
   },
 };

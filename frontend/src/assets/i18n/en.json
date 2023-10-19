@@ -36,10 +36,11 @@
   "CATEGORIES": "Categories",
   "ACTIVE": "Active",
   "NEW_CATEGORY": "New Category",
-  "CAT_ID":"Categories Id",
-  "CAT_NAME":"Category",
-  "CAT_ACTIVE":"Active",
+  "CAT_ID": "Categories Id",
+  "CAT_NAME": "Category Name",
+  "CAT_ACTIVE": "Active",
   "PLATFORMS": "Platforms",
   "PLATFORMS_INFORMATION": "Platforms Detail",
-  "NEW_PLATFORM": "New Platform"
+  "NEW_PLATFORM": "New Platform",
+  "PLAN_NAME": "Subscription Plan"
 }

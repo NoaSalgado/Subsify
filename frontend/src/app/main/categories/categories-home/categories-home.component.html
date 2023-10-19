@@ -7,27 +7,21 @@
     entity="category"
     keys="CAT_ID"
     columns="CAT_ID;CAT_NAME;CAT_ACTIVE"
-    visible-columns="CAT_ID;CAT_NAME;CAT_ACTIVE"
+    visible-columns="CAT_NAME;CAT_ACTIVE"
     query-rows="20"
   >
-  <o-table-column
-    attr="CAT_ACTIVE"
-    title="ACTIVE"
-    type="boolean"
-    boolean-type= "boolean"
-    
-    true-value-type="string" 
-    true-value="true"
-    render-true-value="YES"
-
-    false-value-type="string"
-    false-value="false"
-    render-false-value="NO"
+    <o-table-column
+      attr="CAT_ACTIVE"
+      title="ACTIVE"
+      type="boolean"
+      boolean-type="boolean"
+      true-value-type="string"
+      true-value="true"
+      render-true-value="YES"
+      false-value-type="string"
+      false-value="false"
+      render-false-value="NO"
     >
-    
-  </o-table-column>
- 
-  
-</o-table>
-
+    </o-table-column>
+  </o-table>
 </div>

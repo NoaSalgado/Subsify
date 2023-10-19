@@ -1,4 +1,5 @@
 <o-form
+  #subsForm
   service="subscriptions"
   entity="subscription"
   keys="SUBS_ID"
@@ -9,12 +10,10 @@
     <o-column title="{{ 'NEW_SUBSCRIPTION' | oTranslate }}" fxFlex>
       <o-row fxFlex="100">
         <o-combo
-          #comboPlatform          
-          attr="comboPlatform"
-          query-method="query"
+          #comboPlatform
+          attr="PLATF_ID"
           required="yes"
           label="PLATF_NAME"
-          oLocker
           layout-padding
           read-only="no"
           service="platforms"
@@ -27,36 +26,36 @@
           null-selection="no"
         >
         </o-combo>
+      </o-row>
+      <o-row fxFlex="100">
         <o-combo
           #comboPlan
-          attr="comboPlan"
+          attr="PLAN_ID"
           required="yes"
-          query-method="query" 
           label="PLAN_NAME"
-          oLocker
           layout-padding
           read-only="no"
-          service="plan"
+          service="plans"
           entity="planByPlatform"
-          columns="PLAN_ID;PLAN_NAME"
-          value-column="PLAN_ID"
+          columns="PLAN_ID;PLAN_NAME;PLAN_PRICE_VALUE;FR_NAME"
+          value-column="PLAN_PRICE_VALUE"
           keys="PLAN_ID"
-          visible-columns="PLAN_NAME"
+          visible-columns="PLAN_NAME;FR_NAME"
+          data="PLAN_NAME"
           fxFlex="33"
           null-selection="no"
           [query-on-event]="comboPlatform.onValueChange"
-          parent-keys="PLATF_ID:comboPlatform[PLATF_ID]"
-          >
+          parent-keys="PLATF_ID"
+          (onValueChange)="setPriceValue()"
+        >
         </o-combo>
-
-        <o-text-input
+        <o-currency-input
+          class="price-input"
           attr="SUB_LAPSE_PRICE"
           fxFlex="33"
           layout-padding
           required="yes"
-        ></o-text-input>
-      </o-row>
-      <o-row fxFlex="100">
+        ></o-currency-input>
         <o-date-input
           attr="SUB_LAPSE_START"
           label="SUBS_START_DATE"
@@ -69,24 +68,8 @@
           text-input-enabled="no"
           fxFlex="33"
         ></o-date-input>
-        <o-combo
-          required="yes"
-          label="FR_NAME"
-          attr="FR_ID"
-          oLocker
-          layout-padding
-          read-only="no"
-          service="frequencies"
-          entity="frequency"
-          columns="FR_ID;FR_NAME;FR_VALUE"
-          value-column="FR_ID"
-          keys="FR_ID"
-          visible-columns="FR_NAME"
-          fxFlex="33"
-          null-selection="no"
-        >
-        </o-combo>
       </o-row>
+      <o-row fxFlex="100"> </o-row>
     </o-column>
   </o-row>
 </o-form>
