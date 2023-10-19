@@ -1,0 +1,33 @@
+{
+  "menu": [
+    {
+      "attr": "categories",
+      "visible": false,
+      "enabled": false
+    },
+    {
+      "attr": "platforms",
+      "visible": false,
+      "enabled": false
+    },
+    {
+      "attr": "subscriptions",
+      "visible": true,
+      "enabled": true
+    }
+  ],
+  "routes": [
+    {
+      "permissionId": "categories-table-route",
+      "enabled": false
+    },
+    {
+      "permissionId": "platforms-table-route",
+      "enabled": false
+    },
+    {
+      "permissionId": "subscriptions-table-route",
+      "enabled": true
+    }
+  ]
+}

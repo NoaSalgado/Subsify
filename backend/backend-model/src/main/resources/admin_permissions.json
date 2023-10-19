@@ -1,6 +1,38 @@
-{"routes": [
-  {
-    "permissionId": "admin-permissions"
-  }
-]
+{
+  "menu": [
+    {
+      "attr": "categories",
+      "visible": true,
+      "enabled": true
+    },
+    {
+      "attr": "platforms",
+      "visible": true,
+      "enabled": true
+    },
+    {
+      "attr": "subscriptions",
+      "visible": false,
+      "enabled": false
+    },
+    {
+      "attr": "home",
+      "visible": false,
+      "enabled": false
+    }
+  ],
+  "routes": [
+    {
+      "permissionId": "categories-table-route",
+      "enabled": true
+    },
+    {
+      "permissionId": "platforms-table-route",
+      "enabled": true
+    },
+    {
+      "permissionId": "subscriptions-table-route",
+      "enabled": true
+    }
+  ]
 }
