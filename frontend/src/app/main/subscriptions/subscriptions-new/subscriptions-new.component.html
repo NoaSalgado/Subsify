@@ -38,15 +38,15 @@
           service="plans"
           entity="planByPlatform"
           columns="PLAN_ID;PLAN_NAME;PLAN_PRICE_VALUE;FR_NAME"
-          value-column="PLAN_PRICE_VALUE"
+          value-column="PLAN_ID"
           keys="PLAN_ID"
-          visible-columns="PLAN_NAME;FR_NAME"
+          visible-columns="PLAN_NAME;FR_NAME;PLAN_PRICE_VALUE"
           data="PLAN_NAME"
           fxFlex="33"
           null-selection="no"
           [query-on-event]="comboPlatform.onValueChange"
           parent-keys="PLATF_ID"
-          (onValueChange)="setPriceValue()"
+          (onValueChange)="setPriceValue($event)"
         >
         </o-combo>
         <o-currency-input

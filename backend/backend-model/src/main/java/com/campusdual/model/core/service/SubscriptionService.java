@@ -56,13 +56,13 @@ public class SubscriptionService implements ISubscriptionService {
 
     @Override
     public EntityResult subscriptionInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
-        /*TODO
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
         Map<String, Object> attrSubsInsert = new HashMap<>();
-        attrSubsInsert.put(SubscriptionDao.PLATF_ID, attributes.get(SubscriptionDao.PLATF_ID));
-        attrSubsInsert.put(SubscriptionDao.FREQUENCY, attributes.get(SubscriptionDao.FREQUENCY));
+        //attrSubsInsert.put(SubscriptionDao.PLATF_ID, attributes.get(SubscriptionDao.PLATF_ID));
+        //attrSubsInsert.put(SubscriptionDao.FREQUENCY, attributes.get(SubscriptionDao.FREQUENCY));
         attrSubsInsert.put(SubscriptionDao.USER, username);
 
         EntityResult insertSubsER =  this.daoHelper.insert(this.subscriptionDao, attrSubsInsert);
@@ -71,9 +71,9 @@ public class SubscriptionService implements ISubscriptionService {
         attrSubLapseInsert.put(SubLapseDao.PRICE, attributes.get(SubLapseDao.PRICE));
         attrSubLapseInsert.put(SubLapseDao.SUBS_ID, insertSubsER.get(SubLapseDao.SUBS_ID));
         attrSubLapseInsert.put(SubLapseDao.START, attributes.get(SubLapseDao.START));
-        attrSubLapseInsert.put(SubscriptionDao.FREQUENCY, attributes.get(SubscriptionDao.FREQUENCY));
+        //attrSubLapseInsert.put(SubscriptionDao.FREQUENCY, attributes.get(SubscriptionDao.FREQUENCY));
         EntityResult insertSubLapseER = this.subsLapseService.subLapseInsert(attrSubLapseInsert);
-        */
+
         return null;
     }
 
