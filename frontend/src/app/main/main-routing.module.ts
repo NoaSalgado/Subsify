@@ -37,6 +37,13 @@ export const routes: Routes = [
             (m) => m.PlatformsModule
           ),
       },
+      {
+        path: "plans",
+        loadChildren: () =>
+          import("./plans/plans.module").then(
+            (m) => m.PlansModule
+          ),
+      },
     ],
   },
 ];

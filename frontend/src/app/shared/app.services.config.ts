@@ -17,6 +17,7 @@ export const SERVICE_CONFIG: Object = {
   plans: {
     path: "/plans",
   },
+  
   permissions: {
     path: "/permissions/permission"
   }

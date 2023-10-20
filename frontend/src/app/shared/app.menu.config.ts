@@ -9,6 +9,12 @@ export const MENU_CONFIG: MenuRootItem[] = [
     route: "/main/subscriptions",
   },
   {
+    id: "plans",
+    name: "PLANS",
+    icon: "coronavirus",
+    route: "/main/plans",
+  },
+  {
     id: "categories",
     name: "CATEGORIES",
     icon: "category",
