@@ -49,6 +49,15 @@ public class SubLapseService implements ISubLapseService {
         return this.daoHelper.query(this.subLapseDao, keysValues, attributes, SubLapseDao.RENEWAL_QUERY);
     }
 
+    @Override
+    public EntityResult subLapseChartCategoryQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> newKeyValues = new HashMap<>(keysValues);
+        String username = authentication.getName();
+        newKeyValues.put(SubscriptionDao.USER,username);
+        return this.daoHelper.query(this.subLapseDao, newKeyValues, attributes, SubLapseDao.CHARTCATEGORY_QUERY);
+    }
+
     private int getFreq(Map<String, Object> attributes){
         Map<String, Object> freqQuery = new HashMap<>();
         freqQuery.put(FrequencyDao.ID, attributes.get(FrequencyDao.ID));
