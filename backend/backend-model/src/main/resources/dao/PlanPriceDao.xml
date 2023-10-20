@@ -13,4 +13,21 @@
         <Column>PLAN_PRICE_ID</Column>
     </UpdateKeys>
     <GeneratedKey>plan_price_id</GeneratedKey>
+    <Queries>
+        <Query id="freq_by_plan_price">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="plan_id" prefix="p"/>
+                <AmbiguousColumn name="fr_id" prefix="f"/>
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                SELECT #COLUMNS#
+                from plan_price pp
+                inner join plan p on pp.plan_id = p.plan_id
+                inner join frequency f on f.fr_id = p.fr_id
+                #WHERE#;
+                 ]]>
+            </Sentence>
+        </Query>
+    </Queries>
 </JdbcEntitySetup>

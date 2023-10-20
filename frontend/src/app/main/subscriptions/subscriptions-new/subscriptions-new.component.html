@@ -30,15 +30,15 @@
       <o-row fxFlex="100">
         <o-combo
           #comboPlan
-          attr="PLAN_ID"
+          attr="PLAN_PRICE_ID"
           required="yes"
           label="PLAN_NAME"
           layout-padding
           read-only="no"
           service="plans"
           entity="planByPlatform"
-          columns="PLAN_ID;PLAN_NAME;PLAN_PRICE_VALUE;FR_NAME"
-          value-column="PLAN_ID"
+          columns="PLAN_ID;PLAN_NAME;PLAN_PRICE_VALUE;FR_NAME;PLAN_PRICE_ID"
+          value-column="PLAN_PRICE_ID"
           keys="PLAN_ID"
           visible-columns="PLAN_NAME;FR_NAME;PLAN_PRICE_VALUE"
           data="PLAN_NAME"

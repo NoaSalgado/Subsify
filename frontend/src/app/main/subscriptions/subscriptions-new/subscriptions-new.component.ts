@@ -15,8 +15,8 @@ export class SubscriptionsNewComponent implements OnInit {
   ngOnInit() {}
 
   public setPriceValue(event): void {
-    const planId = this.subsForm.getFieldValue("PLAN_ID");
-    const selectedPlan = event.target.dataArray.filter(plan => plan.PLAN_ID == planId);
+    const plan_price_Id = this.subsForm.getFieldValue("PLAN_PRICE_ID");
+    const selectedPlan = event.target.dataArray.filter(plan => plan.PLAN_PRICE_ID == plan_price_Id);
 
     this.subsForm.setFieldValue(
       "SUB_LAPSE_PRICE",

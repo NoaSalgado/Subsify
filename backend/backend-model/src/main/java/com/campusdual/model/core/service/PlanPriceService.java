@@ -45,4 +45,9 @@ public class PlanPriceService implements IPlanPriceService {
     public EntityResult planPriceDelete(Map<String, Object> keyValues) throws OntimizeJEERuntimeException {
         return this.daoHelper.delete(this.planPriceDao, keyValues);
     }
+
+    @Override
+    public EntityResult freqByPlanPriceQuery(Map<String, Object> keyValues, List<String> attributes) throws OntimizeJEERuntimeException {
+        return this.daoHelper.query(this.planPriceDao, keyValues, attributes, PlanPriceDao.FREQ_BY_PLAN_QUERY);
+    }
 }

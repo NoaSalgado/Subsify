@@ -17,6 +17,5 @@ public class PlanPriceDao extends OntimizeJdbcDaoSupport {
     public static final String START = "PLAN_PRICE_START";
     public static final String END = "PLAN_PRICE_END";
     public static final String PLAN_ID="PLAN_ID";
-
-
+    public static final String FREQ_BY_PLAN_QUERY = "freq_by_plan_price";
 }

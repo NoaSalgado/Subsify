@@ -2,6 +2,7 @@ package com.campusdual.model.core.service;
 
 import com.campusdual.api.core.service.ISubscriptionService;
 import com.campusdual.model.core.dao.FrequencyDao;
+import com.campusdual.model.core.dao.PlanPriceDao;
 import com.campusdual.model.core.dao.SubLapseDao;
 import com.campusdual.model.core.dao.SubscriptionDao;
 import com.ontimize.jee.common.dto.EntityResult;
@@ -29,6 +30,9 @@ public class SubscriptionService implements ISubscriptionService {
     private SubLapseService subsLapseService;
 
     @Autowired
+    private PlanPriceService planPriceService;
+
+    @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
 
     @Override
@@ -46,6 +50,8 @@ public class SubscriptionService implements ISubscriptionService {
         return this.daoHelper.query(this.subscriptionDao, keysValues, attributes);
     }
 
+
+
     private int getFreq(Map<String, Object> attributes){
         Map<String, Object> freqQuery = new HashMap<>();
         freqQuery.put(FrequencyDao.ID, attributes.get(FrequencyDao.ID));
@@ -61,9 +67,9 @@ public class SubscriptionService implements ISubscriptionService {
         String username = authentication.getName();
 
         Map<String, Object> attrSubsInsert = new HashMap<>();
-        //attrSubsInsert.put(SubscriptionDao.PLATF_ID, attributes.get(SubscriptionDao.PLATF_ID));
-        //attrSubsInsert.put(SubscriptionDao.FREQUENCY, attributes.get(SubscriptionDao.FREQUENCY));
         attrSubsInsert.put(SubscriptionDao.USER, username);
+        attrSubsInsert.put(SubscriptionDao.ACTIVE, true);
+        attrSubsInsert.put(SubscriptionDao.PLAN_PRICE_ID, attributes.get(PlanPriceDao.ID));
 
         EntityResult insertSubsER =  this.daoHelper.insert(this.subscriptionDao, attrSubsInsert);
 
@@ -71,10 +77,15 @@ public class SubscriptionService implements ISubscriptionService {
         attrSubLapseInsert.put(SubLapseDao.PRICE, attributes.get(SubLapseDao.PRICE));
         attrSubLapseInsert.put(SubLapseDao.SUBS_ID, insertSubsER.get(SubLapseDao.SUBS_ID));
         attrSubLapseInsert.put(SubLapseDao.START, attributes.get(SubLapseDao.START));
-        //attrSubLapseInsert.put(SubscriptionDao.FREQUENCY, attributes.get(SubscriptionDao.FREQUENCY));
+
+        Map<String, Object> keysValuesQuery = new HashMap<>();
+        keysValuesQuery.put(PlanPriceDao.ID, attributes.get(PlanPriceDao.ID));
+        EntityResult freqByPlanPriceQuery = this.planPriceService.freqByPlanPriceQuery(keysValuesQuery, List.of(FrequencyDao.ID));
+
+        attrSubLapseInsert.put(FrequencyDao.ID, freqByPlanPriceQuery.getRecordValues(0).get(FrequencyDao.ID));
         EntityResult insertSubLapseER = this.subsLapseService.subLapseInsert(attrSubLapseInsert);
 
-        return null;
+        return insertSubsER;
     }
 
     @Override
