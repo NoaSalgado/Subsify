@@ -64,6 +64,34 @@
                  ]]>
             </Sentence>
         </Query>
+        <Query id="query_chart_category">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="subs_id" prefix="s"/>
+                <AmbiguousColumn name="plan_price_id" prefix="pp"/>
+                <AmbiguousColumn name="plan_id" prefix="p"/>
+                <AmbiguousColumn name="platf_id" prefix="p2"/>
+                <AmbiguousColumn name="fr_id" prefix="f"/>
+                <AmbiguousColumn name="cat_id" prefix="c"/>
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                select #COLUMNS# from sub_lapse sl
+                inner join subscription s on
+                    sl.subs_id = s.subs_id
+                inner join plan_price pp on
+                    s.plan_price_id = pp.plan_price_id
+                inner join plan p on
+                    p.plan_id = pp.plan_id
+                inner join frequency f on
+                    f.fr_id = p.fr_id
+                inner join platform p2 on
+                    p2.platf_id = p.platf_id
+                inner join category c on
+                    c.cat_id = p2.cat_id
+                    #WHERE#
+                ]]>
+            </Sentence>
+        </Query>
     </Queries>
 
 </JdbcEntitySetup>
