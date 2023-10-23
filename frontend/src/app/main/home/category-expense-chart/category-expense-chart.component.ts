@@ -70,7 +70,7 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
   processData(data: any): void {
     const chartData = [];
 
-    const filteredData = data.filter((subLapse) => {
+    const currentYearSubs = data.filter((subLapse) => {
       const currentYear = new Date().getFullYear();
       return (
         new Date(subLapse.sub_lapse_start).getFullYear() === currentYear ||
@@ -78,7 +78,44 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
       );
     });
 
-    filteredData.forEach((subLapse) => {
+    const subsStartMonths = currentYearSubs.map((sub) => {
+      const currentYear = new Date().getFullYear();
+      return new Date(sub.sub_lapse_start).getFullYear() === currentYear
+        ? new Date(sub.sub_lapse_start).getMonth() + 1
+        : 1;
+    });
+
+    const subsEndMonths = currentYearSubs.map((sub) => {
+      const currentYear = new Date().getFullYear();
+      const currentMonth = new Date().getMonth() + 1;
+      return new Date(sub.sub_lapse_end).getFullYear() > currentYear ||
+        new Date(sub.sub_lapse_end).getMonth() + 1 > currentMonth
+        ? currentMonth
+        : new Date(sub.sub_lapse_end).getMonth() + 1;
+    });
+
+    const chartStartMonth = Math.min(...subsStartMonths);
+    const chartEndMonth = Math.max(...subsEndMonths);
+    const chartMonths = [];
+    for (let i = chartStartMonth; i <= chartEndMonth; i++) {
+      chartMonths.push(i);
+    }
+
+    const categories = Array.from(
+      new Set(currentYearSubs.map((sub) => sub.cat_name))
+    );
+    categories.forEach((category) => {
+      const values = chartMonths.map((month) => ({
+        x: month,
+        y: 0,
+      }));
+      chartData.push({
+        key: category,
+        values,
+      });
+    });
+
+    currentYearSubs.forEach((subLapse) => {
       const {
         sub_lapse_start: startDate,
         sub_lapse_end: endDate,
@@ -86,43 +123,19 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
         fr_value: frequency,
         cat_name: category,
       } = subLapse;
-
-      if (!this.existsValue(chartData, category)) {
-        const values = this.getSubscriptionPaymentMonths(
-          new Date(startDate),
-          new Date(endDate)
-        ).map((month) => ({
-          x: month,
-          y: price / frequency,
-        }));
-
-        chartData.push({
-          key: category,
-          values,
-        });
-      } else {
-        const categoryIndex = this.getObjectIndex(chartData, category);
-        //const cat = chartData.find((obj) => obj.key === category);
-        this.getSubscriptionPaymentMonths(
-          new Date(startDate),
-          new Date(endDate)
-        ).forEach((month) => {
-          if (!this.existsValue(chartData[categoryIndex].values, month)) {
-            chartData[categoryIndex].values.push({
-              x: month,
-              y: price / frequency,
-            });
-          } else {
-            const monthIndex = this.getObjectIndex(
-              chartData[categoryIndex].values,
-              month
-            );
-            chartData[categoryIndex].values[monthIndex].y += price / frequency;
-          }
-        });
-      }
+      const categoryIndex = this.getObjectIndex(chartData, category);
+      this.getSubscriptionPaymentMonths(
+        new Date(startDate),
+        new Date(endDate)
+      ).forEach((month) => {
+        const monthIndex = this.getObjectIndex(
+          chartData[categoryIndex].values,
+          month
+        );
+        chartData[categoryIndex].values[monthIndex].y += price / frequency;
+      });
     });
-
+    console.log(chartData);
     this.setChartData(chartData);
   }
 
@@ -145,12 +158,13 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
     const endMonth =
       endDate.getFullYear() > currentYear ||
       endDate.getMonth() + 1 > currentMonth + 1
-        ? currentMonth
+        ? currentMonth + 1
         : endDate.getMonth() + 1;
 
     for (let i = startMonth; i < endMonth; i++) {
       subscriptionPaymentMonths.push(i);
     }
+    console.log(subscriptionPaymentMonths);
     return subscriptionPaymentMonths;
   }
 
