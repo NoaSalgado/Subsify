@@ -2,6 +2,7 @@ package com.campusdual.model.core.jobs;
 
 
 import com.campusdual.model.core.dao.FrequencyDao;
+import com.campusdual.model.core.dao.PlanDao;
 import com.campusdual.model.core.dao.SubLapseDao;
 import com.campusdual.model.core.dao.SubscriptionDao;
 import com.campusdual.model.core.service.SubLapseService;
@@ -37,7 +38,6 @@ public class ScheduledTask {
 
     @Scheduled(fixedRate=5000)
     public void scheduleTask(){
-        /*
         try {
 
             List<String> columns = Arrays.asList(
@@ -46,10 +46,11 @@ public class ScheduledTask {
                     SubLapseDao.START,
                     SubLapseDao.SUBS_ID,
                     SubLapseDao.PRICE,
-                    SubscriptionDao.FREQUENCY);
+                    PlanDao.FR_ID);
 
             EntityResult subscriptionsToUpdate = subLapseService.subLapseQueryRenewal(new HashMap<>(), columns);
 
+            /*
             int erSize = subscriptionsToUpdate.calculateRecordNumber();
 
             for(int i=0;i<erSize;i++){
@@ -71,12 +72,12 @@ public class ScheduledTask {
 
                 subLapseService.subLapseInsert(attrs);
             }
+             */
         } catch (Exception e) {
             e.printStackTrace();
             EntityResult res = new EntityResultMapImpl();
             res.setCode(EntityResult.OPERATION_WRONG);
         }
 
-         */
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,12 +35,23 @@ public class PlanService implements IPlanService {
 
     @Override
     public EntityResult planQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
-        return this.daoHelper.query(this.planDao, keysValues, attributes, planDao.QUERY_PLAN_BY_PLATFORM);
+        return this.daoHelper.query(this.planDao, keysValues, attributes, PlanDao.QUERY_PLAN_BY_PLATFORM);
     }
+
 
     @Override
     public EntityResult planByPlatformQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
         return this.daoHelper.query(this.planDao, keysValues, attributes, PlanDao.QUERY_PLAN_BY_PLATFORM);
+    }
+
+    @Override
+        public EntityResult planActiveQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
+        return this.daoHelper.query(this.planDao, keysValues, attributes, PlanDao.QUERY_ACTIVE_PLAN);
+    }
+
+    @Override
+    public EntityResult singlePlanQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
+        return this.daoHelper.query(this.planDao, keysValues, attributes, PlanDao.QUERY_SINGLE_PLAN);
     }
 
     @Override

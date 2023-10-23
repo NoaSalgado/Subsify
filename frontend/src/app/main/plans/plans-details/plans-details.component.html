@@ -1,0 +1,58 @@
+<o-form
+  service="plans"
+  entity="singlePlan"
+  keys="PLAN_ID"
+  header-actions="U"
+  show-header-navigation="no"
+  keys-sql-types="INTEGER"
+>
+  <o-column title="{{ 'PLANS_INFORMATION' | oTranslate }}">
+    <o-row fxFlex="100">
+      <o-text-input
+        attr="PLAN_NAME"
+        layout-padding
+        fxFlex="33"
+        read-only="no"
+      ></o-text-input>
+      <o-text-input
+        attr="PLATF_NAME"
+        layout-padding
+        fxFlex="33"
+        read-only="yes"
+      ></o-text-input>
+    </o-row>
+    <o-table
+      attr="planPriceTable" 
+      service="planPrices" 
+      entity="planPrice" 
+      delete-button="no"
+      refresh-button="yes"
+      keys="PLAN_PRICE_ID" 
+      columns="PLAN_PRICE_VALUE;PLAN_PRICE_START;PLAN_ID;PLAN_PRICE_END"
+      visible-columns="PLAN_PRICE_VALUE;PLAN_PRICE_START;PLAN_PRICE_END" 
+      query-rows="20"
+      parent-keys="PLAN_ID"
+    >
+    <o-table-column 
+        attr="PLAN_PRICE_VALUE" 
+        title="PLAN_PRICE_VALUE">
+      </o-table-column>
+      <o-table-column 
+        attr="PLAN_PRICE_START" 
+        title="PLAN_PRICE_START"
+        type="date"
+        format="LL"
+        >
+      </o-table-column>
+      <o-table-column 
+        attr="PLAN_PRICE_END" 
+        title="PLAN_PRICE_END"
+        type="date"
+        format="LL"
+        false-value-type=""
+        false-value="nulo"
+        >
+      </o-table-column>
+    </o-table>
+  </o-column>
+</o-form>

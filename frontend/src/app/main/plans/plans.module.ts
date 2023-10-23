@@ -4,6 +4,7 @@ import { OntimizeWebModule } from 'ontimize-web-ngx';
 import { PlansRoutingModule } from './plans-routing-module';
 import { PlansHomeComponent } from './plans-home/plans-home.component';
 import { PlansNewComponent } from './plans-new/plans-new.component';
+import { PlansDetailsComponent } from './plans-details/plans-details.component';
 
 @NgModule({
   imports: [
@@ -11,6 +12,6 @@ import { PlansNewComponent } from './plans-new/plans-new.component';
     OntimizeWebModule,
     PlansRoutingModule
   ],
-  declarations: [PlansHomeComponent,PlansNewComponent]
+  declarations: [PlansHomeComponent,PlansNewComponent, PlansDetailsComponent]
 })
 export class PlansModule { }

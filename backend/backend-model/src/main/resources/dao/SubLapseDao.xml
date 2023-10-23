@@ -43,6 +43,8 @@
             <AmbiguousColumns>
                 <AmbiguousColumn name="subs_id" prefix="sl"/>
                 <AmbiguousColumn name="platf_id" prefix="p"/>
+                <AmbiguousColumn name="plan_price_id" prefix="ppid"/>
+                <AmbiguousColumn name="plan_id" prefix="plid"/>
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
@@ -56,6 +58,8 @@
                 on last_s.max_id = sl.sub_lapse_id
                 inner join subscription s
                 on last_s.subs_id = s.subs_id
+                inner join plan_price pp on pp.plan_price_id = s.plan_price_id
+                inner join plan p on p.plan_id = pp.plan_id
                 where sl.sub_lapse_end <= current_date and s.subs_autorenewal = true;
                  ]]>
             </Sentence>
