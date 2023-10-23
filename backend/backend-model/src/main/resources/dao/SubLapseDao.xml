@@ -71,25 +71,20 @@
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
-                    select sum(sl.sub_lapse_price / f.fr_value) as total_price_category,
-                    c.cat_name
-                    from
-                        sub_lapse sl
-                    inner join subscription s on
-                        sl.subs_id = s.subs_id
-                    inner join plan_price pp on
-                        s.plan_price_id = pp.plan_price_id
-                    inner join plan p on
-                        p.plan_id = pp.plan_id
-                    inner join frequency f on
-                        f.fr_id = p.fr_id
-                    inner join platform p2 on
-                        p2.platf_id = p.platf_id
-                    inner join category c on
-                        c.cat_id = p2.cat_id
+                select #COLUMNS# from sub_lapse sl
+                inner join subscription s on
+                    sl.subs_id = s.subs_id
+                inner join plan_price pp on
+                    s.plan_price_id = pp.plan_price_id
+                inner join plan p on
+                    p.plan_id = pp.plan_id
+                inner join frequency f on
+                    f.fr_id = p.fr_id
+                inner join platform p2 on
+                    p2.platf_id = p.platf_id
+                inner join category c on
+                    c.cat_id = p2.cat_id
                     #WHERE#
-                    group by
-                        c.cat_name
                 ]]>
             </Sentence>
         </Query>
