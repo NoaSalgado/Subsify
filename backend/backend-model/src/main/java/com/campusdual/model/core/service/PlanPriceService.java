@@ -2,16 +2,22 @@ package com.campusdual.model.core.service;
 
 import com.campusdual.api.core.service.IPlanPriceService;
 import com.campusdual.model.core.dao.CategoryDao;
+import com.campusdual.model.core.dao.PlanDao;
 import com.campusdual.model.core.dao.PlanPriceDao;
+import com.campusdual.model.core.dao.SubLapseDao;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 
 
 @Lazy
@@ -21,6 +27,9 @@ public class PlanPriceService implements IPlanPriceService {
 
     @Autowired
     private PlanPriceDao planPriceDao;
+
+    @Autowired
+    private PlanService planService;
 
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
@@ -33,7 +42,47 @@ public class PlanPriceService implements IPlanPriceService {
 
     @Override
     public EntityResult planPriceInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
-        return this.daoHelper.insert(this.planPriceDao, attributes);
+        Map<String, Object> newKeyValues = new HashMap<>();
+        newKeyValues.put(PlanPriceDao.PLAN_ID,attributes.get(PlanPriceDao.PLAN_ID));
+
+        List<String> newAttributes = new ArrayList<>();
+        newAttributes.add(PlanPriceDao.ID);
+        newAttributes.add(PlanPriceDao.START);
+        newAttributes.add(PlanPriceDao.END);
+
+        EntityResult er = this.planService.planQuery(newKeyValues,newAttributes);
+        int erSize = er.calculateRecordNumber();
+
+        for(int i=0;i<erSize;i++){
+
+            Map<String,Object> planPriceRegistry =  er.getRecordValues(i);
+            java.sql.Date oldEndDate = (java.sql.Date) planPriceRegistry.get(PlanPriceDao.END);
+
+            if(oldEndDate == null) {
+                java.util.Date newEndDate = (java.util.Date) attributes.get(PlanPriceDao.START);
+                Instant instant = newEndDate.toInstant();
+                ZoneId zoneId = ZoneId.systemDefault();
+                LocalDate aux = instant.atZone(zoneId).toLocalDate();
+                LocalDate newEndDateLD = aux.minusDays(1);
+
+                Map<String, Object> newKeyValuesUpdate = new HashMap<>();
+                newKeyValuesUpdate.put(PlanPriceDao.ID, planPriceRegistry.get(PlanPriceDao.ID));
+
+                Map<String, Object> newAttributesUpdate = new HashMap<>();
+                Date newDate = Date.from((newEndDateLD.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                newAttributesUpdate.put(PlanPriceDao.END, newDate);
+
+                this.planPriceDao.update(newAttributesUpdate, newKeyValuesUpdate);
+            }
+
+            /*Date newDate = Date.from((newDateLD.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            attrs.put(SubLapseDao.START, newDate);
+
+            subLapseService.subLapseInsert(attrs);*/
+        }
+
+
+        return this.daoHelper.insert(this.planPriceDao,attributes);
     }
 
     @Override

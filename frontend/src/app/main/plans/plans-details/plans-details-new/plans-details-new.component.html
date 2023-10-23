@@ -1,3 +1,35 @@
-<p>
-  plans-details-new works!
-</p>
+<o-form
+  service="planPrices"
+  entity="planPrice"
+  keys="PLAN_PRICE_ID"
+  header-actions="I"
+  show-header-navigation="no"
+  keys-sql-types="INTEGER"
+>
+<o-row>
+  <o-column title="{{ 'NEW_PLAN_PRICE' | oTranslate}}" fxFlex>
+      <o-row fxFlex="100">
+        <o-currency-input
+        class="price-input"
+        attr="PLAN_PRICE_VALUE"
+        fxFlex="33"
+        layout-padding
+        required="yes"
+      ></o-currency-input>
+         
+          <o-date-input
+          attr="PLAN_PRICE_START"
+          label="PLAN_PRICE_START"
+          read-only="no"
+          format="LL"
+          required="yes"
+          layout-padding
+          min="01/01/1980"
+          max="01/01/2024"
+          text-input-enabled="no"
+          fxFlex="33"
+         ></o-date-input>
+      </o-row>
+  </o-column>
+</o-row>
+</o-form>
