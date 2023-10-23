@@ -10,8 +10,9 @@ import {
   ChartService,
   MultiBarChartConfiguration,
   OChartComponent,
+
 } from "ontimize-web-ngx-charts";
-import { OntimizeService } from "ontimize-web-ngx";
+import { OntimizeService,FilterExpressionUtils, Expression } from "ontimize-web-ngx";
 
 @Component({
   selector: "app-category-expense-chart",
@@ -177,4 +178,26 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
     this.categoryChart.reloadData();
     console.log(this.categoryChart.dataArray);
   }
+
+  createFilter(values: Array<{ attr, value }>): Expression {
+    let filters: Array<Expression> = [];
+    values.forEach(fil => {
+       if (fil.value) {
+          if (fil.attr === 'PLAN_PRICE_START') {
+             filters.push(FilterExpressionUtils.buildExpressionMoreEqual('PLAN_PRICE_START' ,fil.value));
+          }
+          if (fil.attr === 'PLAN_PRICE_END') {
+             filters.push(FilterExpressionUtils.buildExpressionLessEqual('PLAN_PRICE_END', fil.value));
+          }
+        
+       }
+    });
+
+    if (filters.length > 0) {
+       return filters.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND));
+    } else {
+       return null;
+    }
+ }
 }
+

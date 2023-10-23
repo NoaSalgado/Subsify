@@ -1,7 +1,46 @@
+<o-form show-header="no">
+  <o-column-collapsible title="{{ 'Filtrar datos' | oTranslate }}" appearance="outline">
+     <o-row layout-gap="18px">
+        <o-column fxFlex="50" title="{{ 'FROM' | oTranslate }}">
+           <o-date-input attr="startInit" label="FROM" read-only="no" required="no"></o-date-input>
+        </o-column>
+        <o-column fxFlex="50" title="{{ 'TO' | oTranslate }}">
+           <o-date-input attr="endInit" label="TO" read-only="no" required="no"></o-date-input>
+        </o-column>
+     </o-row>
+     <o-row layout-align="end" layout-gap="18px">
+        <o-button attr="filter" [oFilterBuilderQuery]="filterBuilder" type="RAISED" label="FILTER"
+           class="filter-button">
+        </o-button>
+        <o-button attr="clear" [oFilterBuilderClear]="filterBuilder" type="RAISED" label="CLEAR" class="filter-button">
+        </o-button>
+     </o-row>
+  </o-column-collapsible>
+
+  <o-filter-builder #filterBuilder attr="thefilter"
+     filters="PLAN_PRICE_START:startInit;PLAN_PRICE_END:endInit" [target]="planPriceTable"
+     query-on-change="no" query-on-change-delay="500" [expression-builder]="createFilter"></o-filter-builder>
+
+     <div fxFill>
+      <o-table #planPriceTable fxFlex attr="planPriceTable" service="planPrices" entity="freqByPlanPrice" keys="PLAN_PRICE_ID"
+         columns="PLAN_PRICE_START;PLAN_PRICE_END;PLAN_PRICE_ID;CAT_NAME"
+         visible-columns="PLAN_PRICE_START;PLAN_PRICE_END;CAT_NAME" query-rows="13">
+         <o-table-column attr="CAT_NAME" title="CAT_NAME" type="TEXT" ></o-table-column>
+         <o-table-column attr="PLAN_PRICE_START" title="START" type="date" format="LL"></o-table-column>
+         <o-table-column attr="PLAN_PRICE_END" title="END" type="date" format="LL"></o-table-column>
+        
+      </o-table>
+   </div>
+
+     
+</o-form>
+
 <o-chart
-  #categoryChart
-  type="multiBar"
-  x-label="Axis x"
-  y-label="Axis Y"
-  [chart-parameters]="chartParameters"
-></o-chart>
+     #categoryChart
+     type="multiBar"
+     x-label="Axis x"
+     y-label="Axis Y"
+     [chart-parameters]="chartParameters"
+   ></o-chart>
+
+

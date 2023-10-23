@@ -18,6 +18,8 @@
             <AmbiguousColumns>
                 <AmbiguousColumn name="plan_id" prefix="p"/>
                 <AmbiguousColumn name="fr_id" prefix="f"/>
+                <AmbiguousColumn name="platf_id" prefix="pl"/>
+                <AmbiguousColumn name="cat_id" prefix="c"/>
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
@@ -25,6 +27,8 @@
                 from plan_price pp
                 inner join plan p on pp.plan_id = p.plan_id
                 inner join frequency f on f.fr_id = p.fr_id
+                inner join platform pl on pl.platf_id=p.platf_id
+                inner join category c on c.cat_id=pl.cat_id
                 #WHERE#;
                  ]]>
             </Sentence>
