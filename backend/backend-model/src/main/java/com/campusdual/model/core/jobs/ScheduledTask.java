@@ -50,7 +50,7 @@ public class ScheduledTask {
 
             EntityResult subscriptionsToUpdate = subLapseService.subLapseQueryRenewal(new HashMap<>(), columns);
 
-            /*
+
             int erSize = subscriptionsToUpdate.calculateRecordNumber();
 
             for(int i=0;i<erSize;i++){
@@ -60,7 +60,8 @@ public class ScheduledTask {
                 Map<String,Object> attrs=new HashMap<>();
                 attrs.put(SubLapseDao.SUBS_ID, subsRegistry.get(SubLapseDao.SUBS_ID));
                 attrs.put(SubLapseDao.PRICE, subsRegistry.get(SubLapseDao.PRICE));
-                attrs.put(SubscriptionDao.FREQUENCY, subsRegistry.get(SubscriptionDao.FREQUENCY));
+                attrs.put(PlanDao.FR_ID, subsRegistry.get(PlanDao.FR_ID));
+
 
                 java.sql.Date oldEndDate = (java.sql.Date) subsRegistry.get(SubLapseDao.END);
                 LocalDate dateLD = oldEndDate.toLocalDate();
@@ -72,7 +73,7 @@ public class ScheduledTask {
 
                 subLapseService.subLapseInsert(attrs);
             }
-             */
+
         } catch (Exception e) {
             e.printStackTrace();
             EntityResult res = new EntityResultMapImpl();
