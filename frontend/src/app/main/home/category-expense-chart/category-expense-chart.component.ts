@@ -15,6 +15,7 @@ import {
   OntimizeService,
   FilterExpressionUtils,
   Expression,
+  OTableComponent,
 } from "ontimize-web-ngx";
 import { D3Locales } from "src/app/shared/d3-locale/locales";
 
@@ -26,11 +27,13 @@ declare let d3: any;
   styleUrls: ["./category-expense-chart.component.css"],
 })
 export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
+  @ViewChild("subLapseTable", { static: false }) subLapseTable: OTableComponent;
   @ViewChild("categoryChart", { static: false })
   protected categoryChart: OChartComponent;
   protected chartParameters: MultiBarChartConfiguration;
   protected service: OntimizeService;
   protected d3Locale: any;
+  protected subLpases: any;
 
   constructor(
     protected injector: Injector,
@@ -58,8 +61,6 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
         chartOps["yScale"] = yScale;
         chartOps["yDomain"] = [0, 300];
       }
-
-      this.getData();
     }
   }
 
@@ -77,48 +78,51 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
     this.service.configureService(conf);
   }
 
-  private getData(): void {
-    this.service
-      .query(
-        {},
-        [
-          "sub_lapse_start",
-          "sub_lapse_end",
-          "sub_lapse_price",
-          "fr_value",
-          "cat_name",
-        ],
-        "subLapseChartCategory"
-      )
-      .subscribe((res) => {
-        if (res.code === 0) {
-          this.processData(res.data);
-        }
-      });
+  protected getSubLapses(event) {
+    this.subLpases = event;
+    this.processData(this.subLpases);
   }
+
+  // private getData(): void {
+  //   this.service
+  //     .query(
+  //       {},
+  //       [
+  //         "sub_lapse_start",
+  //         "sub_lapse_end",
+  //         "sub_lapse_price",
+  //         "fr_value",
+  //         "cat_name",
+  //       ],
+  //       "subLapseChartCategory"
+  //     )
+  //     .subscribe((res) => {
+  //       if (res.code === 0) {
+  //         this.processData(res.data);
+  //       }
+  //     });
+  // }
 
   processData(data: any): void {
     const chartData = [];
 
     const subsStartDates = data.map((sub) => {
-      const subStartMonth = new Date(sub.sub_lapse_start).getMonth();
-      const subStartYear = new Date(sub.sub_lapse_start).getFullYear();
+      const subStartMonth = new Date(sub.SUB_LAPSE_START).getMonth();
+      const subStartYear = new Date(sub.SUB_LAPSE_START).getFullYear();
       return new Date(subStartYear, subStartMonth);
     });
 
     const subsEndDates = data.map((sub) => {
       const currentYear = new Date().getFullYear();
       const currentMonth = new Date().getMonth();
-      const subEndMonth = new Date(sub.sub_lapse_end).getMonth();
-      return new Date(sub.sub_lapse_end).getFullYear() > currentYear ||
+      const subEndMonth = new Date(sub.SUB_LAPSE_END).getMonth();
+      return new Date(sub.SUB_LAPSE_END).getFullYear() > currentYear ||
         subEndMonth > currentMonth
         ? new Date(currentYear, currentMonth)
         : new Date(currentYear, subEndMonth);
     });
-
     const chartStartDate = new Date(Math.min(...subsStartDates));
     const chartEndDate = new Date(Math.max(...subsEndDates));
-
     let chartDates = [new Date(chartStartDate)];
 
     while (chartStartDate < chartEndDate) {
@@ -128,7 +132,7 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
       chartDates.push(nextDate);
     }
 
-    const categories = Array.from(new Set(data.map((sub) => sub.cat_name)));
+    const categories = Array.from(new Set(data.map((sub) => sub.CAT_NAME)));
     categories.forEach((category) => {
       const values = chartDates.map((date) => ({
         x: date,
@@ -140,25 +144,25 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
       });
     });
 
+    console.log(chartData);
     data.forEach((subLapse) => {
       const {
-        sub_lapse_start: startDate,
-        sub_lapse_end: endDate,
-        sub_lapse_price: price,
-        fr_value: frequency,
-        cat_name: category,
+        SUB_LAPSE_START: startDate,
+        SUB_LAPSE_END: endDate,
+        SUB_LAPSE_PRICE: price,
+        FR_VALUE: frequency,
+        CAT_NAME: category,
       } = subLapse;
       const currentCategoryObj = chartData.find(
         (catObj) => catObj.key === category
       );
-
       this.getSubscriptionPaymentDates(
         new Date(startDate),
         new Date(endDate)
       ).forEach((date) => {
-        const currentValueObj = currentCategoryObj.values.find(
-          (value) => value.x.getTime() === date.getTime()
-        );
+        const currentValueObj = currentCategoryObj.values.find((value) => {
+          return value.x.getTime() === date.getTime();
+        });
         currentValueObj.y += price / frequency;
       });
     });

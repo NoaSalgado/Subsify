@@ -66,9 +66,10 @@
       service="subLapses"
       entity="subLapseChartCategory"
       keys="SUB_LAPSE_ID"
-      columns="SUB_LAPSE_START;SUB_LAPSE_END;SUB_LAPSE_PRICE;CAT_NAME"
+      columns="SUB_LAPSE_START;SUB_LAPSE_END;SUB_LAPSE_PRICE;CAT_NAME;FR_VALUE"
       visible-columns="SUB_LAPSE_START;SUB_LAPSE_END;CAT_NAME"
       query-rows="13"
+      (onDataLoaded)="getSubLapses($event)"
     >
       <o-table-column
         attr="CAT_NAME"
