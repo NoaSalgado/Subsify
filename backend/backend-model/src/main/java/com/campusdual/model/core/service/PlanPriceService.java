@@ -52,19 +52,25 @@ public class PlanPriceService implements IPlanPriceService {
 
         EntityResult er = this.planService.planQuery(newKeyValues,newAttributes);
         int erSize = er.calculateRecordNumber();
+        ZoneId zoneId = ZoneId.systemDefault();
 
         for(int i=0;i<erSize;i++){
 
             Map<String,Object> planPriceRegistry =  er.getRecordValues(i);
             java.sql.Date oldEndDate = (java.sql.Date) planPriceRegistry.get(PlanPriceDao.END);
+            java.sql.Date oldStartDate = (java.sql.Date) planPriceRegistry.get(PlanPriceDao.START);
+            LocalDate oldStartDateLD = oldStartDate.toLocalDate();
 
             if(oldEndDate == null) {
                 java.util.Date newEndDate = (java.util.Date) attributes.get(PlanPriceDao.START);
                 Instant instant = newEndDate.toInstant();
-                ZoneId zoneId = ZoneId.systemDefault();
-                LocalDate aux = instant.atZone(zoneId).toLocalDate();
-                LocalDate newEndDateLD = aux.minusDays(1);
+                LocalDate newEndDateLD = instant.atZone(zoneId).toLocalDate();
 
+                if (newEndDateLD.isBefore(oldStartDateLD) || newEndDateLD.isEqual(oldStartDateLD)){
+                    //TODO return representative error to front
+                    return null;
+                }
+                newEndDateLD = newEndDateLD.minusDays(1);
                 Map<String, Object> newKeyValuesUpdate = new HashMap<>();
                 newKeyValuesUpdate.put(PlanPriceDao.ID, planPriceRegistry.get(PlanPriceDao.ID));
 
