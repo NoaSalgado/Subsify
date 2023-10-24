@@ -42,9 +42,9 @@
         <Query id="query_renewal">
             <AmbiguousColumns>
                 <AmbiguousColumn name="subs_id" prefix="sl"/>
-                <AmbiguousColumn name="platf_id" prefix="p"/>
-                <AmbiguousColumn name="plan_price_id" prefix="ppid"/>
-                <AmbiguousColumn name="plan_id" prefix="plid"/>
+                <AmbiguousColumn name="platf_id" prefix="plat"/>
+                <AmbiguousColumn name="plan_price_id" prefix="pp"/>
+                <AmbiguousColumn name="plan_id" prefix="p"/>
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
