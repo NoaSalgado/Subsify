@@ -42,5 +42,12 @@
   "PLATFORMS": "Platforms",
   "PLATFORMS_INFORMATION": "Platforms Detail",
   "NEW_PLATFORM": "New Platform",
-  "PLAN_NAME": "Subscription Plan"
+  "PLAN_NAME": "Subscription Plan",
+  "PLAN_PRICE_VALUE": "Price",
+  "PLANS": "Plans",
+  "PLAN_PRICE_START": "Start date",
+  "PLAN_PRICE_END": "End date",
+  "NEW_PLAN": "New Plan",
+  "PLANS_INFORMATION": "Plan detail",
+  "NEW_PLAN_PRICE": "New plan price"
 }
