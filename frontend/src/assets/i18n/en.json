@@ -49,5 +49,7 @@
   "PLAN_PRICE_END": "End date",
   "NEW_PLAN": "New Plan",
   "PLANS_INFORMATION": "Plan detail",
-  "NEW_PLAN_PRICE": "New plan price"
+  "NEW_PLAN_PRICE": "New plan price",
+  "CLEAR":"Clear",
+  "EXPENSE_HISTORY":"Expense History"
 }

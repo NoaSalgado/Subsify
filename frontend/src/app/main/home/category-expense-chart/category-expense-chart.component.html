@@ -1,34 +1,24 @@
-<o-chart
-  #categoryChart
-  type="multiBar"
-  x-label="Axis x"
-  y-label="Axis Y"
-  [chart-parameters]="chartParameters"
-></o-chart>
+<h1 class="expenseHistory">{{'EXPENSE_HISTORY' | oTranslate}}</h1>
 <o-form show-header="no">
-  <o-column-collapsible
-    title="{{ 'Filtrar datos' | oTranslate }}"
-    appearance="outline"
-  >
-    <o-row layout-gap="18px">
-      <o-column fxFlex="50" title="{{ 'FROM' | oTranslate }}">
+  <o-column >
+    <o-row layout-gap="18px" >
+      
         <o-date-input
           attr="startInit"
           label="FROM"
           read-only="no"
           required="no"
         ></o-date-input>
-      </o-column>
-      <o-column fxFlex="50" title="{{ 'TO' | oTranslate }}">
+
         <o-date-input
           attr="endInit"
           label="TO"
           read-only="no"
           required="no"
         ></o-date-input>
-      </o-column>
+
     </o-row>
-    <o-row layout-align="end" layout-gap="18px">
+    <o-row layout-gap="18px" class="layout">
       <o-button
         attr="filter"
         [oFilterBuilderQuery]="filterBuilder"
@@ -46,7 +36,16 @@
       >
       </o-button>
     </o-row>
-  </o-column-collapsible>
+  </o-column>
+  <br><br>
+  <br><br>
+  <o-chart
+  #categoryChart
+  type="multiBar"
+  x-label="Axis x"
+  y-label="Axis Y"
+  [chart-parameters]="chartParameters"
+></o-chart>
 
   <o-filter-builder
     #filterBuilder
@@ -59,7 +58,7 @@
   ></o-filter-builder>
 
   <div fxFill>
-    <o-table
+    <o-table class="nodisplay"
       #subLapseTable
       fxFlex
       attr="subLapseTable"

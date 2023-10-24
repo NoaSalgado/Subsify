@@ -43,6 +43,11 @@
     {
       "permissionId": "plans-table-route",
       "enabled": true
+    },
+    {
+      "permissionId": "home-chart-route",
+      "enabled": false
     }
+
   ]
 }

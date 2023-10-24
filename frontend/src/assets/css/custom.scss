@@ -11,12 +11,12 @@ table {
   border-radius: 0.3rem !important;
 }
 
-.mat-stroked-button {
+.mat-stroked-button,.mat-raised-button {
   background-color: #dbf0fe !important;
   color: #065471 !important;
 }
 
-.mat-stroked-button:hover {
+.mat-stroked-button:hover,.mat-raised-button:hover {
   background-color: #065471 !important;
   color: #dbf0fe !important;
 }

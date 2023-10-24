@@ -15,6 +15,11 @@ export const routes: Routes = [
         path: "home",
         loadChildren: () =>
           import("./home/home.module").then((m) => m.HomeModule),
+        data:{
+          oPermission:{
+            permissionId: "home-chart-route"
+          }
+        }
       },
       {
         path: "subscriptions",
