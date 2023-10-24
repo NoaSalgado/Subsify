@@ -14,7 +14,13 @@
       "attr": "subscriptions",
       "visible": true,
       "enabled": true
+    },
+    {
+      "attr": "plans",
+      "visible": false,
+      "enabled": false
     }
+
   ],
   "routes": [
     {
@@ -28,6 +34,10 @@
     {
       "permissionId": "subscriptions-table-route",
       "enabled": true
+    },
+    {
+      "permissionId": "plans-table-route",
+      "enabled": false
     }
   ]
 }

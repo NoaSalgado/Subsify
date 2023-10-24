@@ -19,7 +19,13 @@
       "attr": "home",
       "visible": false,
       "enabled": false
+    },
+    {
+      "attr": "plans",
+      "visible": true,
+      "enabled": true
     }
+
   ],
   "routes": [
     {
@@ -32,6 +38,10 @@
     },
     {
       "permissionId": "subscriptions-table-route",
+      "enabled": true
+    },
+    {
+      "permissionId": "plans-table-route",
       "enabled": true
     }
   ]

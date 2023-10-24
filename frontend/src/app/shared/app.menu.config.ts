@@ -11,7 +11,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
   {
     id: "plans",
     name: "PLANS",
-    icon: "coronavirus",
+    icon: "event_note",
     route: "/main/plans",
   },
   {
