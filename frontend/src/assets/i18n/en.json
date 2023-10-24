@@ -51,5 +51,6 @@
   "PLANS_INFORMATION": "Plan detail",
   "NEW_PLAN_PRICE": "New plan price",
   "CLEAR":"Clear",
-  "EXPENSE_HISTORY":"Expense History"
+  "EXPENSE_HISTORY":"Expense History",
+  "ERROR_PLAN_INSERT_DATE_MESSAGE": "The start date cannot be earlier than or the same as the end date of the previous price."
 }

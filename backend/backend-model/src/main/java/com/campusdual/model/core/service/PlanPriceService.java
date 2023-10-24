@@ -6,6 +6,7 @@ import com.campusdual.model.core.dao.PlanDao;
 import com.campusdual.model.core.dao.PlanPriceDao;
 import com.campusdual.model.core.dao.SubLapseDao;
 import com.ontimize.jee.common.dto.EntityResult;
+import com.ontimize.jee.common.dto.EntityResultMapImpl;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import org.apache.commons.lang3.ObjectUtils;
@@ -68,7 +69,10 @@ public class PlanPriceService implements IPlanPriceService {
 
                 if (newEndDateLD.isBefore(oldStartDateLD) || newEndDateLD.isEqual(oldStartDateLD)){
                     //TODO return representative error to front
-                    return null;
+                    EntityResult errorEr = new EntityResultMapImpl();
+                    errorEr.setCode(EntityResult.OPERATION_WRONG);
+                    errorEr.setMessage("ERROR_PLAN_INSERT_DATE_MESSAGE");
+                    return errorEr;
                 }
                 newEndDateLD = newEndDateLD.minusDays(1);
                 Map<String, Object> newKeyValuesUpdate = new HashMap<>();
