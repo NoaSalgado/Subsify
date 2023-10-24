@@ -10,9 +10,15 @@ import {
   ChartService,
   MultiBarChartConfiguration,
   OChartComponent,
-
 } from "ontimize-web-ngx-charts";
-import { OntimizeService,FilterExpressionUtils, Expression } from "ontimize-web-ngx";
+import {
+  OntimizeService,
+  FilterExpressionUtils,
+  Expression,
+} from "ontimize-web-ngx";
+import { D3Locales } from "src/app/shared/d3-locale/locales";
+
+declare let d3: any;
 
 @Component({
   selector: "app-category-expense-chart",
@@ -24,13 +30,14 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
   protected categoryChart: OChartComponent;
   protected chartParameters: MultiBarChartConfiguration;
   protected service: OntimizeService;
+  protected d3Locale: any;
 
-  constructor(protected injector: Injector) {
-    this.chartParameters = new MultiBarChartConfiguration();
-    this.chartParameters.showXAxis = true;
-    this.chartParameters.showYAxis = true;
-    this.chartParameters.margin.left = 70;
-    this.chartParameters.margin.bottom = 15;
+  constructor(
+    protected injector: Injector,
+    private d3LocaleService: D3LocaleService
+  ) {
+    this.d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
+    this.configureChart(this.d3Locale);
 
     this.service = this.injector.get(OntimizeService);
   }
@@ -40,7 +47,29 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.getData();
+    if (this.categoryChart) {
+      let chartService: ChartService = this.categoryChart.getChartService();
+      if (chartService) {
+        let chartOps = chartService.getChartOptions();
+        chartOps["yAxis"]["tickFormat"] = function (d) {
+          return d3.format(",f")(d) + "€";
+        };
+        let yScale = d3.scale.linear();
+        chartOps["yScale"] = yScale;
+        chartOps["yDomain"] = [0, 300];
+      }
+
+      this.getData();
+    }
+  }
+
+  private configureChart(locale: any): void {
+    this.chartParameters = new MultiBarChartConfiguration();
+    this.chartParameters.showXAxis = true;
+    this.chartParameters.showYAxis = true;
+    this.chartParameters.margin.left = 70;
+    this.chartParameters.margin.bottom = 15;
+    this.chartParameters.xDataType = locale.timeFormat("%B - %Y");
   }
 
   protected configureService(): void {
@@ -71,43 +100,38 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
   processData(data: any): void {
     const chartData = [];
 
-    const currentYearSubs = data.filter((subLapse) => {
-      const currentYear = new Date().getFullYear();
-      return (
-        new Date(subLapse.sub_lapse_start).getFullYear() === currentYear ||
-        new Date(subLapse.sub_lapse_end).getFullYear() === currentYear
-      );
+    const subsStartDates = data.map((sub) => {
+      const subStartMonth = new Date(sub.sub_lapse_start).getMonth();
+      const subStartYear = new Date(sub.sub_lapse_start).getFullYear();
+      return new Date(subStartYear, subStartMonth);
     });
 
-    const subsStartMonths = currentYearSubs.map((sub) => {
+    const subsEndDates = data.map((sub) => {
       const currentYear = new Date().getFullYear();
-      return new Date(sub.sub_lapse_start).getFullYear() === currentYear
-        ? new Date(sub.sub_lapse_start).getMonth() + 1
-        : 1;
-    });
-
-    const subsEndMonths = currentYearSubs.map((sub) => {
-      const currentYear = new Date().getFullYear();
-      const currentMonth = new Date().getMonth() + 1;
+      const currentMonth = new Date().getMonth();
+      const subEndMonth = new Date(sub.sub_lapse_end).getMonth();
       return new Date(sub.sub_lapse_end).getFullYear() > currentYear ||
-        new Date(sub.sub_lapse_end).getMonth() + 1 > currentMonth
-        ? currentMonth
-        : new Date(sub.sub_lapse_end).getMonth() + 1;
+        subEndMonth > currentMonth
+        ? new Date(currentYear, currentMonth)
+        : new Date(currentYear, subEndMonth);
     });
 
-    const chartStartMonth = Math.min(...subsStartMonths);
-    const chartEndMonth = Math.max(...subsEndMonths);
-    const chartMonths = [];
-    for (let i = chartStartMonth; i <= chartEndMonth; i++) {
-      chartMonths.push(i);
+    const chartStartDate = new Date(Math.min(...subsStartDates));
+    const chartEndDate = new Date(Math.max(...subsEndDates));
+
+    let chartDates = [new Date(chartStartDate)];
+
+    while (chartStartDate < chartEndDate) {
+      const nextDate = new Date(
+        chartStartDate.setMonth(chartStartDate.getMonth() + 1)
+      );
+      chartDates.push(nextDate);
     }
 
-    const categories = Array.from(
-      new Set(currentYearSubs.map((sub) => sub.cat_name))
-    );
+    const categories = Array.from(new Set(data.map((sub) => sub.cat_name)));
     categories.forEach((category) => {
-      const values = chartMonths.map((month) => ({
-        x: month,
+      const values = chartDates.map((date) => ({
+        x: date,
         y: 0,
       }));
       chartData.push({
@@ -116,7 +140,7 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
       });
     });
 
-    currentYearSubs.forEach((subLapse) => {
+    data.forEach((subLapse) => {
       const {
         sub_lapse_start: startDate,
         sub_lapse_end: endDate,
@@ -124,80 +148,99 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
         fr_value: frequency,
         cat_name: category,
       } = subLapse;
-      const categoryIndex = this.getObjectIndex(chartData, category);
-      this.getSubscriptionPaymentMonths(
+      const currentCategoryObj = chartData.find(
+        (catObj) => catObj.key === category
+      );
+
+      this.getSubscriptionPaymentDates(
         new Date(startDate),
         new Date(endDate)
-      ).forEach((month) => {
-        const monthIndex = this.getObjectIndex(
-          chartData[categoryIndex].values,
-          month
+      ).forEach((date) => {
+        const currentValueObj = currentCategoryObj.values.find(
+          (value) => value.x.getTime() === date.getTime()
         );
-        chartData[categoryIndex].values[monthIndex].y += price / frequency;
+        currentValueObj.y += price / frequency;
       });
     });
-    console.log(chartData);
     this.setChartData(chartData);
   }
 
-  private existsValue(arr: Array<Object>, value: string | number): boolean {
-    return arr.some((obj) => Object.values(obj).includes(value));
-  }
-
-  private getSubscriptionPaymentMonths(
+  private getSubscriptionPaymentDates(
     startDate: Date,
     endDate: Date
-  ): Array<number> {
-    const subscriptionPaymentMonths = [];
-
+  ): Array<Date> {
     const currentYear = new Date().getFullYear();
-    const currentMonth = new Date().getMonth() + 1;
+    const currentMonth = new Date().getMonth();
 
-    const startMonth =
-      startDate.getFullYear() === currentYear ? startDate.getMonth() + 1 : 1;
+    const paymentStartDate =
+      startDate.getFullYear() === currentYear
+        ? new Date(startDate.getFullYear(), startDate.getMonth())
+        : new Date(currentYear, 1, 1);
 
-    const endMonth =
+    const paymentEndDate =
       endDate.getFullYear() > currentYear ||
       endDate.getMonth() + 1 > currentMonth + 1
-        ? currentMonth + 1
-        : endDate.getMonth() + 1;
+        ? new Date(currentYear, currentMonth, 1)
+        : new Date(endDate.getFullYear(), endDate.getMonth());
 
-    for (let i = startMonth; i < endMonth; i++) {
-      subscriptionPaymentMonths.push(i);
+    const subscriptionPaymentDates = [new Date(paymentStartDate)];
+
+    while (paymentStartDate < paymentEndDate) {
+      const nextPayment = new Date(
+        paymentStartDate.setMonth(paymentStartDate.getMonth() + 1)
+      );
+      subscriptionPaymentDates.push(nextPayment);
     }
-    console.log(subscriptionPaymentMonths);
-    return subscriptionPaymentMonths;
-  }
-
-  private getObjectIndex(arr: Array<Object>, value: string | number): number {
-    return arr.findIndex((obj) => Object.values(obj).includes(value));
+    return subscriptionPaymentDates;
   }
 
   private setChartData(data: Array<Object>): void {
     this.categoryChart.setDataArray(data);
     this.categoryChart.reloadData();
-    console.log(this.categoryChart.dataArray);
   }
 
-  createFilter(values: Array<{ attr, value }>): Expression {
+  createFilter(values: Array<{ attr; value }>): Expression {
     let filters: Array<Expression> = [];
-    values.forEach(fil => {
-       if (fil.value) {
-          if (fil.attr === 'PLAN_PRICE_START') {
-             filters.push(FilterExpressionUtils.buildExpressionMoreEqual('PLAN_PRICE_START' ,fil.value));
-          }
-          if (fil.attr === 'PLAN_PRICE_END') {
-             filters.push(FilterExpressionUtils.buildExpressionLessEqual('PLAN_PRICE_END', fil.value));
-          }
-        
-       }
+    values.forEach((fil) => {
+      if (fil.value) {
+        if (fil.attr === "SUB_LAPSE_START") {
+          filters.push(
+            FilterExpressionUtils.buildExpressionMoreEqual(
+              "SUB_LAPSE_START",
+              fil.value
+            )
+          );
+        }
+        if (fil.attr === "SUB_LAPSE_END") {
+          filters.push(
+            FilterExpressionUtils.buildExpressionLessEqual(
+              "SUB_LAPSE_END",
+              fil.value
+            )
+          );
+        }
+      }
     });
 
     if (filters.length > 0) {
-       return filters.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND));
+      console.log(
+        filters.reduce((exp1, exp2) =>
+          FilterExpressionUtils.buildComplexExpression(
+            exp1,
+            exp2,
+            FilterExpressionUtils.OP_AND
+          )
+        )
+      );
+      return filters.reduce((exp1, exp2) =>
+        FilterExpressionUtils.buildComplexExpression(
+          exp1,
+          exp2,
+          FilterExpressionUtils.OP_AND
+        )
+      );
     } else {
-       return null;
+      return null;
     }
- }
+  }
 }
-
