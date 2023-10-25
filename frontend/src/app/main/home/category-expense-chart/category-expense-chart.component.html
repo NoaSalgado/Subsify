@@ -1,51 +1,43 @@
-<h1 class="expenseHistory">{{'EXPENSE_HISTORY' | oTranslate}}</h1>
+<h1 class="expenseHistory">{{ "EXPENSE_HISTORY" | oTranslate }}</h1>
 <o-form show-header="no">
-  <o-column >
-    <o-row layout-gap="18px" >
-      
-        <o-date-input
-          attr="startInit"
-          label="FROM"
-          read-only="no"
-          required="no"
-        ></o-date-input>
+  <o-row layout-align="default center" layout-gap="18px">
+    <o-date-input
+      attr="startInit"
+      label="FROM"
+      read-only="no"
+      required="no"
+    ></o-date-input>
 
-        <o-date-input
-          attr="endInit"
-          label="TO"
-          read-only="no"
-          required="no"
-        ></o-date-input>
-
-    </o-row>
-    <o-row layout-gap="18px" class="layout">
-      <o-button
-        attr="filter"
-        [oFilterBuilderQuery]="filterBuilder"
-        type="RAISED"
-        label="FILTER"
-        class="filter-button"
-      >
-      </o-button>
-      <o-button
-        attr="clear"
-        [oFilterBuilderClear]="filterBuilder"
-        type="RAISED"
-        label="CLEAR"
-        class="filter-button"
-      >
-      </o-button>
-    </o-row>
-  </o-column>
-  <br><br>
-  <br><br>
+    <o-date-input
+      attr="endInit"
+      label="TO"
+      read-only="no"
+      required="no"
+    ></o-date-input>
+    <o-button
+      attr="filter"
+      [oFilterBuilderQuery]="filterBuilder"
+      type="RAISED"
+      label="FILTER"
+      class="filter-button"
+    >
+    </o-button>
+    <o-button
+      attr="clear"
+      [oFilterBuilderClear]="filterBuilder"
+      type="RAISED"
+      label="CLEAR"
+      class="filter-button"
+    >
+    </o-button>
+  </o-row>
   <o-chart
-  #categoryChart
-  type="multiBar"
-  x-label="Axis x"
-  y-label="Axis Y"
-  [chart-parameters]="chartParameters"
-></o-chart>
+    #categoryChart
+    type="multiBar"
+    x-label="Axis x"
+    y-label="Axis Y"
+    [chart-parameters]="chartParameters"
+  ></o-chart>
 
   <o-filter-builder
     #filterBuilder
@@ -58,7 +50,8 @@
   ></o-filter-builder>
 
   <div fxFill>
-    <o-table class="nodisplay"
+    <o-table
+      class="nodisplay"
       #subLapseTable
       fxFlex
       attr="subLapseTable"

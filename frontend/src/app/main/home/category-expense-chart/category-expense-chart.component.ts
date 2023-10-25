@@ -16,8 +16,10 @@ import {
   FilterExpressionUtils,
   Expression,
   OTableComponent,
+  OTranslateService,
 } from "ontimize-web-ngx";
 import { D3Locales } from "src/app/shared/d3-locale/locales";
+import { Subscription } from "rxjs";
 
 declare let d3: any;
 
@@ -31,17 +33,23 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
   @ViewChild("categoryChart", { static: false })
   protected categoryChart: OChartComponent;
   protected chartParameters: MultiBarChartConfiguration;
+  private translateServiceSubscription: Subscription;
   protected service: OntimizeService;
   protected d3Locale: any;
   protected subLpases: any;
+  private translateService: any;
 
   constructor(
     protected injector: Injector,
-    private d3LocaleService: D3LocaleService
+    private d3LocaleService: D3LocaleService,
+    private translate: OTranslateService
   ) {
     this.d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
+    this.translateServiceSubscription =
+      this.translate.onLanguageChanged.subscribe(() => {
+        location.reload();
+      });
     this.configureChart(this.d3Locale);
-
     this.service = this.injector.get(OntimizeService);
   }
 
@@ -59,7 +67,7 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
         };
         let yScale = d3.scale.linear();
         chartOps["yScale"] = yScale;
-        chartOps["yDomain"] = [0, 300];
+        chartOps["yDomain"] = [0, 200];
       }
     }
   }
@@ -193,8 +201,10 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
       const nextPayment = new Date(
         paymentStartDate.setMonth(paymentStartDate.getMonth() + 1)
       );
+      if (paymentStartDate >= paymentEndDate) break;
       subscriptionPaymentDates.push(nextPayment);
     }
+    console.log(subscriptionPaymentDates);
     return subscriptionPaymentDates;
   }
 
