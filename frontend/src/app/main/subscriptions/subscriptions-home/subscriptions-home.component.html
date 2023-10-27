@@ -9,7 +9,17 @@
     columns="SUB_LAPSE_ID;SUB_LAPSE_END;PLATF_NAME;SUB_LAPSE_PRICE;PLAN_NAME;FR_VALUE"
     visible-columns="PLATF_NAME;SUB_LAPSE_END;MONTHLY_PRICE;PLAN_NAME"
     query-rows="20"
+    auto-align-titles="no"
   >
+
+
+  <o-table-column
+      attr="PLATF_NAME"
+      title="PLATF_NAME"
+      content-align="start"
+    >
+    </o-table-column>
+
     <o-table-column
       attr="SUB_LAPSE_PRICE"
       title="SUB_LAPSE_PRICE"
@@ -18,6 +28,7 @@
       decimal-separator=","
       currency-symbol="€"
       currency-symbol-position="right"
+      content-align="center"
     >
     </o-table-column>
 
@@ -26,6 +37,7 @@
       title="START_DATE"
       type="date"
       format="LL"
+      content-align="center"
     ></o-table-column>
     <o-table-column
       attr="SUB_LAPSE_END"
@@ -33,8 +45,16 @@
       type="date"
       format="LL"
       class="o-table-column-centered"
+      content-align="center"
     >
     </o-table-column>
+
+    <o-table-column
+    attr="PLAN_NAME"
+    title="PLAN_NAME"
+    content-align="end"
+  >
+  </o-table-column>
 
     <o-table-column-calculated
       attr="MONTHLY_PRICE"
@@ -45,11 +65,12 @@
       class="o-table-column-centered"
       currency-symbol="€"
       currency-symbol-position="right"
+      content-align="end"
     >
     </o-table-column-calculated>
 
     <o-table-columns-grouping>
-      <o-table-columns-grouping-column attr="MONTHLY_PRICE" aggregate="sum">
+      <o-table-columns-grouping-column attr="MONTHLY_PRICE" aggregate="sum" >
       </o-table-columns-grouping-column>
     </o-table-columns-grouping>
 
