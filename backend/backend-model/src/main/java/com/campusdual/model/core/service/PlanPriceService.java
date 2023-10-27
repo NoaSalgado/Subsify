@@ -38,7 +38,7 @@ public class PlanPriceService implements IPlanPriceService {
 
     @Override
     public EntityResult planPriceQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
-        return this.daoHelper.query(this.planPriceDao, keysValues, attributes);
+        return this.daoHelper.query(this.planPriceDao, keysValues, attributes, PlanPriceDao.ORDER_BY_END_DATE_QUERY);
     }
 
     @Override

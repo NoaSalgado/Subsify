@@ -33,5 +33,15 @@
                  ]]>
             </Sentence>
         </Query>
+        <Query id = "order_by_end_date_query">
+            <Sentence>
+                <![CDATA[
+                SELECT #COLUMNS#
+                from plan_price
+                #WHERE#
+                order by plan_price_start DESC;
+                 ]]>
+            </Sentence>
+        </Query>
     </Queries>
 </JdbcEntitySetup>
