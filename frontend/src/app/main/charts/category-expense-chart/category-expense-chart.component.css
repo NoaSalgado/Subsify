@@ -1,0 +1,14 @@
+.nodisplay {
+    display: none !important;
+  }
+  
+  .expenseHistory {
+    color: #032a38 !important;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    justify-self: center !important;
+    
+  }

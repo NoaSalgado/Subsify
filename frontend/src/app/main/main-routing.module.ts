@@ -49,6 +49,13 @@ export const routes: Routes = [
             (m) => m.PlansModule
           ),
       },
+      {
+        path: "charts",
+        loadChildren: () =>
+          import("./charts/charts.module").then(
+            (m) => m.ChartsModule
+          ),
+      },
     ],
   },
 ];
