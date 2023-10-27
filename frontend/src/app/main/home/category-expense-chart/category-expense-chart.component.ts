@@ -20,6 +20,7 @@ import {
 } from "ontimize-web-ngx";
 import { D3Locales } from "src/app/shared/d3-locale/locales";
 import { Subscription } from "rxjs";
+import { CategoryExpenseChartService } from "./category-expense-chart.service";
 
 declare let d3: any;
 
@@ -42,7 +43,8 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
   constructor(
     protected injector: Injector,
     private d3LocaleService: D3LocaleService,
-    private translate: OTranslateService
+    private translate: OTranslateService,
+    private catExService: CategoryExpenseChartService
   ) {
     this.d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
     this.translateServiceSubscription =
@@ -91,26 +93,6 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
     this.processData(this.subLpases);
   }
 
-  // private getData(): void {
-  //   this.service
-  //     .query(
-  //       {},
-  //       [
-  //         "sub_lapse_start",
-  //         "sub_lapse_end",
-  //         "sub_lapse_price",
-  //         "fr_value",
-  //         "cat_name",
-  //       ],
-  //       "subLapseChartCategory"
-  //     )
-  //     .subscribe((res) => {
-  //       if (res.code === 0) {
-  //         this.processData(res.data);
-  //       }
-  //     });
-  // }
-
   processData(data: any): void {
     const chartData = [];
 
@@ -124,11 +106,17 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
       const currentYear = new Date().getFullYear();
       const currentMonth = new Date().getMonth();
       const subEndMonth = new Date(sub.SUB_LAPSE_END).getMonth();
-      return new Date(sub.SUB_LAPSE_END).getFullYear() > currentYear ||
-        subEndMonth > currentMonth
-        ? new Date(currentYear, currentMonth)
-        : new Date(currentYear, subEndMonth);
+      console.log(this.catExService);
+      if (!this.catExService.dataFiltered) {
+        return new Date(sub.SUB_LAPSE_END).getFullYear() > currentYear ||
+          subEndMonth > currentMonth
+          ? new Date(currentYear, currentMonth)
+          : new Date(currentYear, subEndMonth);
+      } else {
+        return new Date(currentYear, subEndMonth - 1);
+      }
     });
+
     const chartStartDate = new Date(Math.min(...subsStartDates));
     const chartEndDate = new Date(Math.max(...subsEndDates));
     let chartDates = [new Date(chartStartDate)];
@@ -137,6 +125,7 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
       const nextDate = new Date(
         chartStartDate.setMonth(chartStartDate.getMonth() + 1)
       );
+
       chartDates.push(nextDate);
     }
 
@@ -152,7 +141,6 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
       });
     });
 
-    console.log(chartData);
     data.forEach((subLapse) => {
       const {
         SUB_LAPSE_START: startDate,
@@ -204,7 +192,6 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
       if (paymentStartDate >= paymentEndDate) break;
       subscriptionPaymentDates.push(nextPayment);
     }
-    console.log(subscriptionPaymentDates);
     return subscriptionPaymentDates;
   }
 
@@ -213,11 +200,15 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
     this.categoryChart.reloadData();
   }
 
+  private filterData() {
+    this.catExService.updateDataFiltered(true);
+  }
+
   createFilter(values: Array<{ attr; value }>): Expression {
     let filters: Array<Expression> = [];
-    values.forEach((fil) => {
+    values.forEach((fil, i) => {
       if (fil.value) {
-        if (fil.attr === "SUB_LAPSE_START") {
+        if (fil.attr === "SUB_LAPSE_START" && i === 0) {
           filters.push(
             FilterExpressionUtils.buildExpressionMoreEqual(
               "SUB_LAPSE_START",
@@ -225,10 +216,10 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
             )
           );
         }
-        if (fil.attr === "SUB_LAPSE_END") {
+        if (fil.attr === "SUB_LAPSE_START" && i === 1) {
           filters.push(
             FilterExpressionUtils.buildExpressionLessEqual(
-              "SUB_LAPSE_END",
+              "SUB_LAPSE_START",
               fil.value
             )
           );
@@ -237,15 +228,6 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
     });
 
     if (filters.length > 0) {
-      console.log(
-        filters.reduce((exp1, exp2) =>
-          FilterExpressionUtils.buildComplexExpression(
-            exp1,
-            exp2,
-            FilterExpressionUtils.OP_AND
-          )
-        )
-      );
       return filters.reduce((exp1, exp2) =>
         FilterExpressionUtils.buildComplexExpression(
           exp1,
