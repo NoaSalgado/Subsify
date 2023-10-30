@@ -34,6 +34,7 @@
                 inner join plan p on p.plan_id = pp.plan_id
                 inner join platform platf on p.platf_id = platf.platf_id
                 inner join frequency f on f.fr_id = p.fr_id
+                 inner join user_sub us on us.subs_id=s.subs_id
                 #WHERE#;
                  ]]>
             </Sentence>
@@ -60,6 +61,7 @@
                 on last_s.subs_id = s.subs_id
                 inner join plan_price pp on pp.plan_price_id = s.plan_price_id
                 inner join plan p on p.plan_id = pp.plan_id
+                 inner join user_sub us on us.subs_id=s.subs_id
                 where sl.sub_lapse_end <= current_date and s.subs_autorenewal = true;
                  ]]>
             </Sentence>
@@ -88,6 +90,7 @@
                     p2.platf_id = p.platf_id
                 inner join category c on
                     c.cat_id = p2.cat_id
+                     inner join user_sub us on us.subs_id=s.subs_id
                     #WHERE#
                 ]]>
             </Sentence>
@@ -115,6 +118,7 @@
                 inner join plan p on p.plan_id = pp.plan_id
                 inner join platform platf on p.platf_id = platf.platf_id
                 inner join frequency f on f.fr_id = p.fr_id
+                inner join user_sub us on us.subs_id=s.subs_id
                 where (slf.sub_lapse_end::date - current_date::date)>= 0 and (slf.sub_lapse_end::date - current_date::date)<= 30;
                  ]]>
             </Sentence>

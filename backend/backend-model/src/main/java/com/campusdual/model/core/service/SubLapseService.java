@@ -4,6 +4,7 @@ import com.campusdual.api.core.service.ISubLapseService;
 import com.campusdual.model.core.dao.FrequencyDao;
 import com.campusdual.model.core.dao.SubLapseDao;
 import com.campusdual.model.core.dao.SubscriptionDao;
+import com.campusdual.model.core.dao.UserSubDao;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
@@ -38,7 +39,7 @@ public class SubLapseService implements ISubLapseService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> newKeyValues = new HashMap<>(keysValues);
         String username = authentication.getName();
-        newKeyValues.put(SubscriptionDao.USER,username);
+        newKeyValues.put(UserSubDao.USER,username);
 
         return this.daoHelper.query(this.subLapseDao, newKeyValues, attributes, SubLapseDao.ACTIVE_QUERY);
     }
@@ -48,7 +49,7 @@ public class SubLapseService implements ISubLapseService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> newKeyValues = new HashMap<>(keysValues);
         String username = authentication.getName();
-        newKeyValues.put(SubscriptionDao.USER,username);
+        newKeyValues.put(UserSubDao.USER,username);
 
         return this.daoHelper.query(this.subLapseDao, newKeyValues, attributes, SubLapseDao.SUBSCRIPTIONS_TO_RENEW);
     }
@@ -63,7 +64,7 @@ public class SubLapseService implements ISubLapseService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> newKeyValues = new HashMap<>(keysValues);
         String username = authentication.getName();
-        newKeyValues.put(SubscriptionDao.USER,username);
+        newKeyValues.put(UserSubDao.USER,username);
         return this.daoHelper.query(this.subLapseDao, newKeyValues, attributes, SubLapseDao.CHARTCATEGORY_QUERY);
     }
 
