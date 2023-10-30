@@ -106,7 +106,7 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
       const currentYear = new Date().getFullYear();
       const currentMonth = new Date().getMonth();
       const subEndMonth = new Date(sub.SUB_LAPSE_END).getMonth();
-      console.log(this.catExService);
+
       if (!this.catExService.dataFiltered) {
         return new Date(sub.SUB_LAPSE_END).getFullYear() > currentYear ||
           subEndMonth > currentMonth

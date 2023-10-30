@@ -18,9 +18,12 @@ export const SERVICE_CONFIG: Object = {
     path: "/plans",
   },
   permissions: {
-    path: "/permissions/permission"
+    path: "/permissions/permission",
   },
-  planPrices:{
-    path: "/planPrices"
-  }
+  planPrices: {
+    path: "/planPrices",
+  },
+  sharedSubs: {
+    path: "/sharedSubs",
+  },
 };

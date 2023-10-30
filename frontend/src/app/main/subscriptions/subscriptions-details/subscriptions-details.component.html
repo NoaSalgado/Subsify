@@ -1,10 +1,12 @@
 <o-form
+  #subscriptionDetailForm
   service="subLapses"
   entity="subLapse"
   keys="SUB_LAPSE_ID;SUBS_ID;FR_ID"
   header-actions="U"
   show-header-navigation="no"
   keys-sql-types="INTEGER"
+  (onDataLoaded)="transferData()"
 >
   <o-column title="{{ 'SUBSCRIPTION_INFORMATION' | oTranslate }}">
     <o-row fxFlex="100">
@@ -13,21 +15,18 @@
         layout-padding
         fxFlex="33"
         read-only="yes"
-
       ></o-text-input>
       <o-text-input
         attr="PLAN_NAME"
         layout-padding
         fxFlex="33"
         read-only="yes"
-       
       ></o-text-input>
       <o-text-input
         attr="FR_NAME"
         layout-padding
         fxFlex="33"
         read-only="yes"
- 
       ></o-text-input>
     </o-row>
     <o-row>
@@ -64,4 +63,30 @@
       ></o-checkbox>
     </o-row>
   </o-column>
+</o-form>
+
+<o-form
+  #sharedUsersForm
+  service="sharedSubs"
+  entity="sharedSub"
+  keys="SHARED_SUB_ID"
+  header-actions="R;I;U;D"
+  show-header-navigation="no"
+>
+  <o-row>
+    <o-column
+      title="{{ '¿Quieres compartir suscripción?' | oTranslate }}"
+      fxFlex
+    >
+      <o-row fxFlex="100">
+        <o-text-input attr="SHARED_SUB_USER" required="yes"></o-text-input>
+        <o-integer-input
+          attr="SUBS_ID"
+          required="yes"
+          read-only="yes"
+          class="hide"
+        ></o-integer-input>
+      </o-row>
+    </o-column>
+  </o-row>
 </o-form>
