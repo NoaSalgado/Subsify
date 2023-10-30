@@ -3,14 +3,14 @@
         xmlns="http://www.ontimize.com/schema/jdbc"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
-        catalog="" schema="${mainschema}" table="SHARED_SUBS"
+        catalog="" schema="${mainschema}" table="SHARED_SUB"
         datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
 
     <DeleteKeys>
-        <Column>SHARED_SUBS_ID</Column>
+        <Column>SHARED_SUB_ID</Column>
     </DeleteKeys>
     <UpdateKeys>
-        <Column>SHARED_SUBS_ID</Column>
+        <Column>SHARED_SUB_ID</Column>
     </UpdateKeys>
-    <GeneratedKey>shared_subs_id</GeneratedKey>
+    <GeneratedKey>shared_sub_id</GeneratedKey>
 </JdbcEntitySetup>
