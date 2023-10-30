@@ -26,4 +26,7 @@ export const SERVICE_CONFIG: Object = {
   sharedSubs: {
     path: "/sharedSubs",
   },
+  userSubs:{
+    path:"/userSubs"
+  }
 };
