@@ -19,4 +19,7 @@ public class SubLapseDao extends OntimizeJdbcDaoSupport {
     public static final String ACTIVE_QUERY = "query_active";
     public static final String RENEWAL_QUERY = "query_renewal";
     public static final String CHARTCATEGORY_QUERY = "query_chart_category";
+
+
+    public static final String SUBSCRIPTIONS_TO_RENEW = "query_subscriptions_to_renew";
 }
