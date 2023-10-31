@@ -1,33 +1,27 @@
-<o-list #list attr="customerlist" title="SUBSCRIPTIONS" service="subLapses" entity="subLapseToRenew"
-columns="SUB_LAPSE_ID;PLATF_NAME;SUB_LAPSE_END;SUB_LAPSE_PRICE" keys="SUB_LAPSE_ID">
-    <mat-card *ngFor="let rowData of list.dataArray" [o-list-item]="rowData">
+<o-list #list (onDataLoaded)="calculateDays()" attr="customerlist" title="SUBSCRIPTIONS" service="subLapses" entity="subLapseToRenew"
+columns="SUB_LAPSE_ID;PLATF_NAME;SUB_LAPSE_END;SUB_LAPSE_PRICE,SUBS_AUTORENEWAL" keys="SUB_LAPSE_ID">
+    <mat-card *ngFor="let rowData of list.dataArray;  let i = index" [o-list-item]="rowData">
     <mat-card-header>
-      <mat-card-title></mat-card-title>
+      <mat-card-title>
+        <div>
+      {{rowData.PLATF_NAME}}
+      </div>
+      </mat-card-title>
       <mat-card-subtitle></mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <div attr="PLATF_NAME"
-      title="PLATF_NAME"
-      content-align="start">
+      <div>
+        Se renueva el {{rowData.SUB_LAPSE_END|date}}
+      </div>
+        
+      <div>
+        {{rowData.SUB_LAPSE_PRICE|currency:'EUR':true}}
       </div>
 
-      <div attr="SUB_LAPSE_END"
-      title="RENOVATION_DATE"
-      type="date"
-      format="LL"
-      content-align="center">
+      <div>
+        Dias restantes {{remainingDays[i]}} 
       </div>
 
-      <div attr="SUB_LAPSE_PRICE"
-      title="SUB_LAPSE_PRICE"
-      type="currency"
-      thousand-separator="."
-      decimal-separator=","
-      currency-symbol="€"
-      currency-symbol-position="right"
-      content-align="center">
-      </div>
-      
     </mat-card-content>
   </mat-card> 
 </o-list>
