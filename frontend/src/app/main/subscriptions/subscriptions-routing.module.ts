@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { SubscriptionsHomeComponent } from "./subscriptions-home/subscriptions-home.component";
 import { SubscriptionsNewComponent } from "./subscriptions-new/subscriptions-new.component";
 import { SubscriptionsDetailsComponent } from "./subscriptions-details/subscriptions-details.component";
+import { SubscriptionSharedNewComponent } from "./subscription-shared-new/subscription-shared-new.component";
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: ":SUB_LAPSE_ID",
     component: SubscriptionsDetailsComponent,
+  },
+  {
+    path: ":SUB_LAPSE_ID/new",
+    component: SubscriptionSharedNewComponent,
   },
 ];
 
