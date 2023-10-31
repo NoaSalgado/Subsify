@@ -3,6 +3,7 @@ package com.campusdual.model.core.service;
 import com.campusdual.api.core.service.IUserSubService;
 import com.campusdual.model.core.dao.SubLapseDao;
 import com.campusdual.model.core.dao.SubscriptionDao;
+import com.campusdual.model.core.dao.UserDao;
 import com.campusdual.model.core.dao.UserSubDao;
 import com.ontimize.jee.common.db.SQLStatementBuilder;
 import com.ontimize.jee.common.db.SQLStatementBuilder.BasicExpression;
@@ -37,22 +38,7 @@ public class UserSubService implements IUserSubService {
     @Override
     public EntityResult userSubQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
 
-        /*
-        //Getting subs_id by sub_lapse_id
-        Map<String, Object> querySubLapseKV = new HashMap<>();
-        int subLapseId = Integer.parseInt((String) keysValues.get(SubLapseDao.ID));
-        querySubLapseKV.put(SubLapseDao.ID, subLapseId);
 
-        List<String> querySubLapseAttr = new ArrayList<>();
-        querySubLapseAttr.add(SubLapseDao.SUBS_ID);
-        EntityResult er = this.subLapseService.subLapseQuery(querySubLapseKV, querySubLapseAttr);
-
-        Map<String, Object> subLapse = er.getRecordValues(0);
-        int subsId = (int) subLapse.get(SubLapseDao.SUBS_ID);
-
-        //Generating new hashmap to perform new query filtering by subs_id
-        Map<String, Object> queryUserSubKV = new HashMap<>();
-        queryUserSubKV.put(SubscriptionDao.ID, subsId);*/
 
         Map<String, Object> queryUserSubKV = new HashMap<>();
         int subLapseId = Integer.parseInt((String) keysValues.get(SubLapseDao.ID));
@@ -69,7 +55,24 @@ public class UserSubService implements IUserSubService {
 
     @Override
     public EntityResult userSubInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
-        return this.daoHelper.insert(this.userSubDao, attributes);
+
+
+            //Getting subs_id by sub_lapse_id
+            Map<String, Object> querySubLapseKV = new HashMap<>();
+            int subLapseId = Integer.parseInt((String) attributes.get(SubLapseDao.ID));
+            querySubLapseKV.put(SubLapseDao.ID, subLapseId);
+
+            List<String> querySubLapseAttr = new ArrayList<>();
+            querySubLapseAttr.add(SubLapseDao.SUBS_ID);
+            EntityResult er = this.subLapseService.subLapseQuery(querySubLapseKV, querySubLapseAttr);
+
+            Map<String, Object> subLapse = er.getRecordValues(0);
+            int subsId = (int) subLapse.get(SubLapseDao.SUBS_ID);
+
+            Map<String, Object> insertUserSubAttr = new HashMap<>();
+            insertUserSubAttr.put(SubscriptionDao.ID, subsId);
+            insertUserSubAttr.put(UserSubDao.USER,attributes.get(UserSubDao.USER));
+        return this.daoHelper.insert(this.userSubDao, insertUserSubAttr);
     }
 
     @Override
