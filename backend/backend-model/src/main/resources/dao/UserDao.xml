@@ -33,6 +33,7 @@
                     #WHERE#
                 ]]>
             </Sentence>
+
         </Query>    
         <Query id="login">
             <ValidColumns>
@@ -56,5 +57,25 @@
                 ]]>
             </Sentence>
         </Query>
+        <Query id="query_users_to_share">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="user_" prefix="tu"/>
+                <AmbiguousColumn name="id_rolename" prefix="r"/>
+            </AmbiguousColumns>
+
+            <Sentence>
+                <![CDATA[
+                    SELECT
+                        #COLUMNS#
+                    FROM
+                    TUSER TU
+                    INNER JOIN  TUSER_ROLE TUR ON TU.USER_=TUR.USER_
+                    INNER JOIN TROLE R ON R.ID_ROLENAME=TUR.ID_ROLENAME
+                    #WHERE#
+                ]]>
+            </Sentence>
+        </Query>
+
     </Queries>
+
 </JdbcEntitySetup>

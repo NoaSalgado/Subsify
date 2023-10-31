@@ -28,5 +28,8 @@ export const SERVICE_CONFIG: Object = {
   },
   userSubs:{
     path:"/userSubs"
+  },
+  users:{
+    path:"/users"
   }
 };

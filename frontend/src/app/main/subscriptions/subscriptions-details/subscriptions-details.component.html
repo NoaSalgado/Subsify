@@ -6,7 +6,6 @@
   header-actions="U"
   show-header-navigation="no"
   keys-sql-types="INTEGER"
-  (onDataLoaded)="transferData()"
 >
   <o-column title="{{ 'SUBSCRIPTION_INFORMATION' | oTranslate }}">
     <o-row fxFlex="100">
@@ -65,20 +64,32 @@
   </o-column>
 </o-form>
 
-<div fxFill fxLayout="column" fxLayoutAlign="start">
-  <o-table
-    attr="userSub"
-    delete-button="no"
-    refresh-button="no"
-    service="userSubs"
-    entity="userSub"
-    keys="USER_SUB_ID"
-    columns="USER_SUB_ID;SUBS_ID;USER_"
-    visible-columns="USER_"
-    query-rows="20"
-    auto-align-titles="no"
-    parent-keys="SUBS_ID"
-  >
-
-  </o-table>
-</div>
+<o-form-layout-manager
+  mode="dialog"
+  title="SHARE"
+  label-columns="USER_SUB_ID;SUBS_ID;USER_"
+  separator=""
+  attr="share-form"
+>
+  <o-form-layout-dialog-options
+    width="600px"
+    height="400px"
+    disable-close="false"
+  ></o-form-layout-dialog-options>
+  <div fxFill fxLayout="column" fxLayoutAlign="start">
+    <o-table
+      attr="userSub"
+      delete-button="no"
+      refresh-button="no"
+      service="userSubs"
+      entity="userSub"
+      keys="USER_SUB_ID"
+      columns="USER_SUB_ID;SUBS_ID;USER_"
+      visible-columns="USER_"
+      query-rows="20"
+      auto-align-titles="no"
+      parent-keys="SUB_LAPSE_ID"
+    >
+    </o-table>
+  </div>
+</o-form-layout-manager>
