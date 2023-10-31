@@ -102,6 +102,8 @@
                 <AmbiguousColumn name="platf_id" prefix="plat"/>
                 <AmbiguousColumn name="plan_price_id" prefix="pp"/>
                 <AmbiguousColumn name="plan_id" prefix="p"/>
+                <AmbiguousColumn name="subs_id" prefix="us"/>
+                <AmbiguousColumn name="fr_id" prefix="f"/>
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
@@ -111,7 +113,7 @@
                 where sub_lapse_start <= current_date and sub_lapse_end >= current_date
                 )
 
-                select #COLUMNS
+                select #COLUMNS#
                 from slf
                 inner join subscription s on slf.subs_id = s.subs_id
                 inner join plan_price pp on s.plan_price_id = pp.plan_price_id
