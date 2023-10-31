@@ -1,9 +1,25 @@
 <o-form
-  #subsForm
-  service="subscriptions"
-  entity="subscription"
-  keys="SUBS_ID"
-  header-actions="R;I;U;D"
+  service="userSubs"
+  entity="userSub"
+  keys="USER_SUB_ID"
+
   show-header-navigation="no"
 >
+ <o-combo
+attr="USER_"
+required="yes"
+label="USER"
+layout-padding
+read-only="no"
+service="users"
+entity="userToShare"
+columns="USER_;NAME"
+value-column="USER_"
+keys="USER_"
+visible-columns="USER_"
+fxFlex="33"
+null-selection="no"
+>
+</o-combo> 
+
 </o-form>
