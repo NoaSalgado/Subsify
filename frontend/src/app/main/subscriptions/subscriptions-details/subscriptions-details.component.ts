@@ -5,8 +5,6 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { OFormComponent, OntimizeService } from "ontimize-web-ngx";
-
 @Component({
   selector: "app-subscriptions-details",
   templateUrl: "./subscriptions-details.component.html",
