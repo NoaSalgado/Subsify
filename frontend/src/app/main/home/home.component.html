@@ -1,5 +1,5 @@
 <o-list #list (onDataLoaded)="calculateDays()" attr="customerlist" title="SUBSCRIPTIONS" service="subLapses" entity="subLapseToRenew"
-columns="SUB_LAPSE_ID;PLATF_NAME;SUB_LAPSE_END;SUB_LAPSE_PRICE,SUBS_AUTORENEWAL" keys="SUB_LAPSE_ID">
+columns="SUB_LAPSE_ID;PLATF_NAME;SUB_LAPSE_END;SUB_LAPSE_PRICE,SUBS_AUTORENEWAL,PLATF_LINK" keys="SUB_LAPSE_ID">
     <mat-card *ngFor="let rowData of list.dataArray;  let i = index" [o-list-item]="rowData">
     <mat-card-header>
       <mat-card-title>
@@ -18,10 +18,19 @@ columns="SUB_LAPSE_ID;PLATF_NAME;SUB_LAPSE_END;SUB_LAPSE_PRICE,SUBS_AUTORENEWAL"
         {{rowData.SUB_LAPSE_PRICE|currency:'EUR':true}}
       </div>
 
-      <div>
-        Dias restantes {{remainingDays[i]}} 
+      <div *ngIf="showRenewal[i]; else noCaduca">
+        Caduca en {{remainingDays[i]}} dias 
       </div>
+      <ng-template #noCaduca>
+        <div>
+          Se renueva en {{remainingDays[i]}} dias
+        </div>
+      </ng-template>
+      
 
+      <button mat-raised-button *ngIf="showRenewal[i]" (click)=" goToDoc(webLinks[i])">{{'RENOVAR'|oTranslate}}</button>
+    
     </mat-card-content>
-  </mat-card> 
+  </mat-card>
+  
 </o-list>
