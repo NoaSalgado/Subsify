@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.parser.Entity;
@@ -37,9 +38,6 @@ public class UserSubService implements IUserSubService {
 
     @Override
     public EntityResult userSubQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
-
-
-
         Map<String, Object> queryUserSubKV = new HashMap<>();
         int subLapseId = Integer.parseInt((String) keysValues.get(SubLapseDao.ID));
         queryUserSubKV.put(SubLapseDao.ID, subLapseId);
@@ -48,15 +46,36 @@ public class UserSubService implements IUserSubService {
         String username = authentication.getName();
         BasicField field = new BasicField(UserSubDao.USER);
         BasicExpression bexp = new BasicExpression(field, BasicOperator.NOT_EQUAL_OP, username);
-        queryUserSubKV.put(ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, bexp);
 
-        return this.daoHelper.query(this.userSubDao, queryUserSubKV, attributes);
+        BasicExpression bexp1 = new BasicExpression(field, BasicOperator.NULL_OP, null);
+
+        BasicExpression bexp3 = new BasicExpression(bexp, BasicOperator.OR_OP, bexp1);
+        queryUserSubKV.put(ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, bexp3);
+
+        EntityResult er =  this.daoHelper.query(this.userSubDao, queryUserSubKV, attributes);
+        int erSize = er.calculateRecordNumber();
+        for(int i = 0; i < erSize; i++){
+            Map<String, Object> record = er.getRecordValues(i);
+            er.deleteRecord(i);
+            if(record.get(UserSubDao.USER) == null){
+                record.put(UserSubDao.USER, "-");
+                record.put("USER_NAME", record.get(UserSubDao.USER_SUB_VIRTUAL));
+            }
+
+            if(record.get(UserSubDao.USER_SUB_VIRTUAL) == null){
+                record.put(UserSubDao.USER_SUB_VIRTUAL, "-");
+                record.put("USER_NAME", record.get(UserSubDao.USER));
+            }
+            er.addRecord(record);
+        }
+        return er;
     }
 
     @Override
     public EntityResult userSubInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
 
             int subsId;
+            Map<String, Object> insertUserSubAttr = new HashMap<>();
             if (attributes.containsKey("SUB_LAPSE_ID")){
                 //Getting subs_id by sub_lapse_id
                 Map<String, Object> querySubLapseKV = new HashMap<>();
@@ -68,11 +87,17 @@ public class UserSubService implements IUserSubService {
                 EntityResult er = this.subLapseService.subLapseQuery(querySubLapseKV, querySubLapseAttr);
                 Map<String, Object> subLapse = er.getRecordValues(0);
                 subsId = (int) subLapse.get(SubLapseDao.SUBS_ID);
+
+                if(attributes.containsKey("USER_SUB_VIRTUAL")){
+                    insertUserSubAttr.put(UserSubDao.USER_SUB_VIRTUAL,attributes.get(UserSubDao.USER_SUB_VIRTUAL));
+                    insertUserSubAttr.put(SubscriptionDao.ID, subsId);
+                    return this.daoHelper.insert(this.userSubDao, insertUserSubAttr);
+                }
             }else {
                 subsId = (int) attributes.get(SubLapseDao.SUBS_ID);
             }
 
-            Map<String, Object> insertUserSubAttr = new HashMap<>();
+
             insertUserSubAttr.put(SubscriptionDao.ID, subsId);
             insertUserSubAttr.put(UserSubDao.USER,attributes.get(UserSubDao.USER));
         return this.daoHelper.insert(this.userSubDao, insertUserSubAttr);
