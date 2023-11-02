@@ -54,5 +54,5 @@
   "EXPENSE_HISTORY": "Historial de Gasto",
   "ERROR_PLAN_INSERT_DATE_MESSAGE": "La fecha de inicio no puede ser ni anterior ni igual a la fecha de fin del anterior precio",
   "FROM": "Desde",
-  "TO": "Hasta"
+  "TO": "Hasta"  
 }
