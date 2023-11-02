@@ -19,25 +19,25 @@ export class SubscriptionsDetailsComponent implements AfterViewInit, OnInit {
 
   protected shared_price;
   protected total_price;
+  protected users;
+  protected virtual_user;
   public display_shared_price = true;
 
-  getSharedValue(){
-    if (this.shared_price === this.total_price){
-      
+  getSharedValue() {
+    if (this.shared_price === this.total_price) {
       return;
-    }else{
+    } else {
       this.display_shared_price = false;
       return this.shared_price;
     }
   }
 
-  getSharedCount(event){
+  getSharedCount(event) {
     this.shared_price = event.shared_price;
     this.total_price = event.SUB_LAPSE_PRICE;
   }
 
-  ngAfterViewInit(): void {
-  }
+  ngAfterViewInit(): void {}
 
   ngOnInit(): void {}
 }

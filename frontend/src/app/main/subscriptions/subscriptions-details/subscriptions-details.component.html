@@ -54,14 +54,14 @@
         layout-padding
       ></o-currency-input>
       <o-currency-input
-        [ngClass]="{hide:display_shared_price}"
+        [ngClass]="{ hide: display_shared_price }"
         #sharedPriceInput
         attr="SHARED_PRICE"
         [automatic-registering]="false"
         fxFlex="33"
         layout-padding
         read-only="yes"
-        [data] = "getSharedValue()"
+        [data]="getSharedValue()"
       ></o-currency-input>
       <o-checkbox
         attr="SUBS_AUTORENEWAL"
@@ -95,8 +95,8 @@
       service="userSubs"
       entity="userSub"
       keys="USER_SUB_ID"
-      columns="USER_SUB_ID;SUBS_ID;USER_"
-      visible-columns="USER_"
+      columns="USER_SUB_ID;SUBS_ID;USER_;USER_SUB_VIRTUAL"
+      visible-columns="USER_;USER_SUB_VIRTUAL"
       query-rows="20"
       auto-align-titles="no"
       parent-keys="SUB_LAPSE_ID"

@@ -2,24 +2,28 @@
   service="userSubs"
   entity="userSub"
   keys="USER_SUB_ID"
-
   show-header-navigation="no"
 >
- <o-combo
-attr="USER_"
-required="yes"
-label="USER"
-layout-padding
-read-only="no"
-service="users"
-entity="userToShare"
-columns="USER_;NAME"
-value-column="USER_"
-keys="USER_"
-visible-columns="USER_"
-fxFlex="33"
-null-selection="no"
->
-</o-combo> 
-
+  <o-combo
+    attr="USER_"
+    label="USER"
+    layout-padding
+    read-only="no"
+    service="users"
+    entity="userToShare"
+    columns="USER_;NAME"
+    value-column="USER_"
+    keys="USER_"
+    visible-columns="USER_"
+    fxFlex="33"
+    null-selection="no"
+    searchable="true"
+  >
+  </o-combo>
+  <p>¿No encuentras al usuario que necesitas? :D</p>
+  <o-text-input
+    attr="USER_SUB_VIRTUAL"
+    label="USER_SUB_VIRTUAL"
+    read-only="no"
+  ></o-text-input>
 </o-form>
