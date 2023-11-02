@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { OntimizeWebModule } from 'ontimize-web-ngx';
 
 export function getMonthlyPricefunction(rowData: Array<any>): number{
-  return rowData["SUB_LAPSE_PRICE"]/rowData["FR_VALUE"]
+  return rowData["shared_price"] / rowData["FR_VALUE"]
 }
 
 @NgModule({

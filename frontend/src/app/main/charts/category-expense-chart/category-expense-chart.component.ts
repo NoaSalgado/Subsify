@@ -145,7 +145,7 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
       const {
         SUB_LAPSE_START: startDate,
         SUB_LAPSE_END: endDate,
-        SUB_LAPSE_PRICE: price,
+        shared_price: price,
         FR_VALUE: frequency,
         CAT_NAME: category,
       } = subLapse;

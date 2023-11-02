@@ -56,18 +56,21 @@ public class UserSubService implements IUserSubService {
     @Override
     public EntityResult userSubInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
 
+            int subsId;
+            if (attributes.containsKey("SUB_LAPSE_ID")){
+                //Getting subs_id by sub_lapse_id
+                Map<String, Object> querySubLapseKV = new HashMap<>();
+                int subLapseId = Integer.parseInt((String) attributes.get(SubLapseDao.ID));
+                querySubLapseKV.put(SubLapseDao.ID, subLapseId);
 
-            //Getting subs_id by sub_lapse_id
-            Map<String, Object> querySubLapseKV = new HashMap<>();
-            int subLapseId = Integer.parseInt((String) attributes.get(SubLapseDao.ID));
-            querySubLapseKV.put(SubLapseDao.ID, subLapseId);
-
-            List<String> querySubLapseAttr = new ArrayList<>();
-            querySubLapseAttr.add(SubLapseDao.SUBS_ID);
-            EntityResult er = this.subLapseService.subLapseQuery(querySubLapseKV, querySubLapseAttr);
-
-            Map<String, Object> subLapse = er.getRecordValues(0);
-            int subsId = (int) subLapse.get(SubLapseDao.SUBS_ID);
+                List<String> querySubLapseAttr = new ArrayList<>();
+                querySubLapseAttr.add(SubLapseDao.SUBS_ID);
+                EntityResult er = this.subLapseService.subLapseQuery(querySubLapseKV, querySubLapseAttr);
+                Map<String, Object> subLapse = er.getRecordValues(0);
+                subsId = (int) subLapse.get(SubLapseDao.SUBS_ID);
+            }else {
+                subsId = (int) attributes.get(SubLapseDao.SUBS_ID);
+            }
 
             Map<String, Object> insertUserSubAttr = new HashMap<>();
             insertUserSubAttr.put(SubscriptionDao.ID, subsId);

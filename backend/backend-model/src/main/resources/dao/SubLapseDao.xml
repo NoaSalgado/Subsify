@@ -34,7 +34,7 @@
                     group by s.subs_id
                 )
                 select #COLUMNS#,
-                    (slf.sub_lapse_price / shared_subs.shared_count) SHARED_PRICE
+                    (slf.sub_lapse_price / shared_subs.shared_count) shared_price
                 from slf
                 inner join shared_subs on shared_subs.subs_id = slf.subs_id
                 inner join subscription s on slf.subs_id = s.subs_id
@@ -85,8 +85,16 @@
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
-                select #COLUMNS# from sub_lapse sl
+                with shared_subs as (
+                    select s.subs_id , count(*) shared_count
+                    from user_sub us
+                    inner join "subscription" s on us.subs_id = s.subs_id
+                    group by s.subs_id
+                    )
+                select #COLUMNS#, (sl.sub_lapse_price / shared_subs.shared_count) as shared_price from shared_subs
                 inner join subscription s on
+                    shared_subs.subs_id = s.subs_id
+                inner join sub_lapse sl on
                     sl.subs_id = s.subs_id
                 inner join plan_price pp on
                     s.plan_price_id = pp.plan_price_id
@@ -99,7 +107,7 @@
                 inner join category c on
                     c.cat_id = p2.cat_id
                      inner join user_sub us on us.subs_id=s.subs_id
-                    #WHERE#
+                #WHERE#;
                 ]]>
             </Sentence>
         </Query>

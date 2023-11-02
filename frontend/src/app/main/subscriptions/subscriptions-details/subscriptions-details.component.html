@@ -54,6 +54,7 @@
         layout-padding
       ></o-currency-input>
       <o-currency-input
+        [ngClass]="{hide:display_shared_price}"
         #sharedPriceInput
         attr="SHARED_PRICE"
         [automatic-registering]="false"
