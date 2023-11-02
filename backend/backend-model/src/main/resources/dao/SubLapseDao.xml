@@ -23,18 +23,26 @@
             <Sentence>
                 <![CDATA[
                 with slf as (
-                select *
-                from sub_lapse sli
-                where sub_lapse_start <= current_date and sub_lapse_end >= current_date
+                    select *
+                    from sub_lapse sli
+                    where sub_lapse_start <= current_date and sub_lapse_end >= current_date
+                ),
+                shared_subs as (
+                    select s.subs_id , count(*) shared_count
+                    from user_sub us
+                    inner join "subscription" s on us.subs_id = s.subs_id
+                    group by s.subs_id
                 )
-                select #COLUMNS#
+                select #COLUMNS#,
+                    (slf.sub_lapse_price / shared_subs.shared_count) SHARED_PRICE
                 from slf
+                inner join shared_subs on shared_subs.subs_id = slf.subs_id
                 inner join subscription s on slf.subs_id = s.subs_id
                 inner join plan_price pp on s.plan_price_id = pp.plan_price_id
                 inner join plan p on p.plan_id = pp.plan_id
                 inner join platform platf on p.platf_id = platf.platf_id
                 inner join frequency f on f.fr_id = p.fr_id
-                 inner join user_sub us on us.subs_id=s.subs_id
+                inner join user_sub us on us.subs_id=s.subs_id
                 #WHERE#;
                  ]]>
             </Sentence>

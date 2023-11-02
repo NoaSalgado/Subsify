@@ -6,6 +6,7 @@
   header-actions="U"
   show-header-navigation="no"
   keys-sql-types="INTEGER"
+  (onDataLoaded)="getSharedCount($event)"
 >
   <o-column title="{{ 'SUBSCRIPTION_INFORMATION' | oTranslate }}">
     <o-row fxFlex="100">
@@ -51,6 +52,15 @@
         attr="SUB_LAPSE_PRICE"
         fxFlex="33"
         layout-padding
+      ></o-currency-input>
+      <o-currency-input
+        #sharedPriceInput
+        attr="SHARED_PRICE"
+        [automatic-registering]="false"
+        fxFlex="33"
+        layout-padding
+        read-only="yes"
+        [data] = "getSharedValue()"
       ></o-currency-input>
       <o-checkbox
         attr="SUBS_AUTORENEWAL"

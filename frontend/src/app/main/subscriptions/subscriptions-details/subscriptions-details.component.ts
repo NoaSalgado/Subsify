@@ -16,8 +16,18 @@ export class SubscriptionsDetailsComponent implements AfterViewInit, OnInit {
   subscriptionDetailForm: OFormComponent;
   @ViewChild("sharedUsersForm", { static: false })
   sharedUsersForm: OFormComponent;
+  protected shared_price;
 
-  ngAfterViewInit(): void {}
+  getSharedValue(){
+    return this.shared_price;
+  }
+
+  getSharedCount(event){
+    this.shared_price = event.shared_price;
+  }
+
+  ngAfterViewInit(): void {
+  }
 
   ngOnInit(): void {}
 }
