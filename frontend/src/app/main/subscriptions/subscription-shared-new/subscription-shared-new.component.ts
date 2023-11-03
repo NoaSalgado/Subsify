@@ -9,4 +9,8 @@ export class SubscriptionSharedNewComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  reload() {
+    location.reload();
+  }
 }
