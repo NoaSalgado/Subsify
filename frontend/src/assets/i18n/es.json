@@ -63,5 +63,6 @@
   "SHARE": "Compartir",
   "ERROR_USERSUB_INSERT_BOTH_MESSAGE": "No puedes introducir dos usuarios",
   "CENTRALIZATION_OF_SUBSCRIPTIONS_IN_TRANSIT": "Centralización de suscripciones en transición",
-  "SHARED":"Suscripciones Compartidas"
+  "SHARED":"Suscripciones Compartidas",
+  "UNSUSCRIBE":"CANCELAR"
 }
