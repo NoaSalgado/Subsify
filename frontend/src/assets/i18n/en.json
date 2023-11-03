@@ -62,7 +62,7 @@
   "USERS": "Users",
   "USER_SUB_VIRTUAL": "Username",
   "ERROR_USERSUB_INSERT_BOTH_MESSAGE": "You can not enter two users",
-  "CENTRALIZATION_OF_SUBSCRIPTIONS_IN_TRANSIT": "Centralization of subscriptions in transit",
+  "SUBSCRIPTIONS_TO_RENEW": "Subscriptions to renew",
   "SHARED":"Shared Subscriptions",
   "UNSUSCRIBE":"UNSUSCRIBE",
   "SUBSCRIPTIONS-END":"Subscription ends ",
