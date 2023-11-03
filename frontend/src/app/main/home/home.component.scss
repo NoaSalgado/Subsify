@@ -2,12 +2,14 @@
   background-color: darkred;
 }
 
+.o-list-content{
+  align-items: center !important;
+}
 
 .card-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50vh;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
 }
 
 .mat-card{
