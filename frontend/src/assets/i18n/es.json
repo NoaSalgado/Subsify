@@ -64,5 +64,8 @@
   "ERROR_USERSUB_INSERT_BOTH_MESSAGE": "No puedes introducir dos usuarios",
   "CENTRALIZATION_OF_SUBSCRIPTIONS_IN_TRANSIT": "Centralización de suscripciones en transición",
   "SHARED":"Suscripciones Compartidas",
-  "UNSUSCRIBE":"CANCELAR"
+  "UNSUSCRIBE":"CANCELAR",
+  "SUBSCRIPTIONS-END":"La suscripción termina el ",
+  "RENEW-ON":"Se renueva en ",
+  "DAYS":" Dias"
 }

@@ -13,7 +13,7 @@
 
       <mat-card-content class="mat-card-content">
         <div>
-          La suscripción termina el {{rowData.SUB_LAPSE_END|date}}
+          {{"SUBSCRIPTIONS-END"|oTranslate}} {{rowData.SUB_LAPSE_END|date}}
         </div>
 
         <div>
@@ -21,11 +21,11 @@
         </div>
 
         <div *ngIf="showRenewal[i]; else noCaduca">
-          Caduca en {{remainingDays[i]}} dias
+          {{"RENEW-ON"|oTranslate}}{{remainingDays[i]}}{{"DAYS"|oTranslate}}
         </div>
         <ng-template #noCaduca>
           <div>
-            Se renueva en {{remainingDays[i]}} dias
+            {{"RENEW-ON"|oTranslate}}{{remainingDays[i]}}{{"DAYS"|oTranslate}}
           </div>
         </ng-template>
       </mat-card-content>
