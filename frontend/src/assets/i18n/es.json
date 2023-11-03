@@ -19,6 +19,7 @@
   "FORGOT_PWD": "¿Has olvidado tu contraseña?",
   "FOOTER_CREATED_BY": "Creado por Imatia Innovation",
   "FOOTER_RIGHTS": "Todos los derechos reservados",
+  "CHARTS":"Gráficas",
   "SUBSCRIPTIONS": "Subscripciones",
   "PLATF_ID": "Id plataforma",
   "PLATF_NAME": "Plataforma",
@@ -60,5 +61,7 @@
   "USERS": "Usuarios",
   "USER_SUB_VIRTUAL": "Nombre de Usuario",
   "SHARE": "Compartir",
-  "ERROR_USERSUB_INSERT_BOTH_MESSAGE": "No puedes introducir dos usuarios"
+  "ERROR_USERSUB_INSERT_BOTH_MESSAGE": "No puedes introducir dos usuarios",
+  "CENTRALIZATION_OF_SUBSCRIPTIONS_IN_TRANSIT": "Centralización de suscripciones en transición",
+  "SHARED":"Suscripciones Compartidas"
 }

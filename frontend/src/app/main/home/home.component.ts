@@ -11,10 +11,10 @@ import { AlertDialogComponent } from '../alerts/alert-dialog/alert-dialog.compon
 })
 
 export class HomeComponent implements OnInit {
-@ViewChild('list',{static:false}) list:OListComponent
-public remainingDays: Array<number>;
-public showRenewal: Array<boolean>;
-public webLinks: Array<string>;
+  @ViewChild('list', { static: false }) list: OListComponent
+  public remainingDays: Array<number>;
+  public showRenewal: Array<boolean>;
+  public webLinks: Array<string>;
 
   constructor(
     private router: Router,
@@ -24,7 +24,7 @@ public webLinks: Array<string>;
   }
   openAlertDialog(title: string, message: string): void {
     this.dialog.open(AlertDialogComponent, {
-      width: '300px', 
+      width: '300px',
       data: { title, message },
     });
   }
@@ -33,21 +33,20 @@ public webLinks: Array<string>;
     this.openAlertDialog('Aviso', 'Esto caduca');
   }
   calculateDays() {
-     this.showRenewal = this.list.dataArray.map(sub=> !sub.subs_autorenewal);
-     console.log(this.showRenewal);
-     this.webLinks = this.list.dataArray.map(sub=> sub.platf_link);
-     console.log(this.webLinks);
-     const endDates = this.list.dataArray.map(sub=> sub.SUB_LAPSE_END);
+    this.showRenewal = this.list.dataArray.map(sub => !sub.subs_autorenewal);
+    console.log(this.showRenewal);
+    this.webLinks = this.list.dataArray.map(sub => sub.platf_link);
+    console.log(this.webLinks);
+    const endDates = this.list.dataArray.map(sub => sub.SUB_LAPSE_END);
 
-    this.remainingDays= endDates.map(date=>{
+    this.remainingDays = endDates.map(date => {
 
-        const datediff = new Date(date).getTime()- new Date().getTime()
-        const remainingDays = Math.ceil(datediff/(1000*60*60*24))
-        return remainingDays
+      const datediff = new Date(date).getTime() - new Date().getTime()
+      const remainingDays = Math.ceil(datediff / (1000 * 60 * 60 * 24))
+      return remainingDays
     })
 
   }
-
 
   ngOnInit() {
   }

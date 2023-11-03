@@ -27,6 +27,7 @@
   "RENOVATION_DATE": "Next Renewal",
   "MONTHLY_PRICE": "Monthly Price",
   "FR_NAME": "Frequency",
+  "CHARTS":"Charts",
   "SUBSCRIPTION_INFORMATION": "Subscription Detail",
   "SUB_START": "Subscription Start",
   "SUB_END": "Next Renewal",
@@ -60,5 +61,7 @@
   "USER": "Registered User",
   "USERS": "Users",
   "USER_SUB_VIRTUAL": "Username",
-  "ERROR_USERSUB_INSERT_BOTH_MESSAGE": "You can not enter two users"
+  "ERROR_USERSUB_INSERT_BOTH_MESSAGE": "You can not enter two users",
+  "CENTRALIZATION_OF_SUBSCRIPTIONS_IN_TRANSIT": "Centralization of subscriptions in transit",
+  "SHARED":"Shared Subscriptions"
 }
