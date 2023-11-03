@@ -1,4 +1,4 @@
-<o-list #list (onDataLoaded)="calculateDays()" attr="customerlist" service="subLapses" entity="subLapseToRenew"
+<o-list #list (onDataLoaded)="calculateDays()" delete-button="no" refresh-button="no" quick-filter="no" attr="customerlist" service="subLapses" entity="subLapseToRenew"
   columns="SUB_LAPSE_ID;PLATF_NAME;SUB_LAPSE_END;SUB_LAPSE_PRICE,SUBS_AUTORENEWAL,PLATF_LINK" keys="SUB_LAPSE_ID">
   <o-column title="{{ 'CENTRALIZATION_OF_SUBSCRIPTIONS_IN_TRANSIT' | oTranslate }}"></o-column>
   <div class="card-container">
