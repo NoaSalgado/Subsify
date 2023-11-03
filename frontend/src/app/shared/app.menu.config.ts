@@ -41,4 +41,9 @@ export const MENU_CONFIG: MenuRootItem[] = [
     icon: "power_settings_new",
     confirm: "yes",
   },
+  {
+    id:"custom-plat",
+    name: "temp",
+    route: "/main/custom-platform"
+  }
 ];

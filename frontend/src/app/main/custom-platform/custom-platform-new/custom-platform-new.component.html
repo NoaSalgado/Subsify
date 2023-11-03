@@ -1,0 +1,58 @@
+<o-form
+#customServiceForm
+service="subscriptions"
+entity="subscription"
+delete-button="no"
+refresh-button="no"
+keys="SUBS_ID"
+header-actions="R;I;U"
+show-header-navigation="no"
+>
+<o-row>
+  <o-column title="{{ 'PERSONALIZED_SUBSCRIPTION' | oTranslate }}" fxFlex>
+    <o-row fxFlex="100">
+      <o-text-input  attr="PLATF_NAME" fxFlex="40" required="yes" layout-padding></o-text-input>
+      <o-text-input  attr="CAT_NAME" fxFlex="40" required="yes" layout-padding></o-text-input>
+    </o-row>
+    <o-row fxFlex="100">
+      <o-combo
+      attr="FR_ID"
+      required="yes"
+      label="FR_NAME"
+      layout-padding
+      read-only="no"
+      service="frequencies"
+      entity="frequency"
+      columns="FR_ID;FR_NAME"
+      value-column="FR_ID"
+      keys="FR_ID"
+      visible-columns="FR_NAME"
+      fxFlex="33"
+      null-selection="no"
+      ></o-combo>
+      <o-currency-input
+        class="price-input"
+        attr="SUB_LAPSE_PRICE"
+        fxFlex="33"
+        layout-padding
+        required="yes"
+      ></o-currency-input>
+      <o-date-input
+        attr="SUB_LAPSE_START"
+        label="SUBS_START_DATE"
+        read-only="no"
+        format="LL"
+        required="yes"
+        layout-padding
+        min="01/01/1980"
+        max="01/01/2020"
+        text-input-enabled="no"
+        fxFlex="33"
+      ></o-date-input>
+    </o-row>
+    <o-row fxFlex="100">
+      <o-text-input  attr="CUSTOM_SUB" value="custom_sub" [data]="x" fxFlex="40" required="no" layout-padding></o-text-input>
+    </o-row>
+  </o-column>
+</o-row>
+</o-form>

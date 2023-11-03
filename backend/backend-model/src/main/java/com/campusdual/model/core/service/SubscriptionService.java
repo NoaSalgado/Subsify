@@ -92,7 +92,6 @@ public class SubscriptionService implements ISubscriptionService {
         attrUserSubInsert.put(UserSubDao.USER, username);
         attrUserSubInsert.put(UserSubDao.SUBS_ID,insertSubsER.get(SubLapseDao.SUBS_ID));
         this.userSubService.userSubInsert(attrUserSubInsert);
-
         return insertSubsER;
     }
 

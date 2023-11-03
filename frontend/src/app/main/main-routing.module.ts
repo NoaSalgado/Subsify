@@ -56,6 +56,9 @@ export const routes: Routes = [
             (m) => m.ChartsModule
           ),
       },
+      {
+        path:"custom-platform", loadChildren: () => import('./custom-platform/custom-platform.module').then(m => m.CustomPlatformModule) 
+      }
     ],
   },
 ];
