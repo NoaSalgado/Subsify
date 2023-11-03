@@ -62,7 +62,7 @@
   "USER_SUB_VIRTUAL": "Nombre de Usuario",
   "SHARE": "Compartir",
   "ERROR_USERSUB_INSERT_BOTH_MESSAGE": "No puedes introducir dos usuarios",
-  "CENTRALIZATION_OF_SUBSCRIPTIONS_IN_TRANSIT": "Centralización de suscripciones en transición",
+  "SUBSCRIPTIONS_TO_RENEW": "Subscripciones a renovar",
   "SHARED":"Suscripciones Compartidas",
   "UNSUSCRIBE":"CANCELAR",
   "SUBSCRIPTIONS-END":"La suscripción termina el ",
