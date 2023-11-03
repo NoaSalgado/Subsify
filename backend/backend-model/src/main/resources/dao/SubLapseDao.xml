@@ -19,6 +19,7 @@
                 <AmbiguousColumn name="platf_id" prefix="p"/>
                 <AmbiguousColumn name="fr_id" prefix="f"/>
                 <AmbiguousColumn name="subs_lapse_id" prefix="sl"/>
+                <AmbiguousColumn name="cat_id" prefix="sl"/>
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
@@ -43,6 +44,7 @@
                 inner join platform platf on p.platf_id = platf.platf_id
                 inner join frequency f on f.fr_id = p.fr_id
                 inner join user_sub us on us.subs_id=s.subs_id
+                inner join category c on c.cat_id=platf.cat_id
                 #WHERE#;
                  ]]>
             </Sentence>
@@ -141,6 +143,38 @@
                 ]]>
             </Sentence>
         </Query>
+
+        <Query id="query_cat">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="subs_id" prefix="s"/>
+                <AmbiguousColumn name="platf_id" prefix="plat"/>
+                <AmbiguousColumn name="plan_price_id" prefix="pp"/>
+                <AmbiguousColumn name="plan_id" prefix="p"/>
+                <AmbiguousColumn name="subs_id" prefix="us"/>
+                <AmbiguousColumn name="cat_id" prefix="c"/>
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                 with slf as (
+                    select *
+                    from sub_lapse sli
+                    where sub_lapse_start <= current_date and sub_lapse_end >= current_date
+                )
+                select distinct c.cat_name
+                from slf
+                inner join subscription s on slf.subs_id = s.subs_id
+                inner join plan_price pp on s.plan_price_id = pp.plan_price_id
+                inner join plan p on p.plan_id = pp.plan_id
+                inner join platform platf on p.platf_id = platf.platf_id
+                inner join user_sub us on us.subs_id=s.subs_id
+                inner join category c on c.cat_id = platf.cat_id
+                #WHERE#
+                ]]>
+            </Sentence>
+        </Query>
+
+
+
 
     </Queries>
 

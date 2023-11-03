@@ -45,6 +45,12 @@ public class SubLapseService implements ISubLapseService {
     }
 
     @Override
+    public EntityResult subLapseCatQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
+        return this.daoHelper.query(this.subLapseDao,keysValues, attributes, SubLapseDao.QUERY_CAT);
+    }
+
+
+    @Override
     public EntityResult subLapseToRenewQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> newKeyValues = new HashMap<>(keysValues);
