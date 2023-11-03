@@ -75,12 +75,14 @@
   </o-column>
 </o-form>
 
+<p>Usuarios Con Los Que Compartes Cuenta</p>
+
 <o-form-layout-manager
   mode="dialog"
-  title="SHARE"
   label-columns="USER_SUB_ID;SUBS_ID;USER_"
   separator=""
   attr="share-form"
+  title="SHARE"
 >
   <o-form-layout-dialog-options
     width="600px"
@@ -96,11 +98,16 @@
       entity="userSub"
       keys="USER_SUB_ID"
       columns="USER_SUB_ID;SUBS_ID;USER_;USER_SUB_VIRTUAL"
-      visible-columns="USER_;USER_SUB_VIRTUAL"
+      visible-columns="USERS"
       query-rows="20"
       auto-align-titles="no"
       parent-keys="SUB_LAPSE_ID"
+      quick-filter="false"
+      width="600px"
     >
+      <o-table-column attr="USERS">
+        <o-table-renderer-concat></o-table-renderer-concat>
+      </o-table-column>
     </o-table>
   </div>
 </o-form-layout-manager>

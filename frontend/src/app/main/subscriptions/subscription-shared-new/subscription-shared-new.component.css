@@ -1,0 +1,11 @@
+div.o-form-content-wrapper {
+  align-items: center !important;
+}
+
+.o-combo {
+  max-width: 100% !important;
+}
+
+o-text-input {
+  width: 100%;
+}

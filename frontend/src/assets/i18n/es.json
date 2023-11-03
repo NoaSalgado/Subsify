@@ -54,5 +54,11 @@
   "EXPENSE_HISTORY": "Historial de Gasto",
   "ERROR_PLAN_INSERT_DATE_MESSAGE": "La fecha de inicio no puede ser ni anterior ni igual a la fecha de fin del anterior precio",
   "FROM": "Desde",
-  "TO": "Hasta"  
+  "TO": "Hasta",
+  "SHARED_PRICE": "Precio Compartido",
+  "USER": "Usuario Registrado",
+  "USERS": "Usuarios",
+  "USER_SUB_VIRTUAL": "Nombre de Usuario",
+  "SHARE": "Compartir",
+  "ERROR_USERSUB_INSERT_BOTH_MESSAGE": "No puedes introducir dos usuarios"
 }

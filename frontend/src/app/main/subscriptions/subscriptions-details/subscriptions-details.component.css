@@ -1,3 +1,20 @@
-.hide{
-    display: none !important;
+p {
+  color: #032a38;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.hide {
+  display: none !important;
+}
+
+.ng-star-inserted {
+  align-items: center !important;
+  place-content: center;
+}
+
+.o-table {
+  width: 90%;
+  max-width: 500px;
+  justify-self: center;
 }

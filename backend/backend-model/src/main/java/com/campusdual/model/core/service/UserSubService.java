@@ -8,6 +8,7 @@ import com.campusdual.model.core.dao.UserSubDao;
 import com.ontimize.jee.common.db.SQLStatementBuilder;
 import com.ontimize.jee.common.db.SQLStatementBuilder.BasicExpression;
 import com.ontimize.jee.common.dto.EntityResult;
+import com.ontimize.jee.common.dto.EntityResultMapImpl;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,12 +59,12 @@ public class UserSubService implements IUserSubService {
             Map<String, Object> record = er.getRecordValues(i);
             er.deleteRecord(i);
             if(record.get(UserSubDao.USER) == null){
-                record.put(UserSubDao.USER, "-");
+                record.put(UserSubDao.USER, "");
                 record.put("USER_NAME", record.get(UserSubDao.USER_SUB_VIRTUAL));
             }
 
             if(record.get(UserSubDao.USER_SUB_VIRTUAL) == null){
-                record.put(UserSubDao.USER_SUB_VIRTUAL, "-");
+                record.put(UserSubDao.USER_SUB_VIRTUAL, "");
                 record.put("USER_NAME", record.get(UserSubDao.USER));
             }
             er.addRecord(record);
@@ -73,6 +74,12 @@ public class UserSubService implements IUserSubService {
 
     @Override
     public EntityResult userSubInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
+       if(attributes.containsKey("USER_") && attributes.containsKey("USER_SUB_VIRTUAL")){
+            EntityResult errorEr = new EntityResultMapImpl();
+            errorEr.setCode(EntityResult.OPERATION_WRONG);
+            errorEr.setMessage("ERROR_USERSUB_INSERT_BOTH_MESSAGE");
+            return errorEr;
+        }
 
             int subsId;
             Map<String, Object> insertUserSubAttr = new HashMap<>();

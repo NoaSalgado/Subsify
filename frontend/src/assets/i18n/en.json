@@ -54,5 +54,11 @@
   "EXPENSE_HISTORY": "Expense History",
   "ERROR_PLAN_INSERT_DATE_MESSAGE": "The start date cannot be earlier than or the same as the end date of the previous price.",
   "FROM": "From",
-  "TO": "To"
+  "TO": "To",
+  "SHARED_PRICE": "Shared Price",
+  "SHARE": "Share",
+  "USER": "Registered User",
+  "USERS": "Users",
+  "USER_SUB_VIRTUAL": "Username",
+  "ERROR_USERSUB_INSERT_BOTH_MESSAGE": "You can not enter two users"
 }
