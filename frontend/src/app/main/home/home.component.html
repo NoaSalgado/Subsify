@@ -21,7 +21,7 @@
         </div>
 
         <div *ngIf="showRenewal[i]; else noCaduca">
-          {{"RENEW-ON"|oTranslate}}{{remainingDays[i]}}{{"DAYS"|oTranslate}}
+          {{"EXPIRES"|oTranslate}}{{remainingDays[i]}}{{"DAYS"|oTranslate}}
         </div>
         <ng-template #noCaduca>
           <div>

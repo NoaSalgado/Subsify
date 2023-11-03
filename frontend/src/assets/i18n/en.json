@@ -67,5 +67,6 @@
   "UNSUSCRIBE":"UNSUSCRIBE",
   "SUBSCRIPTIONS-END":"Subscription ends ",
   "RENEW-ON":"Renews in ",
-  "DAYS":" Days"
+  "DAYS":" Days",
+  "EXPIRES":"Expires in "
 }
