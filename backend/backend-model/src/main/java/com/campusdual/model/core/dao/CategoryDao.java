@@ -13,5 +13,6 @@ public class CategoryDao extends OntimizeJdbcDaoSupport {
     public static final String ID = "CAT_ID";
     public static final String NAME = "CAT_NAME";
     public static final String ACTIVE = "CAT_ACTIVE";
+    public static final String CUSTOM = "IS_CUSTOM";
     public static final String ACTIVE_QUERY = "query_active";
 }

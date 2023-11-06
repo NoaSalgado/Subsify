@@ -12,6 +12,5 @@ public interface ISubscriptionService {
     EntityResult subscriptionUpdate(Map<String, Object> attributes, Map<String, Object> KeyValues) throws OntimizeJEERuntimeException;
     EntityResult subscriptionDelete(Map<String, Object> keyValues) throws OntimizeJEERuntimeException;
     EntityResult subscriptionQueryAll(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException;
-
-
+    EntityResult subscriptionCustomInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException;
 }

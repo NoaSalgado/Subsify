@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.*;
 
 @Lazy
@@ -28,7 +29,12 @@ public class SubscriptionService implements ISubscriptionService {
 
     @Autowired
     private PlanPriceService planPriceService;
-
+    @Autowired
+    private CategoryService categoryService;
+    @Autowired
+    private PlatformService platformService;
+    @Autowired
+    private PlanService planService;
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
 
@@ -52,6 +58,53 @@ public class SubscriptionService implements ISubscriptionService {
         return this.daoHelper.query(this.subscriptionDao, keysValues, attributes);
     }
 
+    @Override
+    public EntityResult subscriptionCustomInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
+
+        //insert category
+        Map<String, Object> catQuery = new HashMap<>();
+        catQuery.put(CategoryDao.NAME, attributes.get(PlatformDao.NAME));
+        catQuery.put(CategoryDao.CUSTOM, true);
+        EntityResult categoryER = this.categoryService.categoryInsert(catQuery);
+        int catId = (int) categoryER.get(CategoryDao.ID);
+
+        //insert platform
+        Map<String, Object> platfQuery = new HashMap<>();
+        platfQuery.put(PlatformDao.NAME, attributes.get(PlatformDao .NAME));
+        platfQuery.put(PlatformDao.CUSTOM, true);
+        platfQuery.put(PlatformDao.CAT_ID, catId);
+        EntityResult platformER = this.platformService.platformInsert(platfQuery);
+        int platfID = (int) platformER.get(PlatformDao.ID);
+
+        //insert plan
+        Map<String, Object> planQuery = new HashMap<>();
+        planQuery.put(PlanDao.PLATF_ID, platfID);
+        planQuery.put(PlanDao.FR_ID, attributes.get(FrequencyDao.ID));
+        planQuery.put(PlanDao.NAME, "");
+        planQuery.put(PlanDao.CUSTOM, true);
+        planQuery.put(PlanPriceDao.VALUE, null);
+        planQuery.put(PlanPriceDao.START, null);
+        EntityResult planER = this.planService.planInsert(planQuery);
+        int planID = (int) planER.get(PlanDao.ID);
+
+        //Getting plan price
+        Map<String, Object> planPriceKV = new HashMap<>();
+        planPriceKV.put(PlanDao.ID, planID);
+        List<String> planPriceAttr = new ArrayList<>();
+        planPriceAttr.add(PlanPriceDao.ID);
+        EntityResult planPriceER = this.planPriceService.planPriceQuery(planPriceKV, planPriceAttr);
+        List planPriceArray = (ArrayList) planPriceER.get(PlanPriceDao.ID);
+        int planPriceId = (int) planPriceArray.get(0);
+
+        //insert subscription
+        Map<String, Object> subscriptionQuery = new HashMap<>();
+        subscriptionQuery.put(SubscriptionDao.PLAN_PRICE_ID, planPriceId);
+        subscriptionQuery.put(SubLapseDao.PRICE, attributes.get(SubLapseDao.PRICE));
+        subscriptionQuery.put(SubLapseDao.START, attributes.get(SubLapseDao.START));
+        EntityResult subscriptionER = this.subscriptionInsert(subscriptionQuery);
+
+        return subscriptionER;
+    }
 
 
     private int getFreq(Map<String, Object> attributes){

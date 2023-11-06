@@ -61,6 +61,10 @@ public class PlanService implements IPlanService {
         attrPlanInsert.put(PlanDao.PLATF_ID, attributes.get(PlanDao.PLATF_ID));
         attrPlanInsert.put(PlanDao.FR_ID, attributes.get(PlanDao.FR_ID));
 
+        if(attributes.containsKey(PlanDao.CUSTOM)){
+            attrPlanInsert.put(PlanDao.CUSTOM, attributes.get(PlanDao.CUSTOM));
+        }
+
         EntityResult insertPlanER =  this.daoHelper.insert(this.planDao, attrPlanInsert);
 
         Map<String, Object> attrPlanPriceInsert = new HashMap<>();

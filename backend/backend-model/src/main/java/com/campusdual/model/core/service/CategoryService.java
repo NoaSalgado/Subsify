@@ -41,8 +41,7 @@ public class CategoryService implements ICategoryService {
         return this.categoryQuery(newKeysValues, attributes);
     }
 
-    @Override
-    @Secured({ PermissionsProviderSecured.SECURED })
+
     public EntityResult categoryInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
         return this.daoHelper.insert(this.categoryDao, attributes);
     }

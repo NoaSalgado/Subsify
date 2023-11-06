@@ -11,6 +11,8 @@ export class CustomPlatformNewComponent implements OnInit {
   public x = "custom"
 
   @ViewChild("customServiceForm", { static: false }) customServiceForm: OFormComponent;
+
+
   constructor() { }
 
   ngOnInit() {

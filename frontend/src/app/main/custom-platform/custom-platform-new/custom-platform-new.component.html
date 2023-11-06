@@ -1,7 +1,7 @@
 <o-form
 #customServiceForm
 service="subscriptions"
-entity="subscription"
+entity="subscriptionCustom"
 delete-button="no"
 refresh-button="no"
 keys="SUBS_ID"
@@ -11,8 +11,12 @@ show-header-navigation="no"
 <o-row>
   <o-column title="{{ 'PERSONALIZED_SUBSCRIPTION' | oTranslate }}" fxFlex>
     <o-row fxFlex="100">
-      <o-text-input  attr="PLATF_NAME" fxFlex="40" required="yes" layout-padding></o-text-input>
-      <o-text-input  attr="CAT_NAME" fxFlex="40" required="yes" layout-padding></o-text-input>
+      <o-text-input  
+        attr="PLATF_NAME" 
+        fxFlex="40" 
+        required="yes" 
+        layout-padding
+      ></o-text-input>
     </o-row>
     <o-row fxFlex="100">
       <o-combo
@@ -49,9 +53,6 @@ show-header-navigation="no"
         text-input-enabled="no"
         fxFlex="33"
       ></o-date-input>
-    </o-row>
-    <o-row fxFlex="100">
-      <o-text-input  attr="CUSTOM_SUB" value="custom_sub" [data]="x" fxFlex="40" required="no" layout-padding></o-text-input>
     </o-row>
   </o-column>
 </o-row>
