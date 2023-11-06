@@ -1,10 +1,7 @@
 package com.campusdual.model.core.service;
 
 import com.campusdual.api.core.service.IUserSubService;
-import com.campusdual.model.core.dao.SubLapseDao;
-import com.campusdual.model.core.dao.SubscriptionDao;
-import com.campusdual.model.core.dao.UserDao;
-import com.campusdual.model.core.dao.UserSubDao;
+import com.campusdual.model.core.dao.*;
 import com.ontimize.jee.common.db.SQLStatementBuilder;
 import com.ontimize.jee.common.db.SQLStatementBuilder.BasicExpression;
 import com.ontimize.jee.common.dto.EntityResult;
@@ -74,26 +71,26 @@ public class UserSubService implements IUserSubService {
 
     @Override
     public EntityResult userSubInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
-       if(attributes.containsKey("USER_SUB_VIRTUAL") && attributes.get("USER_") != ""){
-            EntityResult errorEr = new EntityResultMapImpl();
-            errorEr.setCode(EntityResult.OPERATION_WRONG);
-            errorEr.setMessage("ERROR_USERSUB_INSERT_BOTH_MESSAGE");
-            return errorEr;
+        if(!attributes.containsKey("USER_SUB_VIRTUAL") && attributes.get("USER_") == ""){
+            EntityResult erError = this.throwError("ERROR_USERSUB_NO_USER_MESSAGE");
+            return erError;
         }
+
+       if(attributes.containsKey("USER_SUB_VIRTUAL") && attributes.get("USER_") != ""){
+            EntityResult erError =  this.throwError("ERROR_USERSUB_INSERT_BOTH_MESSAGE");
+            return erError;
+        }
+
+     if(this.sharingWithUser(attributes)){
+         EntityResult erError = this.throwError("ERROR_USERSUB_ALREADY_SHARING_MESSAGE");
+         return erError;
+       }
 
             int subsId;
             Map<String, Object> insertUserSubAttr = new HashMap<>();
             if (attributes.containsKey("SUB_LAPSE_ID")){
                 //Getting subs_id by sub_lapse_id
-                Map<String, Object> querySubLapseKV = new HashMap<>();
-                int subLapseId = Integer.parseInt((String) attributes.get(SubLapseDao.ID));
-                querySubLapseKV.put(SubLapseDao.ID, subLapseId);
-
-                List<String> querySubLapseAttr = new ArrayList<>();
-                querySubLapseAttr.add(SubLapseDao.SUBS_ID);
-                EntityResult er = this.subLapseService.subLapseQuery(querySubLapseKV, querySubLapseAttr);
-                Map<String, Object> subLapse = er.getRecordValues(0);
-                subsId = (int) subLapse.get(SubLapseDao.SUBS_ID);
+                subsId = this.getSubsId(attributes);
 
                 if(attributes.containsKey("USER_SUB_VIRTUAL")){
                     insertUserSubAttr.put(UserSubDao.USER_SUB_VIRTUAL,attributes.get(UserSubDao.USER_SUB_VIRTUAL));
@@ -103,7 +100,6 @@ public class UserSubService implements IUserSubService {
             }else {
                 subsId = (int) attributes.get(SubLapseDao.SUBS_ID);
             }
-
 
             insertUserSubAttr.put(SubscriptionDao.ID, subsId);
             insertUserSubAttr.put(UserSubDao.USER,attributes.get(UserSubDao.USER));
@@ -118,5 +114,49 @@ public class UserSubService implements IUserSubService {
     @Override
     public EntityResult userSubDelete(Map<String, Object> keyValues) throws OntimizeJEERuntimeException {
         return this.daoHelper.delete(this.userSubDao, keyValues);
+    }
+
+    private EntityResult throwError(String errorMessage){
+        EntityResult errorEr = new EntityResultMapImpl();
+        errorEr.setCode(EntityResult.OPERATION_WRONG);
+        errorEr.setMessage(errorMessage);
+        return errorEr;
+    }
+
+    private int getSubsId(Map<String, Object> attributes){
+        Map<String, Object> querySubLapseKV = new HashMap<>();
+        int subLapseId = Integer.parseInt((String) attributes.get(SubLapseDao.ID));
+        querySubLapseKV.put(SubLapseDao.ID, subLapseId);
+
+        List<String> querySubLapseAttr = new ArrayList<>();
+        querySubLapseAttr.add(SubLapseDao.SUBS_ID);
+        EntityResult er = this.subLapseService.subLapseQuery(querySubLapseKV, querySubLapseAttr);
+        Map<String, Object> subLapse = er.getRecordValues(0);
+        return (int) subLapse.get(SubLapseDao.SUBS_ID);
+    }
+
+    private boolean sharingWithUser(Map<String, Object> attributes){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        if(attributes.get(UserSubDao.USER).equals(username)){
+            return false;
+        }
+        Map<String, Object> userSubKv = new HashMap<>();
+        List<String>userSubAttr = new ArrayList<>();
+        if(attributes.containsKey(UserSubDao.USER_SUB_VIRTUAL)){
+            userSubKv.put(UserSubDao.USER_SUB_VIRTUAL, attributes.get(UserSubDao.USER_SUB_VIRTUAL));
+            userSubAttr.add(UserSubDao.USER_SUB_VIRTUAL);
+        }else{
+            userSubKv.put(UserSubDao.USER, attributes.get(UserSubDao.USER));
+            userSubAttr.add(UserSubDao.USER);
+        }
+        int subsId = this.getSubsId(attributes);
+
+        userSubKv.put(UserSubDao.SUBS_ID, subsId);
+        userSubAttr.add(UserSubDao.SUBS_ID);
+
+        EntityResult userSubER = this.daoHelper.query(this.userSubDao, userSubKv, userSubAttr);
+        return userSubER.calculateRecordNumber() > 0;
     }
 }
