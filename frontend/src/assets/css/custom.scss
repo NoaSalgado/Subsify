@@ -112,7 +112,7 @@ tbody .mat-row:nth-child(2n + 1) {
   .mat-form-field-wrapper
   .mat-form-field-flex,
 .mat-form-field-infix {
-  padding: 0 0 0.2em 0.5em !important;
+  padding: 0 0 0.4em 0.5em !important;
 }
 
 .mat-select-arrow-wrapper {
@@ -136,4 +136,13 @@ o-combo-search {
 
 .home-list .o-list-toolbar {
   display: none !important;
+}
+
+div.ng-star-inserted {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+.o-table-container {
+  min-height: 0 !important;
 }

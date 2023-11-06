@@ -46,6 +46,14 @@
         fxFlex="33"
         read-only="yes"
       ></o-date-input>
+      <o-checkbox
+        attr="SUBS_AUTORENEWAL"
+        label="RENEW"
+        [data]="true"
+        read-only="no"
+        required="yes"
+        layout-padding
+      ></o-checkbox>
     </o-row>
     <o-row>
       <o-currency-input
@@ -63,14 +71,6 @@
         read-only="yes"
         [data]="getSharedValue()"
       ></o-currency-input>
-      <o-checkbox
-        attr="SUBS_AUTORENEWAL"
-        label="RENEW"
-        [data]="true"
-        read-only="no"
-        required="yes"
-        layout-padding
-      ></o-checkbox>
     </o-row>
   </o-column>
 </o-form>
@@ -104,6 +104,8 @@
       parent-keys="SUB_LAPSE_ID"
       quick-filter="false"
       width="600px"
+      virtual-scroll="no"
+      class="share-user-subs"
     >
       <o-table-column attr="USERS">
         <o-table-renderer-concat></o-table-renderer-concat>
