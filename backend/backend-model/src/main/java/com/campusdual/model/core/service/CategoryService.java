@@ -30,7 +30,9 @@ public class CategoryService implements ICategoryService {
     @Override
     @Secured({ PermissionsProviderSecured.SECURED })
     public EntityResult categoryQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
-        return this.daoHelper.query(this.categoryDao, keysValues, attributes);
+        Map<String, Object> queryKV = new HashMap<>();
+        queryKV.put(CategoryDao.CUSTOM, false);
+        return this.daoHelper.query(this.categoryDao, queryKV, attributes);
     }
 
     @Override

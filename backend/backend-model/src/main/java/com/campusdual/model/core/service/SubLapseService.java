@@ -1,10 +1,9 @@
 package com.campusdual.model.core.service;
 
 import com.campusdual.api.core.service.ISubLapseService;
-import com.campusdual.model.core.dao.FrequencyDao;
-import com.campusdual.model.core.dao.SubLapseDao;
-import com.campusdual.model.core.dao.SubscriptionDao;
-import com.campusdual.model.core.dao.UserSubDao;
+import com.campusdual.model.core.dao.*;
+import com.fasterxml.jackson.databind.introspect.TypeResolutionContext;
+import com.ontimize.jee.common.db.SQLStatementBuilder;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
@@ -13,6 +12,10 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import com.ontimize.jee.common.db.SQLStatementBuilder;
+import com.ontimize.jee.common.db.SQLStatementBuilder.BasicExpression;
+import com.ontimize.jee.common.db.SQLStatementBuilder.BasicField;
+import com.ontimize.jee.common.db.SQLStatementBuilder.BasicOperator;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -46,7 +49,22 @@ public class SubLapseService implements ISubLapseService {
 
     @Override
     public EntityResult subLapseCatQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
-        return this.daoHelper.query(this.subLapseDao,keysValues, attributes, SubLapseDao.QUERY_CAT);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        Map<String, Object> newKeyValues = new HashMap<>();
+
+        BasicField usernameField = new BasicField(UserSubDao.USER);
+        BasicField isCustomField = new BasicField(CategoryDao.CUSTOM);
+
+        BasicExpression usernameBE = new BasicExpression(usernameField, BasicOperator.EQUAL_OP, username);
+        BasicExpression isCustomBE = new BasicExpression(isCustomField, BasicOperator.EQUAL_OP, false);
+        //doing an or between first basic expression and second
+        BasicExpression orBE = new BasicExpression(usernameBE, BasicOperator.OR_OP, isCustomBE);
+
+        newKeyValues.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, orBE);
+
+        return this.daoHelper.query(this.subLapseDao, newKeyValues, attributes, SubLapseDao.QUERY_CAT);
     }
 
 

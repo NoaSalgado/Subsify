@@ -15,6 +15,6 @@ public class PlatformDao extends OntimizeJdbcDaoSupport {
     public static final String CAT_ID = "CAT_ID";
     public static final String PLATF_ACTIVE = "PLATF_ACTIVE";
     public static final String PLATF_LINK = "PLATF_LINK";
-    public static final String CUSTOM = "IS_CUSTOM";
+    public static final String CUSTOM = "PLATF_IS_CUSTOM";
     public static final String DEFAULT_QUERY = "query_default";
 }

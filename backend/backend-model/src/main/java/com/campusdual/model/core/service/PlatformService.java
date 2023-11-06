@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,10 @@ public class PlatformService implements IPlatformService {
 
     @Override
     public EntityResult platformQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
-        return this.daoHelper.query(this.platformDao, keysValues, attributes, PlatformDao.DEFAULT_QUERY);
+        Map<String, Object> queryKV = new HashMap<>();
+        queryKV.put(PlatformDao.CUSTOM, false);
+
+        return this.daoHelper.query(this.platformDao, queryKV, attributes, PlatformDao.DEFAULT_QUERY);
     }
 
     @Override
