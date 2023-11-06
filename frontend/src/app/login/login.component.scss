@@ -51,6 +51,13 @@
           margin: 32px 0 0;
           height: 42px;
           font-size: 16px;
+          background-color: #065471 !important;
+          color: #dbf0fe !important;
+        }
+
+        button:hover {
+          background-color: #dbf0fe !important ;
+          color: #065471 !important;
         }
 
         .dark_text {

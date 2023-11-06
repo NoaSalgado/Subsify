@@ -27,7 +27,7 @@
   "RENOVATION_DATE": "Next Renewal",
   "MONTHLY_PRICE": "Monthly Price",
   "FR_NAME": "Frequency",
-  "CHARTS":"Charts",
+  "CHARTS": "Charts",
   "SUBSCRIPTION_INFORMATION": "Subscription Detail",
   "SUB_START": "Subscription Start",
   "SUB_END": "Next Renewal",
@@ -63,10 +63,12 @@
   "USER_SUB_VIRTUAL": "Username",
   "ERROR_USERSUB_INSERT_BOTH_MESSAGE": "You can not enter two users",
   "SUBSCRIPTIONS_TO_RENEW": "Subscriptions to renew",
-  "SHARED":"Shared Subscriptions",
-  "UNSUSCRIBE":"UNSUSCRIBE",
-  "SUBSCRIPTIONS-END":"Subscription ends ",
-  "RENEW-ON":"Renews in ",
-  "DAYS":" Days",
-  "EXPIRES":"Expires in "
+  "SHARED": "Shared Subscriptions",
+  "UNSUSCRIBE": "UNSUSCRIBE",
+  "SUBSCRIPTIONS-END": "Subscription ends ",
+  "RENEW-ON": "Renews in ",
+  "DAYS": " Days",
+  "EXPIRES": "Expires in ",
+  "ERROR_USERSUB_NO_USER_MESSAGE": "You must enter the user you want to share account with",
+  "ERROR_USERSUB_ALREADY_SHARING_MESSAGE": "Already share account with this user"
 }

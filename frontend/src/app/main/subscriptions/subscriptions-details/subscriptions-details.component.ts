@@ -37,7 +37,9 @@ export class SubscriptionsDetailsComponent implements AfterViewInit, OnInit {
     this.total_price = event.SUB_LAPSE_PRICE;
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    this.subscriptionDetailForm.reload();
+  }
 
   ngOnInit(): void {}
 }

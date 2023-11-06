@@ -3,9 +3,9 @@ div.o-form-content-wrapper {
 }
 
 .o-combo {
-  max-width: 100% !important;
+  min-width: 100% !important;
 }
 
 o-text-input {
-  width: 100%;
+  width: 99%;
 }

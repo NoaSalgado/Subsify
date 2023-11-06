@@ -1,4 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from "@angular/core";
+import { OFormComponent } from "ontimize-web-ngx";
 
 @Component({
   selector: "app-subscription-shared-new",
@@ -6,6 +13,8 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./subscription-shared-new.component.css"],
 })
 export class SubscriptionSharedNewComponent implements OnInit {
+  @ViewChild("subscriptionDetailForm", { static: false })
+  subscriptionDetailForm: OFormComponent;
   constructor() {}
 
   ngOnInit() {}
