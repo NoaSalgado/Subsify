@@ -18,3 +18,8 @@ p {
   max-width: 500px;
   justify-self: center;
 }
+
+.o-table.share-user-subs .o-table-container {
+  min-height: 0 !important;
+  height: auto !important;
+}
