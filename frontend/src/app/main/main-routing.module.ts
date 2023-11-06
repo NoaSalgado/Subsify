@@ -55,9 +55,6 @@ export const routes: Routes = [
           import("./charts/charts.module").then(
             (m) => m.ChartsModule
           ),
-      },
-      {
-        path:"custom-platform", loadChildren: () => import('./custom-platform/custom-platform.module').then(m => m.CustomPlatformModule) 
       }
     ],
   },

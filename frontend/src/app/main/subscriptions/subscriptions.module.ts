@@ -7,6 +7,7 @@ import { SubscriptionsNewComponent } from "./subscriptions-new/subscriptions-new
 import { SubscriptionsDetailsComponent } from "./subscriptions-details/subscriptions-details.component";
 import { SubscriptionSharedNewComponent } from "./subscription-shared-new/subscription-shared-new.component";
 import { OTableRendererConcatComponent } from "./o-table-renderer-concat/o-table-renderer-concat.component";
+import { CustomPlatformNewComponent } from "./custom-platform-new/custom-platform-new.component";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,8 @@ import { OTableRendererConcatComponent } from "./o-table-renderer-concat/o-table
     SubscriptionsDetailsComponent,
     SubscriptionSharedNewComponent,
     OTableRendererConcatComponent,
+    CustomPlatformNewComponent
+    
   ],
   imports: [CommonModule, SubscriptionsRoutingModule, OntimizeWebModule],
 })

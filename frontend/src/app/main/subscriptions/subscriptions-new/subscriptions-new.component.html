@@ -1,75 +1,84 @@
-<o-form
-  #subsForm
-  service="subscriptions"
-  entity="subscription"
-  keys="SUBS_ID"
-  header-actions="R;I;U;D"
-  show-header-navigation="no"
->
-  <o-row>
-    <o-column title="{{ 'NEW_SUBSCRIPTION' | oTranslate }}" fxFlex>
-      <o-row fxFlex="100">
-        <o-combo
-          #comboPlatform
-          attr="PLATF_ID"
-          required="yes"
-          label="PLATF_NAME"
-          layout-padding
-          read-only="no"
-          service="platforms"
-          entity="platform"
-          columns="PLATF_ID;PLATF_NAME"
-          value-column="PLATF_ID"
-          keys="PLATF_ID"
-          visible-columns="PLATF_NAME"
-          fxFlex="33"
-          null-selection="no"
-        >
-        </o-combo>
-      </o-row>
-      <o-row fxFlex="100">
-        <o-combo
-          #comboPlan
-          attr="PLAN_PRICE_ID"
-          required="yes"
-          label="PLAN_NAME"
-          layout-padding
-          read-only="no"
-          service="plans"
-          entity="planActive"
-          columns="PLAN_ID;PLAN_NAME;PLAN_PRICE_VALUE;FR_NAME;PLAN_PRICE_ID"
-          value-column="PLAN_PRICE_ID"
-          keys="PLAN_ID"
-          visible-columns="PLAN_NAME;FR_NAME"
-          data="PLAN_NAME"
-          fxFlex="33"
-          null-selection="no"
-          [query-on-event]="comboPlatform.onValueChange"
-          parent-keys="PLATF_ID"
-          (onValueChange)="setPriceValue($event)"
-        >
-        </o-combo>
-        <o-currency-input
-          class="price-input"
-          attr="SUB_LAPSE_PRICE"
-          fxFlex="33"
-          layout-padding
-          required="yes"
-        ></o-currency-input>
-        <o-date-input
-          attr="SUB_LAPSE_START"
-          label="SUBS_START_DATE"
-          read-only="no"
-          format="LL"
-          required="yes"
-          layout-padding
-          min="01/01/1980"
-          max="01/01/2020"
-          text-input-enabled="no"
-          fxFlex="33"
-        ></o-date-input>
-      </o-row>
-      <o-row fxFlex="100"> </o-row>
-    </o-column>
-  </o-row>
-</o-form>
+<mat-tab-group>
+  <mat-tab label="{{ 'NEW_SUBSCRIPTION' | oTranslate }}">
+      <o-form
+    #subsForm
+    service="subscriptions"
+    entity="subscription"
+    keys="SUBS_ID"
+    header-actions="R;I;U;D"
+    show-header-navigation="no"
+  >
+    <o-row>
+      <o-column fxFlex>
+        <o-row fxFlex="100">
+          <o-combo
+            #comboPlatform
+            attr="PLATF_ID"
+            required="yes"
+            label="PLATF_NAME"
+            layout-padding
+            read-only="no"
+            service="platforms"
+            entity="platform"
+            columns="PLATF_ID;PLATF_NAME"
+            value-column="PLATF_ID"
+            keys="PLATF_ID"
+            visible-columns="PLATF_NAME"
+            fxFlex="33"
+            null-selection="no"
+          >
+          </o-combo>
+        </o-row>
+        <o-row fxFlex="100">
+          <o-combo
+            #comboPlan
+            attr="PLAN_PRICE_ID"
+            required="yes"
+            label="PLAN_NAME"
+            layout-padding
+            read-only="no"
+            service="plans"
+            entity="planActive"
+            columns="PLAN_ID;PLAN_NAME;PLAN_PRICE_VALUE;FR_NAME;PLAN_PRICE_ID"
+            value-column="PLAN_PRICE_ID"
+            keys="PLAN_ID"
+            visible-columns="PLAN_NAME;FR_NAME"
+            data="PLAN_NAME"
+            fxFlex="33"
+            null-selection="no"
+            [query-on-event]="comboPlatform.onValueChange"
+            parent-keys="PLATF_ID"
+            (onValueChange)="setPriceValue($event)"
+          >
+          </o-combo>
+          <o-currency-input
+            class="price-input"
+            attr="SUB_LAPSE_PRICE"
+            fxFlex="33"
+            layout-padding
+            required="yes"
+          ></o-currency-input>
+          <o-date-input
+            attr="SUB_LAPSE_START"
+            label="SUBS_START_DATE"
+            read-only="no"
+            format="LL"
+            required="yes"
+            layout-padding
+            min="01/01/1980"
+            max="01/01/2020"
+            text-input-enabled="no"
+            fxFlex="33"
+          ></o-date-input>
+        </o-row>
+        <o-row fxFlex="100"> </o-row>
+      </o-column>
+    </o-row>
+  </o-form>
+  </mat-tab>
+  <mat-tab label="{{ 'CUSTOM_SUBSCRIPTION' | oTranslate }}"> 
+    <app-custom-platform-new>
+
+    </app-custom-platform-new>
+  </mat-tab>
+</mat-tab-group>
