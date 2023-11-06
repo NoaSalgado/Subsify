@@ -67,8 +67,9 @@
   "UNSUSCRIBE": "CANCELAR",
   "SUBSCRIPTIONS-END": "La suscripción termina el ",
   "RENEW-ON": "Se renueva en ",
-  "DAYS": " Dias",
+  "DAYS": " días",
   "EXPIRES": "Caduca en ",
   "ERROR_USERSUB_NO_USER_MESSAGE": "Debes introducir el usuario con el que deseas compartir cuenta",
-  "ERROR_USERSUB_ALREADY_SHARING_MESSAGE": "Ya compartes cuenta con este ususario"
+  "ERROR_USERSUB_ALREADY_SHARING_MESSAGE": "Ya compartes cuenta con este ususario",
+  "SHOW ALL": "Mostrar Todo"
 }

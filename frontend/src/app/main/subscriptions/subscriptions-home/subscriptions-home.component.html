@@ -46,7 +46,7 @@
         attr="clear"
         [oFilterBuilderClear]="filterBuilderCat"
         type="RAISED"
-        label="CLEAR"
+        label="SHOW ALL"
         class="filter-button"
         layout-padding
       >
@@ -63,8 +63,9 @@
       keys="SUB_LAPSE_ID"
       columns="SUB_LAPSE_ID;SUB_LAPSE_END;PLATF_NAME;SUB_LAPSE_PRICE;PLAN_NAME;FR_VALUE;CAT_NAME"
       visible-columns="PLATF_NAME;SUB_LAPSE_END;MONTHLY_PRICE;PLAN_NAME;CAT_NAME"
-      query-rows="20"
+      query-rows="10"
       auto-align-titles="no"
+      virtual-scroll="false"
     >
       <o-table-column
         attr="PLATF_NAME"

@@ -71,7 +71,7 @@ public class UserSubService implements IUserSubService {
 
     @Override
     public EntityResult userSubInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
-        if(!attributes.containsKey("USER_SUB_VIRTUAL") && attributes.get("USER_") == ""){
+        if(!attributes.containsKey(UserSubDao.USER_SUB_VIRTUAL) && attributes.get(UserSubDao.USER) == "" ||attributes.get(UserSubDao.USER_SUB_VIRTUAL) == "" && attributes.get(UserSubDao.USER) == ""){
             EntityResult erError = this.throwError("ERROR_USERSUB_NO_USER_MESSAGE");
             return erError;
         }
