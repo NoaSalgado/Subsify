@@ -1,37 +1,29 @@
 <div fxFill fxLayout="column" fxLayoutAlign="start">
-    <o-table 
-      attr="planTable" 
-      service="plans" 
-      entity="planActive" 
-      delete-button="no"
-      refresh-button="no"
-      keys="PLAN_ID" 
-      columns="PLAN_NAME;PLATF_NAME;FR_NAME;PLAN_PRICE_VALUE"
-      visible-columns="PLAN_NAME;PLATF_NAME;FR_NAME;PLAN_PRICE_VALUE" 
-      query-rows="20">
-      <o-table-column 
-        attr="PLAN_NAME" 
-        title="PLAN_NAME">
-      </o-table-column>
-      <o-table-column 
-        attr="PLATF_NAME" 
-        title="PLATF_NAME"
-        content-align="center">
-      </o-table-column>   
-      <o-table-column 
-        attr="FR_NAME" 
-        title="FR_NAME"
-        content-align="center">
-      </o-table-column>
-      <o-table-column 
-        attr="PLAN_PRICE_VALUE" 
-        title="PLAN_PRICE_VALUE"
-        type="currency"
-        thousand-separator="."
-        decimal-separator=","
-        currency-symbol="€"
-        currency-symbol-position="right">
-       
-      </o-table-column>        
-    </o-table>
+  <o-table
+    attr="planTable"
+    service="plans"
+    entity="planActive"
+    delete-button="no"
+    refresh-button="no"
+    keys="PLAN_ID"
+    columns="PLAN_NAME;PLATF_NAME;FR_NAME;PLAN_PRICE_VALUE"
+    visible-columns="PLAN_NAME;PLATF_NAME;FR_NAME;PLAN_PRICE_VALUE"
+    query-rows="15"
+  >
+    <o-table-column attr="PLAN_NAME" title="PLAN_NAME"> </o-table-column>
+    <o-table-column attr="PLATF_NAME" title="PLATF_NAME" content-align="center">
+    </o-table-column>
+    <o-table-column attr="FR_NAME" title="FR_NAME" content-align="center">
+    </o-table-column>
+    <o-table-column
+      attr="PLAN_PRICE_VALUE"
+      title="PLAN_PRICE_VALUE"
+      type="currency"
+      thousand-separator="."
+      decimal-separator=","
+      currency-symbol="€"
+      currency-symbol-position="right"
+    >
+    </o-table-column>
+  </o-table>
 </div>

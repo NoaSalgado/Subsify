@@ -143,8 +143,9 @@ div.ng-star-inserted {
   min-height: 0 !important;
 }
 
-.o-table-container {
+.o-table.share-user-subs .o-table-container {
   min-height: 0 !important;
+  height: auto !important;
 }
 
 .mat-tab-label .mat-tab-label-content{
