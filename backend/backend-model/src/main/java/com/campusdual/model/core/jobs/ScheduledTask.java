@@ -59,7 +59,7 @@ public class ScheduledTask {
         subscriptionService.subscriptionUpdate(attributes, keyvalues);
     }
 
-    @Scheduled(fixedRate=10000)
+    @Scheduled(fixedRate=1000)
     public void scheduleTask(){
         try {
 

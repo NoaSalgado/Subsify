@@ -33,7 +33,7 @@
         </div>
 
         <div>
-          {{ rowData.SUB_LAPSE_PRICE | currency : "EUR" : true }}
+          {{ rowData.shared_price | currency : "EUR" : true }}
         </div>
 
         <div *ngIf="showRenewal[i]; else noCaduca">
@@ -52,11 +52,14 @@
         mat-raised-button
         class="mat-raised-button"
         class="mat-raised-button class"
-        *ngIf="showRenewal[i]"
+        *ngIf="showRenewal[i] && rowData.platf_link"
         (click)="goToDoc(webLinks[i])"
       >
         {{ "UNSUSCRIBE" | oTranslate }}
       </button>
+      <p class="cancel-message" *ngIf="showRenewal[i] && !rowData.platf_link">
+        Cancela tu suscripción
+      </p>
     </mat-card>
   </div>
 </o-list>
