@@ -35,6 +35,21 @@ show-header-navigation="no"
       fxFlex="33"
       null-selection="no"
       ></o-combo>
+      <o-combo
+    attr="CAT_ID"
+    label="Category"
+    layout-padding
+    read-only="no"
+    service="categories"
+    entity="categoryActive"
+    columns="CAT_NAME;CAT_ID"
+    value-column="CAT_ID"
+    keys="CAT_ID"
+    visible-columns="CAT_NAME"
+    fxFlex="33"
+    null-selection="yes"
+  >
+  </o-combo>
       <o-currency-input
         class="price-input"
         attr="SUB_LAPSE_PRICE"

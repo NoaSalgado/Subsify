@@ -36,11 +36,12 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
-    @Secured({ PermissionsProviderSecured.SECURED })
+   // @Secured({ PermissionsProviderSecured.SECURED })
     public EntityResult categoryActiveQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
         Map<String, Object> newKeysValues = new HashMap<>();
         newKeysValues.put(CategoryDao.ACTIVE, true);
-        return this.categoryQuery(newKeysValues, attributes);
+        newKeysValues.put(CategoryDao.CUSTOM,false);
+        return this.daoHelper.query(this.categoryDao, newKeysValues, attributes);
     }
 
 
@@ -59,4 +60,6 @@ public class CategoryService implements ICategoryService {
     public EntityResult categoryDelete(Map<String, Object> keyValues) throws OntimizeJEERuntimeException {
         return this.daoHelper.delete(this.categoryDao, keyValues);
     }
+
+
 }
