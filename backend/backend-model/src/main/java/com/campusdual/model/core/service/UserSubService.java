@@ -71,12 +71,12 @@ public class UserSubService implements IUserSubService {
 
     @Override
     public EntityResult userSubInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
-        if(!attributes.containsKey(UserSubDao.USER_SUB_VIRTUAL) && attributes.get(UserSubDao.USER) == "" ||attributes.get(UserSubDao.USER_SUB_VIRTUAL) == "" && attributes.get(UserSubDao.USER) == ""){
+        if(!attributes.containsKey(UserSubDao.USER_SUB_VIRTUAL) && !attributes.containsKey(UserSubDao.USER)){
             EntityResult erError = this.throwError("ERROR_USERSUB_NO_USER_MESSAGE");
             return erError;
         }
 
-       if(attributes.containsKey("USER_SUB_VIRTUAL") && attributes.get("USER_") != ""){
+       if(attributes.containsKey(UserSubDao.USER_SUB_VIRTUAL) && attributes.containsKey(UserSubDao.USER)  && !attributes.get(UserSubDao.USER_SUB_VIRTUAL).toString().equals("") ){
             EntityResult erError =  this.throwError("ERROR_USERSUB_INSERT_BOTH_MESSAGE");
             return erError;
         }
@@ -88,11 +88,11 @@ public class UserSubService implements IUserSubService {
 
             int subsId;
             Map<String, Object> insertUserSubAttr = new HashMap<>();
-            if (attributes.containsKey("SUB_LAPSE_ID")){
+            if (attributes.containsKey(SubLapseDao.ID)){
                 //Getting subs_id by sub_lapse_id
                 subsId = this.getSubsId(attributes);
 
-                if(attributes.containsKey("USER_SUB_VIRTUAL")){
+                if(attributes.containsKey(UserSubDao.USER_SUB_VIRTUAL) && !attributes.get(UserSubDao.USER_SUB_VIRTUAL).toString().trim().equals("")){
                     insertUserSubAttr.put(UserSubDao.USER_SUB_VIRTUAL,attributes.get(UserSubDao.USER_SUB_VIRTUAL));
                     insertUserSubAttr.put(SubscriptionDao.ID, subsId);
                     return this.daoHelper.insert(this.userSubDao, insertUserSubAttr);
@@ -139,7 +139,7 @@ public class UserSubService implements IUserSubService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
-        if(attributes.get(UserSubDao.USER).equals(username)){
+        if(attributes.containsKey(UserSubDao.USER) && attributes.get(UserSubDao.USER).equals(username)){
             return false;
         }
         Map<String, Object> userSubKv = new HashMap<>();
