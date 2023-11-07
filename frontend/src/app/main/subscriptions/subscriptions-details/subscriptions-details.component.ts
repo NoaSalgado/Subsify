@@ -6,12 +6,13 @@ import {
   ViewChild,
 } from "@angular/core";
 import { OFormComponent } from "ontimize-web-ngx";
+import { SubscriptionServiceService } from "../subscription-service.service";
 @Component({
   selector: "app-subscriptions-details",
   templateUrl: "./subscriptions-details.component.html",
   styleUrls: ["./subscriptions-details.component.css"],
 })
-export class SubscriptionsDetailsComponent implements AfterViewInit, OnInit {
+export class SubscriptionsDetailsComponent implements AfterViewInit {
   @ViewChild("subscriptionDetailForm", { static: false })
   subscriptionDetailForm: OFormComponent;
   @ViewChild("sharedUsersForm", { static: false })
@@ -22,6 +23,16 @@ export class SubscriptionsDetailsComponent implements AfterViewInit, OnInit {
   protected users;
   protected virtual_user;
   public display_shared_price = true;
+
+  constructor(private subsService: SubscriptionServiceService) {}
+
+  ngAfterViewInit(): void {
+    this.registerForm();
+  }
+
+  registerForm() {
+    this.subsService.registerForm(this.subscriptionDetailForm);
+  }
 
   getSharedValue() {
     if (this.shared_price === this.total_price) {
@@ -36,10 +47,4 @@ export class SubscriptionsDetailsComponent implements AfterViewInit, OnInit {
     this.shared_price = event.shared_price;
     this.total_price = event.SUB_LAPSE_PRICE;
   }
-
-  ngAfterViewInit(): void {
-    this.subscriptionDetailForm.reload();
-  }
-
-  ngOnInit(): void {}
 }

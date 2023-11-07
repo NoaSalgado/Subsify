@@ -6,6 +6,7 @@ import {
   ViewChild,
 } from "@angular/core";
 import { OFormComponent } from "ontimize-web-ngx";
+import { SubscriptionServiceService } from "../subscription-service.service";
 
 @Component({
   selector: "app-subscription-shared-new",
@@ -15,11 +16,11 @@ import { OFormComponent } from "ontimize-web-ngx";
 export class SubscriptionSharedNewComponent implements OnInit {
   @ViewChild("subscriptionDetailForm", { static: false })
   subscriptionDetailForm: OFormComponent;
-  constructor() {}
+  constructor(private subsService: SubscriptionServiceService) {}
 
   ngOnInit() {}
 
   reload() {
-    location.reload();
+    this.subsService.reloadForm();
   }
 }

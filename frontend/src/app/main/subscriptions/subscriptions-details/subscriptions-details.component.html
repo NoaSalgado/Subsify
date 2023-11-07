@@ -106,6 +106,7 @@
       width="600px"
       virtual-scroll="no"
       class="share-user-subs"
+      (onDataLoaded)="print($event)"
     >
       <o-table-column attr="USERS">
         <o-table-renderer-concat></o-table-renderer-concat>
