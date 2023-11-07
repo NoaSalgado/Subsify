@@ -82,8 +82,8 @@ public class SubscriptionService implements ISubscriptionService {
         planQuery.put(PlanDao.FR_ID, attributes.get(FrequencyDao.ID));
         planQuery.put(PlanDao.NAME, "");
         planQuery.put(PlanDao.CUSTOM, true);
-        planQuery.put(PlanPriceDao.VALUE, null);
-        planQuery.put(PlanPriceDao.START, null);
+        planQuery.put(PlanPriceDao.VALUE, attributes.get(SubLapseDao.PRICE));
+        planQuery.put(PlanPriceDao.START, attributes.get(SubLapseDao.START));
         EntityResult planER = this.planService.planInsert(planQuery);
         int planID = (int) planER.get(PlanDao.ID);
 
