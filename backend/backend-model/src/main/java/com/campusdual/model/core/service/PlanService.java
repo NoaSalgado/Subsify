@@ -47,17 +47,22 @@ public class PlanService implements IPlanService {
 
     @Override
         public EntityResult planActiveQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
+        return this.daoHelper.query(this.planDao, keysValues, attributes, PlanDao.QUERY_ACTIVE_PLAN);
+    }
+
+    @Override
+    public EntityResult singlePlanQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
+        return this.daoHelper.query(this.planDao, keysValues, attributes, PlanDao.QUERY_SINGLE_PLAN);
+    }
+
+    @Override
+    public EntityResult adminPlanQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
         Map<String, Object> queryKV = new HashMap<>();
         SQLStatementBuilder.BasicField planNameBE = new SQLStatementBuilder.BasicField(PlanDao.NAME);
         SQLStatementBuilder.BasicExpression planNameIsEmptyBE =
                 new SQLStatementBuilder.BasicExpression(planNameBE, SQLStatementBuilder.BasicOperator.NOT_EQUAL_OP, "");
         queryKV.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, planNameIsEmptyBE);
         return this.daoHelper.query(this.planDao, queryKV, attributes, PlanDao.QUERY_ACTIVE_PLAN);
-    }
-
-    @Override
-    public EntityResult singlePlanQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
-        return this.daoHelper.query(this.planDao, keysValues, attributes, PlanDao.QUERY_SINGLE_PLAN);
     }
 
     @Override
