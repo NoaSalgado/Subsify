@@ -4,6 +4,7 @@ import com.campusdual.api.core.service.IPlanService;
 import com.campusdual.model.core.dao.PlanDao;
 import com.campusdual.model.core.dao.PlanPriceDao;
 import com.campusdual.model.core.dao.SubscriptionDao;
+import com.ontimize.jee.common.db.SQLStatementBuilder;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
@@ -46,7 +47,12 @@ public class PlanService implements IPlanService {
 
     @Override
         public EntityResult planActiveQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
-        return this.daoHelper.query(this.planDao, keysValues, attributes, PlanDao.QUERY_ACTIVE_PLAN);
+        Map<String, Object> queryKV = new HashMap<>();
+        SQLStatementBuilder.BasicField planNameBE = new SQLStatementBuilder.BasicField(PlanDao.NAME);
+        SQLStatementBuilder.BasicExpression planNameIsEmptyBE =
+                new SQLStatementBuilder.BasicExpression(planNameBE, SQLStatementBuilder.BasicOperator.NOT_EQUAL_OP, "");
+        queryKV.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, planNameIsEmptyBE);
+        return this.daoHelper.query(this.planDao, queryKV, attributes, PlanDao.QUERY_ACTIVE_PLAN);
     }
 
     @Override
