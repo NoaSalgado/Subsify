@@ -20,6 +20,9 @@ export const SERVICE_CONFIG: Object = {
   permissions: {
     path: "/permissions/permission",
   },
+  permission: {
+    path:"/permissions"
+  },
   planPrices: {
     path: "/planPrices",
   },

@@ -1,9 +1,13 @@
 package com.campusdual.model.core.service;
 
 import com.campusdual.api.core.service.IPermissionService;
+import com.campusdual.model.core.dao.UserDao;
+import com.campusdual.model.core.dao.UserRoleDao;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.dto.EntityResultMapImpl;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
+import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +27,10 @@ public class PermissionService implements IPermissionService {
 
     public final String ADMIN_PERMISSION;
     public final String USER_PERMISSION;
+    @Autowired
+    private DefaultOntimizeDaoHelper daoHelper;
+    @Autowired
+    private UserRoleDao userRoleDao;
 
     private String readFromInputStream(String fileName) throws IOException {
         StringBuilder resultStringBuilder = new StringBuilder();
@@ -64,5 +72,14 @@ public class PermissionService implements IPermissionService {
 
         e.addRecord(map);
         return e;
+    }
+
+    public EntityResult userRoleQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> newKeyValues = new HashMap<>(keyMap);
+        String username = authentication.getName();
+        newKeyValues.put(UserDao.ID,username);
+
+        return this.daoHelper.query(this.userRoleDao, newKeyValues, attrList, UserRoleDao.userRoleQuery);
     }
 }

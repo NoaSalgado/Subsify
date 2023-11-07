@@ -2,39 +2,25 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OListComponent } from 'ontimize-web-ngx';
 import { MatDialog } from '@angular/material/dialog';
-import { AlertDialogComponent } from '../alerts/alert-dialog/alert-dialog.component';
 
 @Component({
-  selector: 'home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-user-home',
+  templateUrl: './user-home.component.html',
+  styleUrls: ['./user-home.component.css']
 })
-
-export class HomeComponent implements OnInit {
+export class UserHomeComponent implements OnInit {
   @ViewChild('list', { static: false }) list: OListComponent
   public remainingDays: Array<number>;
   public showRenewal: Array<boolean>;
   public webLinks: Array<string>;
-  
   user_role;
 
   constructor(
     private router: Router,
     private actRoute: ActivatedRoute,
-    private dialog: MatDialog
-  ) {
-  }
-  openAlertDialog(title: string, message: string): void {
-    this.dialog.open(AlertDialogComponent, {
-      width: '300px',
-      data: { title, message },
-    });
-  }
-
-  showAlert(): void {
-    this.openAlertDialog('Aviso', 'Esto caduca');
-  }
-  calculateDays() {
+    private dialog: MatDialog) { 
+   }
+   calculateDays() {
     this.showRenewal = this.list.dataArray.map(sub => !sub.subs_autorenewal);
     console.log(this.showRenewal);
     this.webLinks = this.list.dataArray.map(sub => sub.platf_link);
@@ -51,26 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-  
   }
-
-  onDataLoaded(event){
-    console.log(event);
-    if (event && event.length > 0 && event[0].ROLENAME) {
-    
-    this.user_role=event[0].ROLENAME;
-    console.log(this.user_role)
-    if(this.user_role === 'admin'){
-      console.log("HOLA")
-      this.router.navigate(['../../','plans'], {relativeTo: this.actRoute})
-    } else{
-      this.router.navigate(['../../','user-home'],{relativeTo:this.actRoute})
-    }
-  } else {
-    console.error('Invalid data received:', event);
-  }
-  }
-
   navigate() {
     this.router.navigate(['../', 'login'], { relativeTo: this.actRoute });
   }
@@ -78,5 +45,4 @@ export class HomeComponent implements OnInit {
   goToDoc(link: string) {
     window.open(link, "_blank");
   }
-
 }

@@ -16,6 +16,11 @@
       "enabled": true
     },
     {
+      "attr": "charts",
+      "visible": true,
+      "enabled": true
+    },
+    {
       "attr": "plans",
       "visible": false,
       "enabled": false
@@ -38,6 +43,14 @@
     {
       "permissionId": "plans-table-route",
       "enabled": false
+    },
+    {
+      "permissionId": "home-route",
+      "enabled": true
+    },
+    {
+      "permissionId": "user-home-route",
+      "enabled": true
     }
   ]
 }

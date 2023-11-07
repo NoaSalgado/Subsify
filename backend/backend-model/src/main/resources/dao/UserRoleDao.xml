@@ -29,15 +29,15 @@
 				<AmbiguousColumn name="ID_ROLENAME" prefix="tr" />
 			</AmbiguousColumns>
 			<Sentence>
-					<![CDATA[
+				<![CDATA[
 					select
 						#COLUMNS#
 					from
-						${mainschema}.TUSER tu
-						JOIN ${mainschema}.TUSER_ROLE tur ON tu.USER_ = tur.USER_
-						JOIN ${mainschema}.TROLE tr ON tur.ID_ROLENAME = tr.ID_ROLENAME
+						TUSER tu
+						JOIN TUSER_ROLE tur ON tu.USER_ = tur.USER_
+						JOIN TROLE tr ON tur.ID_ROLENAME = tr.ID_ROLENAME
 					#WHERE#
-					#ORDER#
+
 					]]>
 			</Sentence>
 		</Query>

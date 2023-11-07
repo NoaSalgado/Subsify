@@ -16,6 +16,11 @@
       "enabled": false
     },
     {
+      "attr": "charts",
+      "visible": false,
+      "enabled": false
+    },
+    {
       "attr": "home",
       "visible": false,
       "enabled": false
@@ -45,7 +50,11 @@
       "enabled": true
     },
     {
-      "permissionId": "home-chart-route",
+      "permissionId": "home-route",
+      "enabled": true
+    },
+    {
+      "permissionId": "user-home-route",
       "enabled": false
     }
 
