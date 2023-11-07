@@ -63,10 +63,15 @@ public class SubscriptionService implements ISubscriptionService {
 
         //insert category
         Map<String, Object> catQuery = new HashMap<>();
-        catQuery.put(CategoryDao.NAME, attributes.get(PlatformDao.NAME));
-        catQuery.put(CategoryDao.CUSTOM, true);
-        EntityResult categoryER = this.categoryService.categoryInsert(catQuery);
-        int catId = (int) categoryER.get(CategoryDao.ID);
+        int catId;
+            if(!attributes.containsKey(CategoryDao.ID)){
+                catQuery.put(CategoryDao.NAME, attributes.get(PlatformDao.NAME));
+                catQuery.put(CategoryDao.CUSTOM, true);
+                EntityResult categoryER = this.categoryService.categoryInsert(catQuery);
+                catId =  (int)categoryER.get(CategoryDao.ID);
+            }else{
+                catId=(int)attributes.get(CategoryDao.ID);
+            }
 
         //insert platform
         Map<String, Object> platfQuery = new HashMap<>();
