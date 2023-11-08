@@ -1,29 +1,43 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
+import { Component, Injector, OnInit, ViewChild } from "@angular/core";
 import { getMonthlyPricefunction } from "src/app/shared/shared.module";
+import { OChartComponent, DonutChartConfiguration } from 'ontimize-web-ngx-charts';
 import {
-  Expression,
-  FilterExpressionUtils,
-  OComboComponent,
-  OFilterBuilderComponent,
-  OTableComponent,
+Expression,
+FilterExpressionUtils,
+OComboComponent,
+OFilterBuilderComponent,
+OTableComponent,
+OTranslateService,
 } from "ontimize-web-ngx";
-import { SubscriptionServiceService } from "../subscription-service.service";
 
 @Component({
-  selector: "app-subscriptions-home",
-  templateUrl: "./subscriptions-home.component.html",
-  styleUrls: ["./subscriptions-home.component.css"],
+selector: "app-subscriptions-home",
+templateUrl: "./subscriptions-home.component.html",
+styleUrls: ["./subscriptions-home.component.css"],
 })
-export class SubscriptionsHomeComponent implements OnInit, AfterViewInit {
-  @ViewChild("subLapseTable", { static: false }) sublapseTable: OTableComponent;
-  @ViewChild("filterBuilderCat", { static: false })
-  filterBuilderCat: OFilterBuilderComponent;
-  @ViewChild("categories", { static: false }) categories: OComboComponent;
 
-  public getMonthlyPrice = getMonthlyPricefunction;
+export class SubscriptionsHomeComponent implements OnInit {
+@ViewChild("filterBuilderCat", { static: false })
+filterBuilderCat: OFilterBuilderComponent;
+@ViewChild("categories", { static: false }) categories: OComboComponent;
+@ViewChild("subLapseTable",{static:false}) subLapseTable:OTableComponent;
+@ViewChild("subLapseChart",{static:false}) subLapseChart:OChartComponent;
 
-  constructor(private subscriptionsSevice: SubscriptionServiceService) {}
-  ngOnInit() {}
+protected platformChart: OChartComponent;
+public chartData;
+protected chartParameters: DonutChartConfiguration;
+public getMonthlyPrice = getMonthlyPricefunction;
+
+
+constructor(protected injector: Injector) {
+
+this.chartParameters = new DonutChartConfiguration();
+this.chartParameters.showLabels = true;
+this.chartParameters.cornerRadius = 0;
+this.chartParameters.donutRatio = 0.1;
+}
+
+ngOnInit() {}
 
   ngAfterViewInit(): void {
     // this.subscriptionsSevice.registerTable(this.sublapseTable);
@@ -55,5 +69,16 @@ export class SubscriptionsHomeComponent implements OnInit, AfterViewInit {
 
   resetFilter($event) {
     this.filterBuilderCat.triggerReload();
+  }
+
+  setChartData($event){
+    console.log(this.subLapseChart.dataArray);
+      this.chartData=$event.map(subLapse=>{
+      const data={
+        x:subLapse.PLATF_NAME,
+        y:subLapse.shared_price/subLapse.FR_VALUE
+      }
+      return data;
+     });
   }
 }
