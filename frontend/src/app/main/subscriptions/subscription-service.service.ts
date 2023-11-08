@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
-import { OFormComponent } from "ontimize-web-ngx";
+import { OFormComponent, OTableComponent } from "ontimize-web-ngx";
 
 @Injectable({
   providedIn: "root",
 })
 export class SubscriptionServiceService {
   private _form: OFormComponent;
+  private _table: OTableComponent;
 
   constructor() {}
 
@@ -13,12 +14,22 @@ export class SubscriptionServiceService {
     return this._form;
   }
 
+  registerTable(table: OTableComponent) {
+    this._table = table;
+  }
+
   registerForm(form: OFormComponent) {
     this._form = form;
   }
 
+  // realoadTable() {
+  //   setTimeout(() => {
+  //     console.log("here");
+  //     this._table.reloadData(true);
+  //   }, 1001);
+  // }
+
   reloadForm() {
-    console.log(this.form);
     this.form.reload(true);
   }
 }
