@@ -3,6 +3,7 @@ package com.campusdual.model.core.service;
 
 import com.campusdual.api.core.service.ICategoryService;
 import com.campusdual.model.core.dao.CategoryDao;
+import com.campusdual.model.core.dao.PlatformDao;
 import com.campusdual.model.core.dao.SubLapseDao;
 import com.campusdual.model.core.dao.UserSubDao;
 import com.ontimize.jee.common.dto.EntityResult;
@@ -35,6 +36,9 @@ public class CategoryService implements ICategoryService {
     public EntityResult categoryQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
         Map<String, Object> queryKV = new HashMap<>();
         queryKV.put(CategoryDao.CUSTOM, false);
+        if(keysValues.containsKey(CategoryDao.ID)){
+            queryKV.put(CategoryDao.ID, keysValues.get(CategoryDao.ID));
+        }
         return this.daoHelper.query(this.categoryDao, queryKV, attributes);
     }
 

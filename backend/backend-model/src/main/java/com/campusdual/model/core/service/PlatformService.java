@@ -27,7 +27,19 @@ public class PlatformService implements IPlatformService {
     public EntityResult platformQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
         Map<String, Object> queryKV = new HashMap<>();
         queryKV.put(PlatformDao.CUSTOM, false);
+        if(keysValues.containsKey(PlatformDao.ID)){
+            queryKV.put(PlatformDao.ID, keysValues.get(PlatformDao.ID));
+        } else {
+            queryKV.put(PlatformDao.PLATF_ACTIVE, true);
+        }
 
+        return this.daoHelper.query(this.platformDao, queryKV, attributes, PlatformDao.DEFAULT_QUERY);
+    }
+
+    @Override
+    public EntityResult platformAdminQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
+        Map<String, Object> queryKV = new HashMap<>();
+        queryKV.put(PlatformDao.CUSTOM, false);
         return this.daoHelper.query(this.platformDao, queryKV, attributes, PlatformDao.DEFAULT_QUERY);
     }
 
