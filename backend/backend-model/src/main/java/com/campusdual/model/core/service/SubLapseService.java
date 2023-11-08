@@ -54,6 +54,9 @@ public class SubLapseService implements ISubLapseService {
 
         Map<String, Object> newKeyValues = new HashMap<>();
         newKeyValues.put(UserSubDao.USER, username);
+        if(keysValues.containsKey(CategoryDao.NAME)){
+            newKeyValues.put(CategoryDao.NAME, keysValues.get(CategoryDao.NAME));
+        }
 
         return this.daoHelper.query(this.subLapseDao, newKeyValues, attributes, SubLapseDao.QUERY_CAT);
     }

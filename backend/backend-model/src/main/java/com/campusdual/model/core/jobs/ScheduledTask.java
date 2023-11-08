@@ -70,14 +70,19 @@ public class ScheduledTask {
                     SubLapseDao.SUBS_ID,
                     SubLapseDao.PRICE,
                     PlanDao.FR_ID,
-                    PlanDao.ID,
-                    SubscriptionDao.PLAN_PRICE_ID);
+                    PlanDao.ID);
+                    //SubscriptionDao.PLAN_PRICE_ID,
+                    //PlanPriceDao.VALUE);
 
             EntityResult subscriptionsToUpdate = subLapseService.subLapseQueryRenewal(new HashMap<>(), columns);
 
 
             int erSize = subscriptionsToUpdate.calculateRecordNumber();
-
+            /*if (erSize > 0 ){
+                System.out.println("here");
+                subscriptionsToUpdate.getRecordValues(0).get(SubLapseDao.PRICE)
+                        .equals(subscriptionsToUpdate.getRecordValues(0).get(PlanPriceDao.VALUE));
+            }*/
             for(int i=0;i<erSize;i++){
 
                 Map<String,Object> subsRegistry =  subscriptionsToUpdate.getRecordValues(i);

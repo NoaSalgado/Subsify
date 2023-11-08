@@ -168,7 +168,7 @@
                     from sub_lapse sli
                     where sub_lapse_start <= current_date and sub_lapse_end >= current_date
                 )
-                select distinct c.cat_name
+                select distinct c.cat_name, c.cat_id
                 from slf
                 inner join subscription s on slf.subs_id = s.subs_id
                 inner join plan_price pp on s.plan_price_id = pp.plan_price_id

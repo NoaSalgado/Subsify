@@ -58,24 +58,77 @@ public class SubscriptionService implements ISubscriptionService {
         return this.daoHelper.query(this.subscriptionDao, keysValues, attributes);
     }
 
+    private String convertToTitleCase(String text) {
+        if (text == null || text.isEmpty()) {
+            return text;
+        }
+
+        StringBuilder converted = new StringBuilder();
+
+        boolean convertNext = true;
+        for (char ch : text.toCharArray()) {
+            if (Character.isSpaceChar(ch)) {
+                convertNext = true;
+            } else if (convertNext) {
+                ch = Character.toTitleCase(ch);
+                convertNext = false;
+            } else {
+                ch = Character.toLowerCase(ch);
+            }
+            converted.append(ch);
+        }
+
+        return converted.toString();
+    }
+
+    //When empty category on custom insert checks if this category exists in database, if it does there is no insert,
+    //other case it does insert a new category with that platform name.
+    private int insertEmptyCategory(String platformName, Map<String, Object> attributes){
+        //Getting categories of actual user
+        EntityResult categoryListER = this.subsLapseService.subLapseCatQuery(
+                new HashMap<>(),
+                new ArrayList<String>(Arrays.asList(CategoryDao.NAME)));
+        int categoryListERSize = categoryListER.calculateRecordNumber();
+        List<String> categoryNames = new ArrayList<>();
+        for (int i = 0; i < categoryListERSize; i++) {
+            categoryNames.add((String) categoryListER.getRecordValues(i).get(CategoryDao.NAME));
+        }
+
+        int catId;
+        Map<String, Object> catQuery = new HashMap<>();
+
+        if (categoryNames.contains(platformName)){
+            //getting category id by name
+            Map<String, Object> catKV = new HashMap<>();
+            catKV.put(CategoryDao.NAME, platformName);
+            EntityResult categoryIDER = this.subsLapseService.subLapseCatQuery(catKV,
+                    new ArrayList<String>(Arrays.asList(CategoryDao.ID)));
+            catId=(int) categoryIDER.getRecordValues(0).get(CategoryDao.ID);
+        }else{
+            catQuery.put(CategoryDao.NAME, platformName);
+            catQuery.put(CategoryDao.CUSTOM, true);
+            EntityResult categoryER = this.categoryService.categoryInsert(catQuery);
+            catId =  (int)categoryER.get(CategoryDao.ID);
+        }
+        return catId;
+    }
     @Override
     public EntityResult subscriptionCustomInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
 
+        String platformNameNoFormat = (String) attributes.get(PlatformDao.NAME);
+        String platformName = this.convertToTitleCase(platformNameNoFormat);
+
         //insert category
-        Map<String, Object> catQuery = new HashMap<>();
         int catId;
             if(!attributes.containsKey(CategoryDao.ID)){
-                catQuery.put(CategoryDao.NAME, attributes.get(PlatformDao.NAME));
-                catQuery.put(CategoryDao.CUSTOM, true);
-                EntityResult categoryER = this.categoryService.categoryInsert(catQuery);
-                catId =  (int)categoryER.get(CategoryDao.ID);
+                catId = insertEmptyCategory(platformName, attributes);
             }else{
                 catId=(int)attributes.get(CategoryDao.ID);
             }
 
         //insert platform
         Map<String, Object> platfQuery = new HashMap<>();
-        platfQuery.put(PlatformDao.NAME, attributes.get(PlatformDao .NAME));
+        platfQuery.put(PlatformDao.NAME, platformName);
         platfQuery.put(PlatformDao.CUSTOM, true);
         platfQuery.put(PlatformDao.CAT_ID, catId);
         EntityResult platformER = this.platformService.platformInsert(platfQuery);

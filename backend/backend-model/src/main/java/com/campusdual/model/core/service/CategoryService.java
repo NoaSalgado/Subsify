@@ -4,6 +4,7 @@ package com.campusdual.model.core.service;
 import com.campusdual.api.core.service.ICategoryService;
 import com.campusdual.model.core.dao.CategoryDao;
 import com.campusdual.model.core.dao.SubLapseDao;
+import com.campusdual.model.core.dao.UserSubDao;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.common.security.PermissionsProviderSecured;
@@ -11,6 +12,8 @@ import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -44,6 +47,17 @@ public class CategoryService implements ICategoryService {
         return this.daoHelper.query(this.categoryDao, newKeysValues, attributes);
     }
 
+    /*
+    public EntityResult catIdBycatNameQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException{
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        Map<String, Object> newKeysValues = new HashMap<>();
+        newKeysValues.put(UserSubDao.USER, username);
+        newKeysValues.put(CategoryDao.NAME, keysValues.get(CategoryDao.NAME));
+
+        return this.daoHelper.query(this.categoryDao, newKeysValues, attributes);
+    }*/
 
     public EntityResult categoryInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
         return this.daoHelper.insert(this.categoryDao, attributes);
