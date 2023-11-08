@@ -8,6 +8,7 @@ import { SubscriptionsDetailsComponent } from "./subscriptions-details/subscript
 import { SubscriptionSharedNewComponent } from "./subscription-shared-new/subscription-shared-new.component";
 import { OTableRendererConcatComponent } from "./o-table-renderer-concat/o-table-renderer-concat.component";
 import { CustomPlatformNewComponent } from "./custom-platform-new/custom-platform-new.component";
+import { OChartModule } from "ontimize-web-ngx-charts";
 
 @NgModule({
   declarations: [
@@ -16,9 +17,9 @@ import { CustomPlatformNewComponent } from "./custom-platform-new/custom-platfor
     SubscriptionsDetailsComponent,
     SubscriptionSharedNewComponent,
     OTableRendererConcatComponent,
-    CustomPlatformNewComponent
+    CustomPlatformNewComponent,
     
   ],
-  imports: [CommonModule, SubscriptionsRoutingModule, OntimizeWebModule],
+  imports: [CommonModule, SubscriptionsRoutingModule, OntimizeWebModule,OChartModule],
 })
 export class SubscriptionsModule {}

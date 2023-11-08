@@ -72,5 +72,7 @@
   "ERROR_USERSUB_NO_USER_MESSAGE": "You must enter the user you want to share account with",
   "ERROR_USERSUB_ALREADY_SHARING_MESSAGE": "Already share account with this user",
   "SHOW ALL": "Show All",
-  "CUSTOM_SUBSCRIPTION": "Custom suscription"
+  "CUSTOM_SUBSCRIPTION": "Custom suscription",
+  "TABLE_REPRESENTATION": "Table representation",
+  "CHART_REPRESENTATION": "Chart representation"
 }

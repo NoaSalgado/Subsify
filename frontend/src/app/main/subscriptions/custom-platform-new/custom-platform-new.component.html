@@ -1,75 +1,76 @@
 <o-form
-#customServiceForm
-service="subscriptions"
-entity="subscriptionCustom"
-delete-button="no"
-refresh-button="no"
-keys="SUBS_ID"
-header-actions="R;I;U"
-show-header-navigation="no"
+  #customServiceForm
+  service="subscriptions"
+  entity="subscriptionCustom"
+  delete-button="no"
+  refresh-button="no"
+  keys="SUBS_ID"
+  header-actions="R;I;U"
+  show-header-navigation="no"
+  confirm-exit="no"
 >
-<o-row>
-  <o-column fxFlex>
-    <o-row fxFlex="100">
-      <o-text-input  
-        attr="PLATF_NAME" 
-        fxFlex="40" 
-        required="yes" 
-        layout-padding
-        fxFlex="33"
-      ></o-text-input>
-    </o-row>
-    <o-row fxFlex="100">
-      <o-combo
-      attr="FR_ID"
-      required="yes"
-      label="FR_NAME"
-      layout-padding
-      read-only="no"
-      service="frequencies"
-      entity="frequency"
-      columns="FR_ID;FR_NAME"
-      value-column="FR_ID"
-      keys="FR_ID"
-      visible-columns="FR_NAME"
-      fxFlex="33"
-      null-selection="no"
-      ></o-combo>
-      <o-combo
-    attr="CAT_ID"
-    label="Category"
-    layout-padding
-    read-only="no"
-    service="categories"
-    entity="categoryActive"
-    columns="CAT_NAME;CAT_ID"
-    value-column="CAT_ID"
-    keys="CAT_ID"
-    visible-columns="CAT_NAME"
-    fxFlex="33"
-    null-selection="yes"
-  >
-  </o-combo>
-      <o-currency-input
-        class="price-input"
-        attr="SUB_LAPSE_PRICE"
-        fxFlex="33"
-        layout-padding
-        required="yes"
-      ></o-currency-input>
-      <o-date-input
-        attr="SUB_LAPSE_START"
-        label="SUBS_START_DATE"
-        read-only="no"
-        format="LL"
-        required="yes"
-        layout-padding
-        min="01/01/1980"
-        max="01/01/2020"
-        text-input-enabled="no"
-        fxFlex="33"
-      ></o-date-input>
-    </o-row>
-  </o-column>
-</o-row>
+  <o-row>
+    <o-column fxFlex>
+      <o-row fxFlex="100">
+        <o-text-input
+          attr="PLATF_NAME"
+          fxFlex="40"
+          required="yes"
+          layout-padding
+          fxFlex="25"
+        ></o-text-input>
+      </o-row>
+      <o-row fxFlex="100">
+        <o-combo
+          attr="FR_ID"
+          required="yes"
+          label="FR_NAME"
+          layout-padding
+          read-only="no"
+          service="frequencies"
+          entity="frequency"
+          columns="FR_ID;FR_NAME"
+          value-column="FR_ID"
+          keys="FR_ID"
+          visible-columns="FR_NAME"
+          fxFlex="33"
+          null-selection="no"
+        ></o-combo>
+        <o-combo
+          attr="CAT_ID"
+          label="Category"
+          layout-padding
+          read-only="no"
+          service="categories"
+          entity="categoryActive"
+          columns="CAT_NAME;CAT_ID"
+          value-column="CAT_ID"
+          keys="CAT_ID"
+          visible-columns="CAT_NAME"
+          fxFlex="33"
+          null-selection="yes"
+        >
+        </o-combo>
+        <o-currency-input
+          class="price-input"
+          attr="SUB_LAPSE_PRICE"
+          fxFlex="33"
+          layout-padding
+          required="yes"
+        ></o-currency-input>
+        <o-date-input
+          attr="SUB_LAPSE_START"
+          label="SUBS_START_DATE"
+          read-only="no"
+          format="LL"
+          required="yes"
+          layout-padding
+          min="01/01/1980"
+          max="01/01/2020"
+          text-input-enabled="no"
+          fxFlex="33"
+        ></o-date-input>
+      </o-row>
+    </o-column>
+  </o-row>
 </o-form>

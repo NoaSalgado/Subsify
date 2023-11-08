@@ -2,3 +2,7 @@
 .mat-stroked-button:nth-of-type(3) {
   display: none;
 }
+
+.nodisplay {
+  display: none !important;
+}
