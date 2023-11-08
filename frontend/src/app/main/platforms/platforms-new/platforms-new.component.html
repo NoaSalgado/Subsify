@@ -7,6 +7,7 @@
 >
     <o-row>
         <o-column title="{{ 'NEW_PLATFORM' | oTranslate}}" fxFlex>
+
             <o-row fxFlex="100">
                 <o-text-input 
                     attr="PLATF_NAME"
@@ -15,6 +16,11 @@
                     required="yes"
                 >                    
                 </o-text-input>
+
+
+            </o-row>
+
+            <o-row fxFlex="100">
                 <o-combo 
                     required="yes"
                     label="CAT_NAME"
@@ -32,6 +38,13 @@
                     null-selection="no"
                 >
                 </o-combo>
+
+            </o-row>
+
+
+            <o-row fxFlex="100">
+                
+                
                 <o-text-input 
                     attr="PLATF_LINK"
                     fxFlex="33"

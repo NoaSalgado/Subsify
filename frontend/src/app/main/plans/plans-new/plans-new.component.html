@@ -7,22 +7,47 @@
 >
     <o-row>
         <o-column title="{{ 'NEW_PLAN' | oTranslate}}" fxFlex>
-            <o-row fxFlex="100">
-                <o-text-input 
-                    attr="PLAN_NAME"
-                    fxFlex="33"
-                    layout-padding
-                    required="yes"
-                >                    
-                </o-text-input>
-                <o-currency-input
-                  class="price-input"
-                  attr="PLAN_PRICE_VALUE"
-                  fxFlex="33"
-                  layout-padding
-                  required="yes"
-                ></o-currency-input>
-                <o-date-input
+          <o-row fxFlex="100">
+            <o-combo
+            #comboPlatform
+            attr="PLATF_ID"
+            required="yes"
+            label="PLATF_NAME"
+            layout-padding
+            read-only="no"
+            service="platforms"
+            entity="platform"
+            columns="PLATF_ID;PLATF_NAME"
+            value-column="PLATF_ID"
+            keys="PLATF_ID"
+            visible-columns="PLATF_NAME"
+            fxFlex="33"
+            null-selection="no"
+          >
+        </o-combo>   
+        </o-row>
+          
+
+        <o-row fxFlex="100">
+          <o-text-input 
+              attr="PLAN_NAME"
+              fxFlex="33"
+              layout-padding
+              required="yes"
+          >     
+        </o-text-input>
+        <o-currency-input
+          class="price-input"
+          attr="PLAN_PRICE_VALUE"
+          fxFlex="33"
+          layout-padding
+          required="yes"
+        ></o-currency-input>
+        </o-row>  
+
+         <o-row fxFlex="100">
+                
+              <o-date-input
                 attr="PLAN_PRICE_START"
                 label="PLAN_PRICE_START"
                 read-only="no"
@@ -33,24 +58,8 @@
                 max="01/01/2024"
                 text-input-enabled="no"
                 fxFlex="33"
-               ></o-date-input>
-               <o-combo
-                  #comboPlatform
-                  attr="PLATF_ID"
-                  required="yes"
-                  label="PLATF_NAME"
-                  layout-padding
-                  read-only="no"
-                  service="platforms"
-                  entity="platform"
-                  columns="PLATF_ID;PLATF_NAME"
-                  value-column="PLATF_ID"
-                  keys="PLATF_ID"
-                  visible-columns="PLATF_NAME"
-                  fxFlex="33"
-                  null-selection="no"
-                >
-              </o-combo>
+              ></o-date-input>
+               
               <o-combo
                   #comboPlatform
                   attr="FR_ID"

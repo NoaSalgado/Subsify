@@ -1,10 +1,11 @@
-<div fxLayout="row" layout-padding fxLayoutAlign="center center">
-  <o-table
+<div fxLayout="row" layout-padding fxLayoutAlign="center center" class="hidden">
+  <o-table 
   service="permission"
   entity="userRole"
   columns="USER_;ROLENAME"
   visible-columns="USER_;ROLENAME"
   (onDataLoaded)="onDataLoaded($event)"
+  class="hidden"
   ></o-table>
 
 </div>
