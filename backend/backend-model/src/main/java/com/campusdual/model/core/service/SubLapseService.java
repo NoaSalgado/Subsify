@@ -53,16 +53,7 @@ public class SubLapseService implements ISubLapseService {
         String username = authentication.getName();
 
         Map<String, Object> newKeyValues = new HashMap<>();
-
-        BasicField usernameField = new BasicField(UserSubDao.USER);
-        BasicField isCustomField = new BasicField(CategoryDao.CUSTOM);
-
-        BasicExpression usernameBE = new BasicExpression(usernameField, BasicOperator.EQUAL_OP, username);
-        BasicExpression isCustomBE = new BasicExpression(isCustomField, BasicOperator.EQUAL_OP, false);
-        //doing an or between first basic expression and second
-        BasicExpression orBE = new BasicExpression(usernameBE, BasicOperator.OR_OP, isCustomBE);
-
-        newKeyValues.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, orBE);
+        newKeyValues.put(UserSubDao.USER, username);
 
         return this.daoHelper.query(this.subLapseDao, newKeyValues, attributes, SubLapseDao.QUERY_CAT);
     }
