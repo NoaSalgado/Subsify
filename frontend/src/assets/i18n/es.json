@@ -72,7 +72,8 @@
   "ERROR_USERSUB_NO_USER_MESSAGE": "Debes introducir el usuario con el que deseas compartir cuenta",
   "ERROR_USERSUB_ALREADY_SHARING_MESSAGE": "Ya compartes cuenta con este usuario",
   "SHOW ALL": "Mostrar Todo",
-  "CUSTOM_SUBSCRIPTION": "Suscripción personalizada",
-  "TABLE_REPRESENTATION": "Representación en Tabla",
-  "CHART_REPRESENTATION": "Representación en Gráfica"
+  "CUSTOM": "Personalizada",
+  "TABLE_REPRESENTATION": "Tabla",
+  "CHART_REPRESENTATION": "Gráfica",
+  "PREDEFINED":"Predefinida"
 }

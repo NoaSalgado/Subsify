@@ -1,5 +1,6 @@
+<o-column title="{{ 'NEW_SUBSCRIPTION' | oTranslate }}"></o-column>
 <mat-tab-group>
-  <mat-tab label="{{ 'NEW_SUBSCRIPTION' | oTranslate }}">
+  <mat-tab label="{{ 'PREDEFINED' | oTranslate }}">
     <o-form
       #subsForm
       service="subscriptions"
@@ -76,7 +77,7 @@
       </o-row>
     </o-form>
   </mat-tab>
-  <mat-tab label="{{ 'CUSTOM_SUBSCRIPTION' | oTranslate }}">
+  <mat-tab label="{{ 'CUSTOM' | oTranslate }}">
     <app-custom-platform-new> </app-custom-platform-new>
   </mat-tab>
 </mat-tab-group>
