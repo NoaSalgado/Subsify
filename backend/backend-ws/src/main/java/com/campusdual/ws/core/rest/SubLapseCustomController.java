@@ -16,6 +16,6 @@ public class SubLapseCustomController  extends ORestController<ISubLapseCustomSe
 
     @Override
     public ISubLapseCustomService getService() {
-        return subLapseCustomService;
+        return this.subLapseCustomService;
     }
 }
