@@ -1,23 +1,10 @@
 <div class="full-page">
   <div class="login-outer-container">
     <div class="wrapp-login">
-      <div
-        fxFill
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        class="login-inner-container"
-      >
-        <o-image
-          class="logo"
-          attr="image"
-          data="assets/images/subsify_round_logo.png"
-          auto-fit="false"
-          enabled="false"
-          read-only="true"
-          show-controls="no"
-          width="60%"
-          height="40%"
-        ></o-image>
+      <div fxFill fxLayout="column" fxLayoutAlign="center center" class="login-inner-container">
+
+        <o-image class="logo" attr="image" data="assets/images/subsify_round_logo.png" auto-fit="false" enabled="false"
+          read-only="true" show-controls="no" width="60%" height="40%"></o-image>
 
         <o-form #signUpForm show-header="no" service="users" entity="user">
           <o-row>
@@ -32,10 +19,15 @@
           <o-row>
             <o-password-input attr="CONFIRM_PASS" required="yes"></o-password-input>
           </o-row>
-            <o-button type="STROKED" label="REGISTRAR" layout-padding color="primary" (click)="signUpUser()"></o-button>
-            <p>{{ "ALREADY_SIGNED" | oTranslate }}:
-              <a routerLink="/login">{{ "LOGIN" | oTranslate }}</a>
-            </p>
+          <o-button type="STROKED" label="REGISTRAR" layout-padding color="primary" (click)="signUpUser()"></o-button>
+          <p id="AccountText">{{ "ALREADY_SIGNED" | oTranslate }}:
+            
+            <a routerLink="/login">
+              <button mat-raised-button color="primary" type="submit" class="btn--login">
+                {{ "LOGIN" | oTranslate }}
+              </button>
+            </a>
+          </p>
         </o-form>
       </div>
     </div>

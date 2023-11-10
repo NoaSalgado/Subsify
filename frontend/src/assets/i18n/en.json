@@ -77,5 +77,8 @@
   "TABLE_REPRESENTATION": "Table",
   "CHART_REPRESENTATION": "Chart",
   "PREDEFINED":"Predefined",
-  "RENEW_SUBSCRIPTION":"Recall cancel your subscription"
+  "RENEW_SUBSCRIPTION":"Recall cancel your subscription",
+  "ASK_FOR_ACCOUNT": "You do not have an account ?",
+  "SIGN_UP": "Sign up",
+  "ALREADY_SIGNED":"Already have an account ? "
 }
