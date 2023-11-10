@@ -65,7 +65,7 @@
   "ERROR_USERSUB_INSERT_BOTH_MESSAGE": "You can not enter two users",
   "SUBSCRIPTIONS_TO_RENEW": "Subscriptions to renew",
   "SHARED": "Shared Subscriptions",
-  "UNSUSCRIBE": "UNSUSCRIBE",
+  "UNSUSCRIBE": "UNSUBSCRIBE",
   "SUBSCRIPTIONS-END": "Subscription ends ",
   "RENEW-ON": "Renews in ",
   "DAYS": " days",
@@ -77,5 +77,5 @@
   "TABLE_REPRESENTATION": "Table",
   "CHART_REPRESENTATION": "Chart",
   "PREDEFINED":"Predefined",
-  "RENEW_SUBSCRIPTION":"Recall renew your subscription"
+  "RENEW_SUBSCRIPTION":"Recall cancel your subscription"
 }
