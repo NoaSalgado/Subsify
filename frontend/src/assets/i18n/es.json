@@ -65,7 +65,7 @@
   "ERROR_USERSUB_INSERT_BOTH_MESSAGE": "No puedes introducir dos usuarios",
   "SUBSCRIPTIONS_TO_RENEW": "Suscripciones a renovar",
   "SHARED": "Suscripciones Compartidas",
-  "UNSUSCRIBE": "DESUSCRIBIRSE",
+  "UNSUSCRIBE": "CANCELAR",
   "SUBSCRIPTIONS-END": "La suscripción termina el ",
   "RENEW-ON": "Se renueva en ",
   "DAYS": " días",
@@ -77,5 +77,5 @@
   "TABLE_REPRESENTATION": "Tabla",
   "CHART_REPRESENTATION": "Gráfica",
   "PREDEFINED":"Predefinida",
-  "RENEW_SUBSCRIPTION":"Recuerda renovar tu suscripción"
+  "RENEW_SUBSCRIPTION":"Cancela tu suscripción"
 }
