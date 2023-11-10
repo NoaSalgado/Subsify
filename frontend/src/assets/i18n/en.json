@@ -77,5 +77,6 @@
   "TABLE_REPRESENTATION": "Table",
   "CHART_REPRESENTATION": "Chart",
   "PREDEFINED":"Predefined",
-  "RENEW_SUBSCRIPTION":"Recall cancel your subscription"
+  "RENEW_SUBSCRIPTION":"Recall cancel your subscription",
+  "SLC_END":"End date"
 }

@@ -1,1 +1,9 @@
+.hidden{
+    display:none  !important;
+}
 
+
+.prueba{
+    display:flex;
+    flex-direction: column  !important;
+}
