@@ -28,7 +28,7 @@
   "RENOVATION_DATE": "Next Renewal",
   "MONTHLY_PRICE": "Monthly Price",
   "FR_NAME": "Frequency",
-  "CHARTS": "Charts",
+  "CHARTS": "History",
   "SUBSCRIPTION_INFORMATION": "Subscription Detail",
   "SUB_START": "Subscription Start",
   "SUB_END": "Next Renewal",
@@ -76,5 +76,6 @@
   "CUSTOM": "Customized",
   "TABLE_REPRESENTATION": "Table",
   "CHART_REPRESENTATION": "Chart",
-  "PREDEFINED":"Predefined"
+  "PREDEFINED":"Predefined",
+  "RENEW_SUBSCRIPTION":"Recall renew your subscription"
 }

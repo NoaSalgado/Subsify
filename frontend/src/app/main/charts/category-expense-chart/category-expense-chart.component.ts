@@ -67,11 +67,20 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
         chartOps["yAxis"]["tickFormat"] = function (d) {
           return d3.format(",f")(d) + "€";
         };
-        let yScale = d3.scale.linear();
-        chartOps["yScale"] = yScale;
-        chartOps["yDomain"] = [0, 200];
+        const maxExpenseValue = this.calculateMaxExpenseValue();
+        
+        chartOps["yDomain"] = [0, maxExpenseValue];
       }
     }
+  }
+
+  private calculateMaxExpenseValue(): number {
+    const maxExpense = Math.max(
+      ...this.subLpases.map((sub) => sub.SUB_LAPSE_PRICE)
+    );
+    const padding = 10;
+
+    return maxExpense + padding;
   }
 
   private configureChart(locale: any): void {
@@ -179,7 +188,7 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
 
     const paymentEndDate =
       endDate.getFullYear() > currentYear ||
-      endDate.getMonth() + 1 > currentMonth + 1
+        endDate.getMonth() + 1 > currentMonth + 1
         ? new Date(currentYear, currentMonth, 1)
         : new Date(endDate.getFullYear(), endDate.getMonth());
 

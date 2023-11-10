@@ -19,7 +19,7 @@
   "FORGOT_PWD": "¿Has olvidado tu contraseña?",
   "FOOTER_CREATED_BY": "Creado por Imatia Innovation",
   "FOOTER_RIGHTS": "Todos los derechos reservados",
-  "CHARTS": "Gráficas",
+  "CHARTS": "Historial",
   "SUBSCRIPTIONS": "Suscripciones",
   "PLATF_ID": "Id plataforma",
   "PLATF_NAME": "Plataforma",
@@ -53,7 +53,7 @@
   "PLANS_INFORMATION": "Detalle del plan",
   "NEW_PLAN_PRICE": "Nuevo precio del plan",
   "CLEAR": "Limpiar",
-  "EXPENSE_HISTORY": "Historial de Gasto",
+  "EXPENSE_HISTORY": "Historial de gasto",
   "ERROR_PLAN_INSERT_DATE_MESSAGE": "La fecha de inicio no puede ser ni anterior ni igual a la fecha de fin del anterior precio",
   "FROM": "Desde",
   "TO": "Hasta",
@@ -65,7 +65,7 @@
   "ERROR_USERSUB_INSERT_BOTH_MESSAGE": "No puedes introducir dos usuarios",
   "SUBSCRIPTIONS_TO_RENEW": "Suscripciones a renovar",
   "SHARED": "Suscripciones Compartidas",
-  "UNSUSCRIBE": "CANCELAR",
+  "UNSUSCRIBE": "DESUSCRIBIRSE",
   "SUBSCRIPTIONS-END": "La suscripción termina el ",
   "RENEW-ON": "Se renueva en ",
   "DAYS": " días",
@@ -76,5 +76,6 @@
   "CUSTOM": "Personalizada",
   "TABLE_REPRESENTATION": "Tabla",
   "CHART_REPRESENTATION": "Gráfica",
-  "PREDEFINED":"Predefinida"
+  "PREDEFINED":"Predefinida",
+  "RENEW_SUBSCRIPTION":"Recuerda renovar tu suscripción"
 }
