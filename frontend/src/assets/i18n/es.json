@@ -8,7 +8,7 @@
   "LOGOUT": "Salir",
   "VIEW": "Vistas",
   "HOME": "Inicio",
-  "LOGIN_TITLE": "Inicia sesión en tu cuenta",
+  "LOGIN_TITLE": "Inicia sesión en tu cuenta ",
   "ERROR_REQUIRED_FIELD": "El campo es requerido",
   "ERROR_MIN_LENGTH_REQUIRED": "El valor introducido tiene que tener una longitud mínima de 8 caracteres",
   "ERROR_SESSION_EXPIRED": "La sesión ha caducado",
@@ -72,6 +72,12 @@
   "ERROR_USERSUB_NO_USER_MESSAGE": "Debes introducir el usuario con el que deseas compartir cuenta",
   "ERROR_USERSUB_ALREADY_SHARING_MESSAGE": "Ya compartes cuenta con este usuario",
   "SHOW ALL": "Mostrar Todo",
-  "CUSTOM_SUBSCRIPTION": "Suscripción personalizada",
-  "SLC_END":"Fecha de fin"
+  "CUSTOM": "Personalizada",
+  "TABLE_REPRESENTATION": "Tabla",
+  "CHART_REPRESENTATION": "Gráfica",
+  "PREDEFINED":"Predefinida",
+  "RENEW_SUBSCRIPTION":"Cancela tu suscripción",
+  "ASK_FOR_ACCOUNT": "Eres nuevo en Subsify ? ",
+  "SIGN_UP": "Registrarse",
+  "ALREADY_SIGNED":"Ya tienes una cuenta ? "
 }

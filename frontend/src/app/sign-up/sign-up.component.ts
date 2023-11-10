@@ -1,7 +1,7 @@
-import { Component, Inject, Injector, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, Injector, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService, LocalStorageService, NavigationService } from 'ontimize-web-ngx';
+import { AuthService, LocalStorageService, NavigationService, OFormComponent, OntimizeService } from 'ontimize-web-ngx';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,71 +11,27 @@ import { Observable } from 'rxjs';
   encapsulation: ViewEncapsulation.None
 })
 export class SignUpComponent implements OnInit{
+  protected userService: OntimizeService;
+  @ViewChild("signUpForm", { static: false }) signUpForm: OFormComponent;
   
-  loginForm: FormGroup = new FormGroup({});
-  userCtrl: FormControl = new FormControl('', Validators.required);
-  pwdCtrl: FormControl = new FormControl('', Validators.required);
-  sessionExpired = false;
-
-  router: Router;
-
   constructor(
-    private actRoute: ActivatedRoute,
-    router: Router,
-    @Inject(NavigationService) public navigation: NavigationService,
-    @Inject(AuthService) private authService: AuthService,
-    @Inject(LocalStorageService) private localStorageService,
-    public injector: Injector
-  ) {
-    this.router = router;
-
-    const qParamObs: Observable<any> = this.actRoute.queryParams;
-    qParamObs.subscribe(params => {
-      if (params) {
-        const isDetail = params['session-expired'];
-        if (isDetail === 'true') {
-          this.sessionExpired = true;
-        } else {
-          this.sessionExpired = false;
-        }
-      }
-    });
-
+    public injector: Injector, 
+    @Inject(AuthService) private authService: AuthService
+    ){
+    this.userService = this.injector.get(OntimizeService);
   }
 
-  ngOnInit(): any {
-    this.navigation.setVisible(false);
-
-    this.loginForm.addControl('username', this.userCtrl);
-    this.loginForm.addControl('password', this.pwdCtrl);
-
-    if (this.authService.isLoggedIn()) {
-      this.router.navigate(['../'], { relativeTo: this.actRoute });
-    } else {
-      this.authService.clearSessionData();
-    }
+  ngOnInit() {
+    this.configureUserService();
+    this.signUpForm.setInsertMode();
   }
 
-  login() {
-    const userName = this.loginForm.value.username;
-    const password = this.loginForm.value.password;
-    if (userName && userName.length > 0 && password && password.length > 0) {
-      const self = this;
-      this.authService.login(userName, password)
-        .subscribe(() => {
-          self.sessionExpired = false;
-          self.router.navigate(['../'], { relativeTo: this.actRoute });
-        }, this.handleError);
-    }
+  public configureUserService() {
+    const conf = this.userService.getDefaultServiceConfiguration("users");
+    this.userService.configureService(conf);
   }
 
-  handleError(error) {
-    switch (error.status) {
-      case 401:
-        console.error('Email or password is wrong.');
-        break;
-      default: break;
-    }
+  public async signUpUser(){
+    this.signUpForm.insert()
   }
-
 }

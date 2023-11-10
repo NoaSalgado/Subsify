@@ -78,5 +78,8 @@
   "CHART_REPRESENTATION": "Chart",
   "PREDEFINED":"Predefined",
   "RENEW_SUBSCRIPTION":"Recall cancel your subscription",
-  "SLC_END":"End date"
+  "SLC_END":"End date",
+  "ASK_FOR_ACCOUNT": "You do not have an account ?",
+  "SIGN_UP": "Sign up",
+  "ALREADY_SIGNED":"Already have an account ? "
 }
