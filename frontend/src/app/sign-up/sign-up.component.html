@@ -24,7 +24,7 @@
             <p class="session-expired text" *ngIf="sessionExpired">
               {{ "ERROR_SESSION_EXPIRED" | oTranslate }}
             </p>
-            <span class="title_text">{{ "LOGIN_TITLE" | oTranslate }}:</span>
+            <span class="title_text">{{ "SIGN_UP_TITLE" | oTranslate }}:</span>
           </div>
 
           <div fxLayout="column" fxLayoutGap="10px">
@@ -55,32 +55,34 @@
                 {{ "ERROR_PASS_REQUIRED" | oTranslate }}
               </mat-error>
             </mat-form-field>
+            <mat-form-field fxFill class="m-top-24">
+              <input
+                matInput
+                class="mat-input"
+                #password
+                placeholder="{{ 'CONFIRM_PASSWORD' | oTranslate }}"
+                id="password"
+                type="password"
+                [formControl]="pwdCtrl"
+              />
+              <mat-error *ngIf="pwdCtrl.hasError('required')">
+                {{ "ERROR_CONFIRM_PASS_REQUIRED" | oTranslate }}
+              </mat-error>
+            </mat-form-field>
           </div>
-
-          <div
-            fxLayout="row"
-            fxLayoutAlign="space-between center"
-            fxLayoutGap="10px"
-            class="m-top-24"
-          >
-            <mat-checkbox class="text">{{
-              "REMEMBER_ME" | oTranslate
-            }}</mat-checkbox>
-          </div>
-
           <button
             mat-raised-button
             color="primary"
             type="submit"
             class="btn--login"
           >
-            {{ "LOGIN" | oTranslate }}
+            {{ "SIGN_UP" | oTranslate }}
           </button>
-          <a
-            routerLink = "/sign-up"
-          >
-          SIGN_UP
-          </a>
+          <div>
+            <p>{{ "ALREADY_SIGNED" | oTranslate }}:
+              <a routerLink="/login">{{ "LOGIN" | oTranslate }}</a>
+            </p>
+          </div>
           <div layout-padding></div>
           <div layout-padding></div>
         </form>
