@@ -64,11 +64,16 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
       let chartService: ChartService = this.categoryChart.getChartService();
       if (chartService) {
         let chartOps = chartService.getChartOptions();
+
         chartOps["yAxis"]["tickFormat"] = function (d) {
-          return d3.format(",f")(d) + "€";
+          return d.toLocaleString("es-ES", {
+            style: "currency",
+            currency: "EUR",
+          });
         };
+
         const maxExpenseValue = this.calculateMaxExpenseValue();
-        
+
         chartOps["yDomain"] = [0, maxExpenseValue];
       }
     }
@@ -79,7 +84,6 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
       ...this.subLpases.map((sub) => sub.SUB_LAPSE_PRICE)
     );
     const padding = 10;
-
     return maxExpense + padding;
   }
 
@@ -187,9 +191,8 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
         : new Date(currentYear, 1, 1);
 
     const paymentEndDate =
-      endDate.getFullYear() > currentYear ||
-        endDate.getMonth() + 1 > currentMonth + 1
-        ? new Date(currentYear, currentMonth, 1)
+      endDate.getFullYear() > currentYear || endDate.getMonth() > currentMonth
+        ? new Date(currentYear, currentMonth + 1, 1)
         : new Date(endDate.getFullYear(), endDate.getMonth());
 
     const subscriptionPaymentDates = [new Date(paymentStartDate)];
