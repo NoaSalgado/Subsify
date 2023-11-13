@@ -80,5 +80,7 @@
   "ASK_FOR_ACCOUNT": "Eres nuevo en Subsify ? ",
   "SIGN_UP": "Registrarse",
   "ALREADY_SIGNED":"Ya tienes una cuenta ? ",
-  "CUSTOM_PLATFORMS":"Plat. Personalizadas"
+  "CUSTOM_PLATFORMS":"Plat. Personalizadas",
+  "ERROR_DUPLICATE_USER_NAME": "El nombre de usuario ya existe",
+  "ERROR_NOT_MATCHING_PASSWORDS": "Las contraseñas no coinciden"
 }
