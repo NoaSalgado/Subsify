@@ -20,8 +20,7 @@ export class SubscriptionsNewComponent implements OnInit {
     const selectedPlan = event.target.dataArray.filter(
       (plan) => plan.PLAN_PRICE_ID == plan_price_Id
     );
-    this.plan_price=selectedPlan[0].PLAN_PRICE_VALUE
-
+    this.plan_price = selectedPlan[0].PLAN_PRICE_VALUE;
 
     this.subsForm.setFieldValue(
       "SUB_LAPSE_PRICE",
@@ -29,23 +28,14 @@ export class SubscriptionsNewComponent implements OnInit {
     );
   }
 
-  public show=true;
+  public show = true;
   public plan_price;
 
-  public displayInput(){
-    setTimeout(()=>{ if(this.plan_price!==this.priceForm.getValue()){
-      this.show=false;
+  public displayInput(event) {
+    if (this.plan_price !== this.priceForm.getValue()) {
+      this.show = false;
     }
-
-    },2000)
-    console.log(this.priceForm.getValue())
-    console.log(this.plan_price)
-  
   }
-  
-  
-
-
 
   // reloadTable() {
   //   this.subscriptionService.realoadTable();
