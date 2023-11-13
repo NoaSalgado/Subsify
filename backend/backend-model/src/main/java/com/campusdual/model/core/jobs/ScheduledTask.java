@@ -147,6 +147,5 @@ public class ScheduledTask {
             EntityResult res = new EntityResultMapImpl();
             res.setCode(EntityResult.OPERATION_WRONG);
         }
-
     }
 }
