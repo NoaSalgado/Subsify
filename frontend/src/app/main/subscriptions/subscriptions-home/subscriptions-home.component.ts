@@ -44,7 +44,6 @@ ngOnInit() {}
   }
 
   createFilterCat(values: Array<{ attr; value }>): Expression {
-    console.log("HOLA; FILTRO CAT")
     let filters: Array<Expression> = [];
     values.forEach((fil) => {
       if (fil.value) {

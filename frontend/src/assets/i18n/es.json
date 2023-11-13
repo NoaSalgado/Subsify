@@ -81,5 +81,7 @@
   "SIGN_UP": "Registrarse",
   "ALREADY_SIGNED":"Ya tienes una cuenta ? ",
   "CUSTOM_PLATFORMS":"Plat. Personalizadas",
-  "INCREMENTAL_PRICE":"Tu suscripción sube:  "
+  "INCREMENTAL_PRICE":"Tu suscripción sube:  ",
+  "ERROR_DUPLICATE_USER_NAME": "El nombre de usuario ya existe",
+  "ERROR_NOT_MATCHING_PASSWORDS": "Las contraseñas no coinciden"
 }

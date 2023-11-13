@@ -32,6 +32,6 @@ export class SignUpComponent implements OnInit{
   }
 
   public async signUpUser(){
-    this.signUpForm.insert()
+      this.signUpForm.insert();
   }
 }

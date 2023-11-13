@@ -68,7 +68,6 @@ public class PlanPriceService implements IPlanPriceService {
                 LocalDate newEndDateLD = instant.atZone(zoneId).toLocalDate();
 
                 if (newEndDateLD.isBefore(oldStartDateLD) || newEndDateLD.isEqual(oldStartDateLD)){
-                    //TODO return representative error to front
                     EntityResult errorEr = new EntityResultMapImpl();
                     errorEr.setCode(EntityResult.OPERATION_WRONG);
                     errorEr.setMessage("ERROR_PLAN_INSERT_DATE_MESSAGE");
