@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): any {
-    this.navigation.setVisible(false);
+    this.navigation.setVisible(true);
 
     this.loginForm.addControl('username', this.userCtrl);
     this.loginForm.addControl('password', this.pwdCtrl);
