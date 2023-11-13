@@ -79,5 +79,6 @@
   "RENEW_SUBSCRIPTION":"Cancela tu suscripción",
   "ASK_FOR_ACCOUNT": "Eres nuevo en Subsify ? ",
   "SIGN_UP": "Registrarse",
-  "ALREADY_SIGNED":"Ya tienes una cuenta ? "
+  "ALREADY_SIGNED":"Ya tienes una cuenta ? ",
+  "CUSTOM_PLATFORMS":"Plat. Personalizadas"
 }

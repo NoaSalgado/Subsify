@@ -81,5 +81,6 @@
   "SLC_END":"End date",
   "ASK_FOR_ACCOUNT": "You do not have an account ?",
   "SIGN_UP": "Sign up",
-  "ALREADY_SIGNED":"Already have an account ? "
+  "ALREADY_SIGNED":"Already have an account ? ",
+  "CUSTOM_PLATFORMS":"Custom Platforms"
 }

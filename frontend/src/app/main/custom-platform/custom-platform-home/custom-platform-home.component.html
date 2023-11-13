@@ -1,15 +1,20 @@
 <div fxFill fxLayout="column" fxLayoutAlign="start">
     <o-table
-      attr="platformTable"
+      attr="customPlatformTable"
       service="platforms"
       entity="usersByCustomPlat"
       delete-button="no"
       refresh-button="no"
-      columns="PLATF_NAME"
-      visible-columns="PLATF_NAME"
+      insert-button="no"
+      columns="PLATF_NAME;USERS"
+      visible-columns="PLATF_NAME;USERS"
       query-rows="15"
     >
       <o-table-column attr="PLATF_NAME" title="PLATF_NAME"> </o-table-column>
+      <o-table-column
+       attr="USERS"
+       title="USERS"
+       content-align="center"> </o-table-column>
     </o-table>
   </div>
   

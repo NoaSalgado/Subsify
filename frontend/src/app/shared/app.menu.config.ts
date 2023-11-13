@@ -35,16 +35,17 @@ export const MENU_CONFIG: MenuRootItem[] = [
     route: "/main/platforms",
   },
   {
+    id: "custom-platform",
+    name: "CUSTOM_PLATFORMS",
+    icon: "macro_off",
+    route: "/main/custom-platform",
+  },
+  {
     id: "logout",
     name: "LOGOUT",
     route: "/login",
     icon: "power_settings_new",
     confirm: "yes",
-  },
-  {
-    id: "custom-platform",
-    name: "CUSTOM_PLATFORMS",
-    icon: "macro_off",
-    route: "/main/custom-platform",
   }
+  
 ];

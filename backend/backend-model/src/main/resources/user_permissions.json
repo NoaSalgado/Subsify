@@ -24,6 +24,11 @@
       "attr": "plans",
       "visible": false,
       "enabled": false
+    },
+    {
+      "attr": "custom-platform",
+      "visible": false,
+      "enabled": false
     }
 
   ],

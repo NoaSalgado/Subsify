@@ -31,7 +31,7 @@
       "enabled": true
     },
     {
-      "attr": "custom-platforms",
+      "attr": "custom-platform",
       "visible": true,
       "enabled": true
     }
@@ -61,10 +61,6 @@
     {
       "permissionId": "user-home-route",
       "enabled": false
-    },
-    {
-      "permissionId": "custom-platforms-route",
-      "enabled": true
     }
 
   ]
