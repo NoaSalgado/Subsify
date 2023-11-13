@@ -8,7 +8,7 @@
   attr="customerlist"
   service="subLapses"
   entity="subLapseToRenew"
-  columns="SUB_LAPSE_ID;PLATF_NAME;SUB_LAPSE_END;SUB_LAPSE_PRICE;SUBS_AUTORENEWAL,PLATF_LINK"
+  columns="SUB_LAPSE_ID;PLATF_NAME;SUB_LAPSE_END;SUB_LAPSE_PRICE;SUBS_AUTORENEWAL;PLATF_LINK;SLC_PRICE;SLC_END;PLAN_PRICE_VALUE;PLAN_PRICE_ID;PLAN_PRICE_END;PLAN_ID"
   keys="SUB_LAPSE_ID"
   class="home-list"
 >
@@ -52,12 +52,12 @@
         mat-raised-button
         class="mat-raised-button"
         class="mat-raised-button class"
-        *ngIf="showRenewal[i] && rowData.platf_link"
+        *ngIf="showRenewal[i] && rowData.PLATF_LINK"
         (click)="goToDoc(webLinks[i])"
       >
         {{ "UNSUSCRIBE" | oTranslate }}
       </button>
-      <p class="cancel-message" *ngIf="showRenewal[i] && !rowData.platf_link">
+      <p class="cancel-message" *ngIf="showRenewal[i] && !rowData.PLATF_LINK">
         {{ "RENEW_SUBSCRIPTION" | oTranslate }}
       </p>
     </mat-card>

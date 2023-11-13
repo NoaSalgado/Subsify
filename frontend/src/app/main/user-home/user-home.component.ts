@@ -21,10 +21,10 @@ export class UserHomeComponent implements OnInit {
     private dialog: MatDialog) { 
    }
    calculateDays() {
-    this.showRenewal = this.list.dataArray.map(sub => !sub.subs_autorenewal);
+    this.showRenewal = this.list.dataArray.map(sub => !sub.SUBS_AUTORENEWAL);
     console.log(this.showRenewal);
-    this.webLinks = this.list.dataArray.map(sub => sub.platf_link);
-    console.log(this.webLinks);
+    this.webLinks = this.list.dataArray.map(sub => sub.PLATF_LINK);
+    console.log(this.webLinks)
     const endDates = this.list.dataArray.map(sub => sub.SUB_LAPSE_END);
 
     this.remainingDays = endDates.map(date => {

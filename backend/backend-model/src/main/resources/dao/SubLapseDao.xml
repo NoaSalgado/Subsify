@@ -146,6 +146,7 @@
                 inner join platform platf on p.platf_id = platf.platf_id
                 inner join frequency f on f.fr_id = p.fr_id
                 inner join user_sub us on us.subs_id=s.subs_id
+                left join sub_lapse_custom slc on slc.subs_id =s.subs_id
                 #WHERE#
                 order by s.subs_autorenewal, slf.sub_lapse_end
                 ]]>
