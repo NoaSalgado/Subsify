@@ -60,6 +60,11 @@ export const routes: Routes = [
           import("./custom-platforms/custom-platforms.module").then(
             (m) => m.CustomPlatformsModule
           ),
+          data:{
+            oPermission:{
+              permissionId: "custom-platforms-route"
+            }
+          }
       },
       {
         path: "plans",
