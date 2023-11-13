@@ -139,7 +139,7 @@
                 select #COLUMNS#,
                     (slf.sub_lapse_price / shared_subs.shared_count) shared_price
                 from slf
-                 inner join shared_subs on shared_subs.subs_id = slf.subs_id
+                inner join shared_subs on shared_subs.subs_id = slf.subs_id
                 inner join subscription s on slf.subs_id = s.subs_id
                 inner join plan_price pp on s.plan_price_id = pp.plan_price_id
                 inner join plan p on p.plan_id = pp.plan_id

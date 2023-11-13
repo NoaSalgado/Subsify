@@ -82,5 +82,6 @@
   "ASK_FOR_ACCOUNT": "You do not have an account ?",
   "SIGN_UP": "Sign up",
   "ALREADY_SIGNED":"Already have an account ? ",
-  "CUSTOM_PLATFORMS":"Custom Platforms"
+  "CUSTOM_PLATFORMS":"Custom Platforms",
+  "INCREMENTAL_PRICE":"Your subscription increments: "
 }
