@@ -59,9 +59,9 @@ export class HomeComponent implements OnInit {
     if (event && event.length > 0 && event[0].ROLENAME) {
     
     this.user_role=event[0].ROLENAME;
-    console.log(this.user_role)
+    
     if(this.user_role === 'admin'){
-      console.log("HOLA")
+      
       this.router.navigate(['../../','plans'], {relativeTo: this.actRoute})
     } else{
       this.router.navigate(['../../','user-home'],{relativeTo:this.actRoute})

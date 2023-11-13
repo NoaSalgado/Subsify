@@ -27,6 +27,31 @@
                  ]]>
             </Sentence>
         </Query>
+
+        <Query id="users_by_custom_plat">
+            <Sentence>
+                <![CDATA[
+                with t as  ( select p.platf_name, u.user_
+                    from platform p
+                    inner join plan pl2 on pl2.platf_id = p.platf_id
+                    inner join plan_price pp on pp.plan_id = pl2.plan_id
+                    inner join subscription s on s.plan_price_id = pp.plan_price_id
+                    inner join user_sub u on u.subs_id = s.subs_id
+                    where p.platf_is_custom is true
+                    group by p.platf_name, u.user_ ),
+
+                    usersByPlat as (
+                        select t.platf_name, count(t.platf_name) users
+                        from t
+                        group by t.platf_name)
+
+                    select #COLUMNS#
+                    from usersByPlat
+                    #WHERE#;
+
+                 ]]>
+            </Sentence>
+        </Query>
     </Queries>
 
 </JdbcEntitySetup>

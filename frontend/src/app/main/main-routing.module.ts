@@ -1,3 +1,4 @@
+import { CustomPlatformsModule } from './custom-platforms/custom-platforms.module';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuardService, PermissionsGuardService } from "ontimize-web-ngx";
@@ -51,6 +52,13 @@ export const routes: Routes = [
         loadChildren: () =>
           import("./platforms/platforms.module").then(
             (m) => m.PlatformsModule
+          ),
+      },
+      {
+        path: "customs-platforms",
+        loadChildren: () =>
+          import("./custom-platforms/custom-platforms.module").then(
+            (m) => m.CustomPlatformsModule
           ),
       },
       {
