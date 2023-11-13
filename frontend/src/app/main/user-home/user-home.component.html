@@ -33,13 +33,16 @@
         </div>
 
         <div>
-          {{ rowData.shared_price | currency : "EUR" : true }}
+          {{ priceToShow[i] | currency : "EUR" : true }}
         </div>
+
+        <div *ngIf="incrementalPrice[i]" > {{"INCREMENTAL_PRICE"| oTranslate}}{{ incrementalPrice[i] | currency:"EUR"}} </div>
 
         <div *ngIf="showRenewal[i]; else noCaduca">
           {{ "EXPIRES" | oTranslate }}{{ remainingDays[i]
           }}{{ "DAYS" | oTranslate }}
         </div>
+
 
         <ng-template #noCaduca>
           <div>

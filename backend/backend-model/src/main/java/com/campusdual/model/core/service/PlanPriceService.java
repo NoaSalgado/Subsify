@@ -108,4 +108,12 @@ public class PlanPriceService implements IPlanPriceService {
     public EntityResult freqByPlanPriceQuery(Map<String, Object> keyValues, List<String> attributes) throws OntimizeJEERuntimeException {
         return this.daoHelper.query(this.planPriceDao, keyValues, attributes, PlanPriceDao.FREQ_BY_PLAN_QUERY);
     }
+
+    @Override
+    public EntityResult planPriceActiveQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
+        Map<String,Object> planActiveKV=new HashMap<>();
+        planActiveKV.put(PlanPriceDao.PLAN_ID,attributes.get(Integer.parseInt(PlanPriceDao.PLAN_ID)));
+        planActiveKV.put(PlanPriceDao.END,null);
+        return this.daoHelper.query(this.planPriceDao, planActiveKV, attributes);
+    }
 }
