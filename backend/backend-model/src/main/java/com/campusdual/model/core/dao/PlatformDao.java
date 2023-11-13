@@ -17,4 +17,6 @@ public class PlatformDao extends OntimizeJdbcDaoSupport {
     public static final String PLATF_LINK = "PLATF_LINK";
     public static final String CUSTOM = "PLATF_IS_CUSTOM";
     public static final String DEFAULT_QUERY = "query_default";
+    public static final String USERS_BY_CUSTOM_PLAT_QUERY = "users_by_custom_plat";
+
 }

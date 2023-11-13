@@ -29,6 +29,11 @@
       "attr": "plans",
       "visible": true,
       "enabled": true
+    },
+    {
+      "attr": "custom-platforms",
+      "visible": true,
+      "enabled": true
     }
 
   ],
@@ -56,6 +61,10 @@
     {
       "permissionId": "user-home-route",
       "enabled": false
+    },
+    {
+      "permissionId": "custom-platforms-route",
+      "enabled": true
     }
 
   ]
