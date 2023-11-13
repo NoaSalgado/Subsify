@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.parser.Entity;
+import java.math.BigDecimal;
 import java.util.*;
 
 @Lazy
@@ -40,6 +41,8 @@ public class SubscriptionService implements ISubscriptionService {
 
     @Autowired
     private UserSubService userSubService;
+    @Autowired
+    private SubLapseCustomService subLapseCustomService;
 
 
 
@@ -87,7 +90,7 @@ public class SubscriptionService implements ISubscriptionService {
         //Getting categories of actual user
         EntityResult categoryListER = this.subsLapseService.subLapseCatQuery(
                 new HashMap<>(),
-                new ArrayList<String>(Arrays.asList(CategoryDao.NAME)));
+                new ArrayList<String>(List.of(CategoryDao.NAME)));
         int categoryListERSize = categoryListER.calculateRecordNumber();
         List<String> categoryNames = new ArrayList<>();
         for (int i = 0; i < categoryListERSize; i++) {
@@ -102,7 +105,7 @@ public class SubscriptionService implements ISubscriptionService {
             Map<String, Object> catKV = new HashMap<>();
             catKV.put(CategoryDao.NAME, platformName);
             EntityResult categoryIDER = this.subsLapseService.subLapseCatQuery(catKV,
-                    new ArrayList<String>(Arrays.asList(CategoryDao.ID)));
+                    new ArrayList<String>(List.of(CategoryDao.ID)));
             catId=(int) categoryIDER.getRecordValues(0).get(CategoryDao.ID);
         }else{
             catQuery.put(CategoryDao.NAME, platformName);
@@ -197,6 +200,22 @@ public class SubscriptionService implements ISubscriptionService {
 
         attrSubLapseInsert.put(FrequencyDao.ID, freqByPlanPriceQuery.getRecordValues(0).get(FrequencyDao.ID));
         EntityResult insertSubLapseER = this.subsLapseService.subLapseInsert(attrSubLapseInsert);
+
+        // inserting sub_lapse_custom if is the case
+        EntityResult standardPricePlanER = this.planPriceService.planPriceQuery(keysValuesQuery, List.of(PlanPriceDao.VALUE));
+
+        boolean isPriceCustomized = !Objects.equals(standardPricePlanER.getRecordValues(0).get(PlanPriceDao.VALUE), new BigDecimal(String.valueOf(attributes.get(SubLapseDao.PRICE))));
+        if(isPriceCustomized){
+            Map<String, Object> attrCustomSubLapseInsert = new HashMap<>();
+            attrCustomSubLapseInsert.put(SubLapseCustomDao.SUBS_ID,insertSubsER.get(SubLapseDao.SUBS_ID));
+            attrCustomSubLapseInsert.put(SubLapseCustomDao.SLC_PRICE, attributes.get(SubLapseDao.PRICE));
+            attrCustomSubLapseInsert.put(SubLapseCustomDao.SLC_START, attributes.get(SubLapseDao.START));
+
+            if(attributes.containsKey(SubLapseCustomDao.SLC_END)){
+                attrCustomSubLapseInsert.put(SubLapseCustomDao.SLC_END, attributes.get(SubLapseCustomDao.SLC_END));
+            }
+            this.subLapseCustomService.subLapseCustomInsert(attrCustomSubLapseInsert);
+        }
         //inserting user_sub
         Map<String, Object> attrUserSubInsert = new HashMap<>();
         attrUserSubInsert.put(UserSubDao.USER, username);

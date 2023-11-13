@@ -1,91 +1,34 @@
 <div class="full-page">
   <div class="login-outer-container">
     <div class="wrapp-login">
-      <div
-        fxFill
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        class="login-inner-container"
-      >
-        <o-image
-          class="logo"
-          attr="image"
-          data="assets/images/subsify_round_logo.png"
-          auto-fit="false"
-          enabled="true"
-          read-only="true"
-          show-controls="no"
-          width="60%"
-          height="40%"
-        ></o-image>
+      <div fxFill fxLayout="column" fxLayoutAlign="center center" class="login-inner-container">
 
-        <form [formGroup]="loginForm" (ngSubmit)="login()">
-          <div class="login-title-container" fxLayout="column">
-            <p class="session-expired text" *ngIf="sessionExpired">
-              {{ "ERROR_SESSION_EXPIRED" | oTranslate }}
-            </p>
-            <span class="title_text">{{ "SIGN_UP_TITLE" | oTranslate }}:</span>
-          </div>
+        <o-image class="logo" attr="image" data="assets/images/subsify_round_logo.png" auto-fit="false" enabled="false"
+          read-only="true" show-controls="no" width="60%" height="40%"></o-image>
 
-          <div fxLayout="column" fxLayoutGap="10px">
-            <mat-form-field fxFill class="m-top-24">
-              <input
-                matInput
-                class="mat-input"
-                #user
-                placeholder="{{ 'USERNAME' | oTranslate }}"
-                id="username"
-                [formControl]="userCtrl"
-              />
-              <mat-error *ngIf="userCtrl.hasError('required')">
-                {{ "ERROR_USER_REQUIRED" | oTranslate }}
-              </mat-error>
-            </mat-form-field>
-            <mat-form-field fxFill class="m-top-24">
-              <input
-                matInput
-                class="mat-input"
-                #password
-                placeholder="{{ 'PASSWORD' | oTranslate }}"
-                id="password"
-                type="password"
-                [formControl]="pwdCtrl"
-              />
-              <mat-error *ngIf="pwdCtrl.hasError('required')">
-                {{ "ERROR_PASS_REQUIRED" | oTranslate }}
-              </mat-error>
-            </mat-form-field>
-            <mat-form-field fxFill class="m-top-24">
-              <input
-                matInput
-                class="mat-input"
-                #password
-                placeholder="{{ 'CONFIRM_PASSWORD' | oTranslate }}"
-                id="password"
-                type="password"
-                [formControl]="pwdCtrl"
-              />
-              <mat-error *ngIf="pwdCtrl.hasError('required')">
-                {{ "ERROR_CONFIRM_PASS_REQUIRED" | oTranslate }}
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <button
-            mat-raised-button
-            color="primary"
-            type="submit"
-            class="btn--login"
-          >
-            {{ "SIGN_UP" | oTranslate }}
-          </button>
-          <div>
-            <p>{{ "ALREADY_SIGNED" | oTranslate }}:
-              <a routerLink="/login">{{ "LOGIN" | oTranslate }}</a>
-            </p>
-          </div>
-          <div layout-padding></div>
-          <div layout-padding></div>
-        </form>
+        <o-form #signUpForm show-header="no" service="users" entity="user">
+          <o-row>
+            <o-text-input attr="USERNAME" required="yes"></o-text-input>
+          </o-row>
+          <o-row>
+            <o-email-input attr="EMAIL" required="yes"></o-email-input>
+          </o-row>
+          <o-row>
+            <o-password-input attr="PASS" required="yes"></o-password-input>
+          </o-row>
+          <o-row>
+            <o-password-input attr="CONFIRM_PASS" required="yes"></o-password-input>
+          </o-row>
+          <o-button type="STROKED" label="REGISTRAR" layout-padding color="primary" (click)="signUpUser()"></o-button>
+          <p id="AccountText">{{ "ALREADY_SIGNED" | oTranslate }}:
+            
+            <a routerLink="/login">
+              <button mat-raised-button color="primary" type="submit" class="btn--login">
+                {{ "LOGIN" | oTranslate }}
+              </button>
+            </a>
+          </p>
+        </o-form>
       </div>
     </div>
   </div>

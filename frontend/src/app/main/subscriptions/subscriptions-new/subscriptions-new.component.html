@@ -53,11 +53,13 @@
             >
             </o-combo>
             <o-currency-input
+              #price
               class="price-input"
               attr="SUB_LAPSE_PRICE"
               fxFlex="33"
               layout-padding
               required="yes"
+              (onValueChange)="displayInput($event)"
             ></o-currency-input>
             <o-date-input
               attr="SUB_LAPSE_START"
@@ -72,7 +74,28 @@
               fxFlex="33"
             ></o-date-input>
           </o-row>
-          <o-row fxFlex="100"> </o-row>
+          <div [ngClass]="{ hidden: show }" class="hidden prueba">
+            <o-row fxFlex="100">
+              <p>
+                Hemos detectado que has modificado el precio ¿Deseas añadir una
+                fecha de fin de la suscripción?
+              </p>
+            </o-row>
+
+            <o-row>
+              <o-date-input
+                attr="SLC_END"
+                label="SLC_END"
+                read-only="no"
+                format="LL"
+                layout-padding
+                min="01/01/1980"
+                max="01/01/2020"
+                text-input-enabled="no"
+                fxFlex="33"
+              ></o-date-input>
+            </o-row>
+          </div>
         </o-column>
       </o-row>
     </o-form>

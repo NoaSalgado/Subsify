@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { OFormComponent } from "ontimize-web-ngx";
+import { OCurrencyInputComponent, OFormComponent } from "ontimize-web-ngx";
 import { SubscriptionServiceService } from "../subscription-service.service";
 
 @Component({
@@ -9,7 +9,7 @@ import { SubscriptionServiceService } from "../subscription-service.service";
 })
 export class SubscriptionsNewComponent implements OnInit {
   @ViewChild("subsForm", { static: false }) subsForm: OFormComponent;
-  //@ViewChild("comboPlan", { static: false }) subsForm: OFormComponent;
+  @ViewChild("price", { static: false }) priceForm: OCurrencyInputComponent;
 
   constructor(private subscriptionService: SubscriptionServiceService) {}
 
@@ -20,11 +20,21 @@ export class SubscriptionsNewComponent implements OnInit {
     const selectedPlan = event.target.dataArray.filter(
       (plan) => plan.PLAN_PRICE_ID == plan_price_Id
     );
+    this.plan_price = selectedPlan[0].PLAN_PRICE_VALUE;
 
     this.subsForm.setFieldValue(
       "SUB_LAPSE_PRICE",
       selectedPlan[0].PLAN_PRICE_VALUE
     );
+  }
+
+  public show = true;
+  public plan_price;
+
+  public displayInput(event) {
+    if (this.plan_price !== this.priceForm.getValue()) {
+      this.show = false;
+    }
   }
 
   // reloadTable() {
