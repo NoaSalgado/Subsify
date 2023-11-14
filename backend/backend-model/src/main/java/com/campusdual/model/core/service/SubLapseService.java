@@ -2,9 +2,9 @@ package com.campusdual.model.core.service;
 
 import com.campusdual.api.core.service.ISubLapseService;
 import com.campusdual.model.core.dao.*;
-import com.fasterxml.jackson.databind.introspect.TypeResolutionContext;
 import com.ontimize.jee.common.db.SQLStatementBuilder;
 import com.ontimize.jee.common.dto.EntityResult;
+import com.ontimize.jee.common.dto.EntityResultMapImpl;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +12,11 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import com.ontimize.jee.common.db.SQLStatementBuilder;
-import com.ontimize.jee.common.db.SQLStatementBuilder.BasicExpression;
-import com.ontimize.jee.common.db.SQLStatementBuilder.BasicField;
-import com.ontimize.jee.common.db.SQLStatementBuilder.BasicOperator;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Lazy
 @Service("SubLapseService")
@@ -34,6 +28,8 @@ public class SubLapseService implements ISubLapseService {
     private FrequencyService frequencyService;
     @Autowired
     private SubscriptionService subscriptionService;
+    @Autowired
+    private PlanPriceService planPriceService;
 
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
@@ -69,7 +65,31 @@ public class SubLapseService implements ISubLapseService {
         String username = authentication.getName();
         newKeyValues.put(UserSubDao.USER,username);
 
-        return this.daoHelper.query(this.subLapseDao, newKeyValues, attributes, SubLapseDao.SUBSCRIPTIONS_TO_RENEW);
+        EntityResult subsToRenewEr =  this.daoHelper.query(this.subLapseDao, newKeyValues, attributes, SubLapseDao.SUBSCRIPTIONS_TO_RENEW);
+        int erSize = subsToRenewEr.calculateRecordNumber();
+        EntityResult newEntityResult = new EntityResultMapImpl();
+        for(int i = 0; i <  erSize; i++){
+            Map<String, Object>  subRecord = subsToRenewEr.getRecordValues(i);
+            Date planPriceEnd = (Date) subRecord.get(PlanPriceDao.END);
+            Date subLapseEnd = (Date) subRecord.get(SubLapseDao.END);
+            int planId = (int) subRecord.get(PlanDao.ID);
+            if(planPriceEnd != null && planPriceEnd.before(subLapseEnd) ){
+                Map<String, Object> planPriceQueryKV = new HashMap<>();
+                planPriceQueryKV.put(PlanPriceDao.PLAN_ID, planId);
+                SQLStatementBuilder.BasicField planPriceEndField = new SQLStatementBuilder.BasicField(PlanPriceDao.END);
+                SQLStatementBuilder.BasicExpression bexp1 = new SQLStatementBuilder.BasicExpression(planPriceEndField,
+                        SQLStatementBuilder.BasicOperator.NULL_OP, null);
+                planPriceQueryKV.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, bexp1);
+                //TODO si hay varios cambios de precio en los últimos meses?
+                EntityResult planPriceEr = this.planPriceService.planPriceQuery(planPriceQueryKV,
+                        List.of(PlanPriceDao.VALUE));
+                BigDecimal newPlanPrice = (BigDecimal) planPriceEr.getRecordValues(0).get(PlanPriceDao.VALUE);
+                subRecord.put(PlanPriceDao.VALUE, newPlanPrice);
+            }
+            newEntityResult.addRecord(subRecord, i);
+            newEntityResult.setCode(EntityResult.OPERATION_SUCCESSFUL);
+        }
+        return newEntityResult;
     }
 
     @Override
