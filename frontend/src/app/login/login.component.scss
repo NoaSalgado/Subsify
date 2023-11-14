@@ -1,13 +1,30 @@
 .m-top-24 {
   margin-top: 4px;
 }
-.logo{
-  top: 10;
-  left: 0;
-  width:60%;
-  height:50%;
-  object-fit: cover; 
+.lenguage{
+  position: absolute;
+  z-index:1;
+  padding-right: 500px;
+  top: 20px;
 }
+
+.icon{
+  position: absolute;
+  z-index:1;
+  bottom: 10px;
+  padding-left: 320px;
+}
+
+#a{
+  color:#065471;
+  font-weight: bold;
+}
+
+#AccountText{
+  color: #065471 !important;
+  font-weight: bold;
+}
+
 .full-page {
   width: 100%;
   height: 100vh;

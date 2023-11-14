@@ -1,23 +1,26 @@
 <div class="full-page">
   <div class="login-outer-container">
     <div class="wrapp-login">
-      <div
-        fxFill
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        class="login-inner-container"
-      >
-        <o-image
-          class="logo"
-          attr="image"
-          data="assets/images/subsify_round_logo.png"
-          auto-fit="false"
-          enabled="false"
-          read-only="true"
-          show-controls="no"
-          width="60%"
-          height="40%"
-        ></o-image>
+      <div fxFill fxLayout="column" fxLayoutAlign="center center" class="login-inner-container">
+        <o-language-selector ng-reflect-use-flag-icons="false" class="lenguage">
+          <div fxfill="" fxlayout="" fxlayoutalign="center center" ng-reflect-fx-layout=""
+            ng-reflect-fx-layout-align="center center"
+            style="height: 100%; min-height: 100%; min-width: 100%; width: 100%; flex-direction: row; box-sizing: border-box; display: flex; place-content: center; align-items: center;">
+    
+            <button aria-haspopup="true"
+              class="menu-button o-language-selector-text mat-menu-trigger mat-button mat-button-base ng-star-inserted"
+              mat-button="" type="button" ng-reflect-menu="[object Object]"><span
+                class="mat-button-wrapper"><span>ES</span></span>
+              <div class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false"
+                ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div>
+              <div class="mat-button-focus-overlay"></div>
+            </button>
+          </div><mat-menu class="" yposition="below" ng-reflect-y-position="below"
+            ng-reflect-panel-class="o-mat-menu"></mat-menu>
+        </o-language-selector>
+        <o-image id="logo" attr="image" data="assets/images/subsify_round_logo.png" auto-fit="false" enabled="false"
+          read-only="true" show-controls="no" width="60%" height="40%"></o-image>
+
 
         <form [formGroup]="loginForm" (ngSubmit)="login()">
           <div class="login-title-container" fxLayout="column">
@@ -29,13 +32,16 @@
 
           <div fxLayout="column" fxLayoutGap="10px">
             <mat-form-field fxFill class="m-top-24">
+              <mat-icon class="icon">account_circle</mat-icon>
               <input matInput class="mat-input" #user placeholder="{{ 'USERNAME' | oTranslate }}" id="username"
                 [formControl]="userCtrl" />
+
               <mat-error *ngIf="userCtrl.hasError('required')">
                 {{ "ERROR_USER_REQUIRED" | oTranslate }}
               </mat-error>
             </mat-form-field>
             <mat-form-field fxFill class="m-top-24">
+              <mat-icon class="icon">vpn_key</mat-icon>
               <input matInput class="mat-input" #password placeholder="{{ 'PASSWORD' | oTranslate }}" id="password"
                 type="password" [formControl]="pwdCtrl" />
               <mat-error *ngIf="pwdCtrl.hasError('required')">
@@ -54,13 +60,10 @@
             {{ "LOGIN" | oTranslate }}
           </button>
           <br><br>
-          <span class="title_text">{{ "ASK_FOR_ACCOUNT" | oTranslate }}:</span>
+          <p id="AccountText">{{ "ASK_FOR_ACCOUNT" | oTranslate }}:
+            <a id="a" routerLink="/sign-up">{{ "SIGN_UP" | oTranslate }}</a>
+          </p>
 
-          <a routerLink="/sign-up">
-            <button mat-raised-button color="primary" type="submit" class="btn--login">
-              {{ "SIGN_UP" | oTranslate }}
-            </button>
-          </a>
           <div layout-padding></div>
           <div layout-padding></div>
         </form>

@@ -4,7 +4,7 @@
   "EXAMPLE_LOGIN_INFO": "Usuario y contraseña de ejemplo",
   "USERNAME": "Usuario",
   "PASSWORD": "Contraseña",
-  "LOGIN": "Entrar",
+  "LOGIN": "Logearse",
   "LOGOUT": "Salir",
   "VIEW": "Vistas",
   "HOME": "Inicio",
@@ -23,6 +23,7 @@
   "SUBSCRIPTIONS": "Suscripciones",
   "PLATF_ID": "Id plataforma",
   "PLATF_NAME": "Plataforma",
+  "PLATF_LINK": "Enlace",
   "SUB_LAPSE_PRICE": "Precio",
   "SUBS_START_DATE": "Fecha de inicio",
   "RENOVATION_DATE": "Próxima Renovación",
@@ -52,7 +53,7 @@
   "PLANS_INFORMATION": "Detalle del plan",
   "NEW_PLAN_PRICE": "Nuevo precio del plan",
   "CLEAR": "Limpiar",
-  "EXPENSE_HISTORY": "Historial de Gasto",
+  "EXPENSE_HISTORY": "Historial de gasto",
   "ERROR_PLAN_INSERT_DATE_MESSAGE": "La fecha de inicio no puede ser ni anterior ni igual a la fecha de fin del anterior precio",
   "FROM": "Desde",
   "TO": "Hasta",
@@ -84,5 +85,9 @@
   "INCREMENTAL_PRICE": "Tu suscripción sube:  ",
   "ERROR_DUPLICATE_USER_NAME": "El nombre de usuario ya existe",
   "ERROR_NOT_MATCHING_PASSWORDS": "Las contraseñas no coinciden",
-  "SLC_END": "Fecha de fin"
+  "SLC_END": "Fecha de fin",
+  "USER_": "Usuario",
+  "CONFIRM_PASS" : "Confirmar Contraseña",
+  "EMAIL" : "Email",
+  "REGISTER": "Registrarse"
 }

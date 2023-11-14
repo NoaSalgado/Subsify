@@ -86,5 +86,9 @@
   "INCREMENTAL_PRICE": "Your subscription increments: ",
   "ERROR_DUPLICATE_USER_NAME": "Username already exists",
   "ERROR_NOT_MATCHING_PASSWORDS": "Password doesn't match",
-  "SLC_END": "End date"
+  "SLC_END": "End date",
+  "USER_": "User",
+  "CONFIRM_PASS" : "Confirm Password",
+  "EMAIL" : "Email",
+  "REGISTER": "Register"
 }
