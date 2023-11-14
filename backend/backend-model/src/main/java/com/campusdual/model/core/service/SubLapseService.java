@@ -67,7 +67,19 @@ public class SubLapseService implements ISubLapseService {
 
         EntityResult subsToRenewEr =  this.daoHelper.query(this.subLapseDao, newKeyValues, attributes, SubLapseDao.SUBSCRIPTIONS_TO_RENEW);
         int erSize = subsToRenewEr.calculateRecordNumber();
-        EntityResult newEntityResult = new EntityResultMapImpl();
+        EntityResult newEntityResult = new EntityResultMapImpl(List.of(SubLapseDao.ID,
+                PlatformDao.NAME,
+                SubLapseDao.END,
+                SubLapseDao.PRICE,
+                SubscriptionDao.ACTIVE,
+                PlatformDao.PLATF_LINK,
+                SubLapseCustomDao.SLC_PRICE,
+                SubLapseCustomDao.SLC_END,
+                PlanPriceDao.VALUE,
+                PlanPriceDao.END,
+                PlanPriceDao.ID,
+                PlanDao.ID
+                ));
         for(int i = 0; i <  erSize; i++){
             Map<String, Object>  subRecord = subsToRenewEr.getRecordValues(i);
             Date planPriceEnd = (Date) subRecord.get(PlanPriceDao.END);
