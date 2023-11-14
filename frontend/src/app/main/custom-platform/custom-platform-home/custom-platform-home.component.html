@@ -12,7 +12,7 @@
     ></o-filter-builder>
 
     <o-row layout-gap="18px">
-      <o-text-input fxFlex="50" attr="users" label="USERS"></o-text-input>
+      <o-text-input fxFlex="15" attr="users" label="USERS"></o-text-input>
       <o-button
         attr="filter"
         [oFilterBuilderQuery]="filterBuilderNumUsers"
@@ -21,18 +21,15 @@
         class="filter-button"
       >
       </o-button>
-
       <o-button
         attr="clear"
         [oFilterBuilderClear]="filterBuilderNumUsers"
         type="RAISED"
         label="SHOW ALL"
         class="filter-button"
-        layout-padding
       >
       </o-button>
     </o-row>
-
     <o-table
       #customPlatformTable
       attr="customPlatformTable"
