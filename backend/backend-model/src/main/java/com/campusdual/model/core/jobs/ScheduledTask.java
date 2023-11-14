@@ -32,7 +32,7 @@ public class ScheduledTask {
 
     @Autowired
     SubLapseCustomService subLapseCustomService;
-    /*
+
     private SQLStatementBuilder.BasicExpression filterByActiveAndDate(String endDate, String active) {
         SQLStatementBuilder.BasicField endDateField = new SQLStatementBuilder.BasicField(endDate);
         SQLStatementBuilder.BasicExpression dateBE = new SQLStatementBuilder.BasicExpression(endDateField, SQLStatementBuilder.BasicOperator.LESS_OP, LocalDate.now());
@@ -41,7 +41,7 @@ public class ScheduledTask {
         SQLStatementBuilder.BasicExpression activeBE = new SQLStatementBuilder.BasicExpression(activeField, SQLStatementBuilder.BasicOperator.EQUAL_OP, true);
 
         return new SQLStatementBuilder.BasicExpression(dateBE, SQLStatementBuilder.BasicOperator.AND_OP, activeBE);
-    }*/
+    }
 
 
     //Obtains new sub_lapse_price by getting active plans found by plan id
@@ -105,11 +105,11 @@ public class ScheduledTask {
 
 
             int erSize = subscriptionsToUpdate.calculateRecordNumber();
-            /*if (erSize > 0 ){
+            if (erSize > 0 ){
                 System.out.println("here");
                 subscriptionsToUpdate.getRecordValues(0).get(SubLapseDao.PRICE)
                         .equals(subscriptionsToUpdate.getRecordValues(0).get(PlanPriceDao.VALUE));
-            }*/
+            }
             for (int i = 0; i < erSize; i++) {
 
                 Map<String, Object> subsRegistry = subscriptionsToUpdate.getRecordValues(i);

@@ -8,7 +8,7 @@
         class="login-inner-container"
       >
         <o-image
-          class="logo"
+          id="logo"
           attr="image"
           data="assets/images/subsify_round_logo.png"
           auto-fit="false"
@@ -27,15 +27,18 @@
             <span class="title_text">{{ "LOGIN_TITLE" | oTranslate }}:</span>
           </div>
 
-          <div fxLayout="column" fxLayoutGap="10px">
+          <div fxLayout="column" fxLayoutGap="10px" >
             <mat-form-field fxFill class="m-top-24">
+              <mat-icon class="icon">account_circle</mat-icon>
               <input matInput class="mat-input" #user placeholder="{{ 'USERNAME' | oTranslate }}" id="username"
                 [formControl]="userCtrl" />
+                
               <mat-error *ngIf="userCtrl.hasError('required')">
                 {{ "ERROR_USER_REQUIRED" | oTranslate }}
               </mat-error>
             </mat-form-field>
             <mat-form-field fxFill class="m-top-24">
+              <mat-icon class="icon">vpn_key</mat-icon>
               <input matInput class="mat-input" #password placeholder="{{ 'PASSWORD' | oTranslate }}" id="password"
                 type="password" [formControl]="pwdCtrl" />
               <mat-error *ngIf="pwdCtrl.hasError('required')">
@@ -54,13 +57,10 @@
             {{ "LOGIN" | oTranslate }}
           </button>
           <br><br>
-          <span class="title_text">{{ "ASK_FOR_ACCOUNT" | oTranslate }}:</span>
+          <p id="AccountText">{{ "ASK_FOR_ACCOUNT" | oTranslate }}:
+          <a id="a" routerLink="/sign-up">{{ "SIGN_UP" | oTranslate }}</a>
+        </p>
 
-          <a routerLink="/sign-up">
-            <button mat-raised-button color="primary" type="submit" class="btn--login">
-              {{ "SIGN_UP" | oTranslate }}
-            </button>
-          </a>
           <div layout-padding></div>
           <div layout-padding></div>
         </form>
