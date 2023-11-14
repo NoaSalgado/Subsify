@@ -45,40 +45,12 @@ public class UserService implements IUserService {
 		return this.daoHelper.query(userDao, keyMap, attrList);
 	}
 
-	public EntityResult userInsert(Map<?, ?> attrMap) {
-
-		try{
-			String password = (String) attrMap.get(UserDao.PASSWORD);
-			String confirmPassword = (String) attrMap.get("CONFIRM_PASS");
-
-			if (!password.equals(confirmPassword)){
-				EntityResult errorEr = new EntityResultMapImpl();
-				errorEr.setCode(EntityResult.OPERATION_WRONG);
-				errorEr.setMessage("ERROR_NOT_MATCHING_PASSWORDS");
-				return errorEr;
-			}
-			EntityResult insertQuery = this.daoHelper.insert(userDao, attrMap);
-
-			String user = (String) attrMap.get(UserDao.ID);
-			Map<String, Object> userRoleKV = new HashMap<>();
-			userRoleKV.put(UserDao.ID, user);
-			userRoleKV.put(UserRoleDao.ID_ROLENAME, 1);
-
-			EntityResult insertUserRoleQuery = userRoleDao.insert(userRoleKV);
-
-			return  insertQuery;
-		}catch (org.springframework.dao.DuplicateKeyException exception){
-			EntityResult errorEr = new EntityResultMapImpl();
-			errorEr.setCode(EntityResult.OPERATION_WRONG);
-			errorEr.setMessage("ERROR_DUPLICATE_USER_NAME");
-			return errorEr;
-		}
-	}
-
+	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult userUpdate(Map<?, ?> attrMap, Map<?, ?> keyMap) {
 		return this.daoHelper.update(userDao, attrMap, keyMap);
 	}
 
+	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult userDelete(Map<?, ?> keyMap) {
 		return this.daoHelper.delete(this.userDao, keyMap);
 	}
