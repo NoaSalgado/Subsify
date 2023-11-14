@@ -1,19 +1,26 @@
 <div class="full-page">
   <div class="login-outer-container">
     <div class="wrapp-login">
-      <div fxFill fxLayout="column"  fxLayoutAlign="center center" class="login-inner-container">
+      <div fxFill fxLayout="column" fxLayoutAlign="center center" class="login-inner-container">
+        <o-language-selector ng-reflect-use-flag-icons="false" class="lenguage">
+          <div fxfill="" fxlayout="" fxlayoutalign="center center" ng-reflect-fx-layout=""
+            ng-reflect-fx-layout-align="center center"
+            style="height: 100%; min-height: 100%; min-width: 100%; width: 100%; flex-direction: row; box-sizing: border-box; display: flex; place-content: center; align-items: center;">
 
-        <o-image
-          id="logo"
-          attr="image"
-          data="assets/images/subsify_round_logo.png"
-          auto-fit="false"
-          enabled="false"
-          read-only="true"
-          show-controls="no"
-          width="60%"
-          height="40%"
-        ></o-image>
+            <button aria-haspopup="true"
+              class="menu-button o-language-selector-text mat-menu-trigger mat-button mat-button-base ng-star-inserted"
+              mat-button="" type="button" ng-reflect-menu="[object Object]"><span
+                class="mat-button-wrapper"><span>ES</span></span>
+              <div class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false"
+                ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div>
+              <div class="mat-button-focus-overlay"></div>
+            </button>
+          </div><mat-menu class="" yposition="below" ng-reflect-y-position="below"
+            ng-reflect-panel-class="o-mat-menu"></mat-menu>
+        </o-language-selector>
+
+        <o-image id="logo" attr="image" data="assets/images/subsify_round_logo.png" auto-fit="false" enabled="false"
+          read-only="true" show-controls="no" width="60%" height="40%"></o-image>
 
         <o-form #signUpForm show-header="no" service="signUps" entity="signUp">
           <o-row>
@@ -30,9 +37,9 @@
           <o-row>
             <o-password-input id="input" attr="CONFIRM_PASS" required="yes"></o-password-input>
           </o-row>
-          <o-button type="STROKED" label="REGISTRAR" layout-padding color="primary" (click)="signUpUser()"></o-button>
+          <o-button type="STROKED" label="{{ 'REGISTER' | oTranslate }}" layout-padding color="primary" (click)="signUpUser()"></o-button>
           <p id="AccountText">{{ "ALREADY_SIGNED" | oTranslate }}:
-            
+
             <a id="a" routerLink="/login">{{ "LOGIN" | oTranslate }}
             </a>
           </p>

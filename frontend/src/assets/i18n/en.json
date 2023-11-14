@@ -89,5 +89,6 @@
   "SLC_END": "End date",
   "USER_": "User",
   "CONFIRM_PASS" : "Confirm Password",
-  "EMAIL" : "Email"
+  "EMAIL" : "Email",
+  "REGISTER": "Register"
 }

@@ -88,5 +88,6 @@
   "SLC_END": "Fecha de fin",
   "USER_": "Usuario",
   "CONFIRM_PASS" : "Confirmar Contraseña",
-  "EMAIL" : "Email"
+  "EMAIL" : "Email",
+  "REGISTER": "Registrarse"
 }
