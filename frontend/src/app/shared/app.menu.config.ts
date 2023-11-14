@@ -37,7 +37,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
   {
     id: "custom-platform",
     name: "CUSTOM_PLATFORMS",
-    icon: "macro_off",
+    icon: "edit_note",
     route: "/main/custom-platform",
   },
   {

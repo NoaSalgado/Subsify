@@ -1,13 +1,17 @@
 <o-form show-header="no">
 <div fxFill fxLayout="column" fxLayoutAlign="start">
-  <o-filter-builder #filterBuilderNumUsers attr="thefilter" filters="USERS:users" [target]="customPlatformTable"
-          query-on-change="no" query-on-change-delay="500" [expression-builder]="createFilterNumUsers"
-          (onClear)="resetFilter($event)"></o-filter-builder>
- 
-  
+  <o-filter-builder 
+  #filterBuilderNumUsers 
+  attr="thefilter" 
+  filters="USERS:users" 
+  [target]="customPlatformTable"
+  query-on-change="no" 
+  query-on-change-delay="500" 
+  [expression-builder]="createFilterNumUsers"
+  (onClear)="resetFilter($event)"></o-filter-builder>
+
   <o-row layout-gap="18px">
-  
-    <o-text-input fxFlex="50" attr="users" label="USERS"></o-text-input>  
+    <o-text-input fxFlex="15" attr="users" label="USERS"></o-text-input>  
     <o-button
       attr="filter"
       [oFilterBuilderQuery]="filterBuilderNumUsers"
@@ -16,12 +20,12 @@
       class="filter-button"
     >
     </o-button>
-  
-    <o-button attr="clear" [oFilterBuilderClear]="filterBuilderNumUsers" type="RAISED" label="SHOW ALL"
-    class="filter-button" layout-padding>
+    <o-button attr="clear" 
+    [oFilterBuilderClear]="filterBuilderNumUsers" 
+    type="RAISED" label="SHOW ALL"
+    class="filter-button">
     </o-button>
-</o-row>
-  
+  </o-row>
   <o-table #customPlatformTable
       attr="customPlatformTable"
       service="platforms"

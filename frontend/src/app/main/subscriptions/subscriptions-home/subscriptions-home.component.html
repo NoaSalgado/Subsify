@@ -8,15 +8,21 @@
           (onClear)="resetFilter($event)"></o-filter-builder>
 
         <o-row layout-gap="18px">
-          <o-combo #categories fxFlex="50" attr="catName" label="CAT_NAME" layout-padding read-only="no"
-            service="subLapses" entity="subLapseCat" columns="CAT_NAME" value-column="CAT_NAME" keys="CAT_ID"
-            visible-columns="CAT_NAME" fxFlex="33" null-selection="yes" null-selection-label="Categoría">
+          <o-combo 
+            #categories fxFlex="50" attr="catName" 
+            label="CAT_NAME" layout-padding read-only="no"
+            service="subLapses" entity="subLapseCat" 
+            columns="CAT_NAME" value-column="CAT_NAME" keys="CAT_ID"
+            visible-columns="CAT_NAME" fxFlex="33" 
+            null-selection="yes" null-selection-label="Categoría">
           </o-combo>
 
           <o-button attr="filter" [oFilterBuilderQuery]="filterBuilderCat" type="RAISED" label="FILTER"
             class="filter-button" layout-padding>
           </o-button>
-          <o-button attr="clear" [oFilterBuilderClear]="filterBuilderCat" type="RAISED" label="SHOW ALL"
+          <o-button attr="clear" 
+          [oFilterBuilderClear]="filterBuilderCat" 
+          type="RAISED" label="SHOW ALL"
             class="filter-button" layout-padding>
           </o-button>
         </o-row>
