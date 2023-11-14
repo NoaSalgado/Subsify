@@ -9,6 +9,7 @@ OFilterBuilderComponent,
 OTableComponent,
 OTranslateService,
 } from "ontimize-web-ngx";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
 selector: "app-subscriptions-home",
@@ -27,9 +28,9 @@ protected platformChart: OChartComponent;
 public chartData;
 protected chartParameters: DonutChartConfiguration;
 public getMonthlyPrice = getMonthlyPricefunction;
+user_role;
 
-
-constructor(protected injector: Injector) {
+constructor(protected injector: Injector,private router: Router,private actRoute: ActivatedRoute) {
 
 this.chartParameters = new DonutChartConfiguration();
 this.chartParameters.showLabels = true;
@@ -67,6 +68,23 @@ ngOnInit() {}
     }
   }
 
+  onDataLoaded2(event){
+    console.log(event);
+    if (event && event.length > 0 && event[0].ROLENAME) {
+    
+    this.user_role=event[0].ROLENAME;
+    
+    if(this.user_role === 'admin'){
+      
+      this.router.navigate(['../../','plans'], {relativeTo: this.actRoute})
+    } else{
+      this.router.navigate(['../../','subscriptions'],{relativeTo:this.actRoute})
+    }
+  } else {
+    console.error('Invalid data received:', event);
+  }
+
+  }
   resetFilter($event) {
     this.filterBuilderCat.triggerReload();
   }

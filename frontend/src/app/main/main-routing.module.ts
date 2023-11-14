@@ -40,7 +40,8 @@ export const routes: Routes = [
           ),
           data:{
             oPermission:{
-              permissionId: "subscription-home-route"
+              permissionId: "subscription-home-route",
+              restrictedPermissionsRedirect: "home"
             }
           }
       },

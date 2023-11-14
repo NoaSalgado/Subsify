@@ -56,7 +56,7 @@
     },
     {
       "permissionId": "subscription-home-route",
-      "enabled": false
+      "enabled": true
     },
     {
       "permissionId": "charts-table-route",
