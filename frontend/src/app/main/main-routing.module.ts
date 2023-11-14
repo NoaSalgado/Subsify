@@ -38,6 +38,11 @@ export const routes: Routes = [
           import("./subscriptions/subscriptions.module").then(
             (m) => m.SubscriptionsModule
           ),
+          data:{
+            oPermission:{
+              permissionId: "subscription-home-route"
+            }
+          }
       },
       {
         path: "categories",
@@ -45,6 +50,11 @@ export const routes: Routes = [
           import("./categories/categories.module").then(
             (m) => m.CategoriesModule
           ),
+          data:{
+            oPermission:{
+              permissionId: "categories-table-route"
+            }
+          }
       },
       {
         path: "platforms",
@@ -52,6 +62,11 @@ export const routes: Routes = [
           import("./platforms/platforms.module").then(
             (m) => m.PlatformsModule
           ),
+          data:{
+            oPermission:{
+              permissionId: "platforms-table-route"
+            }
+          }
       },
       {
         path: "plans",
@@ -59,6 +74,11 @@ export const routes: Routes = [
           import("./plans/plans.module").then(
             (m) => m.PlansModule
           ),
+          data:{
+            oPermission:{
+              permissionId: "plans-table-route"
+            }
+          }
       },
       {
         path: "charts",
@@ -66,6 +86,11 @@ export const routes: Routes = [
           import("./charts/charts.module").then(
             (m) => m.ChartsModule
           ),
+          data:{
+            oPermission:{
+              permissionId: "charts-table-route"
+            }
+          }
       },
       {
         path: "custom-platform",
@@ -73,6 +98,11 @@ export const routes: Routes = [
           import("./custom-platform/custom-platform.module").then(
             (m) => m.CustomPlatformModule
           ),
+          data:{
+            oPermission:{
+              permissionId: "custom-platform-table-route"
+            }
+          }
       }
     ],
   },

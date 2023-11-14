@@ -42,7 +42,19 @@
       "enabled": false
     },
     {
+      "permissionId": "custom-platform-table-route",
+      "enabled": false
+    },
+    {
       "permissionId": "subscriptions-table-route",
+      "enabled": true
+    },
+    {
+      "permissionId": "charts-table-route",
+      "enabled": true
+    },
+    {
+      "permissionId": "subscription-home-route",
       "enabled": true
     },
     {

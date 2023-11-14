@@ -47,8 +47,20 @@
       "enabled": true
     },
     {
-      "permissionId": "subscriptions-table-route",
+      "permissionId": "custom-platform-table-route",
       "enabled": true
+    },
+    {
+      "permissionId": "subscriptions-table-route",
+      "enabled": false
+    },
+    {
+      "permissionId": "subscription-home-route",
+      "enabled": false
+    },
+    {
+      "permissionId": "charts-table-route",
+      "enabled": false
     },
     {
       "permissionId": "plans-table-route",
