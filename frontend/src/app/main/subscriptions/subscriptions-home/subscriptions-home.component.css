@@ -10,9 +10,3 @@
 .hidden {
   display: none !important;
 }
-.img {
-  max-width: 100%;
-  height: auto !important;
-  display: block !important; /* Esto evita el espacio adicional por debajo de la imagen */
-  margin: auto !important; /* Centra la imagen en la celda */
-}
