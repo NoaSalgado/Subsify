@@ -11,8 +11,12 @@
   display: none !important;
 }
 .img {
+  padding: 1rem 0rem;
   max-width: 100%;
-  height: auto !important;
-  display: block !important; /* Esto evita el espacio adicional por debajo de la imagen */
-  margin: auto !important; /* Centra la imagen en la celda */
+  display: block !important; 
+  margin: auto !important;
+}
+
+.img img{
+  height: 200px !important;
 }
