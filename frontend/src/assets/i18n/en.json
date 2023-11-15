@@ -90,5 +90,6 @@
   "USER_": "User",
   "CONFIRM_PASS" : "Confirm password",
   "EMAIL" : "Email",
-  "REGISTER": "Register"
+  "REGISTER": "Register",
+  "SIGN_UP_TITLE": "Sign up"
 }

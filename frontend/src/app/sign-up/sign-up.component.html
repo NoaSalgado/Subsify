@@ -21,8 +21,10 @@
 
         <o-image id="logo" attr="image" data="assets/images/subsify_round_logo.png" auto-fit="false" enabled="false"
           read-only="true" show-controls="no" width="60%" height="40%"></o-image>
-
         <o-form #signUpForm show-header="no" service="signUps" entity="signUp">
+          <div class="login-title-container" fxLayout="column">
+            <span class="title_text">{{ "SIGN_UP_TITLE" | oTranslate }}:</span>
+          </div>
           <o-row>
             <o-text-input id="input" attr="USER_" required="yes">
               <mat-icon oMatSuffix>person</mat-icon>
@@ -37,8 +39,8 @@
           <o-row>
             <o-password-input id="input" attr="CONFIRM_PASS" required="yes"></o-password-input>
           </o-row>
-          <o-button type="STROKED" label="{{ 'REGISTER' | oTranslate }}" layout-padding color="primary" (click)="signUpUser()"></o-button>
-          <p id="AccountText">{{ "ALREADY_SIGNED" | oTranslate }}:
+          <o-button type="STROKED" label="{{ 'REGISTER' | oTranslate }}" color="primary" (click)="signUpUser()"></o-button>
+          <p id="AccountText">{{ "ALREADY_SIGNED" | oTranslate }}
 
             <a id="a" routerLink="/login">{{ "LOGIN" | oTranslate }}
             </a>

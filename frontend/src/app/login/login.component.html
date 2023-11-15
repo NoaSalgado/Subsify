@@ -22,7 +22,7 @@
           read-only="true" show-controls="no" width="60%" height="40%"></o-image>
 
 
-        <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <o-form show-header="no" [formGroup]="loginForm" (ngSubmit)="login()">
           <div class="login-title-container" fxLayout="column">
             <p class="session-expired text" *ngIf="sessionExpired">
               {{ "ERROR_SESSION_EXPIRED" | oTranslate }}
@@ -59,14 +59,13 @@
           <button mat-raised-button color="primary" type="submit" class="btn--login">
             {{ "LOGIN" | oTranslate }}
           </button>
-          <br><br>
           <p id="AccountText">{{ "ASK_FOR_ACCOUNT" | oTranslate }}
             <a id="a" routerLink="/sign-up">{{ "SIGN_UP" | oTranslate }}</a>
           </p>
 
           <div layout-padding></div>
           <div layout-padding></div>
-        </form>
+        </o-form>
       </div>
     </div>
   </div>
