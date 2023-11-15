@@ -19,15 +19,15 @@
       class="mat-card"
     >
       <mat-card-header>
+        <o-image attr="image" [data]="images[i]" *ngIf="images[i]" 
+        auto-fit="true" enabled="false" read-only="true" show-controls="false"
+        full-screen-button="false" empty-image="./assets/images/no-image.png"></o-image>
+        
         <mat-card-title>
+          
           <div>
             {{ rowData.PLATF_NAME }}
-          </div>
-          <o-image
-            attr="PLATF_IMAGE"
-            read-only="yes"
-            image-type="base64"
-          ></o-image>
+          </div> 
         </mat-card-title>
       </mat-card-header>
 
