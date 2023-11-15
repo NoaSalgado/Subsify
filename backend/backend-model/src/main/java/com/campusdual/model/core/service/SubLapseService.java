@@ -69,6 +69,7 @@ public class SubLapseService implements ISubLapseService {
         int erSize = subsToRenewEr.calculateRecordNumber();
         EntityResult newEntityResult = new EntityResultMapImpl(List.of(SubLapseDao.ID,
                 PlatformDao.NAME,
+                PlatformDao.PLATF_IMAGE,
                 SubLapseDao.END,
                 SubLapseDao.PRICE,
                 SubscriptionDao.ACTIVE,

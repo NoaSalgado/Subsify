@@ -8,7 +8,7 @@
   attr="customerlist"
   service="subLapses"
   entity="subLapseToRenew"
-  columns="SUB_LAPSE_ID;PLATF_NAME;SUB_LAPSE_END;SUB_LAPSE_PRICE;SUBS_AUTORENEWAL;PLATF_LINK;SLC_PRICE;SLC_END;PLAN_PRICE_VALUE;PLAN_PRICE_ID;PLAN_PRICE_END;PLAN_ID"
+  columns="SUB_LAPSE_ID;PLATF_NAME;PLATF_IMAGE;SUB_LAPSE_END;SUB_LAPSE_PRICE;SUBS_AUTORENEWAL;PLATF_LINK;SLC_PRICE;SLC_END;PLAN_PRICE_VALUE;PLAN_PRICE_ID;PLAN_PRICE_END;PLAN_ID"
   keys="SUB_LAPSE_ID"
   class="home-list"
 >
@@ -23,6 +23,11 @@
           <div>
             {{ rowData.PLATF_NAME }}
           </div>
+          <o-image
+            attr="PLATF_IMAGE"
+            read-only="yes"
+            image-type="base64"
+          ></o-image>
         </mat-card-title>
       </mat-card-header>
 
@@ -31,7 +36,7 @@
           {{ "SUBSCRIPTIONS-END" | oTranslate }}
           {{ rowData.SUB_LAPSE_END | date }}
         </div>
-
+        
         <div class="plan-price">
           {{ priceToShow[i] | currency : "EUR" : true }}
 <!-- <span *ngIf="incrementalPrice[i]" > &nbsp; - &nbsp; {{ incrementalPrice[i] | currency:"EUR"}} </span>
