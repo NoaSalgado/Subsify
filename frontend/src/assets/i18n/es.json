@@ -4,7 +4,7 @@
   "EXAMPLE_LOGIN_INFO": "Usuario y contraseña de ejemplo",
   "USERNAME": "Usuario",
   "PASSWORD": "Contraseña",
-  "LOGIN": "Logearse",
+  "LOGIN": "Inicia sesión",
   "LOGOUT": "Salir",
   "VIEW": "Vistas",
   "HOME": "Inicio",
@@ -89,5 +89,6 @@
   "USER_": "Usuario",
   "CONFIRM_PASS" : "Confirmar contraseña",
   "EMAIL" : "Email",
-  "REGISTER": "Registrarse"
+  "REGISTER": "Registrarse",
+  "SIGN_UP_TITLE": "Regístrate"
 }
