@@ -87,8 +87,12 @@
   "ERROR_NOT_MATCHING_PASSWORDS": "Las contraseñas no coinciden",
   "SLC_END": "Fecha de fin",
   "USER_": "Usuario",
-  "CONFIRM_PASS" : "Confirmar contraseña",
-  "EMAIL" : "Email",
+  "CONFIRM_PASS": "Confirmar contraseña",
+  "EMAIL": "Email",
   "REGISTER": "Registrarse",
-  "SIGN_UP_TITLE": "Regístrate"
+  "SIGN_UP_TITLE": "Regístrate",
+  "START_DATE_SLC": "Fecha de inicio",
+  "END_DATE_SLC": "Fecha de fin",
+  "SLC_PRICE": "Precio promocional",
+  "RENEWAL_PRICE": "Precio de renovación"
 }

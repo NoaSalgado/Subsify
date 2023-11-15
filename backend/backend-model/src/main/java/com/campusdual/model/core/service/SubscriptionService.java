@@ -167,6 +167,22 @@ public class SubscriptionService implements ISubscriptionService {
         return subscriptionER;
     }
 
+    @Override
+    public EntityResult subCustomPricesQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
+        Map<String, Object> subLapseKV = new HashMap<>();
+        int subLapseId = Integer.parseInt((String)keysValues.get(SubLapseDao.ID));
+        subLapseKV.put(SubLapseDao.ID, subLapseId);
+
+        EntityResult subLapseER = this.subsLapseService.subLapseQuery(
+                subLapseKV,
+                List.of(SubscriptionDao.ID));
+
+        Map<String, Object> subLapseCustomKV = new HashMap<>();
+        subLapseCustomKV.put(SubscriptionDao.ID, subLapseER.getRecordValues(0).get(SubscriptionDao.ID));
+        return this.subLapseCustomService.subLapseCustomBySubIdQuery(subLapseCustomKV,
+               attributes);
+    }
+
     private int getFreq(Map<String, Object> attributes){
         Map<String, Object> freqQuery = new HashMap<>();
         freqQuery.put(FrequencyDao.ID, attributes.get(FrequencyDao.ID));

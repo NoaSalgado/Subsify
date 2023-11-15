@@ -16,4 +16,5 @@ public class SubLapseCustomDao extends OntimizeJdbcDaoSupport {
     public static final String SLC_PRICE = "SLC_PRICE";
     public static final String SLC_START = "SLC_START";
     public static final String SLC_END = "SLC_END";
+    public static final String SCL_CUSTOM_SUB_LAPSE_QUERY = "custom_sub_lapse_query";
 }

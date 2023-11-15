@@ -88,8 +88,12 @@
   "ERROR_NOT_MATCHING_PASSWORDS": "Password doesn't match",
   "SLC_END": "End date",
   "USER_": "User",
-  "CONFIRM_PASS" : "Confirm password",
-  "EMAIL" : "Email",
+  "CONFIRM_PASS": "Confirm password",
+  "EMAIL": "Email",
   "REGISTER": "Register",
-  "SIGN_UP_TITLE": "Sign up"
+  "SIGN_UP_TITLE": "Sign up",
+  "START_DATE_SLC": "Start date",
+  "END_DATE_SLC": "End date",
+  "SLC_PRICE": "Promotional price",
+  "RENEWAL_PRICE": "Renewal price"
 }

@@ -44,4 +44,9 @@ public class SubLapseCustomService implements ISubLapseCustomService {
     public EntityResult subLapseCustomDelete(Map<String, Object> keyValues) throws OntimizeJEERuntimeException {
         return this.daoHelper.delete(this.subLapseCustomDao, keyValues);
     }
+
+    @Override
+    public EntityResult subLapseCustomBySubIdQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
+        return this.daoHelper.query(this.subLapseCustomDao, keysValues, attributes, SubLapseCustomDao.SCL_CUSTOM_SUB_LAPSE_QUERY);
+    }
 }

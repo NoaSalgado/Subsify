@@ -13,4 +13,20 @@
         <Column>SLC_ID</Column>
     </UpdateKeys>
     <GeneratedKey>slc_id</GeneratedKey>
+    <Queries>
+        <Query id="custom_sub_lapse_query">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="subs_id" prefix="s"/>
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                select #COLUMNS#
+                from sub_lapse_custom slc
+                inner join "subscription" s on slc.subs_id = s.subs_id
+                inner join plan_price pp on pp.plan_price_id = s.plan_price_id
+                #WHERE#;
+                 ]]>
+            </Sentence>
+        </Query>
+    </Queries>
 </JdbcEntitySetup>

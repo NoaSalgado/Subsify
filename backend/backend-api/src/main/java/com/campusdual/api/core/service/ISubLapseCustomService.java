@@ -12,4 +12,5 @@ public interface ISubLapseCustomService {
     EntityResult subLapseCustomInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException;
     EntityResult subLapseCustomUpdate(Map<String, Object> attributes, Map<String, Object> KeyValues) throws OntimizeJEERuntimeException;
     EntityResult subLapseCustomDelete(Map<String, Object> keyValues) throws OntimizeJEERuntimeException;
+    EntityResult subLapseCustomBySubIdQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException;
 }
