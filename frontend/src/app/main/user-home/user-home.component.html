@@ -6,9 +6,12 @@
   <div class="card-container">
     <mat-card *ngFor="let rowData of list.dataArray; let i = index" [o-list-item]="rowData" class="mat-card">
       <mat-card-header>
-        <o-image attr="image" [data]="images[i]" *ngIf="images[i]" auto-fit="true" enabled="false" read-only="true"
-          show-controls="false" full-screen-button="false" empty-image="./assets/images/no-image.png"></o-image>
-
+        <div class="image-container">
+          <o-image attr="image" class="img" [data]="images[i]" *ngIf="images[i]" auto-fit="true" enabled="false"
+            read-only="true" show-controls="false" full-screen-button="false"
+            empty-image="./assets/images/no-image.png">
+          </o-image>
+        </div>
         <mat-card-title>
 
           <div>
