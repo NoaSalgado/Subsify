@@ -47,4 +47,12 @@ export class SubscriptionsDetailsComponent implements AfterViewInit {
     this.shared_price = event.shared_price;
     this.total_price = event.SUB_LAPSE_PRICE;
   }
+
+  public show = true;
+  public plan_price;
+
+  public displayInput(event) {
+    this.show = false;
+    console.log(this.show);
+  }
 }

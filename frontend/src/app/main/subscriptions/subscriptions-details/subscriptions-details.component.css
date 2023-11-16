@@ -24,4 +24,11 @@ p {
   height: auto !important;
 }
 
+.custom-container {
+  display: flex;
+  flex-direction: column;
+}
 
+p {
+  font-size: 1.2rem;
+}
