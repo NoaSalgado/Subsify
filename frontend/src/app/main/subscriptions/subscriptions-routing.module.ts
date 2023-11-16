@@ -4,6 +4,7 @@ import { SubscriptionsHomeComponent } from "./subscriptions-home/subscriptions-h
 import { SubscriptionsNewComponent } from "./subscriptions-new/subscriptions-new.component";
 import { SubscriptionsDetailsComponent } from "./subscriptions-details/subscriptions-details.component";
 import { SubscriptionSharedNewComponent } from "./subscription-shared-new/subscription-shared-new.component";
+import { SubscriptionCustomPriceNewComponent } from "./subscription-custom-price-new/subscription-custom-price-new.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: ":SUB_LAPSE_ID/new",
     component: SubscriptionSharedNewComponent,
+  },
+  {
+    path: ":SUB_LAPSE_ID/new-custom-price",
+    component: SubscriptionCustomPriceNewComponent,
   },
 ];
 

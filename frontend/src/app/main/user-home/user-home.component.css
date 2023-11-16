@@ -18,7 +18,7 @@
 }
 /*
 .image-container {
-  width: 10px; 
+  width: 10px;
   height: 10px;
   overflow: hidden;
 }
@@ -48,12 +48,16 @@
   text-transform: uppercase;
 }
 
-.material-symbols-outlined{
+.material-symbols-outlined {
   color: rgb(223, 42, 42);
   font-size: 2rem;
 }
 
-.incremental-price{
+.decremental-icon {
+  color: rgb(14, 158, 69);
+}
+
+.incremental-price {
   align-items: center !important;
   display: flex;
   justify-content: center;
@@ -61,7 +65,15 @@
   padding: 0 0 0 0.5rem !important;
 }
 
-.plan-price{
+.decremental-price {
+  align-items: center !important;
+  display: flex;
+  justify-content: center;
+  color: rgb(14, 158, 69);
+  padding: 0 0 0 0.5rem !important;
+}
+
+.plan-price {
   font-size: 1.2rem;
   font-weight: bold;
 }
