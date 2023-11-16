@@ -100,93 +100,117 @@
   </o-column>
 </o-form>
 
-<o-column title="{{ 'SHARED' | oTranslate }}"></o-column>
-
 <div class="container">
-  <o-form-layout-manager
-    mode="dialog"
-    label-columns="USER_SUB_ID;SUBS_ID;USER_"
-    separator=""
-    attr="share-form"
-    title="SHARE"
-  >
-    <o-form-layout-dialog-options
-      width="600px"
-      height="400px"
-      disable-close="false"
-    ></o-form-layout-dialog-options>
-    <div fxFill fxLayout="column" fxLayoutAlign="start" class="table-container">
+  <div>
+    <o-column title="{{ 'SHARED' | oTranslate }}"></o-column>
+    <o-form-layout-manager
+      mode="dialog"
+      label-columns="USER_SUB_ID;SUBS_ID;USER_"
+      separator=""
+      attr="share-form"
+      title="SHARE"
+    >
+      <o-form-layout-dialog-options
+        width="600px"
+        height="400px"
+        disable-close="false"
+      ></o-form-layout-dialog-options>
+      <div
+        fxFill
+        fxLayout="column"
+        fxLayoutAlign="start"
+        class="table-container"
+      >
+        <o-table
+          attr="userSub"
+          delete-button="no"
+          refresh-button="no"
+          service="userSubs"
+          entity="userSub"
+          keys="USER_SUB_ID"
+          columns="USER_SUB_ID;SUBS_ID;USER_;USER_SUB_VIRTUAL"
+          visible-columns="USERS"
+          query-rows="20"
+          auto-align-titles="no"
+          parent-keys="SUB_LAPSE_ID"
+          quick-filter="false"
+          virtual-scroll="no"
+          class="share-user-subs"
+          detail-mode="none"
+          pagination-controls="no"
+        >
+          <o-table-column attr="USERS">
+            <o-table-renderer-concat></o-table-renderer-concat>
+          </o-table-column>
+        </o-table>
+      </div>
+    </o-form-layout-manager>
+  </div>
+
+  <div>
+    <o-column title="{{ 'NEW_CUSTOM' | oTranslate }}"></o-column>
+    <o-form-layout-manager
+      mode="dialog"
+      label-columns="SUBS_ID;SLC_START;SLC_END;SLC_PRICE"
+      separator=""
+      attr="share-form"
+      title="CUSTOM_PRICE"
+    >
+      <o-form-layout-dialog-options
+        width="600px"
+        height="500px"
+        disable-close="false"
+      ></o-form-layout-dialog-options>
       <o-table
-        attr="userSub"
         delete-button="no"
         refresh-button="no"
-        service="userSubs"
-        entity="userSub"
-        keys="USER_SUB_ID"
-        columns="USER_SUB_ID;SUBS_ID;USER_;USER_SUB_VIRTUAL"
-        visible-columns="USERS"
-        query-rows="20"
-        auto-align-titles="no"
-        parent-keys="SUB_LAPSE_ID"
         quick-filter="false"
         virtual-scroll="no"
-        class="share-user-subs"
+        service="subscriptions"
+        entity="subCustomPrices"
+        columns="SUBS_ID;SLC_START;SLC_END;SLC_PRICE;PLAN_PRICE_VALUE"
+        parent-keys="SUB_LAPSE_ID"
+        visible-columns="SLC_START;SLC_END;SLC_PRICE;PLAN_PRICE_VALUE"
+        class="custom-sub-table"
+        insert-form-route="new-custom-price"
         detail-mode="none"
         pagination-controls="no"
       >
-        <o-table-column attr="USERS">
-          <o-table-renderer-concat></o-table-renderer-concat>
+        <o-table-column
+          attr="SLC_START"
+          title="START_DATE_SLC"
+          type="date"
+          format="LL"
+          content-align="center"
+        ></o-table-column>
+        <o-table-column
+          attr="SLC_END"
+          title="END_DATE_SLC"
+          type="date"
+          format="LL"
+          content-align="center"
+        ></o-table-column>
+        <o-table-column
+          attr="SLC_PRICE"
+          type="currency"
+          thousand-separator="."
+          decimal-separator=","
+          currency-symbol="€"
+          currency-symbol-position="right"
+          content-align="center"
+        >
         </o-table-column>
+        <o-table-column
+          title="RENEWAL_PRICE"
+          attr="PLAN_PRICE_VALUE"
+          type="currency"
+          thousand-separator="."
+          decimal-separator=","
+          currency-symbol="€"
+          currency-symbol-position="right"
+          content-align="center"
+        ></o-table-column>
       </o-table>
-    </div>
-  </o-form-layout-manager>
-
-  <o-form-layout-manager
-    mode="dialog"
-    label-columns="SUBS_ID;SLC_START;SLC_END;SLC_PRICE"
-    separator=""
-    attr="share-form"
-    title="CUSTOM_PRICE"
-  >
-    <o-form-layout-dialog-options
-      width="600px"
-      height="500px"
-      disable-close="false"
-    ></o-form-layout-dialog-options>
-    <o-table
-      delete-button="no"
-      refresh-button="no"
-      quick-filter="false"
-      virtual-scroll="no"
-      service="subscriptions"
-      entity="subCustomPrices"
-      columns="SUBS_ID;SLC_START;SLC_END;SLC_PRICE;PLAN_PRICE_VALUE"
-      parent-keys="SUB_LAPSE_ID"
-      visible-columns="SLC_START;SLC_END;SLC_PRICE;PLAN_PRICE_VALUE"
-      class="custom-sub-table"
-      insert-form-route="new-custom-price"
-      detail-mode="none"
-      pagination-controls="no"
-    >
-      <o-table-column
-        attr="SLC_START"
-        title="START_DATE_SLC"
-        type="date"
-        format="LL"
-        content-align="center"
-      ></o-table-column>
-      <o-table-column
-        attr="SLC_END"
-        title="END_DATE_SLC"
-        type="date"
-        format="LL"
-        content-align="center"
-      ></o-table-column>
-      <o-table-column attr="SLC_PRICE"></o-table-column>
-      <o-table-column
-        title="RENEWAL_PRICE"
-        attr="PLAN_PRICE_VALUE"
-      ></o-table-column>
-    </o-table>
-  </o-form-layout-manager>
+    </o-form-layout-manager>
+  </div>
 </div>
