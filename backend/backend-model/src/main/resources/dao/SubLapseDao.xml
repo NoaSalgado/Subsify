@@ -45,7 +45,7 @@
                 inner join frequency f on f.fr_id = p.fr_id
                 inner join user_sub us on us.subs_id=s.subs_id
                 inner join category c on c.cat_id=platf.cat_id
-                inner join sub_lapse_custom slc on slc.subs_id = s.subs_id
+                left join sub_lapse_custom slc on slc.subs_id = s.subs_id
                 #WHERE#;
                  ]]>
             </Sentence>
