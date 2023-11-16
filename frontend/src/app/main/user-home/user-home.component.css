@@ -17,7 +17,7 @@
 }
 
 .image-container {
-  width: 10px; 
+  width: 10px;
   height: 10px;
   overflow: hidden;
 }
@@ -25,7 +25,7 @@
 .img {
   position: absolute;
   width: 30%;
-  height: 30%; 
+  height: 30%;
   object-fit: cover;
   top: 1px;
   left: 1px;
@@ -51,6 +51,10 @@
 .material-symbols-outlined {
   color: rgb(223, 42, 42);
   font-size: 2rem;
+}
+
+.decremental-icon {
+  color: rgb(14, 158, 69);
 }
 
 .incremental-price {
