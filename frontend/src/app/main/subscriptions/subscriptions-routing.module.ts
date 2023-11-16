@@ -20,7 +20,7 @@ const routes: Routes = [
     component: SubscriptionsDetailsComponent,
   },
   {
-    path: ":SUB_LAPSE_ID/new",
+    path: ":SUB_LAPSE_ID/new-shared-user",
     component: SubscriptionSharedNewComponent,
   },
   {
