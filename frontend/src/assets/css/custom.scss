@@ -159,3 +159,10 @@ div.ng-star-inserted {
 .img img{
   height: 50px;
 }
+
+.img2 img {
+  object-fit: cover !important;
+  width: 125px !important;
+  height: 125px !important;
+}
+

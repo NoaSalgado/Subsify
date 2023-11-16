@@ -12,26 +12,25 @@
   keys="SUB_LAPSE_ID"
   class="home-list"
 >
+
   <div class="card-container">
     <mat-card
       *ngFor="let rowData of list.dataArray; let i = index"
       [o-list-item]="rowData"
       class="mat-card"
     >
-      <mat-card-header>
-        <div class="image-container">
-          <o-image attr="image" class="img" [data]="images[i]" *ngIf="images[i]" 
+        
+      <o-image attr="image" class="img2" [data]="images[i]" *ngIf="images[i]" 
               auto-fit="true" enabled="false" read-only="true" show-controls="false"
-              full-screen-button="false" empty-image="./assets/images/no-image.png">
-          </o-image>
-        </div>
-        <mat-card-title>
+              full-screen-button="false" empty-image="./assets/images/subsify_round_logo.png">
+      </o-image>
+        
           
-          <div>
+      <div>
             {{ rowData.PLATF_NAME }}
-          </div> 
-        </mat-card-title>
-      </mat-card-header>
+      </div> 
+       
+     
 
       <mat-card-content class="mat-card-content">
         <div>
