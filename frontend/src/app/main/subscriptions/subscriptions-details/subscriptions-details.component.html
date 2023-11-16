@@ -131,6 +131,9 @@
       virtual-scroll="no"
       class="share-user-subs"
       detail-mode="none"
+      insert-from-route="new-shared-user"
+      
+     
     >
       <o-table-column attr="USERS">
         <o-table-renderer-concat></o-table-renderer-concat>
@@ -149,6 +152,8 @@
   parent-keys="SUB_LAPSE_ID"
   visible-columns="SLC_START;SLC_END;SLC_PRICE;PLAN_PRICE_VALUE"
   class="custom-sub-table"
+  insert-from-route="new-custom-price"
+
 >
   <o-table-column
     attr="SLC_START"
