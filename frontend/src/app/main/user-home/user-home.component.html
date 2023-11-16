@@ -25,6 +25,18 @@
           {{ rowData.SUB_LAPSE_END | date }}
         </div>
 
+
+
+
+
+
+
+
+        <div *ngIf="showRenewal[i]; else noCaduca">
+          {{ "EXPIRES" | oTranslate }}{{ remainingDays[i]
+          }}{{ "DAYS" | oTranslate }}
+        </div>
+
         <div class="plan-price">
           {{ priceToShow[i] | currency : "EUR" : true }}
           <!-- <span *ngIf="incrementalPrice[i]" > &nbsp; - &nbsp; {{ incrementalPrice[i] | currency:"EUR"}} </span>
