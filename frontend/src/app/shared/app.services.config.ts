@@ -21,7 +21,7 @@ export const SERVICE_CONFIG: Object = {
     path: "/permissions/permission",
   },
   permission: {
-    path:"/permissions"
+    path: "/permissions",
   },
   planPrices: {
     path: "/planPrices",
@@ -29,13 +29,16 @@ export const SERVICE_CONFIG: Object = {
   sharedSubs: {
     path: "/sharedSubs",
   },
-  userSubs:{
-    path:"/userSubs"
+  userSubs: {
+    path: "/userSubs",
   },
-  users:{
-    path:"/users"
+  users: {
+    path: "/users",
   },
-  signUps:{
-    path:"/signUps"
-  }
+  signUps: {
+    path: "/signUps",
+  },
+  subLapseCustoms: {
+    path: "/subLapseCustoms",
+  },
 };

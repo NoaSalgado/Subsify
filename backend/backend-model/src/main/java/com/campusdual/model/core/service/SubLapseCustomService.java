@@ -39,9 +39,9 @@ public class SubLapseCustomService implements ISubLapseCustomService {
     @Override
     public EntityResult subLapseCustomInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
         Map<String, Object> attrInsert = new HashMap<>();
-        if (attributes.containsKey(SubLapseDao.SUBS_ID)) {
+        if (attributes.containsKey(SubLapseDao.ID)) {
             Map<String, Object> subLapseKV = new HashMap<>();
-            int subLapseId = (int)attributes.get(SubLapseDao.ID);
+            int subLapseId = Integer.parseInt((String) attributes.get(SubLapseDao.ID));
             subLapseKV.put(SubLapseDao.ID, subLapseId);
 
             EntityResult subLapseER = this.subLapseService.subLapseQuery(
@@ -53,14 +53,10 @@ public class SubLapseCustomService implements ISubLapseCustomService {
             if(attributes.containsKey(SubLapseCustomDao.SLC_END)){
                 attrInsert.put(SubLapseCustomDao.SLC_END, attributes.get(SubLapseCustomDao.SLC_END));
             }
-
         } else {
             attrInsert = attributes;
-
-
         }
       return this.daoHelper.insert(this.subLapseCustomDao, attrInsert);
-
     }
 
     @Override

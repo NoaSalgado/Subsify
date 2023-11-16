@@ -1,25 +1,78 @@
-<o-form #subscriptionDetailForm service="subLapses" entity="subLapse" keys="SUB_LAPSE_ID;SUBS_ID;FR_ID"
-  header-actions="U" show-header-navigation="no" keys-sql-types="INTEGER" (onDataLoaded)="getSharedCount($event)">
+<o-form
+  #subscriptionDetailForm
+  service="subLapses"
+  entity="subLapse"
+  keys="SUB_LAPSE_ID;SUBS_ID;FR_ID"
+  header-actions="U"
+  show-header-navigation="no"
+  keys-sql-types="INTEGER"
+  (onDataLoaded)="getSharedCount($event)"
+>
   <o-column title="{{ 'SUBSCRIPTION_INFORMATION' | oTranslate }}">
     <o-row fxFlex="100">
-      <o-text-input attr="PLATF_NAME" layout-padding fxFlex="33" read-only="yes"></o-text-input>
-      <o-text-input attr="PLAN_NAME" layout-padding fxFlex="33" read-only="yes"></o-text-input>
-      <o-text-input attr="FR_NAME" layout-padding fxFlex="33" read-only="yes"></o-text-input>
+      <o-text-input
+        attr="PLATF_NAME"
+        layout-padding
+        fxFlex="33"
+        read-only="yes"
+      ></o-text-input>
+      <o-text-input
+        attr="PLAN_NAME"
+        layout-padding
+        fxFlex="33"
+        read-only="yes"
+      ></o-text-input>
+      <o-text-input
+        attr="FR_NAME"
+        layout-padding
+        fxFlex="33"
+        read-only="yes"
+      ></o-text-input>
     </o-row>
     <o-row>
-      <o-date-input attr="SUB_LAPSE_START" label="SUB_START" class="input-padding" layout-padding fxFlex="33"
-        read-only="yes"></o-date-input>
-      <o-date-input attr="SUB_LAPSE_END" label="SUB_END" class="input-padding" layout-padding fxFlex="33"
-        read-only="yes"></o-date-input>
-      <o-checkbox attr="SUBS_AUTORENEWAL" label="RENEW" [data]="true" read-only="no" required="yes"
-        layout-padding></o-checkbox>
+      <o-date-input
+        attr="SUB_LAPSE_START"
+        label="SUB_START"
+        class="input-padding"
+        layout-padding
+        fxFlex="33"
+        read-only="yes"
+      ></o-date-input>
+      <o-date-input
+        attr="SUB_LAPSE_END"
+        label="SUB_END"
+        class="input-padding"
+        layout-padding
+        fxFlex="33"
+        read-only="yes"
+      ></o-date-input>
+      <o-checkbox
+        attr="SUBS_AUTORENEWAL"
+        label="RENEW"
+        [data]="true"
+        read-only="no"
+        required="yes"
+        layout-padding
+      ></o-checkbox>
     </o-row>
     <o-row>
-      <o-currency-input #formPrice attr="SUB_LAPSE_PRICE" fxFlex="33" layout-padding
-        (onFocus)="displayInput($event)"></o-currency-input>
-      <o-currency-input [ngClass]="{ hide: display_shared_price }" #sharedPriceInput attr="SHARED_PRICE"
-        [automatic-registering]="false" fxFlex="33" layout-padding read-only="yes"
-        [data]="getSharedValue()"></o-currency-input>
+      <o-currency-input
+        #formPrice
+        attr="SUB_LAPSE_PRICE"
+        fxFlex="33"
+        layout-padding
+        (onFocus)="displayInput($event)"
+      ></o-currency-input>
+      <o-currency-input
+        [ngClass]="{ hide: display_shared_price }"
+        #sharedPriceInput
+        attr="SHARED_PRICE"
+        [automatic-registering]="false"
+        fxFlex="33"
+        layout-padding
+        read-only="yes"
+        [data]="getSharedValue()"
+      ></o-currency-input>
     </o-row>
     <div [ngClass]="{ hide: show }">
       <o-row>
@@ -30,8 +83,18 @@
       </o-row>
 
       <o-row>
-        <o-date-input fxFlex="25" attr="SLC_END" label="SLC_END" read-only="no" format="LL" layout-padding
-          min="01/01/1980" max="01/01/2020" text-input-enabled="no" fxFlex="33"></o-date-input>
+        <o-date-input
+          fxFlex="25"
+          attr="SLC_END"
+          label="SLC_END"
+          read-only="no"
+          format="LL"
+          layout-padding
+          min="01/01/1980"
+          max="01/01/2020"
+          text-input-enabled="no"
+          fxFlex="33"
+        ></o-date-input>
       </o-row>
     </div>
   </o-column>
@@ -39,14 +102,36 @@
 
 <o-column title="{{ 'SHARED' | oTranslate }}"></o-column>
 
-<o-form-layout-manager mode="dialog" label-columns="USER_SUB_ID;SUBS_ID;USER_" separator="" attr="share-form"
-  title="SHARE">
-  <o-form-layout-dialog-options width="600px" height="400px" disable-close="false"></o-form-layout-dialog-options>
+<o-form-layout-manager
+  mode="dialog"
+  label-columns="USER_SUB_ID;SUBS_ID;USER_"
+  separator=""
+  attr="share-form"
+  title="SHARE"
+>
+  <o-form-layout-dialog-options
+    width="600px"
+    height="400px"
+    disable-close="false"
+  ></o-form-layout-dialog-options>
   <div fxFill fxLayout="column" fxLayoutAlign="start" class="table-container">
-    <o-table attr="userSub" delete-button="no" refresh-button="no" service="userSubs" entity="userSub"
-      keys="USER_SUB_ID" columns="USER_SUB_ID;SUBS_ID;USER_;USER_SUB_VIRTUAL" visible-columns="USERS" query-rows="20"
-      auto-align-titles="no" parent-keys="SUB_LAPSE_ID" quick-filter="false" virtual-scroll="no" class="share-user-subs"
-      detail-mode="none">
+    <o-table
+      attr="userSub"
+      delete-button="no"
+      refresh-button="no"
+      service="userSubs"
+      entity="userSub"
+      keys="USER_SUB_ID"
+      columns="USER_SUB_ID;SUBS_ID;USER_;USER_SUB_VIRTUAL"
+      visible-columns="USERS"
+      query-rows="20"
+      auto-align-titles="no"
+      parent-keys="SUB_LAPSE_ID"
+      quick-filter="false"
+      virtual-scroll="no"
+      class="share-user-subs"
+      detail-mode="none"
+    >
       <o-table-column attr="USERS">
         <o-table-renderer-concat></o-table-renderer-concat>
       </o-table-column>
@@ -54,17 +139,49 @@
   </div>
 </o-form-layout-manager>
 
-<o-form-layout-manager mode="dialog" label-columns="USER_SUB_ID;SUBS_ID;USER_" separator="" attr="share-form"
-  title="SHARE">
-  <o-form-layout-dialog-options width="600px" height="500px" disable-close="false"></o-form-layout-dialog-options>
-  <o-table delete-button="no" refresh-button="no" quick-filter="false" virtual-scroll="no" service="subscriptions"
-    entity="subCustomPrices" columns="SUBS_ID;SLC_START;SLC_END;SLC_PRICE;PLAN_PRICE_VALUE" parent-keys="SUB_LAPSE_ID"
-    visible-columns="SLC_START;SLC_END;SLC_PRICE;PLAN_PRICE_VALUE" class="custom-sub-table"
-    insert-form-route="new-custom-price">
-    <o-table-column attr="SLC_START" title="START_DATE_SLC" type="date" format="LL"
-      content-align="center"></o-table-column>
-    <o-table-column attr="SLC_END" title="END_DATE_SLC" type="date" format="LL" content-align="center"></o-table-column>
+<o-form-layout-manager
+  mode="dialog"
+  label-columns="SUBS_ID;SLC_START;SLC_END;SLC_PRICE"
+  separator=""
+  attr="share-form"
+  title="CUSTOM_PRICE"
+>
+  <o-form-layout-dialog-options
+    width="600px"
+    height="500px"
+    disable-close="false"
+  ></o-form-layout-dialog-options>
+  <o-table
+    delete-button="no"
+    refresh-button="no"
+    quick-filter="false"
+    virtual-scroll="no"
+    service="subscriptions"
+    entity="subCustomPrices"
+    columns="SUBS_ID;SLC_START;SLC_END;SLC_PRICE;PLAN_PRICE_VALUE"
+    parent-keys="SUB_LAPSE_ID"
+    visible-columns="SLC_START;SLC_END;SLC_PRICE;PLAN_PRICE_VALUE"
+    class="custom-sub-table"
+    insert-form-route="new-custom-price"
+  >
+    <o-table-column
+      attr="SLC_START"
+      title="START_DATE_SLC"
+      type="date"
+      format="LL"
+      content-align="center"
+    ></o-table-column>
+    <o-table-column
+      attr="SLC_END"
+      title="END_DATE_SLC"
+      type="date"
+      format="LL"
+      content-align="center"
+    ></o-table-column>
     <o-table-column attr="SLC_PRICE"></o-table-column>
-    <o-table-column title="RENEWAL_PRICE" attr="PLAN_PRICE_VALUE"></o-table-column>
+    <o-table-column
+      title="RENEWAL_PRICE"
+      attr="PLAN_PRICE_VALUE"
+    ></o-table-column>
   </o-table>
 </o-form-layout-manager>

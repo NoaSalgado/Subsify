@@ -1,10 +1,38 @@
-<o-form service="subLapseCustoms" entity="subLapseCustom" keys="SLC_ID" header-actions="I" show-header-navigation="no"
-  cancel-button="no" keys-sql-types="INTEGER">
-  <o-date-input attr="SLC_START" label="SLC_START" read-only="no" format="LL" layout-padding min="01/01/1980"
-    max="01/01/2020" text-input-enabled="no"></o-date-input>
+<o-form
+  service="subLapseCustoms"
+  entity="subLapseCustom"
+  keys="SLC_ID"
+  header-actions="I"
+  show-header-navigation="no"
+  cancel-button="no"
+  keys-sql-types="INTEGER"
+>
+  <o-date-input
+    attr="SLC_START"
+    label="SLC_START"
+    read-only="no"
+    format="LL"
+    layout-padding
+    min="01/01/1980"
+    max="01/01/2020"
+    text-input-enabled="no"
+  ></o-date-input>
 
-  <o-date-input attr="SLC_END" label="SLC_END" read-only="no" format="LL" layout-padding min="01/01/1980"
-    max="01/01/2020" text-input-enabled="no"></o-date-input>
+  <o-date-input
+    attr="SLC_END"
+    label="SLC_END"
+    read-only="no"
+    format="LL"
+    layout-padding
+    min="01/01/1980"
+    max="01/01/2020"
+    text-input-enabled="no"
+  ></o-date-input>
 
-  <o-currency-input class="price-input" attr="SLC_PRICE" layout-padding required="yes"></o-currency-input>
+  <o-currency-input
+    class="price-input"
+    attr="SLC_PRICE"
+    layout-padding
+    required="yes"
+  ></o-currency-input>
 </o-form>
