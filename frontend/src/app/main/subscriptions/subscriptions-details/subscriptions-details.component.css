@@ -13,22 +13,25 @@ p {
   place-content: center;
 }
 
-.o-table {
-  width: 90%;
-  max-width: 500px;
+.o-table.share-user-subs {
+  width: 500px;
   justify-self: center;
 }
 
-.o-table.share-user-subs .o-table-container {
+.o-table.share-user-subs
+  .o-table-container
+  .o-table.custom-sub-table
+  .o-table-container {
   min-height: 0 !important;
   height: auto !important;
 }
 
-.custom-container {
-  display: flex;
-  flex-direction: column;
-}
-
 p {
   font-size: 1.2rem;
+}
+
+.container {
+  display: flex;
+  column-gap: 5rem;
+  padding: 0 5rem;
 }
