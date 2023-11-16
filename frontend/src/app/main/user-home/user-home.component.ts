@@ -68,8 +68,13 @@ export class UserHomeComponent implements OnInit {
       ) {
         return sub.PLAN_PRICE_VALUE;
       }
+
+      if (sub.SLC_START && sub.SLC_START <= sub.SUB_LAPSE_END) {
+        return sub.SLC_PRICE;
+      }
       return sub.SUB_LAPSE_PRICE;
     });
+    console.log(this.priceToShow);
     this.incrementalPrice = this.list.dataArray.map((sub) => {
       if (
         (sub.SLC_PRICE && sub.SLC_END <= sub.SUB_LAPSE_END) ||
@@ -84,14 +89,8 @@ export class UserHomeComponent implements OnInit {
     });
 
     this.decrementalPrice = this.list.dataArray.map((sub) => {
-      if (
-        (sub.SLC_PRICE && sub.SLC_END <= sub.SUB_LAPSE_END) ||
-        (sub.PLAN_PRICE_END && sub.PLAN_PRICE_END <= sub.SUB_LAPSE_END)
-      ) {
-        if (sub.PLAN_PRICE_VALUE - sub.SUB_LAPSE_PRICE < 0) {
-          return sub.PLAN_PRICE_VALUE - sub.SUB_LAPSE_PRICE;
-        }
-        return undefined;
+      if (sub.SLC_START && sub.SLC_START <= sub.SUB_LAPSE_END) {
+        return sub.SUB_LAPSE_PRICE - sub.SLC_PRICE;
       }
       return undefined;
     });

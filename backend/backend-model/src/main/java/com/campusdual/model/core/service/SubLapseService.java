@@ -81,6 +81,7 @@ public class SubLapseService implements ISubLapseService {
                 PlatformDao.PLATF_LINK,
                 SubLapseCustomDao.SLC_PRICE,
                 SubLapseCustomDao.SLC_END,
+                SubLapseCustomDao.SLC_START,
                 PlanPriceDao.VALUE,
                 PlanPriceDao.END,
                 PlanPriceDao.ID,
@@ -97,13 +98,13 @@ public class SubLapseService implements ISubLapseService {
             subLapseCustomKV.put(SubscriptionDao.ID,subsID);
             subLapseCustomKV.put(SubLapseDao.END,subLapseEnd);
             EntityResult subLapseCustomER=this.subLapseCustomService.customPriceQuery(subLapseCustomKV,
-                    List.of(SubLapseCustomDao.SLC_PRICE));
+                    List.of(SubLapseCustomDao.SLC_PRICE, SubLapseCustomDao.SLC_START));
             BigDecimal newCustomPrice=(BigDecimal) subLapseCustomER.getRecordValues(0).get(SubLapseCustomDao.SLC_PRICE);
+            Date newCustomPriceDate = (Date) subLapseCustomER.getRecordValues(0).get(SubLapseCustomDao.SLC_START);
             if(newCustomPrice!=null){
                 subRecord.put(SubLapseCustomDao.SLC_PRICE,newCustomPrice);
+                subRecord.put(SubLapseCustomDao.SLC_START, newCustomPriceDate);
             }
-
-
 
             if (planPriceEnd != null && planPriceEnd.before(subLapseEnd)) {
                 Map<String, Object> planPriceQueryKV = new HashMap<>();
@@ -120,8 +121,6 @@ public class SubLapseService implements ISubLapseService {
             }
             newEntityResult.addRecord(subRecord, i);
             newEntityResult.setCode(EntityResult.OPERATION_SUCCESSFUL);
-
-
         }
         return newEntityResult;
     }
