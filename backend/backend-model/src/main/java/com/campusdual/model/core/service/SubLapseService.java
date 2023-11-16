@@ -84,13 +84,27 @@ public class SubLapseService implements ISubLapseService {
                 PlanPriceDao.VALUE,
                 PlanPriceDao.END,
                 PlanPriceDao.ID,
-                PlanDao.ID
+                PlanDao.ID,
+                SubscriptionDao.ID
         ));
         for (int i = 0; i < erSize; i++) {
             Map<String, Object> subRecord = subsToRenewEr.getRecordValues(i);
             Date planPriceEnd = (Date) subRecord.get(PlanPriceDao.END);
             Date subLapseEnd = (Date) subRecord.get(SubLapseDao.END);
+            int subsID=(int)subRecord.get(SubscriptionDao.ID);
             int planId = (int) subRecord.get(PlanDao.ID);
+            Map<String,Object> subLapseCustomKV=new HashMap<>();
+            subLapseCustomKV.put(SubscriptionDao.ID,subsID);
+            subLapseCustomKV.put(SubLapseDao.END,subLapseEnd);
+            EntityResult subLapseCustomER=this.subLapseCustomService.customPriceQuery(subLapseCustomKV,
+                    List.of(SubLapseCustomDao.SLC_PRICE));
+            BigDecimal newCustomPrice=(BigDecimal) subLapseCustomER.getRecordValues(0).get(SubLapseCustomDao.SLC_PRICE);
+            if(newCustomPrice!=null){
+                subRecord.put(SubLapseCustomDao.SLC_PRICE,newCustomPrice);
+            }
+
+
+
             if (planPriceEnd != null && planPriceEnd.before(subLapseEnd)) {
                 Map<String, Object> planPriceQueryKV = new HashMap<>();
                 planPriceQueryKV.put(PlanPriceDao.PLAN_ID, planId);
@@ -106,6 +120,8 @@ public class SubLapseService implements ISubLapseService {
             }
             newEntityResult.addRecord(subRecord, i);
             newEntityResult.setCode(EntityResult.OPERATION_SUCCESSFUL);
+
+
         }
         return newEntityResult;
     }
@@ -193,4 +209,7 @@ public class SubLapseService implements ISubLapseService {
     public EntityResult subLapseDelete(Map<String, Object> keyValues) throws OntimizeJEERuntimeException {
         return null;
     }
+
+
+
 }

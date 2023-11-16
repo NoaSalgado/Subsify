@@ -28,5 +28,19 @@
                  ]]>
             </Sentence>
         </Query>
+        <Query id="custom_price_query">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="subs_id" prefix="s"/>
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                select #COLUMNS#
+                from sub_lapse_custom slc
+                inner join "subscription" s on slc.subs_id = s.subs_id
+                #WHERE#
+                order by slc.slc_start desc;
+                 ]]>
+            </Sentence>
+        </Query>
     </Queries>
 </JdbcEntitySetup>
