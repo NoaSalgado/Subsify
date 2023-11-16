@@ -39,7 +39,7 @@
   "ACTIVE": "Activo",
   "NEW_CATEGORY": "Nueva categoría",
   "CAT_ID": "Id categoría ",
-  "CAT_NAME": "Nombre categoría",
+  "CAT_NAME": "Categoría",
   "CAT_ACTIVE": "Activo",
   "PLATFORMS": "Plataformas",
   "PLATFORMS_INFORMATION": "Detalle plataformas",
@@ -95,5 +95,7 @@
   "END_DATE_SLC": "Fecha de fin",
   "SLC_PRICE": "Precio promocional",
   "RENEWAL_PRICE": "Precio de renovación",
-  "NUMBER_OF_USERS": "Numero de usuarios"
+  "NUMBER_OF_USERS": "Numero de usuarios",
+  "SLC_START": "Fecha de inicio",
+  "CUSTOM_PRICE": "Promoción"
 }
