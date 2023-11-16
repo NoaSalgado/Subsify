@@ -7,28 +7,36 @@
 >
 
   <div class="card-container">
-    <mat-card
-      *ngFor="let rowData of list.dataArray; let i = index"
-      [o-list-item]="rowData"
-      class="mat-card"
-    >
-        
-      <o-image attr="image" class="img2" [data]="images[i]" *ngIf="images[i]" 
-              auto-fit="true" enabled="false" read-only="true" show-controls="false"
-              full-screen-button="false" empty-image="./assets/images/subsify_round_logo.png">
+    <mat-card *ngFor="let rowData of list.dataArray; let i = index" [o-list-item]="rowData" class="mat-card">
+
+      <o-image attr="image" class="img2" [data]="images[i]" *ngIf="images[i]" auto-fit="true" enabled="false"
+        read-only="true" show-controls="false" full-screen-button="false"
+        empty-image="./assets/images/subsify_round_logo.png">
       </o-image>
-        
-          
+
+
       <div>
-            {{ rowData.PLATF_NAME }}
-      </div> 
-       
-     
+        {{ rowData.PLATF_NAME }}
+      </div>
+
+
 
       <mat-card-content class="mat-card-content">
         <div>
           {{ "SUBSCRIPTIONS-END" | oTranslate }}
           {{ rowData.SUB_LAPSE_END | date }}
+        </div>
+
+
+
+
+
+
+
+
+        <div *ngIf="showRenewal[i]; else noCaduca">
+          {{ "EXPIRES" | oTranslate }}{{ remainingDays[i]
+          }}{{ "DAYS" | oTranslate }}
         </div>
 
         <div class="plan-price">
@@ -49,17 +57,15 @@
             keyboard_double_arrow_down</span>
         </div>
 
-
         <div *ngIf="showRenewal[i]; else noCaduca">
           {{ "EXPIRES" | oTranslate }}{{ remainingDays[i]
           }}{{ "DAYS" | oTranslate }}
         </div>
 
-
         <ng-template #noCaduca>
           <div>
             {{ "RENEW-ON" | oTranslate }}{{ remainingDays[i]
-            }}{{ "DAYS" | oTranslate }}
+            }}
           </div>
         </ng-template>
       </mat-card-content>
