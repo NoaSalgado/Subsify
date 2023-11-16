@@ -11,25 +11,25 @@
   align-items: center;
   margin: 0 50px 50px 0 !important;
   width: 300px;
-  height: 200px;
+  height: 300px;
   margin: 0 auto !important;
   cursor: default !important;
+  padding-bottom: 50px
 }
-
+/*
 .image-container {
-  width: 10px; 
+  width: 10px;
   height: 10px;
   overflow: hidden;
 }
 
-.img {
-  position: absolute;
-  width: 30%;
-  height: 30%; 
-  object-fit: cover;
-  top: 1px;
-  left: 1px;
+*/
+.img2 {
+  object-fit: cover ;
+  width: 140px;
+  height: 140px;
 }
+
 
 .mat-card-content div {
   text-align: center;
@@ -51,6 +51,10 @@
 .material-symbols-outlined {
   color: rgb(223, 42, 42);
   font-size: 2rem;
+}
+
+.decremental-icon {
+  color: rgb(14, 158, 69);
 }
 
 .incremental-price {
