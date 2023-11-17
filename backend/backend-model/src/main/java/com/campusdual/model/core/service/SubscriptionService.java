@@ -3,6 +3,7 @@ package com.campusdual.model.core.service;
 import com.campusdual.api.core.service.ISubscriptionService;
 import com.campusdual.model.core.dao.*;
 import com.ontimize.jee.common.dto.EntityResult;
+import com.ontimize.jee.common.dto.EntityResultMapImpl;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -228,6 +229,14 @@ public class SubscriptionService implements ISubscriptionService {
             attrCustomSubLapseInsert.put(SubLapseCustomDao.SLC_START, attributes.get(SubLapseDao.START));
 
             if(attributes.containsKey(SubLapseCustomDao.SLC_END)){
+                Date sublapseCustomEnd = (Date) attributes.get(SubLapseCustomDao.SLC_END);
+                Date sublapseCustomStart = (Date) attributes.get(SubLapseDao.START);
+                if(sublapseCustomStart.after(sublapseCustomEnd)){
+                    EntityResult errorEr = new EntityResultMapImpl();
+                    errorEr.setCode(EntityResult.OPERATION_WRONG);
+                    errorEr.setMessage("WRONG_DATE");
+                    return errorEr;
+                }
                 attrCustomSubLapseInsert.put(SubLapseCustomDao.SLC_END, attributes.get(SubLapseCustomDao.SLC_END));
             }
             this.subLapseCustomService.subLapseCustomInsert(attrCustomSubLapseInsert);

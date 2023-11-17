@@ -98,5 +98,6 @@
   "RENEWAL_PRICE": "Precio de renovación",
   "NUMBER_OF_USERS": "Numero de usuarios",
   "SLC_START": "Fecha de inicio",
-  "CUSTOM_PRICE": "Promoción"
+  "CUSTOM_PRICE": "Promoción",
+  "WRONG_DATE": "la fecha de fin debe ser posterior a la fecha de inicio"
 }

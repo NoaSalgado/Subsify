@@ -6,12 +6,14 @@ import com.campusdual.model.core.dao.SubLapseDao;
 import com.campusdual.model.core.dao.SubscriptionDao;
 import com.ontimize.jee.common.db.SQLStatementBuilder;
 import com.ontimize.jee.common.dto.EntityResult;
+import com.ontimize.jee.common.dto.EntityResultMapImpl;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +42,16 @@ public class SubLapseCustomService implements ISubLapseCustomService {
     public EntityResult subLapseCustomInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
         Map<String, Object> attrInsert = new HashMap<>();
         if (attributes.containsKey(SubLapseDao.ID)) {
+            if(attributes.containsKey(SubLapseCustomDao.SLC_END)){
+                Date sublapseCustomEnd = (Date) attributes.get(SubLapseCustomDao.SLC_END);
+                Date sublapseCustomStart = (Date) attributes.get(SubLapseCustomDao.SLC_START);
+                if(sublapseCustomEnd.before(sublapseCustomStart)){
+                    EntityResult errorEr = new EntityResultMapImpl();
+                    errorEr.setCode(EntityResult.OPERATION_WRONG);
+                    errorEr.setMessage("WRONG_DATE");
+                    return errorEr;
+                }
+            }
             Map<String, Object> subLapseKV = new HashMap<>();
             int subLapseId = Integer.parseInt((String) attributes.get(SubLapseDao.ID));
             subLapseKV.put(SubLapseDao.ID, subLapseId);
