@@ -70,7 +70,7 @@
   "SUBSCRIPTIONS-END": "La suscripción termina el ",
   "RENEW-ON": "Se renueva ",
   "DAYS": " días",
-  "EXPIRES": "Caduca en ",
+  "EXPIRES": "Caduca ",
   "ERROR_USERSUB_NO_USER_MESSAGE": "Debes introducir el usuario con el que deseas compartir cuenta",
   "ERROR_USERSUB_ALREADY_SHARING_MESSAGE": "Ya compartes cuenta con este usuario",
   "SHOW ALL": "Mostrar todo",
@@ -99,5 +99,9 @@
   "NUMBER_OF_USERS": "Numero de usuarios",
   "SLC_START": "Fecha de inicio",
   "CUSTOM_PRICE": "Promoción",
-  "WRONG_DATE": "La fecha de fin debe ser posterior a la fecha de inicio"
+  "WRONG_DATE": "La fecha de fin debe ser posterior a la fecha de inicio",
+  "TOMORROW": "mañana",
+  "TODAY": "hoy",
+  "IN": "en",
+  "DAYS": "días"
 }

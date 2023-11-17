@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { OListComponent, OntimizeService } from "ontimize-web-ngx";
+import { OListComponent, OTranslateService, OntimizeService } from "ontimize-web-ngx";
 import { MatDialog } from "@angular/material/dialog";
 import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
@@ -30,7 +30,8 @@ export class UserHomeComponent implements OnInit {
   constructor(
     private router: Router,
     private actRoute: ActivatedRoute,
-    private injector: Injector
+    private injector: Injector,
+    private translate: OTranslateService,
   ) {
     this.service = this.injector.get(OntimizeService);
   }
@@ -48,17 +49,32 @@ export class UserHomeComponent implements OnInit {
       return this.image;
     });
 
+    const language = this.translate.getCurrentLang();
+    let tomorrow;
+    let today;
+    let In;
+    let days;
+
+    if (language === "en") {
+      tomorrow = "tomorrow";
+      today = "today";
+      In = " in ";
+      days = " days";
+
+    }
+    else if (language === "es") {
+      tomorrow = "mañana";
+      today = "hoy";
+      In = " en ";
+      days = " días";
+    }
+
     this.remainingDays = endDates.map((date) => {
       const datediff = new Date(date).getTime() - new Date().getTime();
       const remainingDays = Math.ceil(datediff / (1000 * 60 * 60 * 24));
-
+      //const translation = 
       //const remainingDaysString = "{{ "RENEW-ON" | oTranslate }}";
-      if (remainingDays === 1) {
-        return "mañana";
-      } else if (remainingDays === 0) {
-        return "hoy";
-      }
-      return " en " + remainingDays.toString() + " días";
+      if (remainingDays === 1) { return tomorrow; } else if (remainingDays === 0) { return today; } return In + remainingDays.toString() + days;
     });
 
     this.priceToShow = this.list.dataArray.map((sub) => {
@@ -95,7 +111,7 @@ export class UserHomeComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
   navigate() {
     this.router.navigate(["../", "login"], { relativeTo: this.actRoute });
   }
