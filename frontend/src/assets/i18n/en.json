@@ -99,5 +99,6 @@
   "RENEWAL_PRICE": "Renewal price",
   "NUMBER_OF_USERS": "Number of users",
   "SLC_START": "Start date",
-  "CUSTOM_PRICE": "Custom price"
+  "CUSTOM_PRICE": "Custom price",
+  "WRONG_DATE": "End date must be later than start date"
 }
