@@ -24,7 +24,7 @@ const routes: Routes = [
     component: SubscriptionSharedNewComponent,
   },
   {
-    path: ":SUB_LAPSE_ID/new-custom-price",
+    path: ":SUB_LAPSE_ID/custom-price/new",
     component: SubscriptionCustomPriceNewComponent,
   },
 ];
