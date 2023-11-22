@@ -99,5 +99,9 @@
   "NUMBER_OF_USERS": "Numero de usuarios",
   "SLC_START": "Fecha de inicio",
   "CUSTOM_PRICE": "Promoción",
-  "WRONG_DATE": "La fecha de fin debe ser posterior a la fecha de inicio"
+  "WRONG_DATE": "La fecha de fin debe ser posterior a la fecha de inicio",
+  "TOMORROW": "mañana",
+  "TODAY": "hoy",
+  "IN": "en",
+  "DAYS": "días"
 }
