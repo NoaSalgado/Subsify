@@ -32,6 +32,9 @@ p {
 
 .container {
   display: flex;
+  justify-content: center;
   column-gap: 5rem;
-  padding: 0 2rem;
-}
+  padding: 2 2rem ;
+  height: 100vh ;
+  }
+  
