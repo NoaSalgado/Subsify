@@ -49,6 +49,7 @@
     query-on-change-delay="500"
     [expression-builder]="createFilter"
     (onFilter)="filterData()"
+    (onClear)="resetFilter($event)"
   ></o-filter-builder>
 
   <div fxFill>

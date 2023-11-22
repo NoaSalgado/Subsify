@@ -17,6 +17,7 @@ import {
   Expression,
   OTableComponent,
   OTranslateService,
+  OFilterBuilderComponent,
 } from "ontimize-web-ngx";
 import { D3Locales } from "src/app/shared/d3-locale/locales";
 import { Subscription } from "rxjs";
@@ -30,6 +31,7 @@ declare let d3: any;
   styleUrls: ["./category-expense-chart.component.css"],
 })
 export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
+  @ViewChild("filterBuilder", { static: false }) filterBuilder: OFilterBuilderComponent;
   @ViewChild("subLapseTable", { static: false }) subLapseTable: OTableComponent;
   @ViewChild("categoryChart", { static: false })
   protected categoryChart: OChartComponent;
@@ -250,5 +252,9 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
     } else {
       return null;
     }
+  }
+
+  resetFilter($event) {
+    this.filterBuilder.triggerReload();
   }
 }
