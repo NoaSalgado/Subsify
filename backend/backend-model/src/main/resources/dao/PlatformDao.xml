@@ -47,7 +47,8 @@
 
                     select #COLUMNS#
                     from usersByPlat
-                    #WHERE#;
+                    #WHERE#
+                    order by 2 DESC;
 
                  ]]>
             </Sentence>

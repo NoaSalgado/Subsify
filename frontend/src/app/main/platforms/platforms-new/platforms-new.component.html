@@ -1,24 +1,24 @@
 <o-form
-    service="platforms"
-    entity="platform"
-    keys="PLATF_ID"
-    header-actions="R;I;U;D"
-    show-header-navigation="no"
+  service="platforms"
+  entity="platform"
+  keys="PLATF_ID"
+  header-actions="R;I;U;D"
+  show-header-navigation="no"
 >
-    <o-row>
-        <o-column title="{{ 'NEW_PLATFORM' | oTranslate}}" fxFlex>
+<o-row>
+    <o-column title="{{ 'NEW_PLATFORM' | oTranslate}}" fxFlex>
 
-            <o-row fxFlex="100">
-                <o-text-input 
-                    attr="PLATF_NAME"
-                    fxFlex="33"
-                    layout-padding
-                    required="yes"
-                >                    
-                </o-text-input>
+        <o-row fxFlex="100">
+            <o-text-input 
+                attr="PLATF_NAME"
+                fxFlex="33"
+                layout-padding
+                required="yes"
+            >                    
+            </o-text-input>
 
 
-            </o-row>
+        </o-row>
 
             <o-row fxFlex="100">
                 <o-combo 
@@ -36,30 +36,34 @@
                     visible-columns="CAT_NAME"
                     fxFlex="33"
                     null-selection="no"
+                    searchable="yes"
                 >
                 </o-combo>
 
             </o-row>
 
 
-            <o-row fxFlex="100">
-                
-                
-                <o-text-input 
-                    attr="PLATF_LINK"
-                    fxFlex="33"
-                    layout-padding
-                    required="yes"
-                >                    
-                </o-text-input>
-                <o-image
-                    attr="PLATF_IMAGE"
-                    read-only="no"
-                    height="500px"
-                    width="500px"
-                ></o-image>
-
-            </o-row>
-        </o-column>
-    </o-row>
+        <o-row fxFlex="100">
+            
+            
+            <o-text-input 
+                attr="PLATF_LINK"
+                fxFlex="33"
+                layout-padding
+                required="yes"
+            >                    
+            </o-text-input>
+        </o-row>
+        <o-row>
+            <o-image
+            attr="PLATF_IMAGE"
+            show-controls="no"
+            read-only="no"
+            label="File" 
+            fxFlex="33"
+          ></o-image>
+      
+        </o-row>
+    </o-column>
+</o-row>
 </o-form>
