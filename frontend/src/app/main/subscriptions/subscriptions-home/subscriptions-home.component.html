@@ -1,86 +1,185 @@
-<mat-tab-group>
+<mat-tab-group (selectedTabChange)="onTabChange($event)">
   <mat-tab label="{{ 'TABLE_REPRESENTATION' | oTranslate }}">
     <o-form show-header="no">
       <div fxFill fxLayout="column" fxLayoutAlign="start">
-
-        <o-filter-builder #filterBuilderCat attr="thefilter" filters="CAT_NAME:catName" [target]="subLapseTable"
-          query-on-change="no" query-on-change-delay="500" [expression-builder]="createFilterCat"
-          (onClear)="resetFilter($event)"></o-filter-builder>
+        <o-filter-builder
+          #filterBuilderCat
+          attr="thefilter"
+          filters="CAT_NAME:catName"
+          [target]="subLapseTable"
+          query-on-change="no"
+          query-on-change-delay="500"
+          [expression-builder]="createFilterCat"
+          (onClear)="resetFilter($event)"
+        ></o-filter-builder>
 
         <o-row layout-gap="18px">
-          <o-combo #categories fxFlex="50" attr="catName" label="CAT_NAME" layout-padding read-only="no"
-            service="subLapses" entity="subLapseCat" columns="CAT_NAME" value-column="CAT_NAME" keys="CAT_ID"
-            visible-columns="CAT_NAME" fxFlex="33" null-selection="yes" null-selection-label="Categoría">
+          <o-combo
+            #categories
+            fxFlex="50"
+            attr="catName"
+            label="CAT_NAME"
+            layout-padding
+            read-only="no"
+            service="subLapses"
+            entity="subLapseCat"
+            columns="CAT_NAME"
+            value-column="CAT_NAME"
+            keys="CAT_ID"
+            visible-columns="CAT_NAME"
+            fxFlex="33"
+            null-selection="yes"
+            null-selection-label="Categoría"
+          >
           </o-combo>
 
-          <o-button attr="filter" [oFilterBuilderQuery]="filterBuilderCat" type="RAISED" label="FILTER"
-            class="filter-button" layout-padding>
+          <o-button
+            attr="filter"
+            [oFilterBuilderQuery]="filterBuilderCat"
+            type="RAISED"
+            label="FILTER"
+            class="filter-button"
+            layout-padding
+          >
           </o-button>
-          <o-button attr="clear" [oFilterBuilderClear]="filterBuilderCat" type="RAISED" label="SHOW ALL"
-            class="filter-button" layout-padding>
+          <o-button
+            attr="clear"
+            [oFilterBuilderClear]="filterBuilderCat"
+            type="RAISED"
+            label="SHOW ALL"
+            class="filter-button"
+            layout-padding
+          >
           </o-button>
         </o-row>
 
-        <o-table #subLapseTable (onDataLoaded)="setChartData($event)" attr="subscriptionsTable" delete-button="no"
-          refresh-button="no" service="subLapses" entity="subLapse" keys="SUB_LAPSE_ID"
+        <o-table
+          #subLapseTable
+          (onDataLoaded)="setChartData($event)"
+          attr="subscriptionsTable"
+          delete-button="no"
+          refresh-button="no"
+          service="subLapses"
+          entity="subLapse"
+          keys="SUB_LAPSE_ID"
           columns="SUB_LAPSE_ID;SUB_LAPSE_END;PLATF_NAME;PLATF_IMAGE;SUB_LAPSE_PRICE;PLAN_NAME;FR_VALUE;CAT_NAME"
-          visible-columns="PLATF_IMAGE;PLATF_NAME;SUB_LAPSE_END;PLAN_NAME;CAT_NAME;MONTHLY_PRICE" query-rows="10"
-          auto-align-titles="no" virtual-scroll="false">
-
-          <o-table-column attr="PLATF_NAME" title="PLATF_NAME" content-align="center">
+          visible-columns="PLATF_IMAGE;PLATF_NAME;SUB_LAPSE_END;PLAN_NAME;CAT_NAME;MONTHLY_PRICE"
+          query-rows="10"
+          auto-align-titles="no"
+          virtual-scroll="false"
+        >
+          <o-table-column
+            attr="PLATF_NAME"
+            title="PLATF_NAME"
+            content-align="center"
+          >
           </o-table-column>
-          <o-table-column width="200px" height="200px" attr="PLATF_IMAGE"  orderable="no"
-            searchable="no" type="image" image-type="base64" empty-image="./assets/images/subsify_round_logo.png" class="img" ></o-table-column>
+          <o-table-column
+            width="200px"
+            height="200px"
+            attr="PLATF_IMAGE"
+            orderable="no"
+            searchable="no"
+            type="image"
+            image-type="base64"
+            empty-image="./assets/images/subsify_round_logo.png"
+            class="img"
+          ></o-table-column>
 
-          
-
-          <o-table-column attr="SUB_LAPSE_START" title="START_DATE" type="date" format="LL"
-            content-align="center"></o-table-column>
-          <o-table-column attr="SUB_LAPSE_END" title="RENOVATION_DATE" type="date" format="LL"
-            class="o-table-column-centered" content-align="center">
+          <o-table-column
+            attr="SUB_LAPSE_START"
+            title="START_DATE"
+            type="date"
+            format="LL"
+            content-align="center"
+          ></o-table-column>
+          <o-table-column
+            attr="SUB_LAPSE_END"
+            title="RENOVATION_DATE"
+            type="date"
+            format="LL"
+            class="o-table-column-centered"
+            content-align="center"
+          >
           </o-table-column>
 
-          <o-table-column attr="PLAN_NAME" title="PLAN_NAME" content-align="center">
+          <o-table-column
+            attr="PLAN_NAME"
+            title="PLAN_NAME"
+            content-align="center"
+          >
           </o-table-column>
 
-          <o-table-column attr="CAT_NAME" title="CAT_NAME" content-align="center">
+          <o-table-column
+            attr="CAT_NAME"
+            title="CAT_NAME"
+            content-align="center"
+          >
           </o-table-column>
 
-          <o-table-column attr="SUB_LAPSE_PRICE" title="SUB_LAPSE_PRICE" type="currency" thousand-separator="."
-          decimal-separator="," currency-symbol="€" currency-symbol-position="right" content-align="center">
-        </o-table-column>
+          <o-table-column
+            attr="SUB_LAPSE_PRICE"
+            title="SUB_LAPSE_PRICE"
+            type="currency"
+            thousand-separator="."
+            decimal-separator=","
+            currency-symbol="€"
+            currency-symbol-position="right"
+            content-align="center"
+          >
+          </o-table-column>
 
-          <o-table-column-calculated attr="MONTHLY_PRICE" title="MONTHLY_PRICE" [operation-function]="getMonthlyPrice"
-            type="currency" decimal-separator="." class="o-table-column-centered" currency-symbol="€"
-            currency-symbol-position="right" content-align="end">
+          <o-table-column-calculated
+            attr="MONTHLY_PRICE"
+            title="MONTHLY_PRICE"
+            [operation-function]="getMonthlyPrice"
+            type="currency"
+            decimal-separator="."
+            class="o-table-column-centered"
+            currency-symbol="€"
+            currency-symbol-position="right"
+            content-align="end"
+          >
           </o-table-column-calculated>
 
           <o-table-columns-grouping>
-            <o-table-columns-grouping-column attr="MONTHLY_PRICE" aggregate="sum">
+            <o-table-columns-grouping-column
+              attr="MONTHLY_PRICE"
+              aggregate="sum"
+            >
             </o-table-columns-grouping-column>
           </o-table-columns-grouping>
 
-          <o-table-column-aggregate attr="MONTHLY_PRICE" title="(Total)"></o-table-column-aggregate>
+          <o-table-column-aggregate
+            attr="MONTHLY_PRICE"
+            title="(Total)"
+          ></o-table-column-aggregate>
         </o-table>
       </div>
     </o-form>
-
-
   </mat-tab>
   <mat-tab label="{{ 'CHART_REPRESENTATION' | oTranslate }}">
     <o-form show-header="no">
       <div fxFill fxLayout="column" fxLayoutAlign="start">
-
-        <o-chart #subLapseChart type="donutChart" [data]="chartData" chart-height="500"
-          [chart-parameters]="chartParameters"></o-chart>
-
+        <o-chart
+          #subLapseChart
+          type="donutChart"
+          [data]="chartData"
+          chart-height="500"
+          [chart-parameters]="chartParameters"
+        ></o-chart>
       </div>
     </o-form>
   </mat-tab>
 </mat-tab-group>
 
 <div fxLayout="row" layout-padding fxLayoutAlign="center center" class="hidden">
-  <o-table service="permission" entity="userRole" columns="USER_;ROLENAME" visible-columns="USER_;ROLENAME"
-    (onDataLoaded)="onDataLoaded2($event)" class="hidden"></o-table>
-
+  <o-table
+    service="permission"
+    entity="userRole"
+    columns="USER_;ROLENAME"
+    visible-columns="USER_;ROLENAME"
+    (onDataLoaded)="onDataLoaded2($event)"
+    class="hidden"
+  ></o-table>
 </div>
