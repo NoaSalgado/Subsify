@@ -1,9 +1,9 @@
 <o-form
-    service="platforms"
-    entity="platform"
-    keys="PLATF_ID"
-    header-actions="R;I;U;D"
-    show-header-navigation="no"
+  service="platforms"
+  entity="platform"
+  keys="PLATF_ID"
+  header-actions="R;I;U;D"
+  show-header-navigation="no"
 >
 <o-row>
     <o-column title="{{ 'NEW_PLATFORM' | oTranslate}}" fxFlex>
@@ -20,26 +20,27 @@
 
         </o-row>
 
-        <o-row fxFlex="100">
-            <o-combo 
-                required="yes"
-                label="CAT_NAME"
-                attr="CAT_ID"
-                oLocker
-                layout-padding
-                read-only="no"
-                service="categories"
-                entity="categoryActive"
-                columns="CAT_ID;CAT_NAME"
-                value-column="CAT_ID"
-                keys="CAT_ID"
-                visible-columns="CAT_NAME"
-                fxFlex="33"
-                null-selection="no"
-            >
-            </o-combo>
+            <o-row fxFlex="100">
+                <o-combo 
+                    required="yes"
+                    label="CAT_NAME"
+                    attr="CAT_ID"
+                    oLocker
+                    layout-padding
+                    read-only="no"
+                    service="categories"
+                    entity="categoryActive"
+                    columns="CAT_ID;CAT_NAME"
+                    value-column="CAT_ID"
+                    keys="CAT_ID"
+                    visible-columns="CAT_NAME"
+                    fxFlex="33"
+                    null-selection="no"
+                    searchable="yes"
+                >
+                </o-combo>
 
-        </o-row>
+            </o-row>
 
 
         <o-row fxFlex="100">
