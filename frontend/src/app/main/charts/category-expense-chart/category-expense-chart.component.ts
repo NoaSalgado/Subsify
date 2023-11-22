@@ -59,24 +59,7 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
     this.configureService();
   }
 
-  private calculateMaxExpenseValue(): number {
-    const maxExpense = Math.max(
-      ...this.subLpases.map((sub) => sub.SUB_LAPSE_PRICE)
-    );
-
-    return Math.ceil(maxExpense) + 10;
-  }
-
-  private configureChart(locale: any): void {
-    this.chartParameters = new MultiBarChartConfiguration();
-    this.chartParameters.showXAxis = true;
-    this.chartParameters.showYAxis = true;
-    this.chartParameters.margin.left = 70;
-    this.chartParameters.margin.bottom = 15;
-    this.chartParameters.xDataType = locale.timeFormat("%B - %Y");
-  }
-
-  private configuraChartOps(): void {
+  ngAfterViewInit(): void {
     if (this.categoryChart) {
       let chartService: ChartService = this.categoryChart.getChartService();
       if (chartService) {
@@ -90,12 +73,27 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
         };
 
         const maxExpenseValue = this.calculateMaxExpenseValue();
-        console.log(this.calculateMaxExpenseValue());
-        var yScale = d3.scale.linear();
-        chartOps["yScale"] = yScale;
+
         chartOps["yDomain"] = [0, maxExpenseValue];
       }
     }
+  }
+
+  private calculateMaxExpenseValue(): number {
+    const maxExpense = Math.max(
+      ...this.subLpases.map((sub) => sub.SUB_LAPSE_PRICE)
+    );
+    const padding = 10;
+    return maxExpense + padding;
+  }
+
+  private configureChart(locale: any): void {
+    this.chartParameters = new MultiBarChartConfiguration();
+    this.chartParameters.showXAxis = true;
+    this.chartParameters.showYAxis = true;
+    this.chartParameters.margin.left = 70;
+    this.chartParameters.margin.bottom = 15;
+    this.chartParameters.xDataType = locale.timeFormat("%B - %Y");
   }
 
   protected configureService(): void {
@@ -106,7 +104,6 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
   protected getSubLapses(event) {
     this.subLpases = event;
     this.processData(this.subLpases);
-    this.configuraChartOps();
   }
 
   processData(data: any): void {
