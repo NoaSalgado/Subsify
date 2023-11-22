@@ -96,7 +96,7 @@
   "END_DATE_SLC": "Fecha de fin",
   "SLC_PRICE": "Precio promocional",
   "RENEWAL_PRICE": "Precio de renovación",
-  "NUMBER_OF_USERS": "Numero de usuarios",
+  "NUMBER_OF_USERS": "Usuarios minimos",
   "SLC_START": "Fecha de inicio",
   "CUSTOM_PRICE": "Promoción",
   "WRONG_DATE": "La fecha de fin debe ser posterior a la fecha de inicio",
