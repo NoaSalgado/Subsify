@@ -23,7 +23,8 @@
                 from platform p
                 inner join category c
                 on p.cat_id = c.cat_id
-                #WHERE#;
+                #WHERE#
+                order by p.platf_name;
                  ]]>
             </Sentence>
         </Query>
