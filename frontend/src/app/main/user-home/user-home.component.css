@@ -14,7 +14,7 @@
   height: 340px;
   margin: 0 auto !important;
   cursor: default !important;
-  padding-bottom: 50px
+  padding-bottom: 50px;
 }
 /*
 .image-container {
@@ -27,9 +27,7 @@
 .img2 {
   width: 140px;
   height: 140px;
-  
 }
-
 
 .mat-card-content div {
   text-align: center;
@@ -78,7 +76,9 @@
   font-weight: bold;
 }
 
-.emptyText{
+.emptyText {
+  color: #032a38;
+  font-size: 1.2rem;
   width: 100% !important;
   text-align: center !important;
 }

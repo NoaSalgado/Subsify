@@ -31,7 +31,8 @@ declare let d3: any;
   styleUrls: ["./category-expense-chart.component.css"],
 })
 export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
-  @ViewChild("filterBuilder", { static: false }) filterBuilder: OFilterBuilderComponent;
+  @ViewChild("filterBuilder", { static: false })
+  filterBuilder: OFilterBuilderComponent;
   @ViewChild("subLapseTable", { static: false }) subLapseTable: OTableComponent;
   @ViewChild("categoryChart", { static: false })
   protected categoryChart: OChartComponent;
@@ -140,7 +141,6 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
       const nextDate = new Date(
         chartStartDate.setMonth(chartStartDate.getMonth() + 1)
       );
-
       chartDates.push(nextDate);
     }
 
@@ -155,7 +155,6 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
         values,
       });
     });
-
     data.forEach((subLapse) => {
       const {
         SUB_LAPSE_START: startDate,
@@ -170,13 +169,16 @@ export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
       this.getSubscriptionPaymentDates(
         new Date(startDate),
         new Date(endDate)
-      ).forEach((date) => {
-        const currentValueObj = currentCategoryObj.values.find((value) => {
-          return value.x.getTime() === date.getTime();
-        });
-        currentValueObj.y += price / frequency;
+      ).forEach((date, i) => {
+        if (i < currentCategoryObj.values.length) {
+          const currentValueObj = currentCategoryObj.values.find((value) => {
+            return value.x.getTime() === date.getTime();
+          });
+          currentValueObj.y += price / frequency;
+        }
       });
     });
+    console.log(chartData);
     this.setChartData(chartData);
   }
 
