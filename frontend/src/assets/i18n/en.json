@@ -105,5 +105,6 @@
   "TOMORROW": "tomorrow",
   "TODAY": "today",
   "IN": "",
-  "DAYS": "days"
+  "DAYS": "days",
+  "NO_SUBSCRIPTIONS": "No active subscriptions yet"
 }

@@ -26,6 +26,7 @@ export class UserHomeComponent implements OnInit {
   private service: OntimizeService;
   public images: Array<string>;
   public image = "data:image/png:./assets/images/subsify_round_logo.png";
+  public isListEmpty = false;
 
   constructor(
     private router: Router,
@@ -35,6 +36,12 @@ export class UserHomeComponent implements OnInit {
   ) {
     this.service = this.injector.get(OntimizeService);
   }
+  onListDataLoaded(event){
+    this.isListEmpty = (event.length ===0);
+
+    this.calculateDays();
+  }
+
   calculateDays() {
     this.showRenewal = this.list.dataArray.map((sub) => !sub.SUBS_AUTORENEWAL);
     this.webLinks = this.list.dataArray.map((sub) => sub.PLATF_LINK);

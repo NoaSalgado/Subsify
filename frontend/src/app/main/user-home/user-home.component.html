@@ -1,5 +1,5 @@
 <o-column title="{{ 'SUBSCRIPTIONS_TO_RENEW' | oTranslate }}"></o-column>
-<o-list #list (onDataLoaded)="calculateDays()" delete-button="no" refresh-button="no" quick-filter="no"
+<o-list #list *ngIf="!isListEmpty" (onDataLoaded)="onListDataLoaded($event)" delete-button="no" refresh-button="no" quick-filter="no"
   attr="customerlist" service="subLapses" entity="subLapseToRenew"
   columns="SUB_LAPSE_ID;PLATF_NAME;PLATF_IMAGE;SUB_LAPSE_END;SUB_LAPSE_PRICE;SUBS_AUTORENEWAL;PLATF_LINK;SLC_PRICE;SLC_END;SLC_START;PLAN_PRICE_ID;PLAN_PRICE_END;PLAN_ID;SUBS_ID;PLAN_PRICE_VALUE"
   keys="SUB_LAPSE_ID" class="home-list" query-rows="1000">
@@ -59,3 +59,6 @@
     </mat-card>
   </div>
 </o-list>
+<div *ngIf="isListEmpty" class="emptyText">
+  {{'NO_SUBSCRIPTIONS' | oTranslate }}
+</div>

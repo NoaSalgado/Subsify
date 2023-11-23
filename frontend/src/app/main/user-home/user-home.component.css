@@ -77,3 +77,8 @@
   font-size: 1.2rem;
   font-weight: bold;
 }
+
+.emptyText{
+  width: 100% !important;
+  text-align: center !important;
+}
