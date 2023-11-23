@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.parser.Entity;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 @Lazy
@@ -220,8 +221,13 @@ public class SubscriptionService implements ISubscriptionService {
 
         // inserting sub_lapse_custom if is the case
         EntityResult standardPricePlanER = this.planPriceService.planPriceQuery(keysValuesQuery, List.of(PlanPriceDao.VALUE));
+        BigDecimal standarPlanPrice = (BigDecimal) standardPricePlanER.getRecordValues(0).get(PlanPriceDao.VALUE);
+        BigDecimal sublapsePrice = new BigDecimal(String.valueOf(attributes.get(SubLapseDao.PRICE)));
 
-        boolean isPriceCustomized = !Objects.equals(standardPricePlanER.getRecordValues(0).get(PlanPriceDao.VALUE), new BigDecimal(String.valueOf(attributes.get(SubLapseDao.PRICE))));
+        BigDecimal sublapsePriceScaled = sublapsePrice.setScale(2, RoundingMode.HALF_UP);
+
+        boolean isPriceCustomized = !standarPlanPrice.equals(sublapsePriceScaled);
+        //boolean isPriceCustomized = !Objects.equals(standardPricePlanER.getRecordValues(0).get(PlanPriceDao.VALUE), new BigDecimal(String.valueOf(attributes.get(SubLapseDao.PRICE))));
         if(isPriceCustomized){
             Map<String, Object> attrCustomSubLapseInsert = new HashMap<>();
             attrCustomSubLapseInsert.put(SubLapseCustomDao.SUBS_ID,insertSubsER.get(SubLapseDao.SUBS_ID));
