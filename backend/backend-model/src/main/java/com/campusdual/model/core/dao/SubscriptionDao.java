@@ -12,7 +12,4 @@ public class SubscriptionDao extends OntimizeJdbcDaoSupport {
     public static final String ID = "SUBS_ID";
     public static final String ACTIVE = "SUBS_AUTORENEWAL";
     public static final String PLAN_PRICE_ID = "PLAN_PRICE_ID";
-
-
-
 }
