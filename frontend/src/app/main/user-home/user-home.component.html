@@ -1,13 +1,37 @@
 <o-column title="{{ 'SUBSCRIPTIONS_TO_RENEW' | oTranslate }}"></o-column>
-<o-list #list *ngIf="!isListEmpty" (onDataLoaded)="onListDataLoaded($event)" delete-button="no" refresh-button="no" quick-filter="no"
-  attr="customerlist" service="subLapses" entity="subLapseToRenew"
+<o-list
+  #list
+  *ngIf="!isListEmpty"
+  (onDataLoaded)="onListDataLoaded($event)"
+  delete-button="no"
+  refresh-button="no"
+  quick-filter="no"
+  attr="customerlist"
+  service="subLapses"
+  entity="subLapseToRenew"
   columns="SUB_LAPSE_ID;PLATF_NAME;PLATF_IMAGE;SUB_LAPSE_END;SUB_LAPSE_PRICE;SUBS_AUTORENEWAL;PLATF_LINK;SLC_PRICE;SLC_END;SLC_START;PLAN_PRICE_ID;PLAN_PRICE_END;PLAN_ID;SUBS_ID;PLAN_PRICE_VALUE"
-  keys="SUB_LAPSE_ID" class="home-list" query-rows="1000">
+  keys="SUB_LAPSE_ID"
+  class="home-list"
+  query-rows="1000"
+>
   <div class="card-container">
-    <mat-card *ngFor="let rowData of list.dataArray; let i = index" [o-list-item]="rowData" class="mat-card">
-      <o-image attr="image" class="img2" [data]="images[i]" *ngIf="images[i]" auto-fit="true" enabled="false"
-        read-only="true" show-controls="false" full-screen-button="false"
-        empty-image="./assets/images/subsify_round_logo.png">
+    <mat-card
+      *ngFor="let rowData of list.dataArray; let i = index"
+      [o-list-item]="rowData"
+      class="mat-card"
+    >
+      <o-image
+        attr="image"
+        class="img2"
+        [data]="images[i]"
+        *ngIf="images[i]"
+        auto-fit="true"
+        enabled="false"
+        read-only="true"
+        show-controls="false"
+        full-screen-button="false"
+        empty-image="./assets/images/subsify_round_logo.png"
+      >
       </o-image>
 
       <div>
@@ -20,37 +44,39 @@
           {{ rowData.SUB_LAPSE_END | date }}
         </div>
 
-        <div *ngIf="showRenewal[i]; else noCaduca">
-          {{ "EXPIRES" | oTranslate }}{{ remainingDays[i]
-          }}
+        <div *ngIf="showRenewal[i]; else noExpires">
+          {{ "EXPIRES" | oTranslate }}{{ remainingDays[i] }}
         </div>
 
-        <ng-template #noCaduca>
+        <ng-template #noExpires>
           <div>{{ "RENEW-ON" | oTranslate }}{{ remainingDays[i] }}</div>
         </ng-template>
 
         <div class="plan-price">
           {{ priceToShow[i] | currency : "EUR" : true }}
-          <!-- <span *ngIf="incrementalPrice[i]" > &nbsp; - &nbsp; {{ incrementalPrice[i] | currency:"EUR"}} </span>
-          <span  *ngIf="incrementalPrice[i]" class="material-symbols-outlined">
-            keyboard_double_arrow_up
-          </span> -->
         </div>
 
         <div class="incremental-price" *ngIf="incrementalPrice[i]">
           +{{ incrementalPrice[i] | currency : "EUR" }}
           <span class="material-symbols-outlined">
-            keyboard_double_arrow_up</span>
+            keyboard_double_arrow_up</span
+          >
         </div>
 
         <div class="decremental-price" *ngIf="decrementalPrice[i]">
           -{{ decrementalPrice[i] | currency : "EUR" }}
           <span class="material-symbols-outlined decremental-icon">
-            keyboard_double_arrow_down</span>
+            keyboard_double_arrow_down</span
+          >
         </div>
       </mat-card-content>
-      <button mat-raised-button class="mat-raised-button" class="mat-raised-button class"
-        *ngIf="showRenewal[i] && rowData.PLATF_LINK" (click)="goToDoc(webLinks[i])">
+      <button
+        mat-raised-button
+        class="mat-raised-button"
+        class="mat-raised-button class"
+        *ngIf="showRenewal[i] && rowData.PLATF_LINK"
+        (click)="goToPlatform(webLinks[i])"
+      >
         {{ "UNSUSCRIBE" | oTranslate }}
       </button>
       <p class="cancel-message" *ngIf="showRenewal[i] && !rowData.PLATF_LINK">
@@ -60,5 +86,5 @@
   </div>
 </o-list>
 <div *ngIf="isListEmpty" class="emptyText">
-  {{'NO_SUBSCRIPTIONS' | oTranslate }}
+  {{ "NO_SUBSCRIPTIONS" | oTranslate }}
 </div>
