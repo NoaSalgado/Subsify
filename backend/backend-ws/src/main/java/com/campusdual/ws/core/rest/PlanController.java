@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/plans")
 public class PlanController extends ORestController<IPlanService> {
-
     @Autowired
     private IPlanService planService;
     @Override

@@ -16,7 +16,6 @@ import java.util.Map;
 @Lazy
 @Service("FrequencyService")
 public class FrequencyService implements IFrequencyService {
-
     @Autowired
     private FrequencyDao frequencyDao;
 

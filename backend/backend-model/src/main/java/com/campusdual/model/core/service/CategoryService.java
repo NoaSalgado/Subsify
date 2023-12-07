@@ -24,7 +24,6 @@ import java.util.Map;
 @Lazy
 @Service("CategoryService")
 public class CategoryService implements ICategoryService {
-
     @Autowired
     private CategoryDao categoryDao;
 
@@ -51,18 +50,6 @@ public class CategoryService implements ICategoryService {
         return this.daoHelper.query(this.categoryDao, newKeysValues, attributes);
     }
 
-    /*
-    public EntityResult catIdBycatNameQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException{
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-
-        Map<String, Object> newKeysValues = new HashMap<>();
-        newKeysValues.put(UserSubDao.USER, username);
-        newKeysValues.put(CategoryDao.NAME, keysValues.get(CategoryDao.NAME));
-
-        return this.daoHelper.query(this.categoryDao, newKeysValues, attributes);
-    }*/
-
     public EntityResult categoryInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
         return this.daoHelper.insert(this.categoryDao, attributes);
     }
@@ -78,6 +65,4 @@ public class CategoryService implements ICategoryService {
     public EntityResult categoryDelete(Map<String, Object> keyValues) throws OntimizeJEERuntimeException {
         return this.daoHelper.delete(this.categoryDao, keyValues);
     }
-
-
 }

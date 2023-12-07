@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/permissions")
 public class PermissionRestController extends ORestController<IPermissionService> {
-
     @Autowired
     private IPermissionService permissionService;
 

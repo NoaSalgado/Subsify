@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface ISubLapseCustomService {
-
     EntityResult subLapseCustomQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException;
     EntityResult subLapseCustomInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException;
     EntityResult subLapseCustomUpdate(Map<String, Object> attributes, Map<String, Object> KeyValues) throws OntimizeJEERuntimeException;

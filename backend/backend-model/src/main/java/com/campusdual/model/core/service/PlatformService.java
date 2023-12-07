@@ -16,7 +16,6 @@ import java.util.Map;
 @Lazy
 @Service("PlatformService")
 public class PlatformService implements IPlatformService {
-
     @Autowired
     private PlatformDao platformDao;
 
@@ -46,7 +45,6 @@ public class PlatformService implements IPlatformService {
     @Override
     public EntityResult usersByCustomPlatQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
         return this.daoHelper.query(this.platformDao, keysValues, attributes, PlatformDao.USERS_BY_CUSTOM_PLAT_QUERY);
-
     }
 
     @Override

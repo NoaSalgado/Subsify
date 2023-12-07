@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 @Lazy
 @ConfigurationFile(configurationFile = "dao/SubLapseCustomDao.xml", configurationFilePlaceholder = "dao/placeholders.properties")
 public class SubLapseCustomDao extends OntimizeJdbcDaoSupport {
-
     public static final String ID = "SLC_ID";
     public static final String SUBS_ID = "SUBS_ID";
     public static final String SLC_PRICE = "SLC_PRICE";

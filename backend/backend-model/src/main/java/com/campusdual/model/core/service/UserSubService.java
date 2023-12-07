@@ -33,7 +33,6 @@ public class UserSubService implements IUserSubService {
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
 
-
     @Override
     public EntityResult userSubQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
         Map<String, Object> queryUserSubKV = new HashMap<>();

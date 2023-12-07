@@ -24,7 +24,6 @@ import java.util.Objects;
 @Service("PermissionService")
 @Lazy
 public class PermissionService implements IPermissionService {
-
     public final String ADMIN_PERMISSION;
     public final String USER_PERMISSION;
     @Autowired
@@ -69,7 +68,6 @@ public class PermissionService implements IPermissionService {
         else if (role.equals("admin")) {
             map.put("permission", ADMIN_PERMISSION);
         }
-
         e.addRecord(map);
         return e;
     }

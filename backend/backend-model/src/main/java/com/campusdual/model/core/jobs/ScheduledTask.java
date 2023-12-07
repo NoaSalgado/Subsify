@@ -20,7 +20,6 @@ import java.util.*;
 
 @Service
 public class ScheduledTask {
-
     @Autowired
     SubLapseService subLapseService;
 
@@ -43,7 +42,6 @@ public class ScheduledTask {
         return new SQLStatementBuilder.BasicExpression(dateBE, SQLStatementBuilder.BasicOperator.AND_OP, activeBE);
     }
 
-
     //Obtains new sub_lapse_price by getting active plans found by plan id
     public Map<String, Object> getActivePlanByPlanId(Map<String, Object> planId) {
         List<String> attrs = new ArrayList<>();
@@ -53,7 +51,6 @@ public class ScheduledTask {
         return er.getRecordValues(0);
     }
 
-    //
     public void updateSubsPlanPriceId(Map<String, Object> subsRegistry, Map<String, Object> newPlanPrice) {
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(SubscriptionDao.PLAN_PRICE_ID, newPlanPrice.get(PlanPriceDao.ID));
@@ -89,7 +86,6 @@ public class ScheduledTask {
     @Scheduled(fixedRate = 1000)
     public void scheduleTask() {
         try {
-
             List<String> columns = Arrays.asList(
                     SubLapseDao.ID,
                     SubLapseDao.END,
@@ -103,7 +99,6 @@ public class ScheduledTask {
 
             EntityResult subscriptionsToUpdate = subLapseService.subLapseQueryRenewal(new HashMap<>(), columns);
 
-
             int erSize = subscriptionsToUpdate.calculateRecordNumber();
             if (erSize > 0 ){
                 System.out.println("here");
@@ -111,9 +106,7 @@ public class ScheduledTask {
                         .equals(subscriptionsToUpdate.getRecordValues(0).get(PlanPriceDao.VALUE));
             }
             for (int i = 0; i < erSize; i++) {
-
                 Map<String, Object> subsRegistry = subscriptionsToUpdate.getRecordValues(i);
-
                 Map<String, Object> planQueryAttrs = new HashMap<>();
                 planQueryAttrs.put(PlanDao.ID, subsRegistry.get(PlanDao.ID));
                 Map<String, Object> newPlanPrice = getActivePlanByPlanId(planQueryAttrs);
@@ -140,9 +133,7 @@ public class ScheduledTask {
                 }
                 EntityResult result = subLapseService.subLapseInsert(attrs);
             }
-
-        } catch (
-                Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             EntityResult res = new EntityResultMapImpl();
             res.setCode(EntityResult.OPERATION_WRONG);

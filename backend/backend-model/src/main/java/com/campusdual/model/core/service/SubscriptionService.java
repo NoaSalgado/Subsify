@@ -20,7 +20,6 @@ import java.util.*;
 @Lazy
 @Service("SubscriptionService")
 public class SubscriptionService implements ISubscriptionService {
-
     @Autowired
     private SubscriptionDao subscriptionDao;
 
@@ -46,11 +45,8 @@ public class SubscriptionService implements ISubscriptionService {
     @Autowired
     private SubLapseCustomService subLapseCustomService;
 
-
-
     @Override
     public EntityResult subscriptionQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> newKeyValues = new HashMap<>(keysValues);
         String username = authentication.getName();
@@ -119,7 +115,6 @@ public class SubscriptionService implements ISubscriptionService {
     }
     @Override
     public EntityResult subscriptionCustomInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
-
         String platformNameNoFormat = (String) attributes.get(PlatformDao.NAME);
         String platformName = this.convertToTitleCase(platformNameNoFormat);
 
@@ -195,7 +190,6 @@ public class SubscriptionService implements ISubscriptionService {
 
     @Override
     public EntityResult subscriptionInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException {
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 

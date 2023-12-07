@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/signUps")
 public class SignUpControler extends ORestController<ISignUpService> {
-
     @Autowired
     private ISignUpService signUpService;
     @Override

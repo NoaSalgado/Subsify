@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 @Lazy
 @ConfigurationFile(configurationFile = "dao/CategoryDao.xml", configurationFilePlaceholder = "dao/placeholders.properties")
 public class CategoryDao extends OntimizeJdbcDaoSupport {
-
     public static final String ID = "CAT_ID";
     public static final String NAME = "CAT_NAME";
     public static final String ACTIVE = "CAT_ACTIVE";

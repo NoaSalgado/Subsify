@@ -24,8 +24,6 @@ import java.util.*;
 @Lazy
 @Service("PlanPriceService")
 public class PlanPriceService implements IPlanPriceService {
-
-
     @Autowired
     private PlanPriceDao planPriceDao;
 
@@ -34,7 +32,6 @@ public class PlanPriceService implements IPlanPriceService {
 
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
-
 
     @Override
     public EntityResult planPriceQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
@@ -56,7 +53,6 @@ public class PlanPriceService implements IPlanPriceService {
         ZoneId zoneId = ZoneId.systemDefault();
 
         for(int i=0;i<erSize;i++){
-
             Map<String,Object> planPriceRegistry =  er.getRecordValues(i);
             java.sql.Date oldEndDate = (java.sql.Date) planPriceRegistry.get(PlanPriceDao.END);
             java.sql.Date oldStartDate = (java.sql.Date) planPriceRegistry.get(PlanPriceDao.START);
@@ -83,13 +79,7 @@ public class PlanPriceService implements IPlanPriceService {
 
                 this.planPriceDao.update(newAttributesUpdate, newKeyValuesUpdate);
             }
-
-            /*Date newDate = Date.from((newDateLD.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            attrs.put(SubLapseDao.START, newDate);
-
-            subLapseService.subLapseInsert(attrs);*/
         }
-
 
         return this.daoHelper.insert(this.planPriceDao,attributes);
     }

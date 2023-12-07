@@ -21,7 +21,6 @@ import java.util.Map;
 @Lazy
 @Service("PlanService")
 public class PlanService implements IPlanService {
-
     @Autowired
     private PlanDao planDao;
 
@@ -33,12 +32,10 @@ public class PlanService implements IPlanService {
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
 
-
     @Override
     public EntityResult planQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
         return this.daoHelper.query(this.planDao, keysValues, attributes, PlanDao.QUERY_PLAN_BY_PLATFORM);
     }
-
 
     @Override
     public EntityResult planByPlatformQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {

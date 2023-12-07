@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/frequencies")
 public class FrequencyController extends ORestController<IFrequencyService> {
-
     @Autowired
     private IFrequencyService frequencyService;
     @Override

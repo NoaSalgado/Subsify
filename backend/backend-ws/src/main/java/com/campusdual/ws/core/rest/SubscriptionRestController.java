@@ -26,7 +26,6 @@ import com.ontimize.jee.common.db.SQLStatementBuilder.BasicOperator;
 @RestController
 @RequestMapping("/subscriptions")
 public class SubscriptionRestController extends ORestController<ISubscriptionService> {
-
     @Autowired
     private ISubscriptionService subscriptionService;
     @Override

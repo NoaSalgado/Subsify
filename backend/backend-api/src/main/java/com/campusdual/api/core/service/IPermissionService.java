@@ -8,5 +8,4 @@ import java.util.Map;
 
 public interface IPermissionService {
     EntityResult permissionQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
-
  }

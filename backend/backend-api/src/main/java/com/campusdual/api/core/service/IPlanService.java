@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface IPlanService {
-
     EntityResult planQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException;
     EntityResult planInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException;
     EntityResult planUpdate(Map<String, Object> attributes, Map<String, Object> KeyValues) throws OntimizeJEERuntimeException;

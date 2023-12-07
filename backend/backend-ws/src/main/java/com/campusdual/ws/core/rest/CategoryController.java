@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/categories")
 public class CategoryController extends ORestController<ICategoryService> {
-
     @Autowired
     private ICategoryService categoryService;
     @Override

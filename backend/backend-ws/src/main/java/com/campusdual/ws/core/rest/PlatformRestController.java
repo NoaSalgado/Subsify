@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/platforms")
 public class PlatformRestController extends ORestController<IPlatformService> {
-
     @Autowired
     private IPlatformService platformService;
     @Override

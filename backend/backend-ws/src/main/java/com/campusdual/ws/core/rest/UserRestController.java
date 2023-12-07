@@ -17,7 +17,6 @@ import com.ontimize.jee.server.rest.ORestController;
 @RestController
 @RequestMapping("/users")
 public class UserRestController extends ORestController<IUserService> {
-
 	@Autowired
 	private IUserService userSrv;
 
@@ -33,5 +32,4 @@ public class UserRestController extends ORestController<IUserService> {
 	public ResponseEntity<EntityResult> login() {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-
 }

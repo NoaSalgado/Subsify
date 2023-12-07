@@ -14,7 +14,6 @@ import com.ontimize.jee.server.dao.jdbc.OntimizeJdbcDaoSupport;
 	configurationFile = "dao/UserDao.xml",
 	configurationFilePlaceholder = "dao/placeholders.properties")
 public class UserDao extends OntimizeJdbcDaoSupport {
-
     public static final String ID = "USER_";
     public static final String EMAIL = "EMAIL";
     public static final String PASSWORD = "PASSWORD";
@@ -25,5 +24,4 @@ public class UserDao extends OntimizeJdbcDaoSupport {
     public static final String LASTPASSWORDUPDATE = "LASTPASSWORDUPDATE";
     public static final String FIRSTLOGIN = "FIRSTLOGIN";
     public static final String USERS_TO_SHARE_QUERY="query_users_to_share";
-
 }

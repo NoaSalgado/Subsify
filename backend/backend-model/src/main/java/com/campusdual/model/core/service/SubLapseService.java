@@ -88,6 +88,7 @@ public class SubLapseService implements ISubLapseService {
                 PlanDao.ID,
                 SubscriptionDao.ID
         ));
+
         for (int i = 0; i < erSize; i++) {
             Map<String, Object> subRecord = subsToRenewEr.getRecordValues(i);
             Date planPriceEnd = (Date) subRecord.get(PlanPriceDao.END);
@@ -113,7 +114,7 @@ public class SubLapseService implements ISubLapseService {
                 SQLStatementBuilder.BasicExpression bexp1 = new SQLStatementBuilder.BasicExpression(planPriceEndField,
                         SQLStatementBuilder.BasicOperator.NULL_OP, null);
                 planPriceQueryKV.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, bexp1);
-                //TODO si hay varios cambios de precio en los últimos meses?
+
                 EntityResult planPriceEr = this.planPriceService.planPriceQuery(planPriceQueryKV,
                         List.of(PlanPriceDao.VALUE));
                 BigDecimal newPlanPrice = (BigDecimal) planPriceEr.getRecordValues(0).get(PlanPriceDao.VALUE);
@@ -197,18 +198,11 @@ public class SubLapseService implements ISubLapseService {
             this.subLapseCustomService.subLapseCustomInsert(attrCustomSubLapseInsert);
         }
 
-
-
-
         return this.daoHelper.update(this.subLapseDao, attributes, keyValues);
-
         }
 
     @Override
     public EntityResult subLapseDelete(Map<String, Object> keyValues) throws OntimizeJEERuntimeException {
         return null;
     }
-
-
-
 }

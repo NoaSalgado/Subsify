@@ -29,7 +29,6 @@ import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 @Lazy
 @Service("UserService")
 public class UserService implements IUserService {
-
 	@Autowired
 	private UserDao userDao;
 	@Autowired UserRoleDao userRoleDao;
@@ -72,5 +71,4 @@ public class UserService implements IUserService {
 		userToShareKV.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, filterBE);
 	return this.daoHelper.query(this.userDao,userToShareKV,attrList,UserDao.USERS_TO_SHARE_QUERY);
 	}
-
 }

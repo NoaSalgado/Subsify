@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface ICategoryService {
-
         EntityResult categoryQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException;
         EntityResult categoryInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException;
         EntityResult categoryUpdate(Map<String, Object> attributes, Map<String, Object> KeyValues) throws OntimizeJEERuntimeException;

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/subLapseCustoms")
 public class SubLapseCustomController  extends ORestController<ISubLapseCustomService> {
-
     @Autowired
      private ISubLapseCustomService subLapseCustomService;
 

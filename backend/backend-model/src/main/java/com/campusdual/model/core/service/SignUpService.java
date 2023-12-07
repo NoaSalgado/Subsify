@@ -17,7 +17,6 @@ import java.util.Map;
 @Lazy
 @Service("SignUpService")
 public class SignUpService implements ISignUpService {
-
     @Autowired
     private UserDao userDao;
     @Autowired UserRoleDao userRoleDao;

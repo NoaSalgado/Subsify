@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface IPlanPriceService {
-
     EntityResult planPriceQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException;
     EntityResult planPriceInsert(Map<String, Object> attributes) throws OntimizeJEERuntimeException;
     EntityResult planPriceUpdate(Map<String, Object> attributes, Map<String, Object> KeyValues) throws OntimizeJEERuntimeException;

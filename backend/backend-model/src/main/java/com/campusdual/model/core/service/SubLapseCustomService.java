@@ -21,7 +21,6 @@ import java.util.Map;
 @Lazy
 @Service("SubLapseCustom")
 public class SubLapseCustomService implements ISubLapseCustomService {
-
     @Autowired
     private SubLapseCustomDao subLapseCustomDao;
 
@@ -31,7 +30,6 @@ public class SubLapseCustomService implements ISubLapseCustomService {
     private SubLapseService subLapseService;
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
-
 
     @Override
     public EntityResult subLapseCustomQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException {
@@ -87,7 +85,6 @@ public class SubLapseCustomService implements ISubLapseCustomService {
     }
 
     public EntityResult customPriceQuery(Map<String, Object> keysValues, List<String> attributes) throws OntimizeJEERuntimeException{
-
         Map<String,Object>priceKV=new HashMap<>();
         SQLStatementBuilder.BasicField subLapseEndBF=new SQLStatementBuilder.BasicField(SubLapseCustomDao.SLC_START);
         SQLStatementBuilder.BasicExpression subLapseBE=new SQLStatementBuilder.BasicExpression(
