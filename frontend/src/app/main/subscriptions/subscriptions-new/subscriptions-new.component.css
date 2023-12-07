@@ -2,11 +2,6 @@
   display: none !important;
 }
 
-.prueba {
-  display: flex;
-  flex-direction: column !important;
-}
-
 p {
   color: #032a38;
   font-size: 1.2rem;

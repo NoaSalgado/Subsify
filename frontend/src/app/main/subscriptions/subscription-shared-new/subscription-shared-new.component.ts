@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-  ViewChild,
-} from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { OFormComponent } from "ontimize-web-ngx";
 import { SubscriptionServiceService } from "../subscription-service.service";
 
@@ -13,12 +7,10 @@ import { SubscriptionServiceService } from "../subscription-service.service";
   templateUrl: "./subscription-shared-new.component.html",
   styleUrls: ["./subscription-shared-new.component.css"],
 })
-export class SubscriptionSharedNewComponent implements OnInit {
+export class SubscriptionSharedNewComponent {
   @ViewChild("subscriptionDetailForm", { static: false })
   subscriptionDetailForm: OFormComponent;
   constructor(private subsService: SubscriptionServiceService) {}
-
-  ngOnInit() {}
 
   reload() {
     this.subsService.reloadForm();

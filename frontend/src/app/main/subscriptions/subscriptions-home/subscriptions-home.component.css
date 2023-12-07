@@ -10,9 +10,10 @@
 .hidden {
   display: none !important;
 }
+
 .img {
   padding: 1rem 0rem;
   max-width: 100%;
-  display: block !important; 
+  display: block !important;
   margin: auto !important;
 }

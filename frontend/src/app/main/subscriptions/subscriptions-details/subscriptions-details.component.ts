@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  Injector,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { AfterViewInit, Component, ViewChild } from "@angular/core";
 import { OFormComponent } from "ontimize-web-ngx";
 import { SubscriptionServiceService } from "../subscription-service.service";
 @Component({
@@ -18,11 +12,10 @@ export class SubscriptionsDetailsComponent implements AfterViewInit {
   @ViewChild("sharedUsersForm", { static: false })
   sharedUsersForm: OFormComponent;
 
-  protected shared_price;
-  protected total_price;
-  protected users;
-  protected virtual_user;
-  public display_shared_price = true;
+  protected sharedPrice: number;
+  protected totalPrice: number;
+  protected displaySharedPrice = true;
+  protected showInput = true;
 
   constructor(private subsService: SubscriptionServiceService) {}
 
@@ -35,24 +28,20 @@ export class SubscriptionsDetailsComponent implements AfterViewInit {
   }
 
   getSharedValue() {
-    if (this.shared_price === this.total_price) {
+    if (this.sharedPrice === this.totalPrice) {
       return;
     } else {
-      this.display_shared_price = false;
-      return this.shared_price;
+      this.displaySharedPrice = false;
+      return this.sharedPrice;
     }
   }
 
   getSharedCount(event) {
-    this.shared_price = event.shared_price;
-    this.total_price = event.SUB_LAPSE_PRICE;
+    this.sharedPrice = event.shared_price;
+    this.totalPrice = event.SUB_LAPSE_PRICE;
   }
 
-  public show = true;
-  public plan_price;
-
   public displayInput(event) {
-    this.show = false;
-    console.log(this.show);
+    this.showInput = false;
   }
 }

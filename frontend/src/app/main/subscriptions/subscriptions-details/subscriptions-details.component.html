@@ -64,7 +64,7 @@
         (onFocus)="displayInput($event)"
       ></o-currency-input>
       <o-currency-input
-        [ngClass]="{ hide: display_shared_price }"
+        [ngClass]="{ hide: displaySharedPrice }"
         #sharedPriceInput
         attr="SHARED_PRICE"
         [automatic-registering]="false"
@@ -74,7 +74,7 @@
         [data]="getSharedValue()"
       ></o-currency-input>
     </o-row>
-    <div [ngClass]="{ hide: show }">
+    <div [ngClass]="{ hide: showInput }">
       <o-row>
         <p>
           Hemos detectado que has modificado el precio ¿Deseas añadir una fecha
@@ -139,7 +139,7 @@
           detail-mode="none"
           pagination-controls="no"
         >
-          <o-table-column attr="USERS"  content-align="center">
+          <o-table-column attr="USERS" content-align="center">
             <o-table-renderer-concat></o-table-renderer-concat>
           </o-table-column>
         </o-table>

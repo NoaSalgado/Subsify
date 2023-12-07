@@ -1,10 +1,4 @@
-import {
-  Component,
-  Injector,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-} from "@angular/core";
+import { Component, Injector, TemplateRef, ViewChild } from "@angular/core";
 import { OBaseTableCellRenderer } from "ontimize-web-ngx";
 
 @Component({

@@ -1,4 +1,4 @@
-import { Component, Injector, OnInit, ViewChild } from "@angular/core";
+import { Component, Injector, ViewChild } from "@angular/core";
 import { getMonthlyPricefunction } from "src/app/shared/shared.module";
 import {
   OChartComponent,
@@ -19,18 +19,21 @@ import { ActivatedRoute, Router } from "@angular/router";
   templateUrl: "./subscriptions-home.component.html",
   styleUrls: ["./subscriptions-home.component.css"],
 })
-export class SubscriptionsHomeComponent implements OnInit {
+export class SubscriptionsHomeComponent {
   @ViewChild("filterBuilderCat", { static: false })
   filterBuilderCat: OFilterBuilderComponent;
-  @ViewChild("categories", { static: false }) categories: OComboComponent;
-  @ViewChild("subLapseTable", { static: false }) subLapseTable: OTableComponent;
-  @ViewChild("subLapseChart", { static: false }) subLapseChart: OChartComponent;
+  @ViewChild("categories", { static: false })
+  categories: OComboComponent;
+  @ViewChild("subLapseTable", { static: false })
+  subLapseTable: OTableComponent;
+  @ViewChild("subLapseChart", { static: false })
+  subLapseChart: OChartComponent;
 
   protected platformChart: OChartComponent;
-  public chartData;
+  protected chartData: Array<any>;
   protected chartParameters: DonutChartConfiguration;
-  public getMonthlyPrice = getMonthlyPricefunction;
-  user_role;
+  protected getMonthlyPrice = getMonthlyPricefunction;
+  protected userRole: string;
 
   constructor(
     protected injector: Injector,
@@ -41,12 +44,6 @@ export class SubscriptionsHomeComponent implements OnInit {
     this.chartParameters.showLabels = true;
     this.chartParameters.cornerRadius = 0;
     this.chartParameters.donutRatio = 0.1;
-  }
-
-  ngOnInit() {}
-
-  ngAfterViewInit(): void {
-    // this.subscriptionsSevice.registerTable(this.sublapseTable);
   }
 
   createFilterCat(values: Array<{ attr; value }>): Expression {
@@ -73,12 +70,12 @@ export class SubscriptionsHomeComponent implements OnInit {
     }
   }
 
-  onDataLoaded2(event) {
+  onDataLoaded(event) {
     console.log(event);
     if (event && event.length > 0 && event[0].ROLENAME) {
-      this.user_role = event[0].ROLENAME;
+      this.userRole = event[0].ROLENAME;
 
-      if (this.user_role === "admin") {
+      if (this.userRole === "admin") {
         this.router.navigate(["../../", "plans"], {
           relativeTo: this.actRoute,
         });
@@ -91,12 +88,12 @@ export class SubscriptionsHomeComponent implements OnInit {
       console.error("Invalid data received:", event);
     }
   }
+
   resetFilter($event) {
     this.filterBuilderCat.triggerReload();
   }
 
   setChartData($event) {
-    console.log(this.subLapseChart.dataArray);
     this.chartData = $event.map((subLapse) => {
       const data = {
         x: subLapse.PLATF_NAME,
@@ -107,7 +104,6 @@ export class SubscriptionsHomeComponent implements OnInit {
   }
 
   onTabChange(event) {
-    console.log({ event });
     (<any>this.subLapseChart).chartWrapper.update();
   }
 }
