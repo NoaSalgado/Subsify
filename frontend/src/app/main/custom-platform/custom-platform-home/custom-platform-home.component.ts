@@ -1,18 +1,18 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Expression, FilterExpressionUtils, OFilterBuilderComponent } from 'ontimize-web-ngx';
+import { Component, ViewChild } from "@angular/core";
+import {
+  Expression,
+  FilterExpressionUtils,
+  OFilterBuilderComponent,
+} from "ontimize-web-ngx";
 
 @Component({
-  selector: 'app-custom-platform-home',
-  templateUrl: './custom-platform-home.component.html',
-  styleUrls: ['./custom-platform-home.component.css']
+  selector: "app-custom-platform-home",
+  templateUrl: "./custom-platform-home.component.html",
+  styleUrls: ["./custom-platform-home.component.css"],
 })
-export class CustomPlatformHomeComponent implements OnInit {
+export class CustomPlatformHomeComponent {
   @ViewChild("filterBuilderNumUsers", { static: false })
   filterBuilderNumUsers: OFilterBuilderComponent;
-  constructor() { }
-
-  ngOnInit() {
-  }
 
   createFilterNumUsers(values: Array<{ attr; value }>): Expression {
     let filters: Array<Expression> = [];
@@ -26,7 +26,7 @@ export class CustomPlatformHomeComponent implements OnInit {
       }
     });
     if (filters.length > 0) {
-      return filters.reduce((exp1,) =>
+      return filters.reduce((exp1) =>
         FilterExpressionUtils.buildComplexExpression(
           exp1,
           null,
@@ -41,5 +41,4 @@ export class CustomPlatformHomeComponent implements OnInit {
   resetFilter($event) {
     this.filterBuilderNumUsers.triggerReload();
   }
-
 }

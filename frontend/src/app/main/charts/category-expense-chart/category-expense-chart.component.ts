@@ -33,7 +33,8 @@ declare let d3: any;
 export class CategoryExpenseChartComponent implements OnInit, AfterViewInit {
   @ViewChild("filterBuilder", { static: false })
   filterBuilder: OFilterBuilderComponent;
-  @ViewChild("subLapseTable", { static: false }) subLapseTable: OTableComponent;
+  @ViewChild("subLapseTable", { static: false })
+  subLapseTable: OTableComponent;
   @ViewChild("categoryChart", { static: false })
   protected categoryChart: OChartComponent;
   protected chartParameters: MultiBarChartConfiguration;

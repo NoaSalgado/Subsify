@@ -1,69 +1,62 @@
-<o-form #customNewPlatformForm
-    service="platforms"
-    entity="platform"
-    keys="PLATF_NAME"
-    header-actions="I"
-    show-header-navigation="no"
+<o-form
+  #customNewPlatformForm
+  service="platforms"
+  entity="platform"
+  keys="PLATF_NAME"
+  header-actions="I"
+  show-header-navigation="no"
 >
-    <o-row>
-        <o-column title="{{ 'NEW_PLATFORM' | oTranslate}}" fxFlex>
+  <o-row>
+    <o-column title="{{ 'NEW_PLATFORM' | oTranslate }}" fxFlex>
+      <o-row fxFlex="100">
+        <o-text-input
+          attr="PLATF_NAME"
+          fxFlex="33"
+          layout-padding
+          required="yes"
+        >
+        </o-text-input>
+      </o-row>
 
-            <o-row fxFlex="100">
-                <o-text-input 
-                    attr="PLATF_NAME"
-                    fxFlex="33"
-                    layout-padding
-                    required="yes"
-                >                    
-                </o-text-input>
+      <o-row fxFlex="100">
+        <o-combo
+          required="yes"
+          label="CAT_NAME"
+          attr="CAT_ID"
+          oLocker
+          layout-padding
+          read-only="no"
+          service="categories"
+          entity="categoryActive"
+          columns="CAT_ID;CAT_NAME"
+          value-column="CAT_ID"
+          keys="CAT_ID"
+          visible-columns="CAT_NAME"
+          fxFlex="33"
+          null-selection="no"
+          searchable="yes"
+        >
+        </o-combo>
+      </o-row>
 
-
-            </o-row>
-
-            <o-row fxFlex="100">
-                <o-combo 
-                    required="yes"
-                    label="CAT_NAME"
-                    attr="CAT_ID"
-                    oLocker
-                    layout-padding
-                    read-only="no"
-                    service="categories"
-                    entity="categoryActive"
-                    columns="CAT_ID;CAT_NAME"
-                    value-column="CAT_ID"
-                    keys="CAT_ID"
-                    visible-columns="CAT_NAME"
-                    fxFlex="33"
-                    null-selection="no"
-                    searchable="yes"
-                >
-                </o-combo>
-
-            </o-row>
-
-
-            <o-row fxFlex="100">
-                
-                
-                <o-text-input 
-                    attr="PLATF_LINK"
-                    fxFlex="33"
-                    layout-padding
-                    required="yes"
-                >                    
-                </o-text-input>
-            </o-row>
-            <o-row>
-                <o-image
-                attr="PLATF_IMAGE"
-                show-controls="no"
-                read-only="no"
-                label="File" 
-                fxFlex="33"
-              ></o-image>
-          
-            </o-row>
-        </o-column>
-    </o-row>
+      <o-row fxFlex="100">
+        <o-text-input
+          attr="PLATF_LINK"
+          fxFlex="33"
+          layout-padding
+          required="yes"
+        >
+        </o-text-input>
+      </o-row>
+      <o-row>
+        <o-image
+          attr="PLATF_IMAGE"
+          show-controls="no"
+          read-only="no"
+          label="File"
+          fxFlex="33"
+        ></o-image>
+      </o-row>
+    </o-column>
+  </o-row>
 </o-form>
