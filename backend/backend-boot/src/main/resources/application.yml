@@ -63,9 +63,9 @@ server:
 spring:
    datasource:
       driver-class-name: org.postgresql.Driver
-      jdbc-url: jdbc:postgresql://45.84.210.174:65432/2023_BFS_2_G5
-      username: 2023_BFS_2_G5
-      password: b2f34VKzTvt2
+      jdbc-url: ${DATABASE_URL}
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
       initial-size: 10
       test-on-borrow: true
    main:
